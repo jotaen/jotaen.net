@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: blogpost
 title:  "Lorem ipsum!"
 date:   2015-12-27 17:04:25 +0100
 categories: jekyll update
