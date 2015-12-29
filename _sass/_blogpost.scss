@@ -1,0 +1,133 @@
+.blogpost-header {
+  position: relative;
+  width: 100%;
+  height: 35%;
+  @media (min-width: 768px) { height: 45% }
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center 70%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  div {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    @media (min-width: 768px) {
+      left: 20px;
+      padding-left: 14%;
+    }
+    @media (min-width: 1024px) { padding-left: 22%; }
+    @media (min-width: 2000px ) { padding-left: 286px; }
+    h1, h2 {
+      text-transform: capitalize;
+      display: inline;
+      background-color: $color-red;
+      box-shadow: 0.05em 0 0 $color-red, -0.05em -0 0 $color-red;
+      padding: 0.2em;
+      color: #fff;
+      font-style: italic;
+      font-size: 1.5em;
+      line-height: 1.4;
+    }
+    h2 {
+      font-size: 1.2em;
+    }
+  }
+}
+
+h1 {
+  @include font-bold;
+  font-size: $font-size*1.6;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  @include font-bold;
+  margin-top: $font-size*2;
+  margin-bottom: $font-size*0.8;
+  font-size: $font-size*1.3;
+  letter-spacing: -0.03em;
+}
+
+h3, h4, h5, h6 {
+  @include font-bold;
+  margin-top: $font-size*0.8;
+  margin-bottom: $font-size*0.4;
+  font-size: $font-size*1.2;
+  letter-spacing: -0.03em;
+}
+
+.annotation {
+  @include font-thin-italic;
+  float: left;
+  margin-top: $font-size*0.4;
+  margin-left: -140px;
+  width: 120px;
+  text-align: right;
+  color: #555;
+}
+
+sup, sub {
+  margin: 0 0.2em;
+}
+sup, sub, sup *, sub * {
+  font-size: $font-size*0.75;
+}
+
+b, strong {
+  @include font-bold;
+}
+
+p {
+  margin-bottom: 0.5em;
+  font-size: $font-size;
+}
+
+a {
+  color: $color-blue;
+  border: 0;
+}
+a:hover, a:active {
+  background-color: $color-blue;
+  color: $color-white !important;
+}
+a:visited {
+  color: $color-purple;
+}
+a:visited:hover, a:visited:active {
+  background-color: $color-purple;
+  color: $color-white !important;
+}
+
+code, code * {
+  @include font-mono;
+  background-color: $color-lightgrey;
+}
+
+th {
+  @include font-bold;
+  border-bottom: 1px solid $color-grey;
+  padding: 0.3em;
+  text-align: left;
+}
+
+tr:nth-child(2n) {
+  background-color: $color-lightgrey;
+}
+
+td {
+  vertical-align: top;
+  padding: 0.3em;
+}
+
+blockquote {
+  color: $color-grey;
+  margin-left: 0.5em;
+  padding-left: 1em;
+  border-left: 1px solid $color-grey;
+}

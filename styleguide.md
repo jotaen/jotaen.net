@@ -1,69 +1,73 @@
 ---
-layout: post
-title:  "Styleguide for blogposts"
+layout: blogpost
+title:  "Living styleguide"
+subtitle: "How my blogposts are styled"
 date:   2014-12-27T17:04:25+0100
 categories: meta
 permalink: /styleguide
+image: /static/pulp-fiction.jpg
 ---
 
-The way your dad looked at it, this watch was your birthright. He’d be damned if any slopes gonna put their greasy yellow hands on his boy’s birthright, so he hid it, in the one place he knew he could hide something: his ass.
+The header section above is a container which takes up ~40% vertical space. It is intended to show a full size image or video in it. The headline (and subheadline) for the blogpost is centered and the letters have one of the available colors (see below) as background.
 
-Five long years, he wore this watch up his ass. Then when he died of dysentery, he gave me the watch. I hid this uncomfortable piece of metal up my ass for two years. Then, after seven years, I was sent home to my family. And now, little man, I give the watch to you.
+# Basic styling
 
-###### The chapters, which the movie is divided in
+## Typography
 
-|Nr. |Chapter Name                             |Notice      |
-|---:|-----------------------------------------|------------|
-|   1|Prologue – The Diner                     |            |
-|   2|Vincent Vega and Marsellus Wallace’s Wife|With prelude|
-|   3|The Gold Watch                           |With prelude|
-|   4|The Bonnie Situation                     |            |
-|   5|Epilogue – The Diner                     |            |
+The font face is »input« by David Jonathan Ross[^1]. Due to its technical look it goes nicely with this blog, whose topics cover coding and technology mainly. The fact that it comes with a whole bunch of different styles is a strong advantage, since typography is the most important stylistic device on text-heavy sites. However, because using webfonts is also a matter of frontend performance, just the following styles are included:
 
-###### This is some fancy ruby code
+- Regular text: Input Sans Condensed 300 (regular & italic)
+- Strong text: Input Serif Compressed 700 italic (regular & italic)
+- Captions: Input Sans Compressed 300 (italic)
+- Code: Input Sans Mono Narrow 300 (regular)
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi("Tom")
-# prints "Hi, Tom" to STDOUT.
-{% endhighlight %}
+## Inline styles
 
-1. Fabienne: „Whose motorcycle is this?“
-2. Butch: „It’s a chopper, baby.“
-3. Fabienne: „Whose chopper is this?“
-4. Butch: „It’s Zed’s.“
-5. Fabienne: „Who’s Zed?“
-6. Butch: „Zed’s dead, baby. Zed’s dead.“
+- **Bold text is not just bold**, it uses the serif typeface additionally.
+- *This is italic (or: obligue) text*
+- [Weblinks](https://you-never-have-been.here) come in blue and underlined; [visited websites](//jotaen.net) are colored purple. Unfortunately, the latter has come a bit out of fashion, but I consider it to be a very important feature – isn’t the web all about links?
+- Then, `there is inline code`, which has grey background and is – surprisingly – monospaced.
+- Lastly, although not an actual inline style, all text selection is brown. Try it out!
 
-###### Ezekiel 25:17
+## Colors
 
-> The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother’s keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know I am the Lord when I lay my vengeance upon you.
 
-###### By the way: Captions are actually h6 elements
 
-![Pulp Fiction](/static/Banksy_Pulp-Fiction.jpg)
+# Block elements
 
-# Headline 1
+## Table
 
-## Headline 2
+|Nr.|First Sentence|Book|Author|
+|--:|-----|----|------|
+|  1|Als Gregor Samsa eines Morgens aus unruhigen Träumen erwachte, fand er sich in seinem Bett zu einem ungeheueren Ungeziefer verwandelt|Die Verwandlung|Franz Kafka|
+|  2|Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed.|Ulysses|James Joyce|
+|  3|In principio era il Verbo e il Verbo era presso Dio, e il Verbo era Dio.|Il Nome Della Rosa|Umberto Eco|
+|  4|It was a bright, cold day in April, and the clocks were striking thirteen|1984|George Orwell|
+|  5|In der Mottengasse elf, oben unter dem Dach hinter dem siebten Balken in dem Haus, wo der alte Eisenbahnsignalvorsteher Herr Gleisenagel wohnt, steht eine sehr geheimnisvolle Kiste.|Lari Fari Mogelzahn|Janosch|
 
-- Now… I been sayin’ that shit for years. And if you ever heard it, that meant your ass. You’d be dead right now. I never gave much thought to what it meant. I just thought it was a cold-blooded thing to say to a motherfucker before I popped a cap in his ass.
-- But I saw some shit this mornin’ made me think twice. See, now I’m thinking: maybe it means you’re the evil man.
-  - And I’m the righteous man.
-  - And Mr. 9mm here…
-  - He’s the shepherd protecting my righteous ass in the valley of darkness.
-- Or it could mean you’re the righteous man and I’m the shepherd and it’s the world that’s evil and selfish. And I’d like that. But that shit ain’t the truth. The truth is you’re the weak. And I’m the tyranny of evil men. But I’m tryin’, Ringo. I’m tryin’ real hard to be the shepherd.
+## Code
 
-### Headline 3
+{: .language-ruby}
+    # Returns a personalized salutation string
+    def greet(name)
+      return "Hey, #{name}! How are you doing?"
+    end
 
-Mmmm! Goddamn, Jimmie! This is some serious gourmet shit! Usually, me and Vince would be happy with some freeze-dried [Taster's Choice](//google.com) right, but he springs this serious GOURMET shit on us! What flavor is this?
+    puts greet("Mary")
 
-### Headline 4
+## List
 
-I don't need you to tell me how **fucking good my coffee is, okay?** I'm the one who buys it. I know how good it is. When Bonnie goes shopping *she buys SHIT*. I buy the gourmet expensive stuff because when I drink it *I want to taste it*. But you know what's on my mind right now? It AIN'T the coffee in my kitchen, it's the dead nigger in my garage.
+1. Ordered list
+2. With subitems
 
-### Headline 5
+- Unordered list
+- With subitems
 
-No, No, No, No, let me ask you a question. When you came pulling in here, did you notice a sign out in front of my house that said `Dead Nigger Storage`?
+## Blockquote
+
+> The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother’s keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know I am the Lord when I lay my vengeance upon you.[^2]
+
+## Image
+
+[^1]: The font has [its own website](http://input.fontbureau.com). It’s worth having a look there.
+[^2]: Source: Ezekiel 25:17 or [Pulp Fiction](https://www.youtube.com/watch?v=BdxD8DWt_pU) for your convenience

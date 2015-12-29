@@ -1,0 +1,41 @@
+// Colors
+$color-black:     #000000;
+$color-blue:      #0d668d;
+$color-purple:    #8d1699;
+$color-brown:     #5a3e35;
+$color-green:     #65c858;
+$color-grey:      #888888;
+$color-lightgrey: #fafafa;
+$color-orange:    #f34c17;
+$color-red:       #c0253e;
+$color-white:     #ffffff;
+$color-yellow:    #cac43b;
+
+// Typography
+
+$font-size: 15px;
+
+@mixin font-regular {
+  font-family: "Input Sans Cond Lt", "Lucida Grande", sans-serif;
+  font-weight: normal;
+  letter-spacing: -0.03em;
+}
+
+@mixin font-bold {
+  font-family: "Input Serif Comp", "Palatino", "Book Antiqua", serif;
+  font-weight: bold;
+  letter-spacing: -0.07em;
+}
+
+@mixin font-thin-italic {
+  font-family: "Input Sans Comp Lt", "Lucida Grande", sans-serif;
+  font-style: italic;
+  font-weight: normal;
+  letter-spacing: -0.03em;
+}
+
+@mixin font-mono {
+  font-family: "Input Mono Narr Lt", monospace;
+  font-weight: normal;
+  letter-spacing: -0.05em;
+}
