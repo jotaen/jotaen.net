@@ -13,15 +13,12 @@ html,
 body {
   width: 100%;
   height: 100%;
+  margin: 0;
+  padding: 0;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-}
-
-.ul-reset {
-  list-style-type: none;
-  padding-left: 0;
 }
 
 .site-navigation {

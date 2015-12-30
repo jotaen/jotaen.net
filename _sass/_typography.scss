@@ -4,7 +4,7 @@
 
 html {
   @include font-regular;
-  font-size: $font-size;
+  font-size: 15px;
   line-height: 1.5;
 
   text-rendering: optimizeLegibility;
@@ -21,15 +21,15 @@ html {
 
 h1 {
   @include font-bold;
-  font-size: $font-size*1.6;
+  font-size: 1.6rem;
   letter-spacing: -0.03em;
 }
 
 h2 {
   @include font-bold;
-  margin-top: $font-size*2;
-  margin-bottom: $font-size*0.8;
-  font-size: $font-size*1.3;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
   letter-spacing: -0.03em;
 }
 
@@ -38,9 +38,9 @@ h4,
 h5,
 h6 {
   @include font-bold;
-  margin-top: $font-size*0.8;
-  margin-bottom: $font-size*0.4;
-  font-size: $font-size*1.2;
+  margin-top: 0.8rem;
+  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
   letter-spacing: -0.03em;
 }
 
@@ -48,7 +48,7 @@ sup,
 sub,
 sup *,
 sub * {
-  font-size: $font-size*0.75;
+  font-size: 0.75rem;
 }
 
 sup,
@@ -63,7 +63,7 @@ strong {
 
 p {
   margin-bottom: 0.5em;
-  font-size: $font-size;
+  font-size: 1rem;
 }
 
 a {
