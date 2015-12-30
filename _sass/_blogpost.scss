@@ -1,7 +1,3 @@
-//
-//  The header of blogpost
-//
-
 .blogpost-header {
   position: relative;
   width: 100%;
@@ -14,32 +10,35 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  div {
-    position: absolute;
-    bottom: 5%;
-    left: 0;
-    width: 100%;
-    max-width: 450px;
-    text-align: center;
-    @media (min-width: 768px) {
-      left: 20px;
-      padding-left: 14%;
-    }
-    @media (min-width: 1024px) { padding-left: 22%; }
-    @media (min-width: 2000px ) { padding-left: 286px; }
-    h1, h2 {
-      text-transform: capitalize;
-      display: inline;
-      background-color: $color-red;
-      box-shadow: 0.05em 0 0 $color-red, -0.05em -0 0 $color-red;
-      padding: 0.2em;
-      color: #fff;
-      font-style: italic;
-      font-size: 1.5em;
-      line-height: 1.4;
-    }
-    h2 {
-      font-size: 1.2em;
-    }
+}
+
+.blogpost-headline {
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  @media (min-width: 768px) {
+    left: 20px;
+    padding-left: 14%;
   }
+  @media (min-width: 1024px) { padding-left: 22%; }
+  @media (min-width: 2000px ) { padding-left: 286px; }
+}
+
+.blogpost-title,
+.blogpost-subtitle {
+  text-transform: capitalize;
+  display: inline;
+  background-color: $color-red;
+  box-shadow: 0.05em 0 0 $color-red, -0.05em -0 0 $color-red;
+  padding: 0.2em;
+  color: #fff;
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+.blogpost-subtitle {
+  font-size: 1.2rem;
 }
