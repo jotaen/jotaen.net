@@ -6,12 +6,11 @@
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
+  "jotaen-ci",
   "utility",
-  "jotaen",
-  "typography",
   "layout",
+  "typography",
   "icon",
-  "header",
   "blogpost",
   "annotation",
   "syntax-highlighting"

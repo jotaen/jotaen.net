@@ -21,7 +21,7 @@ html {
 
 h1 {
   @include font-bold;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   letter-spacing: -0.03em;
 }
 
@@ -45,15 +45,18 @@ h6 {
 }
 
 sup,
+sub {
+  margin: 0 0.2em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup,
 sub,
 sup *,
 sub * {
   font-size: 0.75rem;
-}
-
-sup,
-sub {
-  margin: 0 0.2em;
 }
 
 b,
