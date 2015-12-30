@@ -1,0 +1,40 @@
+$container-size: 30px;
+$image-size: 18px;
+
+.icon-container {
+  position: relative;
+  border-radius: $container-size * 0.5;
+  width: $container-size;
+  height: $container-size;
+  background-color: $color-blue;
+  overflow: visible;
+}
+
+.icon-container:hover {
+  background-color: $color-orange;
+}
+
+.icon-image {
+  width: $image-size;
+  padding: ($container-size - $image-size) * 0.5;
+}
+
+.icon-label {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: $image-size * 2;
+  background-color: $color-orange;
+  padding: 0.3em 0.5em 0.2em 0.5em;
+  color: $color-white;
+}
+
+.icon-container a,
+.icon-container a:hover,
+.icon-container a:visited:hover,
+.icon-container a:visited:active,
+.icon-container a:active,
+.icon-container a:visited {
+  text-decoration: none;
+  background-color: transparent;
+}
