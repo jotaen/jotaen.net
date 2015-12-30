@@ -3,28 +3,46 @@
 
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
-    <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+    <title>
+      {% if page.title %}
+        {{ page.title }}&nbsp;•&nbsp;
+      {% endif %}
+      jotaen
+    </title>
+
+    <link href="//cloud.webtype.com/css/b8d2a612-d632-460b-a769-5b0c55713f92.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ "/static/main.css" | prepend: site.baseurl }}">
   </head>
 
   <body>
 
-    <header class="site-header">
+    <nav>
+      <img src="/static/jotaen.png" alt="jotaen" class="jotaen lettering">
+      <ul>
+        <li class="icon-container">
+          <a href="/">
+            <img src="/static/icon_home.png" alt="Home icon" class="icon-image">
+          </a>
+          <span class="icon-label">Home</span>
+        </li>
+        <li class="icon-container">
+          <!-- <input type="text" name="search" value="" placeholder="Search..." class="searchbox"> -->
+          <input type="image" src="/static/icon_search.png" alt="Magnifying glass icon" class="icon-image">
+          <span class="icon-label">Search</span>
+        </li>
+        <li class="icon-container">
+          <a href="/about">
+            <img src="/static/icon_about.png" alt="Person icon" class="icon-image">
+          </a>
+          <span class="icon-label">About</span>
+        </li>
+      </ul>
+    </nav>
 
-    </header>
-
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
-    </div>
+    {{ content }}
 
   </body>
 
