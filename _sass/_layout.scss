@@ -1,3 +1,10 @@
+// Sizes for Media Queries
+$media-size-tablet: 569px;
+$media-size-desktop: 1000px;
+$media-size-maximum: 1300px;
+
+$navigation-size: 30px;
+
 html {
   background-color: $color-lightgrey;
 }
@@ -10,4 +17,53 @@ body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+}
+
+.ul-reset {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.site-navigation {
+  position: fixed;
+  z-index: 1000;
+  left: 13px;
+}
+
+.site-navigation:before,
+.site-navigation:after {
+  content: '';
+  display: block;
+  margin-left: 13px;
+  width: 5px;
+  opacity: 0.7;
+  background-image: url("dot.png");
+  background-size: 5px;
+}
+
+.site-navigation:before {
+  height: 68px;
+}
+
+.site-navigation:after {
+  height: 5000px;
+}
+
+.site-logo {
+  display: block;
+  float: right;
+  height: $navigation-size * 0.8;
+  margin: 7px 25px 0 0;
+  @media (min-width: $media-size-tablet) {
+    float: none;
+    margin: 38px 0 45px -24px;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+  }
+}
+
+.icon-container {
+  margin-top: 10px;
 }
