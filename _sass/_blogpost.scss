@@ -23,8 +23,8 @@
     left: 20px;
     padding-left: 14%;
   }
-  @media (min-width: 1024px) { padding-left: 22%; }
-  @media (min-width: 2000px ) { padding-left: 286px; }
+  @media (min-width: $media-size-desktop) { padding-left: 22%; }
+  @media (min-width: $media-size-maximum) { padding-left: 286px; }
 }
 
 .blogpost-title,
@@ -41,4 +41,13 @@
 }
 .blogpost-subtitle {
   font-size: 1.2rem;
+}
+
+.blogpost-content {
+  max-width: 550px;
+  margin-left: 10px;
+  margin-right: 10px;
+  @media (min-width: $media-size-tablet) { margin-left: 14%; }
+  @media (min-width: $media-size-desktop) { margin-left: 20%; }
+  @media (min-width: $media-size-maximum) { margin-left: 260px; }
 }
