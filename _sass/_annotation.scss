@@ -1,0 +1,13 @@
+//
+//  Annotations for blogposts
+//
+
+.annotation {
+  @include font-thin-italic;
+  float: left;
+  margin-top: $font-size*0.4;
+  margin-left: -140px;
+  width: 120px;
+  text-align: right;
+  color: #555;
+}
