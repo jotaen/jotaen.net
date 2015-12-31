@@ -1,22 +1,3 @@
-//
-// The jotaen corporate identity (colors and fonts)
-//
-
-// Colors
-$color-black:     #000000;
-$color-blue:      #0d668d;
-$color-purple:    #8d1699;
-$color-brown:     #5a3e35;
-$color-green:     #65c858;
-$color-grey:      #888888;
-$color-lightgrey: #fafafa;
-$color-orange:    #f34c17;
-$color-red:       #c0253e;
-$color-white:     #ffffff;
-$color-yellow:    #cac43b;
-
-// Typography
-
 @mixin font-regular {
   font-family: "Input Sans Cond Lt", "Lucida Grande", sans-serif;
   font-weight: normal;

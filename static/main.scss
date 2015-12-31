@@ -1,17 +1,19 @@
 ---
-# Front matter section is required by jekyll
+# These first 3 lines (front matter section) are required by jekyll
 ---
 
 @charset "utf-8";
 
-// Import partials from `sass_dir` (defaults to `_sass`)
 @import
-  "jotaen-ci",
-  "utility",
-  "layout",
-  "typography",
-  "icon",
-  "blogpost",
-  "annotation",
-  "syntax-highlighting"
+  "library/colors",
+  "library/typography",
+  "library/media-query",
+  "library/utility",
+  "atoms/text",
+  "atoms/icon",
+  "atoms/syntax-highlighting",
+  "molecules/annotation",
+  "organisms/navigation",
+  "organisms/blogpost",
+  "templates/default"
 ;

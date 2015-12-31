@@ -1,24 +1,3 @@
-//
-//  Typography
-//
-
-html {
-  @include font-regular;
-  font-size: 15px;
-  line-height: 1.5;
-
-  text-rendering: optimizeLegibility;
-  -webkit-font-feature-settings: "kern" 1;
-  -moz-font-feature-settings:"kern" 1;
-  -ms-font-feature-settings: "kern" 1;
-  font-feature-settings: "kern" 1;
-}
-
-::selection {
-  color: #fff;
-  background-color: $color-brown;
-}
-
 h1 {
   @include font-bold;
   font-size: 1.8rem;
