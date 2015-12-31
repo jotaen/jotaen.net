@@ -1,7 +1,8 @@
 .blogpost-header {
   position: relative;
   width: 100%;
-  height: 35%;
+  height: 40%;
+  min-height: 200px;
   @include medium-view {
     height: 45%;
   }

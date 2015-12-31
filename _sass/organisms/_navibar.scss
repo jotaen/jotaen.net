@@ -1,0 +1,76 @@
+$navibar-thickness: 30px;
+
+.navibar {
+  overflow: hidden;
+}
+
+.navibar:before,
+.navibar:after {
+  $dot-size: 10px;
+  content: '';
+  display: block;
+  opacity: 0.7;
+  background-image: url("/static/dot.png");
+  background-size: $dot-size;
+  @include narrow-view {
+    margin-top: ($navibar-thickness * 0.5) - ($dot-size * 0.2);
+    height: $dot-size * 0.5;
+  }
+  @include medium-view {
+    margin-left: ($navibar-thickness * 0.5) - ($dot-size * 0.2);
+    width: $dot-size * 0.5;
+  }
+}
+
+.navibar:before {
+  @include narrow-view {
+    display: none;
+  }
+  @include medium-view {
+    height: 68px;
+  }
+}
+
+.navibar:after {
+  @include narrow-view {
+    position: absolute;
+    width: 2000px;
+    right: 205px;
+  }
+  @include medium-view {
+    height: 5000px;
+  }
+}
+
+.navibar-logo {
+  display: block;
+  height: $navibar-thickness * 0.8;
+  @include narrow-view {
+    margin: 4px 10px 0 12px;
+    float: right;
+  }
+  @include medium-view {
+    margin: 38px 0 45px -24px;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+  }
+}
+
+.navibar .icon-container {
+  margin: 0;
+  @include narrow-view {
+    float: left;
+    margin-left: 5px;
+  }
+  @include medium-view {
+    margin-top: 10px;
+  }
+}
+
+.navibar-icons {
+  @include narrow-view {
+    float: right;
+  }
+}
