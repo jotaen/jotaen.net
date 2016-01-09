@@ -1,0 +1,35 @@
+.header__headline {
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  @include medium-view {
+    left: 20px;
+    padding-left: 14%;
+  }
+  @include broad-view {
+    padding-left: 22%;
+  }
+  @include maximum-view {
+    padding-left: 286px;
+  }
+}
+
+.header__title,
+.header__subtitle {
+  text-transform: capitalize;
+  display: inline;
+  background-color: $color-red;
+  box-shadow: 0.05em 0 0 $color-red, -0.05em -0 0 $color-red;
+  padding: 0.2em;
+  color: #fff;
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.header__subtitle {
+  font-size: 1.2rem;
+}

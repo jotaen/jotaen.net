@@ -1,3 +1,8 @@
+@import
+  "library/colors",
+  "library/typography"
+;
+
 h1 {
   @include font-bold;
   font-size: 1.8rem;

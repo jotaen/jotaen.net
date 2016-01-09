@@ -66,10 +66,10 @@ $navibar-thickness: 30px;
   margin: 0;
   @include narrow-view {
     float: left;
-    margin-left: 5px;
+    margin-left: 0.3em;
   }
   @include medium-view {
-    margin-top: 10px;
+    margin-top: 0.5em;
   }
 }
 
