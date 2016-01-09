@@ -1,31 +1,38 @@
 ---
-layout: default
+layout: website
 ---
 
-<header class="blogpost-header" style="background-image:url({{ page.image }})" alt="{{ page.title }}">
-  <h1 class="blogpost-headline">
-    <span class="blogpost-title">{{ page.title }}</span><br>
-    <span class="blogpost-subtitle">{{ page.subtitle }}</span>
+<header class="blogpost__header" style="background-image:url({{ page.image }})" alt="{{ page.title }}">
+  <h1 class="header__headline">
+    <span class="header__title">{{ page.title }}</span><br>
+    <span class="header__subtitle">{{ page.subtitle }}</span>
   </h1>
 </header>
 
 <dl class="infoblock">
-  <dt class="infoblock-published">
+  <dt class="infoblock__published">
     <time datetime="{{ page.date | date_to_xmlschema }}">
       {{ page.date | date: "%b %-d, %Y" }}
     </time>
   </dt>
-  <dt class="infoblock-link">
+  <dt class="infoblock__permalink">
     <a href="/">asf</a>
   </dt>
-  <dt class="infoblock-tags">
+  <dt class="infoblock__taglist">
     <ul>
-      <li><a href="/foo">Foo</a></li>
+      {% for tags in page.tags %}
+        <li>{{ tags }}</li>
+      {% endfor %}
     </ul>
+  </dt>
+  <dt>
+    <dl class="infoblock__share">
+
+    </dl>
   </dt>
 </dl>
 
-<article class="blogpost-content">
+<article class="blogpost__content">
 
   {{ content }}
 

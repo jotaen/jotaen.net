@@ -3,7 +3,7 @@ layout:     blogpost
 title:      "Living styleguide"
 subtitle:   "How my blogposts are styled"
 date:       2014-12-27T17:04:25+0100
-categories: meta
+tags:       meta
 permalink:  /styleguide
 image:      /static/fashionshow.jpg
 ---
