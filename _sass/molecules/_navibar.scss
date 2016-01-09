@@ -1,7 +1,8 @@
 $navibar-thickness: 30px;
 
 .navibar {
-  overflow: hidden;
+  overflow: visible;
+  width: $navibar-thickness;
 }
 
 .navibar:before,
@@ -38,11 +39,12 @@ $navibar-thickness: 30px;
     right: 205px;
   }
   @include medium-view {
+    margin-top: 1em;
     height: 5000px;
   }
 }
 
-.navibar-logo {
+.navibar__logo {
   display: block;
   height: $navibar-thickness * 0.8;
   @include narrow-view {
@@ -58,7 +60,9 @@ $navibar-thickness: 30px;
   }
 }
 
-.navibar .icon-container {
+.navibar .icon {
+  width: $navibar-thickness;
+  height: $navibar-thickness;
   margin: 0;
   @include narrow-view {
     float: left;
@@ -69,7 +73,7 @@ $navibar-thickness: 30px;
   }
 }
 
-.navibar-icons {
+.navibar__icons {
   @include narrow-view {
     float: right;
   }
