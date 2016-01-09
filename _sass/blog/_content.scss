@@ -1,0 +1,77 @@
+@import
+  "library/colors",
+  "library/media-query",
+  "library/typography"
+;
+
+$blogpost_column_width: 550px;
+
+.content {
+  margin-left: 1em;
+  margin-right: 1em;
+  @include medium-view {
+    margin-left: 14%;
+  }
+  @include broad-view {
+    margin-left: 20%;
+    margin-right: 3em;
+  }
+  @include maximum-view {
+    margin-left: 260px;
+  }
+}
+
+.content > ol,
+.content > ul {
+  padding-left: 2em;
+}
+
+.content > p,
+.content > ul,
+.content > blockquote,
+.content > h1,
+.content > h2,
+.content > h3,
+.content > h4,
+.content > h5,
+.content > h6 {
+  max-width: $blogpost_column_width;
+}
+
+.content pre {
+  display: inline-block;
+  width: 100%;
+  @include medium-view {
+    width: auto;
+    min-width: $blogpost_column_width;
+  }
+  padding: 0.7em 0.5em;
+  background-color: $color-lightgrey3;
+}
+
+.content th {
+  @include font-bold;
+  border-bottom: 1px solid $color-grey;
+  padding: 0.3em;
+  text-align: left;
+}
+
+.content td {
+  max-width: 25em;
+}
+
+.content tr:nth-child(2n) {
+  background-color: $color-lightgrey2;
+}
+
+.content td {
+  vertical-align: top;
+  padding: 0.3em;
+}
+
+.content blockquote {
+  color: $color-grey;
+  margin-left: 0.5em;
+  padding-left: 1em;
+  border-left: 1px solid $color-grey;
+}

@@ -5,16 +5,14 @@
 @charset "utf-8";
 
 @import
-  "library/colors",
-  "library/typography",
-  "library/media-query",
-  "library/utility",
   "atoms/text",
+  "atoms/tag",
   "atoms/icon",
   "atoms/syntax-highlighting",
-  "molecules/annotation",
-  "molecules/navibar",
-  "molecules/header",
-  "molecules/blogpost",
-  "templates/default"
+  "blog/header",
+  "blog/infoblock",
+  "blog/content",
+  "blog/footnote",
+  "navibar",
+  "default"
 ;

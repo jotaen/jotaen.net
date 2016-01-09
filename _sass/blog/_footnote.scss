@@ -1,4 +1,6 @@
-.annotation__paragraph {
+@import "library/typography";
+
+.footnote__paragraph {
   @include font-thin-italic;
   float: left;
   margin-top: 0.6rem;
@@ -8,7 +10,7 @@
   color: #555;
 }
 
-.annotation__footer {
+.footnote__footer {
   @include font-thin-italic;
   float: left;
   margin-top: 0.6rem;

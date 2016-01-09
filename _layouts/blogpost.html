@@ -2,7 +2,7 @@
 layout: website
 ---
 
-<header class="blogpost__header" style="background-image:url({{ page.image }})" alt="{{ page.title }}">
+<header class="header" style="background-image:url({{ page.image }})" alt="{{ page.title }}">
   <h1 class="header__headline">
     <span class="header__title">{{ page.title }}</span><br>
     <span class="header__subtitle">{{ page.subtitle }}</span>
@@ -19,9 +19,9 @@ layout: website
     <a href="/">asf</a>
   </dt>
   <dt class="infoblock__taglist">
-    <ul>
+    <ul class="ul--reset">
       {% for tags in page.tags %}
-        <li>{{ tags }}</li>
+        <li><span class="tag">{{ tags }}</span></li>
       {% endfor %}
     </ul>
   </dt>
@@ -32,7 +32,7 @@ layout: website
   </dt>
 </dl>
 
-<article class="blogpost__content">
+<article class="content">
 
   {{ content }}
 

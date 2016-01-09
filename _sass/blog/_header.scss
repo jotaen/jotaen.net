@@ -1,4 +1,24 @@
-@import "library/colors";
+@import
+  "library/colors",
+  "library/media-query"
+;
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 40%;
+  min-height: 200px;
+  @include medium-view {
+    height: 45%;
+  }
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center 70%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 .header__headline {
   position: absolute;
@@ -26,14 +46,13 @@
   display: inline;
   background-color: $color-red;
   box-shadow: 0.05em 0 0 $color-red, -0.05em -0 0 $color-red;
-  padding: 0.2em;
+  padding: 0.3em;
   color: #fff;
   font-style: italic;
 }
 
 .header__title {
-  font-size: 1.8rem;
-  line-height: 2;
+  font-size: 1.9rem;
 }
 
 .header__subtitle {
