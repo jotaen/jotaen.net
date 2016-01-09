@@ -1,3 +1,7 @@
+@import "library/colors";
+
+$blogpost_column_width: 550px;
+
 .blogpost__header {
   position: relative;
   width: 100%;
@@ -16,16 +20,71 @@
 }
 
 .blogpost__content {
-  max-width: 550px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 1em;
+  margin-right: 1em;
   @include medium-view {
     margin-left: 14%;
   }
   @include broad-view {
     margin-left: 20%;
+    margin-right: 3em;
   }
   @include maximum-view {
     margin-left: 260px;
   }
+}
+
+.blogpost__content > ol,
+.blogpost__content > ul {
+  padding-left: 2em;
+}
+
+.blogpost__content > p,
+.blogpost__content > ul,
+.blogpost__content > blockquote,
+.blogpost__content > h1,
+.blogpost__content > h2,
+.blogpost__content > h3,
+.blogpost__content > h4,
+.blogpost__content > h5,
+.blogpost__content > h6 {
+  max-width: $blogpost_column_width;
+}
+
+.blogpost__content pre {
+  display: inline-block;
+  width: 100%;
+  @include medium-view {
+    width: auto;
+    min-width: $blogpost_column_width;
+  }
+  padding: 0.7em 0.5em;
+  background-color: $color-lightgrey3;
+}
+
+.blogpost__content th {
+  @include font-bold;
+  border-bottom: 1px solid $color-grey;
+  padding: 0.3em;
+  text-align: left;
+}
+
+.blogpost__content td {
+  max-width: 25em;
+}
+
+.blogpost__content tr:nth-child(2n) {
+  background-color: $color-lightgrey2;
+}
+
+.blogpost__content td {
+  vertical-align: top;
+  padding: 0.3em;
+}
+
+.blogpost__content blockquote {
+  color: $color-grey;
+  margin-left: 0.5em;
+  padding-left: 1em;
+  border-left: 1px solid $color-grey;
 }

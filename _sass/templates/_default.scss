@@ -1,5 +1,7 @@
+@import "library/colors";
+
 html {
-  background-color: $color-lightgrey;
+  background-color: $color-lightgrey1;
   @include font-regular;
   font-size: 15px;
   line-height: 1.5;

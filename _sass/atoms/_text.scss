@@ -43,7 +43,8 @@ sub * {
 }
 
 b,
-strong {
+strong,
+.strong {
   @include font-bold;
 }
 
@@ -52,52 +53,41 @@ p {
   font-size: 1rem;
 }
 
-a {
+a,
+.link {
   color: $color-blue;
   border: 0;
 }
 
 a:hover,
-a:active {
+a:active,
+.link--hover,
+.link--active {
   background-color: $color-blue;
   color: $color-white !important;
 }
 
-a:visited {
+a:visited,
+.link--visited {
   color: $color-purple;
 }
 
 a:visited:hover,
-a:visited:active {
+a:visited:active,
+.link--visited:hover,
+.link--visited:active {
   background-color: $color-purple;
   color: $color-white !important;
 }
 
+code {
+  padding: 0.25em;
+}
+
 code,
-code * {
+code *,
+.code,
+.code * {
   @include font-mono;
-  background-color: $color-lightgrey;
-}
-
-th {
-  @include font-bold;
-  border-bottom: 1px solid $color-grey;
-  padding: 0.3em;
-  text-align: left;
-}
-
-tr:nth-child(2n) {
-  background-color: $color-lightgrey;
-}
-
-td {
-  vertical-align: top;
-  padding: 0.3em;
-}
-
-blockquote {
-  color: $color-grey;
-  margin-left: 0.5em;
-  padding-left: 1em;
-  border-left: 1px solid $color-grey;
+  background-color: $color-lightgrey3;
 }

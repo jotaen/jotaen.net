@@ -1,7 +1,7 @@
 ---
 layout:     blogpost
 title:      "Living styleguide"
-subtitle:   "How my blogposts are styled"
+subtitle:   "Basic styling for text elements in my blogposts"
 date:       2014-12-27T17:04:25+0100
 tags:       meta
 permalink:  /styleguide
@@ -25,13 +25,19 @@ The font face is »input« by David Jonathan Ross[^2]. Due to its technical look
 
 - **Bold text is not just bold**, it uses the serif typeface additionally.
 - *This is italic (or: obligue) text*
-- [Weblinks](https://you-never-have-been.here) come in blue and underlined; [visited websites](//jotaen.net) are colored purple. Unfortunately, the latter has come a bit out of fashion, but I consider it to be a very important feature – isn’t the web all about links?
-- Then, `there is inline code`, which has grey background and is – surprisingly – monospaced.
+- The <a href="#foo" onclick="return false" class="link">Weblinks</a> come in blue and underlined; <a href="#foo" onclick="return false" class="link--visited">visited websites</a> are colored purple. Unfortunately, the latter has come a bit out of fashion, but I consider it to be a very important feature – isn’t the web all about links?
+- Then, `there is inline code`, which has a light grey background and is – wait for it… – monospaced.
 - Lastly, although not an actual inline style, all text selection is brown. Try it out!
 
 ## Colors
 
-
+<p style="background-color:#5a3e35;text-align:center;color:#fff;">brown: #5a3e35</p>
+<p style="background-color:#8d1699;text-align:center;color:#fff;">purple: #8d1699</p>
+<p style="background-color:#0d668d;text-align:center;color:#fff;">blue: #0d668d</p>
+<p style="background-color:#c0253e;text-align:center;color:#fff;">red: #c0253e</p>
+<p style="background-color:#f34c17;text-align:center;color:#fff;">orange: #f34c17</p>
+<p style="background-color:#65c858;text-align:center;color:#000;">green: #65c858</p>
+<p style="background-color:#cac43b;text-align:center;color:#000;">yellow: #cac43b</p>
 
 # Block elements
 
@@ -58,17 +64,19 @@ The font face is »input« by David Jonathan Ross[^2]. Due to its technical look
 ## List
 
 1. Ordered list
-2. With subitems
+2. Another list item
+3. Third list item
 
 - Unordered list
-- With subitems
+- Another list item
+- Third list item
 
 ## Blockquote
 
-> The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother’s keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know I am the Lord when I lay my vengeance upon you.[^3]
+> The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother’s keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know my name is the Lord when I lay my vengeance upon thee.[^3]
 
 ## Image
 
 [^1]: Foto by [herlitz_pbs](https://www.flickr.com/photos/herlitzpbs/10800093004) released under [CC-BY-ND 2.0](https://creativecommons.org/licenses/by-nd/2.0/)
-[^2]: The font has [its own website](http://input.fontbureau.com). It’s worth having a look there.
-[^3]: Source: Ezekiel 25:17 or [Pulp Fiction](https://www.youtube.com/watch?v=BdxD8DWt_pU) for your convenience
+[^2]: Check out the fonts [own website](http://input.fontbureau.com). It’s worth having a look there.
+[^3]: Source: Ezekiel 25,17 (in the [Pulp Fiction](https://www.youtube.com/watch?v=BdxD8DWt_pU) translation)
