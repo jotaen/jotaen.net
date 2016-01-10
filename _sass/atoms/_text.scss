@@ -1,7 +1,4 @@
-@import
-  "library/colors",
-  "library/typography"
-;
+@import "library";
 
 h1 {
   @include font-bold;
