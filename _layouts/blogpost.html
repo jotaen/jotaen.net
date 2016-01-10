@@ -20,8 +20,8 @@ layout: website
   </dt>
   <dt class="infoblock__taglist">
     <ul class="ul--reset">
-      {% for tags in page.tags %}
-        <li><span class="tag">{{ tags }}</span></li>
+      {% for tag in page.tags %}
+        <li><span class="tag">#{{ tag }}</span></li>
       {% endfor %}
     </ul>
   </dt>

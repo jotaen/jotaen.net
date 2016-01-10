@@ -5,11 +5,12 @@
   font-size: 0.85em;
   text-transform: uppercase;
   color: $color-green;
-  padding: 0.3em 0.5em;
+  padding: 0.2em 0.4em;
+  text-decoration: none;
 }
 
-.tag:hover,
-.tag--hover {
-  background-color: $color-green;
-  color: $color-white;
-}
+// .tag:hover,
+// .tag--hover {
+//   background-color: $color-green;
+//   color: $color-white;
+// }

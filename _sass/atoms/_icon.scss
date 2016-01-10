@@ -3,11 +3,14 @@
 .icon {
   position: relative;
   border-radius: 50%;
-  background-color: $color-blue;
   overflow: visible;
 }
 
-.icon:hover {
+.icon--navi {
+  background-color: $color-blue;
+}
+
+.icon--navi:hover {
   background-color: $color-orange;
 }
 
@@ -24,6 +27,9 @@
   height: 100%;
   padding: 0 0.5em;
   align-items:center;
+}
+
+.icon__label--navi {
   background-color: $color-orange;
   color: $color-white;
 }
