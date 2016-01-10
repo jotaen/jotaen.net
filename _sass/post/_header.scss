@@ -21,19 +21,11 @@
   position: absolute;
   bottom: 5%;
   left: 0;
-  width: 100%;
   max-width: 450px;
   text-align: center;
   line-height: 1;
   @include medium-view {
-    left: 20px;
-    padding-left: 14%;
-  }
-  @include broad-view {
-    padding-left: 22%;
-  }
-  @include maximum-view {
-    padding-left: 263px;
+    width: 100%;
   }
 }
 

@@ -5,8 +5,9 @@
   margin-top: 0;
   font-size: 0.95em;
   @include narrow-view {
-    border-bottom: 1px solid $color-grey;
     padding: 0.5em 1em 0 1em;
+    border-bottom: 1px solid $color-grey;
+    background-color: $color-lightgrey2;
   }
   @include medium-view {
     border-left: 1px solid $color-grey;
