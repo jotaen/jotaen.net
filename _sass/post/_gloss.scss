@@ -1,21 +1,41 @@
 @import "library";
 
-.post-gloss__paragraph {
+a.footnote {
+  text-decoration: none;
+}
+
+a.footnote:before {
+  content: "[";
+}
+
+a.footnote:after {
+  content: "]";
+}
+
+.post-gloss__in-paragraph {
   @include font-thin-italic;
-  float: left;
+  position: absolute;
+  left: -140px;
   margin-top: 0.6rem;
-  margin-left: -140px;
   width: 120px;
   text-align: right;
   color: #555;
 }
 
-.post-gloss__footer {
+.post-gloss__in-footer,
+div.footnotes {
   @include font-thin-italic;
-  float: left;
-  margin-top: 0.6rem;
-  margin-left: -140px;
-  width: 120px;
-  text-align: right;
+  max-width: $width-content-column;
+  margin-top: 3em;
   color: #555;
+}
+
+.post-gloss__in-footer:before,
+div.footnotes:before {
+  display: block;
+  content: "Footnotes:";
+  padding-top: 1em;
+  text-transform: uppercase;
+  border-top: 1px solid $color-grey;
+  width: 100%;
 }

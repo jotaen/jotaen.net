@@ -28,30 +28,21 @@ layout: website
     Published:
   </td>
   <dd class="post-info__data">
-    <time datetime="{{ page.date | date_to_xmlschema }}">
-      {% assign d = page.date | date: "%-d" %}
-      {% assign m = page.date | date: "%B" %}
+    {% include publish_date.html %}
+  </dd>
 
-      {% case m %}
-        {% when 'April' or 'May' or 'June' or 'July' %}{{ m }}
-        {% when 'September' %}Sept.
-        {% else %}{{ page.date | date: "%b" }}.
-        {% endcase %}
-      {% case d %}
-        {% when '1' or '21' or '31' %}{{ d }}<sup>st</sup>,
-        {% when '2' or '22' %}{{ d }}<sup>nd</sup>,
-        {% when '3' or '23' %}{{ d }}<sup>rd</sup>,
-        {% else %}{{ d }}<sup>th</sup>,
-        {% endcase %}
-      {{ page.date | date: "%Y" }}
-    </time>
+  <dt class="post-info__label">
+    Reading time:
+  </td>
+  <dd class="post-info__data">
+    {% include reading_time.html %}
   </dd>
 
   <dt class="post-info__label">
     Permalink:
   </td>
   <dd class="post-info__data">
-    <a href="/">blog.jotaen.net/{{ page.id }}</a>
+    blog.jotaen.net/{{ page.id }}
   </dd>
 
   <dt class="post-info__label">
