@@ -49,6 +49,15 @@ $color-black:       #000000;
 }
 
 /*
+ *  LAYOUT SIZES, BREAKPOINTS
+ */
+
+$width-content-column:  550px;
+$width-layout-medium:   569px;
+$width-layout-broad:    1000px;
+$width-layout-max:      1200px;
+
+/*
  *  MEDIA QUERIES
  */
 
@@ -56,7 +65,7 @@ $color-black:       #000000;
   // Smallest view size
   // E.g. a smartphone in portrait orientation
   // or a shrunken browser window on a desktop
-  @media (max-width: #{568px}) {
+  @media (max-width: #{$width-layout-medium - 1px}) {
     @content;
   }
 }
@@ -65,7 +74,7 @@ $color-black:       #000000;
   // Medium view size
   // E.g. on a big smartphone in landscape orientation
   // or a small tablet
-  @media (min-width: #{568px + 1px}) {
+  @media (min-width: #{$width-layout-medium}) {
     @content;
   }
 }
@@ -74,7 +83,7 @@ $color-black:       #000000;
   // Large view size
   // E.g. on a big tablet in landscape orientation
   // or on „normally“ sized browser window
-  @media (min-width: #{1000px}) {
+  @media (min-width: #{$width-layout-broad}) {
     @content;
   }
 }
@@ -82,7 +91,7 @@ $color-black:       #000000;
 @mixin maximum-view {
   // Largest view size
   // The layout should stop growing from this point
-  @media (min-width: #{1200px}) {
+  @media (min-width: #{$width-layout-max}) {
     @content;
   }
 }

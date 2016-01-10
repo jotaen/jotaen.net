@@ -1,7 +1,5 @@
 @import "library";
 
-$blogpost_column_width: 550px;
-
 .post-body > ol,
 .post-body > ul {
   padding-left: 2em;
@@ -17,7 +15,7 @@ $blogpost_column_width: 550px;
 .post-body > h4,
 .post-body > h5,
 .post-body > h6 {
-  max-width: $blogpost_column_width;
+  max-width: $width-content-column;
 }
 
 .post-body pre {
@@ -25,7 +23,7 @@ $blogpost_column_width: 550px;
   width: 100%;
   @include medium-view {
     width: auto;
-    min-width: $blogpost_column_width;
+    min-width: $width-content-column;
   }
   padding: 0.7em 0.5em;
   background-color: $color-lightgrey3;
