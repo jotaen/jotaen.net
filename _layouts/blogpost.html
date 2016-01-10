@@ -7,6 +7,13 @@ layout: website
     <span class="post-header__title">{{ page.title }}</span><br>
     <span class="post-header__subtitle">{{ page.subtitle }}</span>
   </h1>
+  {% if page.image_info %}
+    <div class="post-header__image-info">
+      &#8505;
+      <p>{{ page.image_info }}</p>
+    </div>
+  {% endif %}
+
 </header>
 
 <dl class="post-info">

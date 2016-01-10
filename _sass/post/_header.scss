@@ -9,6 +9,7 @@
     height: 45%;
   }
   overflow: hidden;
+  background-color: $color-black;
   background-repeat: no-repeat;
   background-position: center 70%;
   -webkit-background-size: cover;
@@ -24,8 +25,9 @@
   max-width: 450px;
   text-align: center;
   line-height: 1;
+  width: 90%;
   @include medium-view {
-    width: 100%;
+    padding-left: 1.2em;
   }
 }
 
@@ -47,4 +49,26 @@
 
 .post-header__subtitle {
   font-size: 1.2rem;
+}
+
+.post-header__image-info {
+  position: absolute;
+  overflow: hidden;
+  width: 0.4em;
+  height: 1.4em;
+  bottom: 0;
+  right: 0;
+  padding:  0.3em 0.9em;
+  opacity: 0.7;
+  text-align: right;
+  color: $color-white;
+  background-color: $color-black;
+}
+
+.post-header__image-info:hover,
+.post-header__image-info:active {
+  width: 50%;
+  height: 8em;
+  opacity: 1;
+  overflow: scroll;
 }

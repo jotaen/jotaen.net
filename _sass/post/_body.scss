@@ -31,8 +31,9 @@
 
 .post-body th {
   @include font-bold;
-  border-bottom: 1px solid $color-grey;
   padding: 0.3em;
+  border-bottom: 1px solid $color-grey;
+  background-color: $color-lightgrey2;
   text-align: left;
 }
 

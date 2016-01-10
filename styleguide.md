@@ -6,16 +6,17 @@ date:       2014-12-27T17:04:25+0100
 tags:       meta
 permalink:  /styleguide
 image:      /assets/static/fashionshow.jpg
+image_info: Foto by herlitz_pbs (https://www.flickr.com/photos/herlitzpbs/10800093004) released under CC-BY-ND 2.0 (https://creativecommons.org/licenses/by-nd/2.0/)
 id:         styleguide
 ---
 
-The header section above is a container which takes up ~40% vertical space. It is intended to show a full size image[^1]. The headline (and subheadline) for the blogpost is centered and the letters have one of the available colors (see below) as background.
+The header section above is a container which takes up ~40% vertical space. It is intended to show a full size image. The headline (and subheadline) for the blogpost is centered and the letters have one of the available colors (see below) as background.
 
 # Basic styling
 
 ## Typography
 
-The font face is »input« by David Jonathan Ross[^2]. Due to its technical look it goes nicely with this blog, whose topics cover coding and technology mainly. The fact that it comes with a whole bunch of different styles is a strong advantage, since typography is the most important stylistic device on text-heavy sites. However, because using webfonts is also a matter of frontend performance, just the following styles are included:
+The font face is »input« by David Jonathan Ross[^1]. Due to its technical look it goes nicely with this blog, whose topics cover coding and technology mainly. The fact that it comes with a whole bunch of different styles is a strong advantage, since typography is the most important stylistic device on text-heavy sites. However, because using webfonts is also a matter of frontend performance, just the following styles are included:
 
 - Regular text: Input Sans Condensed 300 (regular & italic)
 - Strong text: Input Serif Compressed 700 italic (regular & italic)
@@ -74,10 +75,9 @@ The font face is »input« by David Jonathan Ross[^2]. Due to its technical look
 
 ## Blockquote
 
-> The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother’s keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know my name is the Lord when I lay my vengeance upon thee.[^3]
+> The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother’s keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know my name is the Lord when I lay my vengeance upon thee.[^2]
 
 ## Image
 
-[^1]: Foto by [herlitz_pbs](https://www.flickr.com/photos/herlitzpbs/10800093004) released under [CC-BY-ND 2.0](https://creativecommons.org/licenses/by-nd/2.0/)
-[^2]: Check out the fonts [own website](http://input.fontbureau.com). It’s worth having a look there.
-[^3]: Source: Ezekiel 25,17 (in the [Pulp Fiction](https://www.youtube.com/watch?v=BdxD8DWt_pU) translation)
+[^1]: Check out the fonts [own website](http://input.fontbureau.com). It’s worth having a look there.
+[^2]: Source: Ezekiel 25,17 (in the [Pulp Fiction](https://www.youtube.com/watch?v=BdxD8DWt_pU) translation)
