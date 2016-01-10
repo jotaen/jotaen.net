@@ -42,6 +42,21 @@ body {
   }
 }
 
+.content {
+  margin-left: 1em;
+  margin-right: 1em;
+  @include medium-view {
+    margin-left: 14%;
+  }
+  @include broad-view {
+    margin-left: 20%;
+    margin-right: 3em;
+  }
+  @include maximum-view {
+    margin-left: 240px;
+  }
+}
+
 .ul--reset {
   list-style-type: none;
   padding: 0;

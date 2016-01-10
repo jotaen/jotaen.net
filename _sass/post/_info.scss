@@ -1,6 +1,6 @@
 @import "library";
 
-.infoblock {
+.post-info {
   color: $color-grey;
   margin-top: 0;
   font-size: 0.95em;
@@ -25,7 +25,7 @@
   }
 }
 
-.infoblock__label {
+.post-info__label {
   @include font-bold;
   float: left;
   margin-right: 0.5em;
@@ -34,7 +34,7 @@
   }
 }
 
-.infoblock__data {
+.post-info__data {
   margin-left: 0;
   margin-bottom: 0;
   @include broad-view {

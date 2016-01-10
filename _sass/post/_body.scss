@@ -2,40 +2,25 @@
 
 $blogpost_column_width: 550px;
 
-.content {
-  margin-left: 1em;
-  margin-right: 1em;
-  @include medium-view {
-    margin-left: 14%;
-  }
-  @include broad-view {
-    margin-left: 20%;
-    margin-right: 3em;
-  }
-  @include maximum-view {
-    margin-left: 240px;
-  }
-}
-
-.content > ol,
-.content > ul {
+.post-content > ol,
+.post-content > ul {
   padding-left: 2em;
 }
 
-.content > p,
-.content > ul,
-.content > ol,
-.content > blockquote,
-.content > h1,
-.content > h2,
-.content > h3,
-.content > h4,
-.content > h5,
-.content > h6 {
+.post-content > p,
+.post-content > ul,
+.post-content > ol,
+.post-content > blockquote,
+.post-content > h1,
+.post-content > h2,
+.post-content > h3,
+.post-content > h4,
+.post-content > h5,
+.post-content > h6 {
   max-width: $blogpost_column_width;
 }
 
-.content pre {
+.post-content pre {
   display: inline-block;
   width: 100%;
   @include medium-view {
@@ -46,27 +31,27 @@ $blogpost_column_width: 550px;
   background-color: $color-lightgrey3;
 }
 
-.content th {
+.post-content th {
   @include font-bold;
   border-bottom: 1px solid $color-grey;
   padding: 0.3em;
   text-align: left;
 }
 
-.content td {
+.post-content td {
   max-width: 25em;
 }
 
-.content tr:nth-child(2n) {
+.post-content tr:nth-child(2n) {
   background-color: $color-lightgrey2;
 }
 
-.content td {
+.post-content td {
   vertical-align: top;
   padding: 0.3em;
 }
 
-.content blockquote {
+.post-content blockquote {
   color: $color-grey;
   margin-left: 0.5em;
   padding-left: 1em;

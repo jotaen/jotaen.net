@@ -7,6 +7,12 @@
   color: $color-green;
   padding: 0.2em 0.4em;
   text-decoration: none;
+  letter-spacing: 0.05em;
+}
+
+.tag:before {
+  content: "#";
+  margin-right: 0.2em;
 }
 
 // .tag:hover,

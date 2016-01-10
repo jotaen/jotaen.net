@@ -2,25 +2,25 @@
 layout: website
 ---
 
-<header class="header" style="background-image:url({{ page.image }})" alt="{{ page.title }}">
-  <h1 class="header__headline">
-    <span class="header__title">{{ page.title }}</span><br>
-    <span class="header__subtitle">{{ page.subtitle }}</span>
+<header class="post-header" style="background-image:url({{ page.image }})" alt="{{ page.title }}">
+  <h1 class="post-header__headline">
+    <span class="post-header__title">{{ page.title }}</span><br>
+    <span class="post-header__subtitle">{{ page.subtitle }}</span>
   </h1>
 </header>
 
-<dl class="infoblock">
-  <dt class="infoblock__label">
+<dl class="post-info">
+  <dt class="post-info__label">
     Author:
   </td>
-  <dd class="infoblock__data">
+  <dd class="post-info__data">
     Jan Heuermann
   </dd>
 
-  <dt class="infoblock__label">
+  <dt class="post-info__label">
     Published:
   </td>
-  <dd class="infoblock__data">
+  <dd class="post-info__data">
     <time datetime="{{ page.date | date_to_xmlschema }}">
       {% assign d = page.date | date: "%-d" %}
       {% assign m = page.date | date: "%B" %}
@@ -40,34 +40,34 @@ layout: website
     </time>
   </dd>
 
-  <dt class="infoblock__label">
+  <dt class="post-info__label">
     Permalink:
   </td>
-  <dd class="infoblock__data">
+  <dd class="post-info__data">
     <a href="/">blog.jotaen.net/{{ page.id }}</a>
   </dd>
 
-  <dt class="infoblock__label">
+  <dt class="post-info__label">
     Tags:
   </td>
-  <dd class="infoblock__data">
+  <dd class="post-info__data">
     <ul class="ul--reset">
       {% for tag in page.tags %}
-        <li><span class="tag" title="Tag: {{ tag }}">#{{ tag }}</span></li>
+        <li><span class="tag" title="Tag: {{ tag }}">{{ tag }}</span></li>
       {% endfor %}
     </ul>
   </dd>
 
-  <dt class="infoblock__label">
+  <dt class="post-info__label">
     Share:
   </td>
-  <dd class="infoblock__data">
+  <dd class="post-infoblock__data">
     <a href="https://twitter.com/share" class="twitter-share-button"{count} data-via="jot4en">Tweet</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   </dd>
 </dl>
 
-<article class="content">
+<article class="content blog-body">
 
   {{ content }}
 

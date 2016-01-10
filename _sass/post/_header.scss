@@ -1,6 +1,6 @@
 @import "library";
 
-.header {
+.post-header {
   position: relative;
   width: 100%;
   height: 40%;
@@ -17,7 +17,7 @@
   background-size: cover;
 }
 
-.header__headline {
+.post-header__headline {
   position: absolute;
   bottom: 5%;
   left: 0;
@@ -37,8 +37,8 @@
   }
 }
 
-.header__title,
-.header__subtitle {
+.post-header__title,
+.post-header__subtitle {
   text-transform: capitalize;
   display: inline;
   background-color: $color-red;
@@ -48,11 +48,11 @@
   font-style: italic;
 }
 
-.header__title {
+.post-header__title {
   line-height: 1.5;
   font-size: 1.9rem;
 }
 
-.header__subtitle {
+.post-header__subtitle {
   font-size: 1.2rem;
 }

@@ -1,6 +1,6 @@
 @import "library";
 
-.footnote__paragraph {
+.post-gloss__paragraph {
   @include font-thin-italic;
   float: left;
   margin-top: 0.6rem;
@@ -10,7 +10,7 @@
   color: #555;
 }
 
-.footnote__footer {
+.post-gloss__footer {
   @include font-thin-italic;
   float: left;
   margin-top: 0.6rem;
