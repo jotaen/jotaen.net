@@ -82,7 +82,7 @@ $color-black:       #000000;
 @mixin maximum-view {
   // Largest view size
   // The layout should stop growing from this point
-  @media (min-width: #{1300px}) {
+  @media (min-width: #{1200px}) {
     @content;
   }
 }

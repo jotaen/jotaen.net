@@ -1,1 +1,43 @@
 @import "library";
+
+.infoblock {
+  color: $color-grey;
+  margin-top: 0;
+  font-size: 0.95em;
+  @include narrow-view {
+    border-bottom: 1px solid $color-grey;
+    padding: 0.5em 1em 0 1em;
+  }
+  @include medium-view {
+    border-left: 1px solid $color-grey;
+    margin-left: 14%;
+    padding: 0.5em;
+  }
+  @include broad-view {
+    position: absolute;
+    width: 200px;
+    margin-left: 20%;
+    margin-right: 20px;
+    right: 0px;
+  }
+  @include maximum-view {
+    left: 725px;
+  }
+}
+
+.infoblock__label {
+  @include font-bold;
+  float: left;
+  margin-right: 0.5em;
+  @include broad-view {
+    float: none;
+  }
+}
+
+.infoblock__data {
+  margin-left: 0;
+  margin-bottom: 0;
+  @include broad-view {
+    margin-bottom: 0.5em;
+  }
+}
