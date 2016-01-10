@@ -5,7 +5,7 @@ subtitle:   "Basic styling for text elements in my blogposts"
 date:       2014-12-27T17:04:25+0100
 tags:       meta
 permalink:  /styleguide
-image:      /static/fashionshow.jpg
+image:      /assets/static/fashionshow.jpg
 ---
 
 The header section above is a container which takes up ~40% vertical space. It is intended to show a full size image[^1]. The headline (and subheadline) for the blogpost is centered and the letters have one of the available colors (see below) as background.

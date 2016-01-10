@@ -13,7 +13,7 @@ $navibar-thickness: 30px;
   content: '';
   display: block;
   opacity: 0.7;
-  background-image: url("/static/dot.png");
+  background-image: url("/assets/static/dot.png");
   background-size: $dot-size;
   @include narrow-view {
     margin-top: ($navibar-thickness * 0.5) - ($dot-size * 0.2);
