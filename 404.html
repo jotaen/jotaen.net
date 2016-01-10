@@ -1,21 +1,42 @@
 ---
 layout: website
 permalink: /404.html
+title: Not found (Error 404)
 ---
 
-<h1>Oooooops…</h1>
+<main class="content">
 
-<p>
-  The requested page could not be found.<br>
-  Here are some options on how to proceed:
-</p>
+  <h1 class="pagetitle">
+    Wh<span id="oooooo"></span>ps…
+    <script>
+      var os = document.getElementById("oooooo");
+      var interval = 20;
+      var append_o = function(){
+          interval *= 1.1;
+          os.innerHTML = os.innerHTML + "o";
+          if (os.innerHTML.length < 15) {
+            timeout = setTimeout(append_o, interval);
+          }
+      }
+      var timeout = setTimeout(append_o, interval);
+    </script>
+  </h1>
 
-<ul>
-  <li><a href="/">Start over at the blog index</a></li>
-  <li>
-    Enter a few words to search for:<br>
-    <input type="text" name="name" value="">
-    <input type="submit" name="name" value="Search">
-  </li>
-  <li><a href="/about">Get in touch and I’ll give my best to help you out</li>
-</ul>
+  <p>
+    The requested page could not be found.<br>
+    Here are some options on how to proceed:
+  </p>
+
+  <ul>
+    <li>Start over at the <a href="/">blog index</a></li>
+    <li>
+      Enter a few words to search for:<br>
+      <form action="/search" method="get">
+        <input type="text" name="q" value="">
+        <input type="submit" value="Search">
+      </form>
+    </li>
+    <li><a href="/about">Get in touch</a> and I’ll give my best to help you out</li>
+    </ul>
+
+</main>
