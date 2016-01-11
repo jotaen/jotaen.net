@@ -20,7 +20,7 @@ $navibar-thickness: 30px;
     height: $dot-size * 0.5;
   }
   @include medium-view {
-    margin-left: ($navibar-thickness * 0.5) - ($dot-size * 0.2);
+    margin-left: ($navibar-thickness * 0.5) - ($dot-size * 0.3);
     width: $dot-size * 0.5;
   }
 }
@@ -54,7 +54,7 @@ $navibar-thickness: 30px;
     float: right;
   }
   @include medium-view {
-    margin: 38px 0 45px -24px;
+    margin: 38px 0 45px -25px;
     -webkit-transform: rotate(270deg);
     -moz-transform: rotate(270deg);
     -o-transform: rotate(270deg);

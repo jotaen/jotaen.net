@@ -46,7 +46,7 @@ The font face is »input« by David Jonathan Ross[^1]. Due to its technical look
 ## Table
 
 |Nr.|First Sentence|Book|Author|
-|--:|-----|----|------|
+|--:|--------------|----|------|
 |  1|Als Gregor Samsa eines Morgens aus unruhigen Träumen erwachte, fand er sich in seinem Bett zu einem ungeheueren Ungeziefer verwandelt|Die Verwandlung|Franz Kafka|
 |  2|Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed.|Ulysses|James Joyce|
 |  3|In principio era il Verbo e il Verbo era presso Dio, e il Verbo era Dio.|Il Nome Della Rosa|Umberto Eco|
@@ -73,11 +73,13 @@ The font face is »input« by David Jonathan Ross[^1]. Due to its technical look
 - Another list item
 - Third list item
 
+## Image
+
+![Abseiling from the salbit summit needle in the swiss alps](/assets/static/salbit.jpg)
+
 ## Blockquote
 
-> The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother’s keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know my name is the Lord when I lay my vengeance upon thee.[^2]
-
-## Image
+> [^2] The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother’s keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know my name is the Lord when I lay my vengeance upon thee.
 
 [^1]: Check out the fonts [own website](http://input.fontbureau.com). It’s worth having a look there.
 [^2]: Source: Ezekiel 25,17 (in the [Pulp Fiction](https://www.youtube.com/watch?v=BdxD8DWt_pU) translation)

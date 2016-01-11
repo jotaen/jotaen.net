@@ -28,17 +28,13 @@ h6 {
 
 sup,
 sub {
-  margin: 0 0.2em;
   line-height: 0;
-  position: relative;
   font-weight: bold;
 }
 
 sup,
-sub,
-sup *,
-sub * {
-  font-size: 0.75rem;
+sub {
+  font-size: 0.8rem;
 }
 
 b,

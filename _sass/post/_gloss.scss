@@ -2,6 +2,9 @@
 
 a.footnote {
   text-decoration: none;
+  @include broad-view {
+    display: none;
+  }
 }
 
 a.footnote:before {
@@ -12,18 +15,33 @@ a.footnote:after {
   content: "]";
 }
 
-.post-gloss__in-paragraph {
+a.reversefootnote {
+  @include broad-view {
+    display: none;
+  }
+}
+
+.post-gloss__in-sidebar {
+  display: none;
+  @include broad-view {
+    display: block;
+  }
   @include font-thin-italic;
   position: absolute;
   left: -140px;
-  margin-top: 0.6rem;
+  margin-top: -1.3rem;
   width: 120px;
   text-align: right;
   color: #555;
+  line-height: 1.2;
+  font-size: 0.85rem;
 }
 
 .post-gloss__in-footer,
 div.footnotes {
+  @include broad-view {
+    display: none;
+  }
   @include font-thin-italic;
   max-width: $width-content-column;
   margin-top: 3em;
@@ -36,6 +54,6 @@ div.footnotes:before {
   content: "Footnotes:";
   padding-top: 1em;
   text-transform: uppercase;
-  border-top: 1px solid $color-grey;
+  border-top: 1px dotted $color-grey;
   width: 100%;
 }

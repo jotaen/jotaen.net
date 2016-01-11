@@ -1,5 +1,9 @@
 @import "library";
 
+.post-body {
+  position: relative;
+}
+
 .post-body ol,
 .post-body ul {
   padding-left: 2em;
@@ -9,6 +13,8 @@
 .post-body ul,
 .post-body ol,
 .post-body blockquote,
+.post-body div,
+.post-body img,
 .post-body h1,
 .post-body h2,
 .post-body h3,
@@ -18,15 +24,16 @@
   max-width: $width-content-column;
 }
 
+.post-body img {
+  width: 100%;
+}
+
 .post-body pre {
   display: inline-block;
-  width: 100%;
-  @include medium-view {
-    width: auto;
-    min-width: $width-content-column;
-  }
+  width: 95%;
   padding: 0.7em 0.5em;
   background-color: $color-lightgrey3;
+  overflow: scroll;
 }
 
 .post-body th {
