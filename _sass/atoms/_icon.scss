@@ -20,12 +20,18 @@
 }
 
 .icon__label {
-  display: none; /* To make element visible, toggle to "flex" */
   position: absolute;
-  top: 0;
-  left: 120%;
+  display: none;
   padding: 0.2em 0.5em;
-  align-items:center;
+  @include narrow-view {
+    // Hack to center label horizontally
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  @include medium-view {
+    top: 0.1em;
+    left: 120%;
+  }
 }
 
 .icon__label--navi {

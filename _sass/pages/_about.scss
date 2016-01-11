@@ -6,9 +6,8 @@ $text-background: rgba(0,0,0,0.8);
 
 .shaded-black {
   background-color: $text-background;
-  box-shadow: 0.2em 0px 0 $text-background, -0.2em -0px 0 $text-background;
   color: $color-white;
-  padding: 0.19em 0;
+  padding: 0.18em 0;
 }
 
 .imprint-col {
