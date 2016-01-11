@@ -1,9 +1,6 @@
 timezone: Europe/Berlin
 
 gems:
-  - jekyll-redirect-from
   - jekyll-sitemap
 
 markdown: kramdown
-
-permalink: pretty

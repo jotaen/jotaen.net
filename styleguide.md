@@ -7,7 +7,6 @@ tags:       meta
 permalink:  /styleguide
 image:      /assets/static/fashionshow.jpg
 image_info: Foto by herlitz_pbs (https://www.flickr.com/photos/herlitzpbs/10800093004) released under CC-BY-ND 2.0 (https://creativecommons.org/licenses/by-nd/2.0/)
-id:         styleguide
 ---
 
 The header section above is a container which takes up ~40% vertical space. It is intended to show a full size image. The headline (and subheadline) for the blogpost is centered and the letters have one of the available colors (see below) as background.
