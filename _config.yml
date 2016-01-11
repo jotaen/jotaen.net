@@ -5,3 +5,5 @@ gems:
   - jekyll-sitemap
 
 markdown: kramdown
+
+permalink: pretty
