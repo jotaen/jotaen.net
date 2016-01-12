@@ -1,6 +1,6 @@
 @import "library";
 
-$navibar-thickness: 30px;
+$navibar-thickness: 33px;
 
 .navibar {
   overflow: visible;
@@ -38,7 +38,7 @@ $navibar-thickness: 30px;
   @include narrow-view {
     position: absolute;
     width: 2000px;
-    right: 205px;
+    right: 233px;
   }
   @include medium-view {
     margin-top: 1em;
@@ -54,7 +54,7 @@ $navibar-thickness: 30px;
     float: right;
   }
   @include medium-view {
-    margin: 38px 0 45px -25px;
+    margin: 40px 0 47px -28px;
     -webkit-transform: rotate(270deg);
     -moz-transform: rotate(270deg);
     -o-transform: rotate(270deg);
@@ -68,10 +68,10 @@ $navibar-thickness: 30px;
   margin: 0;
   @include narrow-view {
     float: left;
-    margin-left: 0.3em;
+    margin-left: 10px;
   }
   @include medium-view {
-    margin-top: 0.5em;
+    margin-top: 15px;
   }
 }
 
