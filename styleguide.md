@@ -53,14 +53,14 @@ The font face is »input« by David Jonathan Ross[^1]. Due to its technical look
 
 ## Code
 
-```ruby
+{% highlight ruby %}
 # Returns a personalized salutation string
 def greet(name)
   return "Hey, #{name}! How are you doing?"
 end
 
 puts greet("Mary")
-```
+{% endhighlight %}
 
 ## List
 
