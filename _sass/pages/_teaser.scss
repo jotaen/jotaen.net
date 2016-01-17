@@ -1,0 +1,65 @@
+@import "library";
+
+$box-height: 150px;
+
+.teaser {
+  position: relative;
+  max-width: $width-content-column;
+  min-height: $box-height;
+  clear: both;
+  padding: 2em 0;
+  border-top: 1px solid $color-grey;
+  @include narrow-view {
+    text-align: center;
+  }
+}
+
+.teaser__image {
+  width: 200px;
+  height: $box-height;
+  @include medium-view {
+    float: left;
+    margin-right: 15px;
+  }
+}
+
+.teaser__publish-date {
+  display: block;
+  color: $color-grey;
+  font-size: 0.9em;
+  margin: 0;
+  @include medium-view {
+    margin-left: 215px;
+  }
+}
+
+.teaser__title {
+  @include font-bold;
+  font-style: italic;
+  font-size: 1.4rem;
+  color: #222;
+  margin: 0;
+  line-height: 1.4;
+  @include medium-view {
+    margin-left: 215px;
+  }
+}
+
+.teaser__subtitle {
+  @include font-regular;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: #222;
+  margin: 0 0 0.5em 0;
+  line-height: 1.4;
+  @include medium-view {
+    margin-left: 215px;
+  }
+}
+
+.teaser__tags {
+  margin: 0;
+  @include medium-view {
+    margin-left: 215px !important;
+  }
+}

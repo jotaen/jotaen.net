@@ -8,12 +8,34 @@ title:  Blog Index
   <h1 class="pagetitle">– {{ page.title }} –</h1>
 
   {% for post in site.posts %}
-  <article>
-    <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+  <article class="teaser">
+    <a href="{{ post.url | prepend: site.baseurl }}" class="a--reset">
+      {% assign img = post.image | split: "." %}
+      <img src="{{ img[0] }}-thumb.{{ img[1] }}" class="teaser__image">
+    </a>
 
-    <h1>
-      <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+    <span class="teaser__publish-date">
+      {% assign date = post.date %}
+      {% include publish_date.html %}
+    </span>
+
+    <h1 class="teaser__title">
+      <a href="{{ post.url | prepend: site.baseurl }}" class="a--reset">
+        {{ post.title }}
+      </a>
     </h1>
+
+    <h2 class="teaser__subtitle">
+      <a href="{{ post.url | prepend: site.baseurl }}" class="a--reset">
+        {{ post.subtitle }}
+      </a>
+    </h2>
+
+    <ul class="ul--reset teaser__tags">
+      {% for tag in post.tags %}
+        <li class="tag" title="Tag: {{ tag }}">{{ tag }}</li>
+      {% endfor %}
+    </ul>
   </article>
   {% endfor %}
 
