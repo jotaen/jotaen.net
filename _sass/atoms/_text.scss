@@ -2,14 +2,14 @@
 
 h1 {
   @include font-bold;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   letter-spacing: -0.03em;
-  margin-top: 1.5em;
+  margin-top: 1.2em;
 }
 
 h2 {
   @include font-bold;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   margin-bottom: 0.8rem;
   font-size: 1.3rem;
   letter-spacing: -0.03em;
@@ -22,7 +22,7 @@ h6 {
   @include font-bold;
   margin-top: 0.8rem;
   margin-bottom: 0.4rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   letter-spacing: -0.03em;
 }
 
@@ -92,4 +92,9 @@ code *,
 .code * {
   @include font-mono;
   background-color: $color-lightgrey3;
+}
+
+abbr {
+  border-bottom: 1px dotted $color-grey;
+  cursor: help;
 }

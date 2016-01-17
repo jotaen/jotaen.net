@@ -1,6 +1,9 @@
 "use strict";
 
-var add_sidebar_gloss = function(node, dest) {
+// Add a gloss (sidenote) into the sidebar
+// - node: the gloss DOM node
+// - dest: the
+var add_inline_gloss = function(node, dest) {
   node.classList.add("post-gloss__in-sidebar");
   dest.insertBefore(node, dest.firstChild);
 };
@@ -13,7 +16,7 @@ var add_sidebar_gloss = function(node, dest) {
     var dest = document.getElementById("fnref:"+nr);
     var clone = content.cloneNode(true);
 
-    add_sidebar_gloss(clone.firstElementChild, dest);
+    add_inline_gloss(clone.firstElementChild, dest);
   });
 }(document));
 

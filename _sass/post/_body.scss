@@ -13,6 +13,7 @@
 .post-body ul,
 .post-body ol,
 .post-body blockquote,
+.post-body figure,
 .post-body div,
 .post-body img,
 .post-body h1,
@@ -21,7 +22,9 @@
 .post-body h4,
 .post-body h5,
 .post-body h6 {
+  margin-left: 0;
   max-width: $width-content-column;
+
 }
 
 .post-body img {

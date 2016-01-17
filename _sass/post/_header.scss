@@ -18,6 +18,21 @@
   background-size: cover;
 }
 
+.post-header:before {
+  content: "";
+  display: block;
+  @include narrow-view {
+    width: 100%;
+    height: $navibar-thickness * 3;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.35), rgba(255,255,255,0));
+  }
+  @include medium-view {
+    width: $navibar-thickness * 3;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0.35), rgba(255,255,255,0));
+  }
+}
+
 .post-header__headline {
   position: absolute;
   bottom: 5%;
@@ -68,7 +83,7 @@
 .post-header__image-info:hover,
 .post-header__image-info:active {
   width: 50%;
-  height: 8em;
+  height: 100%;
   opacity: 1;
   overflow: scroll;
 }
