@@ -4,7 +4,6 @@ title:      "Living styleguide"
 subtitle:   "The Haute Couture of my blogposts"
 date:       2014-12-27T17:04:25+0100
 tags:       meta
-permalink:  styleguide
 image:      /assets/static/fashionshow.jpg
 image_info: Foto by herlitz_pbs (https://www.flickr.com/photos/herlitzpbs/10800093004) released under CC-BY-ND 2.0 (https://creativecommons.org/licenses/by-nd/2.0/)
 ---
