@@ -78,6 +78,7 @@ a:visited:active,
 .a--reset,
 .a--reset:hover,
 .a--reset:visited:hover, {
+  color: inherit !important;
   background-color: transparent;
   text-decoration: none;
 }

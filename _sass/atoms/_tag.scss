@@ -3,12 +3,13 @@
 .tag {
   display: inline;
   border: 1px solid $color-green;
-  font-size: 0.85em;
-  text-transform: uppercase;
-  color: $color-green;
   padding: 0.3em 0.4em 0.15em 0.4em;
+  font-size: 0.85em;
+  color: $color-green;
+  text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 0.05em;
+  line-height: 2.3;
 }
 
 .tag:before {

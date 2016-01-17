@@ -1,11 +1,11 @@
-<time datetime="{{ page.date | date_to_xmlschema }}">
-  {% assign d = page.date | date: "%-d" %}
-  {% assign m = page.date | date: "%B" %}
+<time datetime="{{ date | date_to_xmlschema }}">
+  {% assign d = date | date: "%-d" %}
+  {% assign m = date | date: "%B" %}
 
   {% case m %}
     {% when 'April' or 'May' or 'June' or 'July' %}{{ m }}
     {% when 'September' %}Sept.
-    {% else %}{{ page.date | date: "%b" }}.
+    {% else %}{{ date | date: "%b" }}.
     {% endcase %}
   {% case d %}
     {% when '1' or '21' or '31' %}{{ d }}<sup>st</sup>,
@@ -13,5 +13,5 @@
     {% when '3' or '23' %}{{ d }}<sup>rd</sup>,
     {% else %}{{ d }}<sup>th</sup>,
     {% endcase %}
-  {{ page.date | date: "%Y" }}
+  {{ date | date: "%Y" }}
 </time>
