@@ -8,6 +8,15 @@
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
     <meta name="google-site-verification" content="yhf1DPiu9P7NoA1YbdXwzzLXG2Oe8a6cY1wGWnLBSkE" />
 
+    {% if page.title and page.subtitle and page.image %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jot4en">
+    <meta name="twitter:creator" content="@jot4en">
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:description" content="{{ page.subtitle }}">
+    <meta name="twitter:image" content="{{ page.image | prepend: site.baseurl }}">
+    {% endif %}
+
     <title>
       {% if page.title %}
         {{ page.title }}
