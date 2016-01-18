@@ -14,7 +14,7 @@
     <meta name="twitter:creator" content="@jot4en">
     <meta name="twitter:title" content="{{ page.title }}">
     <meta name="twitter:description" content="{{ page.subtitle }}">
-    <meta name="twitter:image" content="{{ page.image | prepend: site.baseurl }}">
+    <meta name="twitter:image" content="{{ page.image | prepend: site.domain }}">
     {% endif %}
 
     <title>
@@ -30,7 +30,7 @@
 
     <link rel="icon" type="image/png" href="/assets/static/favicon.png" />
     <link href="//cloud.webtype.com/css/b8d2a612-d632-460b-a769-5b0c55713f92.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{ "/assets/static/main.css" | prepend: site.baseurl }}">
+    <link rel="stylesheet" href="{{ "/assets/static/main.css" }}">
   </head>
 
   <body>

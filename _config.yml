@@ -1,3 +1,5 @@
 timezone: Europe/Berlin
 
 markdown: kramdown
+
+domain: http://blog.jotaen.net
