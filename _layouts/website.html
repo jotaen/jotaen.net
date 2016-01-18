@@ -9,12 +9,7 @@
     <meta name="google-site-verification" content="yhf1DPiu9P7NoA1YbdXwzzLXG2Oe8a6cY1wGWnLBSkE" />
 
     {% if page.title and page.subtitle and page.image %}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@jot4en">
-    <meta name="twitter:creator" content="@jot4en">
-    <meta name="twitter:title" content="{{ page.title }}">
-    <meta name="twitter:description" content="{{ page.subtitle }}">
-    <meta name="twitter:image" content="{{ page.image | prepend: site.domain }}">
+      {% include twitter_card.html %}
     {% endif %}
 
     <title>
