@@ -1,0 +1,35 @@
+@import "library";
+
+.about {
+    max-width: 300px;
+}
+
+.about--text {
+  background-color: $color-black-shaded;
+  color: $color-white;
+  padding: 0.18em 0;
+}
+
+.about__imprint {
+  @include font-mono;
+  display: inline;
+  float: left;
+  padding: 0;
+  color: $color-white;
+  background-color: $color-black-shaded;
+  margin-bottom: 2em;
+}
+
+.about__background {
+  position: fixed;
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-image: url("/assets/static/salbit.jpg");
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

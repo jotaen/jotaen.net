@@ -27,10 +27,10 @@ What purpose does this programm fulfill? – Well, I don’t know. But in some w
 
 typedef int j;
 
-template &lt;typename T&gt;
+template <typename T>
   struct B {
   B(){}
-  B&lt;j&gt;* operator [](int) {return this;}
+  B<j>* operator [](int) {return this;}
 };
 
 struct R_ { B<j> n(int){return B<j>();} };

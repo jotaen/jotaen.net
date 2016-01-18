@@ -2,22 +2,24 @@
  *  COLORS
  */
 
-$color-blue:        #0d668d;
-$color-purple:      #8d1699;
-$color-brown:       #5a3e35;
-$color-green:       #65c858;
-$color-orange:      #f34c17;
-$color-red:         #c0253e;
-$color-yellow:      #cac43b;
+$color-blue:          #0d668d;
+$color-purple:        #8d1699;
+$color-brown:         #5a3e35;
+$color-green:         #65c858;
+$color-orange:        #f34c17;
+$color-red:           #c0253e;
+$color-yellow:        #cac43b;
 
-$color-white:       #ffffff;
-$color-lightgrey1:  #fafafa;
-$color-lightgrey2:  #efefef;
-$color-lightgrey3:  #e6e6e6;
-$color-grey:        #888888;
-$color-darkgrey1:   #999999;
-$color-darkgrey2:   #9a9a9a;
-$color-black:       #000000;
+$color-white:         #ffffff;
+$color-lightgrey1:    #fafafa;
+$color-lightgrey2:    #efefef;
+$color-lightgrey3:    #e6e6e6;
+$color-grey:          #888888;
+$color-darkgrey1:     #999999;
+$color-darkgrey2:     #9a9a9a;
+$color-black:         #000000;
+
+$color-black-shaded:  rgba(0,0,0,0.8);
 
 /*
  *  TYPOGRAPHY
@@ -53,7 +55,7 @@ $color-black:       #000000;
  */
 
 $width-content-column:  550px;
-$navibar-thickness:     33px;
+$width-navibar:         33px;
 $width-layout-medium:   569px;
 $width-layout-broad:    1000px;
 $width-layout-max:      1200px;

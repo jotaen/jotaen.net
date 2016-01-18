@@ -2,7 +2,7 @@
 
 .navibar {
   overflow: visible;
-  width: $navibar-thickness;
+  width: $width-navibar;
 }
 
 .navibar:before,
@@ -14,11 +14,11 @@
   background-image: url("/assets/static/dot.png");
   background-size: $dot-size;
   @include narrow-view {
-    margin-top: ($navibar-thickness * 0.5) - ($dot-size * 0.2);
+    margin-top: ($width-navibar * 0.5) - ($dot-size * 0.2);
     height: $dot-size * 0.5;
   }
   @include medium-view {
-    margin-left: ($navibar-thickness * 0.5) - ($dot-size * 0.3);
+    margin-left: ($width-navibar * 0.5) - ($dot-size * 0.3);
     width: $dot-size * 0.5;
   }
 }
@@ -46,7 +46,7 @@
 
 .navibar__logo {
   display: block;
-  height: $navibar-thickness * 0.8;
+  height: $width-navibar * 0.8;
   @include narrow-view {
     margin: 4px 10px 0 12px;
     float: right;
@@ -61,8 +61,8 @@
 }
 
 .navibar .icon {
-  width: $navibar-thickness;
-  height: $navibar-thickness;
+  width: $width-navibar;
+  height: $width-navibar;
   margin: 0;
   @include narrow-view {
     float: left;
