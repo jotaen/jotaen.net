@@ -1,5 +1,6 @@
+domain: http://blog.jotaen.net
 timezone: Europe/Berlin
-
 markdown: kramdown
 
-domain: http://blog.jotaen.net
+gems:
+  - jekyll-feed
