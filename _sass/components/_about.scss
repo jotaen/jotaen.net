@@ -2,12 +2,12 @@
 
 .about {
     max-width: 300px;
-}
 
-.about--text {
-  background-color: $color-black-shaded;
-  color: $color-white;
-  padding: 0.18em 0;
+    &--text {
+      background-color: $color-black-shaded;
+      color: $color-white;
+      padding: 0.18em 0;
+    }
 }
 
 .about__imprint {
@@ -18,6 +18,10 @@
   color: $color-white;
   background-color: $color-black-shaded;
   margin-bottom: 2em;
+
+  &--noise {
+    display: none;
+  }
 }
 
 .about__background {

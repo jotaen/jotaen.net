@@ -5,14 +5,14 @@ a.footnote {
   @include broad-view {
     display: none;
   }
-}
 
-a.footnote:before {
-  content: "[";
-}
+  &:before {
+    content: "[";
+  }
 
-a.footnote:after {
-  content: "]";
+  &:after {
+    content: "]";
+  }
 }
 
 a.reversefootnote {
@@ -37,7 +37,6 @@ a.reversefootnote {
   font-size: 0.85rem;
 }
 
-.post-gloss__in-footer,
 div.footnotes {
   @include broad-view {
     display: none;
@@ -46,14 +45,13 @@ div.footnotes {
   max-width: $width-content-column;
   margin-top: 3em;
   color: #555;
-}
 
-.post-gloss__in-footer:before,
-div.footnotes:before {
-  display: block;
-  content: "Footnotes:";
-  padding-top: 1em;
-  text-transform: uppercase;
-  border-top: 1px dotted $color-grey;
-  width: 100%;
+  &:before {
+    display: block;
+    content: "Footnotes:";
+    padding-top: 1em;
+    text-transform: uppercase;
+    border-top: 1px dotted $color-grey;
+    width: 100%;
+  }
 }

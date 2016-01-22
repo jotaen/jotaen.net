@@ -3,44 +3,44 @@
 .navibar {
   overflow: visible;
   width: $width-navibar;
-}
 
-.navibar:before,
-.navibar:after {
-  $dot-size: 10px;
-  content: '';
-  display: block;
-  opacity: 0.7;
-  background-image: url("/assets/static/dot.png");
-  background-size: $dot-size;
-  @include narrow-view {
-    margin-top: ($width-navibar * 0.5) - ($dot-size * 0.2);
-    height: $dot-size * 0.5;
+  &:before,
+  &:after {
+    $dot-size: 10px;
+    content: '';
+    display: block;
+    opacity: 0.7;
+    background-image: url("/assets/static/dot.png");
+    background-size: $dot-size;
+    @include narrow-view {
+      margin-top: ($width-navibar * 0.5) - ($dot-size * 0.2);
+      height: $dot-size * 0.5;
+    }
+    @include medium-view {
+      margin-left: ($width-navibar * 0.5) - ($dot-size * 0.3);
+      width: $dot-size * 0.5;
+    }
   }
-  @include medium-view {
-    margin-left: ($width-navibar * 0.5) - ($dot-size * 0.3);
-    width: $dot-size * 0.5;
-  }
-}
 
-.navibar:before {
-  @include narrow-view {
-    display: none;
+  &:before {
+    @include narrow-view {
+      display: none;
+    }
+    @include medium-view {
+      height: 68px;
+    }
   }
-  @include medium-view {
-    height: 68px;
-  }
-}
 
-.navibar:after {
-  @include narrow-view {
-    position: absolute;
-    width: 2000px;
-    right: 233px;
-  }
-  @include medium-view {
-    margin-top: 1em;
-    height: 5000px;
+  &:after {
+    @include narrow-view {
+      position: absolute;
+      width: 2000px;
+      right: 233px;
+    }
+    @include medium-view {
+      margin-top: 1em;
+      height: 5000px;
+    }
   }
 }
 

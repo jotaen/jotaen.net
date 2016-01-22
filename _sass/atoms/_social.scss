@@ -11,10 +11,10 @@
   float: left;
   height: 35px;
   opacity: 0.8;
-}
 
-.social__icon:hover {
-  opacity: 1;
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .social__link,

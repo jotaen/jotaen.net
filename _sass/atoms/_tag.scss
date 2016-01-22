@@ -10,15 +10,15 @@
   text-decoration: none;
   letter-spacing: 0.05em;
   line-height: 2.3;
-}
 
-.tag:before {
-  content: "#";
-  margin-right: 0.2em;
-}
+  &:before {
+    content: "#";
+    margin-right: 0.2em;
+  }
 
-// .tag:hover,
-// .tag--hover {
-//   background-color: $color-green;
-//   color: $color-white;
-// }
+  // &:hover,
+  // &--hover {
+  //   background-color: $color-green;
+  //   color: $color-white;
+  // }
+}

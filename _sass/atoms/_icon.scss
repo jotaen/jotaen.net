@@ -4,14 +4,14 @@
   position: relative;
   border-radius: 50%;
   overflow: visible;
-}
 
-.icon--navi {
-  background-color: $color-blue;
-}
+  &--navi {
+    background-color: $color-blue;
+  }
 
-.icon--navi:hover {
-  background-color: $color-orange;
+  &--navi:hover {
+    background-color: $color-orange;
+  }
 }
 
 .icon__image {
@@ -32,11 +32,11 @@
     top: 0.2em;
     left: 120%;
   }
-}
 
-.icon__label--navi {
-  background-color: $color-orange;
-  color: $color-white;
+  &--navi {
+    background-color: $color-orange;
+    color: $color-white;
+  }
 }
 
 .icon a,
