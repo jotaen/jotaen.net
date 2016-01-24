@@ -14,7 +14,7 @@ The header section above is a container which takes up ~40% vertical space. It i
 
 ## Typography
 
-The font face is »input« by David Jonathan Ross[^1]. Due to its technical look it goes nicely with this blog, whose topics cover coding and technology mainly. The fact that it comes with a whole bunch of different styles is a strong advantage, since typography is the most important stylistic device on text-heavy sites. However, because using webfonts is also a matter of frontend performance, just the following styles are included:
+The font face has a technical look goes nicely with this blog, whose topics cover coding and technology mainly. The font is called “input” and was created by David Jonathan Ross[^1]. The fact that it comes with a whole bunch of different styles is a strong advantage, since typography is the most important stylistic device on text-heavy sites. However, because using webfonts is also a matter of frontend performance, just the following styles are included:
 
 - Regular text: Input Sans Condensed 300 (regular & italic)
 - Strong text: Input Serif Compressed 700 italic (regular & italic)
@@ -53,6 +53,8 @@ The font face is »input« by David Jonathan Ross[^1]. Due to its technical look
 
 ## Code
 
+[^2]
+
 {% highlight ruby %}
 # Returns a personalized salutation string
 def greet(name)
@@ -74,11 +76,17 @@ puts greet("Mary")
 
 ## Image
 
+[^3]
+
 ![Abseiling from the salbit summit needle in the swiss alps](/assets/static/salbit.jpg)
 
 ## Blockquote
 
-> [^2] The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother’s keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know my name is the Lord when I lay my vengeance upon thee.
+[^4]
 
-[^1]: Check out the fonts [own website](http://input.fontbureau.com). It’s worth having a look there.
-[^2]: Source: Ezekiel 25,17 (in the [Pulp Fiction](https://www.youtube.com/watch?v=BdxD8DWt_pU) translation)
+> The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother’s keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know my name is the Lord when I lay my vengeance upon thee.
+
+[^1]: Check out the [website](http://input.fontbureau.com), it’s worth having a look there.
+[^2]: Some fancy ruby code…
+[^3]: Abseiling from the salbit summit needle in the swiss alps
+[^4]: Source: Ezekiel 25,17 (in the [Pulp Fiction](https://www.youtube.com/watch?v=BdxD8DWt_pU) translation)

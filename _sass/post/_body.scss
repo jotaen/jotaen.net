@@ -9,25 +9,24 @@
   padding-left: 2em;
 }
 
-.post-body p,
-.post-body ul,
-.post-body ol,
-.post-body blockquote,
-.post-body figure,
-.post-body div,
-.post-body img,
-.post-body h1,
-.post-body h2,
-.post-body h3,
-.post-body h4,
-.post-body h5,
-.post-body h6 {
+.post-body > p,
+.post-body > ul,
+.post-body > ol,
+.post-body > blockquote,
+.post-body > figure,
+.post-body > div,
+.post-body > img,
+.post-body > h1,
+.post-body > h2,
+.post-body > h3,
+.post-body > h4,
+.post-body > h5,
+.post-body > h6 {
   margin-left: 0;
   max-width: $width-content-column;
-
 }
 
-.post-body figure {
+.post-body > figure {
   margin-right: 0;
 }
 
@@ -62,9 +61,16 @@
   padding: 0.3em;
 }
 
-.post-body blockquote {
+.post-body > blockquote {
   color: $color-grey;
   margin-left: 0.5em;
   padding-left: 1em;
   border-left: 1px solid $color-grey;
+}
+
+.post-body sup[id^="fnref"] {
+  @include broad-view {
+    display: inline-block;
+    float: left;
+  }
 }
