@@ -4,9 +4,21 @@
   position: relative;
 }
 
-.post-body ol,
+.post-body ol {
+  padding-left: 1.5em;
+}
+
 .post-body ul {
-  padding-left: 2em;
+  padding-left: 1em;
+}
+
+.post-body ul li {
+  list-style-type: none;
+  &:before {
+    position: absolute;
+    content: "▸";
+    left: 0;
+  }
 }
 
 .post-body > p,
