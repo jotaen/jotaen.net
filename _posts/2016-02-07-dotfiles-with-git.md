@@ -3,7 +3,7 @@ layout:     blogpost
 title:      Spread your configuration
 subtitle:   Syncing dotfiles with git
 date:       2016-02-07
-tags:       [mac]
+tags:       [mac, dotfiles]
 permalink:  2uNLp/syncing-dotfiles-with-git
 image:      /assets/2016/mac-with-stickers.jpg
 ---
