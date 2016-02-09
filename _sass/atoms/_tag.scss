@@ -10,6 +10,7 @@
   text-decoration: none;
   letter-spacing: 0.05em;
   line-height: 2.3;
+  white-space: nowrap;
 
   &:before {
     content: "#";
