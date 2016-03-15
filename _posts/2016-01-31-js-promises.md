@@ -90,11 +90,12 @@ There is a proposal for ES7, which introduces async functions and the keyword `a
 }());
 {% endhighlight %}
 
-But: this is still experimental by now. Maybe the syntax will change, maybe it won’t make its way into the standard. Either way, you will have to use a preprocessor (transpiler, compiler, whateveriler) like Traceur or Babel in order to make this code work.
+But: this is still experimental by now. Maybe the syntax will change, maybe it won’t make its way into the standard[^3]. Either way, you will have to use a preprocessor (transpiler, compiler, whateveriler) like Traceur or Babel in order to make this code work.
 
 
 [^1]: “There are only two hard things in Computer Science: cache invalidation and naming things.” (Phil Karlton)
 [^2]: For ES6 compatibility, see [this table](https://kangax.github.io/compat-table/es6/)
+[^3]: **Update:** Async/await is officially [not part of ES7/ES2016](http://www.2ality.com/2016/01/ecmascript-2016.html)
 
 *[ES6]: EcmaScript 6
 *[ES7]: EcmaScript 7
