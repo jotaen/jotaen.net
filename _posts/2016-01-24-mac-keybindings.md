@@ -6,7 +6,6 @@ date:       2016-01-24
 tags:       [mac, typography]
 permalink:  4haPC/stop-using-ascii-art
 image:      /assets/2016/typewriter.jpg
-image_info: Image by Raúl Hernández González (https://www.flickr.com/photos/rahego/3863524572) released under CC-BY-2.0 (https://creativecommons.org/licenses/by/2.0/)
 ---
 
 Sometimes I hate myself for being so passionate about typography. The whole world is full of poor typefaces and wrong quotation marks, nobody seems to be able to typeset deliberately and people even spend a lot of money for [blass plates in Arial](https://twitter.com/espiekermann/status/690879223473553410).
