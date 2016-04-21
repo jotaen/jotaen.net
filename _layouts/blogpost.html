@@ -40,6 +40,15 @@ layout: website
   </dd>
 
   <dt class="post-info__label">
+    Share:
+  </td>
+  <dd class="post-info__data">
+    ▸ <a href="https://twitter.com/share" class="twitter-share-button"{count} data-via="jot4en">Tweet</a><br>
+    ▸ <a href="http://j4n.io/{{ page.id }}">j4n.io/{{ page.id }}</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </dd>
+
+  <dt class="post-info__label">
     Tags:
   </td>
   <dd class="post-info__data">
@@ -48,14 +57,6 @@ layout: website
         <li class="tag" title="Tag: {{ tag }}">{{ tag }}</li>
       {% endfor %}
     </ul>
-  </dd>
-
-  <dt class="post-info__label">
-    Share:
-  </td>
-  <dd class="post-info__data">
-    <a href="https://twitter.com/share" class="twitter-share-button"{count} data-via="jot4en">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   </dd>
 </dl>
 
