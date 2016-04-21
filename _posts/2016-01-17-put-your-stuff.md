@@ -4,6 +4,7 @@ title:      Put your stuff into the world!
 subtitle:   Facing the challenges of being a software developer
 date:       2016-01-17
 tags:       [meta, thoughts]
+id:         e9gb1
 permalink:  e9gb1/put-your-stuff-into-the-world
 image:      /assets/2016/space-clouds.jpg
 image_info: This NASA/ESA Hubble Space Telescope image shows the center of the Lagoon Nebula, an object with a deceptively tranquil name, in the constellation of Sagittarius. The region is filled with intense winds from hot stars, churning funnels of gas, and energetic star formation, all embedded within an intricate haze of gas and pitch-dark dust.

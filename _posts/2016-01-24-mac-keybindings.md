@@ -4,6 +4,7 @@ title:      Stop using ASCII Art
 subtitle:   Explore the super powers of your Mac keyboard
 date:       2016-01-24
 tags:       [mac, typography]
+id:         4haPC
 permalink:  4haPC/stop-using-ascii-art
 image:      /assets/2016/typewriter.jpg
 ---

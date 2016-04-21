@@ -4,6 +4,7 @@ title:      Working with events and objects on Arduino
 subtitle:   A rapid prototyping framework called yps
 date:       2014-01-27
 tags:       [arduino, c++, framework, project]
+id:         w7yGk
 permalink:  w7yGk/working-with-events-and-objects-on-arduino
 image:      /assets/2014/arduino.jpg
 ---

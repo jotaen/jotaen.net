@@ -4,6 +4,7 @@ title:      Let’s build a REST service
 subtitle:   Kickoff for a five part blogpost series
 date:       2016-03-13
 tags:       [rest, microservice, api, project]
+id:         Toqw4
 permalink:  Toqw4/lets-build-a-rest-service
 image:      /assets/2016/bench.jpg
 ---

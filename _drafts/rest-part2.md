@@ -4,23 +4,24 @@ title:      What is a REST service?
 subtitle:   From the series “Let’s build a REST service”
 date:       2016-03-19
 tags:       [rest, microservice, api, project]
+id:         0baE3
 permalink:  0baE3/what-is-a-rest-service
 image:      /assets/2016/hammock.jpg
 ---
 
-# Definition of REST
+# What is a REST service?
 
-In my opinion, REST does not stand for a strict definition in the first place. Instead, I consider it to be a generic term containing living standards and practices. I don’t abuse this point of view as an excuse for inaccuracy or laziness. It’s just works well and is totally sufficient in practice. (Unless you prefer to get lost in sententious elaborations.)
 
-A good REST service meets the following minimal requirements:
 
-- It must offer a **uniform interface**. In the context of most web applications this is standard HTTP for the request and JSON for the response. Both directions must comply strictly to a respective **specification**.
+A good REST service meets the following requirements:
+
+- It offers a **uniform interface**. In the context of most web applications this is standard HTTP for the request and JSON for the response. Both directions must comply strictly to a respective **specification**.
 - The API allows to **perform all CRUD operations** on its resources (on the single ones anyway, better yet on entire collections).
-- It **has sole sovereignty** over the resources it manages. The resource (e.g. in the form of a database) is neither shared nor is there any bypass to access it.
-- The **requests are stateless** and fully self-contained; the server does not store client context between subsequent requests.
-- Responses should contain **links to related or embedded resources**. (This aspect is a should-have though, because it doesn’t make sense for all use cases.)
+- The service **has sole sovereignty** over the resources it manages. For the sake of stability and consistency it is good practice to neither share the resource nor to offer a bypass to manipulate it.
+- The **requests are stateless** and fully self-contained; the server does not store client context between subsequent requests. (This is an important precondition for scaling.)
+- Responses should contain **links to related or embedded resources**. (This aspect is a should-have though, because it doesn’t make sense for every use case.)
 
-# Designing the j4n.io API
+# Best practices
 
 ## Endpoints
 

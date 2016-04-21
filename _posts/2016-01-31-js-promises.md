@@ -4,6 +4,7 @@ title:      Asynchronous conditionals
 subtitle:   The idea behind JS promises
 date:       2016-01-31
 tags:       [javascript, coding]
+id:         R9naP
 permalink:  R9naP/javascript-promises
 image:      /assets/2016/love-locks.jpg
 ---

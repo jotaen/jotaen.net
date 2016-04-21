@@ -4,6 +4,7 @@ title:      The beauty of C++
 subtitle:   A tribute to the best programming language
 date:       2014-02-21
 tags:       [c++, misc]
+id:         wgCB2
 permalink:  wgCB2/the-beauty-of-cplusplus
 image:      /assets/2014/beauty-of-cpp.jpg
 ---
