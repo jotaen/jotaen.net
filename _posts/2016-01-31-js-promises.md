@@ -1,12 +1,12 @@
 ---
-layout:     blogpost
-title:      Asynchronous conditionals
-subtitle:   The idea behind JS promises
-date:       2016-01-31
-tags:       [javascript, coding]
-id:         R9naP
-permalink:  R9naP/javascript-promises
-image:      /assets/2016/love-locks.jpg
+layout:        blogpost
+title:         Asynchronous conditionals
+subtitle:      The idea behind JS promises
+date:          2016-01-31
+tags:          [javascript, coding]
+redirect_from: /R9naP/
+permalink:     R9naP/javascript-promises
+image:         /assets/2016/love-locks.jpg
 ---
 
 This blogpost is a beginner’s guide to JS promises. You will learn what a promise is, how you use it and how you avoid common pitfalls. However, there is one thing, which I don’t have an answer to: The reason, why these things are called “promises”. Perhaps, they are just another example where Karlton’s law[^1] has struck again. So, the first step to understand promises is to forget about the name for a moment.

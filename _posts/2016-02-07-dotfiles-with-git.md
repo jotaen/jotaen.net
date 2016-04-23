@@ -1,12 +1,12 @@
 ---
-layout:     blogpost
-title:      Spread your configuration
-subtitle:   Syncing dotfiles with git
-date:       2016-02-07
-tags:       [mac, dotfiles]
-id:         2uNLp
-permalink:  2uNLp/syncing-dotfiles-with-git
-image:      /assets/2016/mac-with-stickers.jpg
+layout:        blogpost
+title:         Spread your configuration
+subtitle:      Syncing dotfiles with git
+date:          2016-02-07
+tags:          [mac, dotfiles]
+redirect_from: /2uNLp/
+permalink:     2uNLp/syncing-dotfiles-with-git
+image:         /assets/2016/mac-with-stickers.jpg
 ---
 
 There are more than 60,000 dotfile repos on Github. Perhaps there are also as many approaches to install or bootstrap or setup them. I found a plain and simple way for myself to version and share my config files between multiple computers: — drum roll… — git! This is a passive approach though, since it doesn’t install any software or tools, it just syncs dump files between your various machines.

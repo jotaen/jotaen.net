@@ -1,12 +1,12 @@
 ---
-layout:     blogpost
-title:      The backside of CMS-ease
-subtitle:   Providing a basis for clients to get along
-date:       2014-07-27
-tags:       [cms, thoughts]
-id:         xba0w
-permalink:  xba0w/the-backside-of-cms-ease
-image:      /assets/2014/cms-book-stack.jpg
+layout:        blogpost
+title:         The backside of CMS-ease
+subtitle:      Providing a basis for clients to get along
+date:          2014-07-27
+tags:          [cms, thoughts]
+redirect_from: /xba0w/
+permalink:     xba0w/the-backside-of-cms-ease
+image:         /assets/2014/cms-book-stack.jpg
 ---
 
 

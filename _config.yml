@@ -4,3 +4,4 @@ markdown: kramdown
 
 gems:
   - jekyll-feed
+  - jekyll-redirect-from
