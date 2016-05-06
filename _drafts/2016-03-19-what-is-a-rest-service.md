@@ -13,14 +13,14 @@ image:         /assets/2016/hammock.jpg
 
 The term “REST” goes back to
 
-A good REST service meets the following requirements:
+A good RESTful microservice meets the following requirements:
 
-- It offers a **uniform interface**. In the context of most web applications this is standard HTTP for the request and JSON for the response. Both directions must comply strictly to a respective **specification**.
+- It offers a **uniform interface**. In the context of most web applications this is standard HTTP as basic communication protocol and JSON as exchange format for data. Both directions must comply strictly to a respective **specification**.
 - The API allows to **perform all CRUD operations** on its resources (on the single ones anyway, better yet on entire collections).
-- The service **has sole sovereignty** over the resources it manages. For the sake of stability and consistency it is good practice to neither share the resource nor to offer a bypass to manipulate it.
-- The server should **fulfill a single responsibility**. It must neither be hyper generic nor be tailored only for specific use cases: The truth lies somewhere in between.
+- The service **has sole sovereignty** over the resources it manages. For the sake of integrity and consistency it is good practice to neither share the resource nor to offer a bypass to manipulate it.
+- The server should **fulfill a single responsibility**. It must neither be hyper generic on the one hand nor be tailored for specific use cases on the other: The truth lies somewhere in between.
 - The **requests are stateless** and fully self-contained; the server does not store client context between subsequent requests.
-- Responses should contain **links to related or embedded resources**. (This aspect is a should-have though, because it doesn’t make sense for every use case.)
+- Responses should contain **links to related or embedded resources**. (This aspect is a should-have though, because it doesn’t make sense in every use case.)
 
 # Best practices
 
