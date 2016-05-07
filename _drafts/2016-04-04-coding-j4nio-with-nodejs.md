@@ -9,12 +9,20 @@ permalink:     0baE4/coding-j4nio-with-nodejs
 image:         /assets/2016/strandkorbs-at-beach.jpg
 ---
 
-Enough of the talking – let’s roll up our sleeves.
+Enough of the talking – let’s roll up the sleeves. I want to point out though, that this is not a hands-on tutorial on specific technologies. There are hundreds of thousands of guides on how to setup an ExpressJS project and dozens on blogposts about which NPM module is the best choice with MongoDB.
+
+I rather like to concentrate on the general setup and the basic ideas behind the project, since these thoughts remain valid beyond particular (and frequently changing) implementation details.
 
 # Technologies
 
-- MongoDB as schemaless document store
-- NodeJS / Express
+Everyone is talking about JavaScript and NodeJS these days; packages spring up like mushrooms on npmjs.org (but also drown en masse, by the way); and an outsider could be left with the impression, that the MEAN stack is the real deal nowadays for writing web applications.
+
+Of course, that is not true. Every technology has strengths and weaknesses and it is left to the software developer to make a considerate decision on which tool to select. Just picking en-vogue technologies that everyone goes with is a mistake that can viciously come back to roost.
+
+However, for the j4n.io project it indeed suggested itself to pick NodeJS with MongoDB – for the following reasons:
+
+- MongoDB is a non-relational document store. Since the shortlink datasets aren’t connected with each other and do not need to be poured into a strong schema, this database type seems to be an appropriate choice.
+- I selected ExpressJS as HTTP framework, because it lives up to its name: Setting up a microservice is straightforward and free of unnecessary overhead. Handling JSON data structures is built-in. And hosting and deployment is cheap and easy.
 
 # Project structure
 
@@ -32,3 +40,6 @@ The shortlink data is modeled as resource.
   - Routing
   - Middleware (preprocessing the request)
   - Controller
+
+
+*[NPM]: NodeJS Package Manager
