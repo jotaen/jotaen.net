@@ -9,7 +9,7 @@ permalink:     0baE4/coding-j4nio-with-nodejs
 image:         /assets/2016/strandkorbs-at-beach.jpg
 ---
 
-Enough of the talking – let’s roll up the sleeves. I want to point out though, that this is not a hands-on tutorial on specific technologies. There are hundreds of thousands of guides on how to setup an ExpressJS project and dozens on blogposts about which NPM module is the best choice with MongoDB.
+Enough of the talking – let’s roll up the sleeves. I want to point out though, that this is not a hands-on tutorial that goes into detail about specific technologies. There are hundreds of thousands of guides on how to setup an ExpressJS project and dozens on blogposts on which NPM module is the best choice with MongoDB.
 
 I rather like to concentrate on the general setup and the basic ideas behind the project, since these thoughts remain valid beyond particular (and frequently changing) implementation details.
 

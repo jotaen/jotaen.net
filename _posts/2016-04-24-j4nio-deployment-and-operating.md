@@ -31,14 +31,14 @@ The integration between Modulus and Travis is seamless: The deploys are executed
 
 ## Monitoring
 
-Despite tests and other quality gates there are always things that can go wrong during deployment. For that reason, you are best advised to have some post-deploy checks, which make certain that the app is healthy and stable.
+Despite tests and other quality gates there are always things that can go wrong during deployment. For that reason, I have some post-deploy checks for j4n.io, which make certain, that the app is healthy and stable.
 
-- A **smoke test** is executed directly after the deployment. It performs five key transactions that affect the main responsibilities of the application, thus making sure that everything made it unscathed to production and got restarted.
+- A **smoke test** is executed directly after the deployment. It performs five key transactions that affect the main responsibilities of the application, thus making sure that everything made it unscathed to production and the server got restarted properly.
 - The application constantly gets **monitored** via [StatusCake](https://www.statuscake.com). They perform simple requests all the time from all over the world and send instant notifications once the server is not available. (Modulus also provides an alerting feature, which sends Mails or text messages, if the application crashes.)
 
 ## Notifications
 
-Although the test suite needs about 10 seconds to pass, the entire build from scratch takes a few minutes. Since I don’t want to sit and wait for it to be completed, I created a Slack channel, where all information get pushed, as soon as they are available:
+Although the test suite needs about 10 seconds to pass, the entire build and deploy process from scratch takes a few minutes. Since I don’t want to sit and wait for it to be completed, I created a Slack channel, where all information get pushed, as soon as it become available:
 
 ![Slack notifications](/assets/2016/slack-j4nio.png)
 

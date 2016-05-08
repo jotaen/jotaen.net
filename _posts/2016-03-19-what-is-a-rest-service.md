@@ -11,7 +11,7 @@ image:         /assets/2016/hammock.jpg
 
 # What is a REST service?
 
-The term “REST” goes back to
+The term “REST” goes back to a dissertation of Roy Fielding in 1999.
 
 A good RESTful microservice meets the following requirements:
 
