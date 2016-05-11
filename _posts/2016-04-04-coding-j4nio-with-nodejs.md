@@ -3,13 +3,13 @@ layout:        blogpost
 title:         Coding J4N.IO with NodeJS
 subtitle:      From the series “Let’s build a REST service”
 date:          2016-04-04
-tags:          [rest, microservice, api, project]
+tags:          [rest, microservice, nodejs, project]
 redirect_from: /Q6eUW/
 permalink:     Q6eUW/coding-j4nio-with-nodejs
 image:         /assets/2016/strandkorbs-at-beach.jpg
 ---
 
-> This blogpost is part of the series [“Let’s build a REST service”](/Toqw4/lets-build-a-rest-service). The source code of the project is [on Github](https://github.com/jotaen/j4n.io).
+> This blogpost is part of the series [“Let’s build a REST service”](/Toqw4/lets-build-a-rest-service), in which I build my own shortlink webservice. The source code of the project is [on Github](https://github.com/jotaen/j4n.io).
 
 Enough of the talking – let’s roll up the sleeves. I want to point out though, that this is not a hands-on tutorial that goes into detail on specific technologies. There are hundreds of thousands of guides on how to setup an ExpressJS project and dozens on blogposts on which NPM module is the best choice with MongoDB.
 

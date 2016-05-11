@@ -11,6 +11,7 @@ image:         /assets/2016/bench.jpg
 
 This is the first blogpost of a small series about microservices. In my current side project, I am working on a tiny REST API, that acts as a weblink shortener. In this kickoff post I want to describe the basic idea behind the project and give a look-out on the topics I am going to cover.
 
+The source code of the project is available [on Github](https://github.com/jotaen/j4n.io).
 
 # Table of contents
 

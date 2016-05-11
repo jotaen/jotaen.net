@@ -3,13 +3,13 @@ layout:        blogpost
 title:         J4N.IO – Deployment and operating
 subtitle:      From the series “Let’s build a REST service”
 date:          2016-04-24
-tags:          [rest, microservice, api, project]
+tags:          [operating, deployment, microservice, project]
 redirect_from: /Tt7Yh/
 permalink:     Tt7Yh/deployment-and-operating
 image:         /assets/2016/beachchair-ocean.jpg
 ---
 
-> This blogpost is part of the series [“Let’s build a REST service”](/Toqw4/lets-build-a-rest-service). The source code of the project is [on Github](https://github.com/jotaen/j4n.io).
+> This blogpost is part of the series [“Let’s build a REST service”](/Toqw4/lets-build-a-rest-service), in which I build my own shortlink webservice. The source code of the project is [on Github](https://github.com/jotaen/j4n.io).
 
 The best code isn’t worth anything when it doesn’t run somewhere. Thankfully, operating did become simple as it can be nowadays. Gone are the times where you needed to spend hours to setup servers, configure firewalls and watch out for security updates. The whole process of building, shipping and serving a web application is boiled down to a minimal setup and configuration effort: The “as-a-service” suffix is the keyword to watch out for.
 

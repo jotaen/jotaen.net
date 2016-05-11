@@ -3,13 +3,13 @@ layout:        blogpost
 title:         Testing and QA of J4N.IO
 subtitle:      From the series “Let’s build a REST service”
 date:          2016-04-12
-tags:          [rest, microservice, api, project]
+tags:          [testing, ci, microservice, project]
 redirect_from: /v24iU/
 permalink:     v24iU/testing-and-qa-of-j4nio
 image:         /assets/2016/swing-in-dawn.jpg
 ---
 
-> This blogpost is part of the series [“Let’s build a REST service”](/Toqw4/lets-build-a-rest-service). The source code of the project is [on Github](https://github.com/jotaen/j4n.io).
+> This blogpost is part of the series [“Let’s build a REST service”](/Toqw4/lets-build-a-rest-service), in which I build my own shortlink webservice. The source code of the project is [on Github](https://github.com/jotaen/j4n.io).
 
 Back in the days when I started programming, I didn’t write tests at all. After applying changes I only performed some checks by hand to confirm that the application was still working. This procedure sufficed for me and I felt good with it back then. However, as my programming skills evolved over the years, so did my point of view in regards of testing: Today I can barely imagine writing a piece of code without writing tests for it.
 

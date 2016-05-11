@@ -9,7 +9,7 @@ permalink:     fXts2/what-is-a-rest-service
 image:         /assets/2016/hammock.jpg
 ---
 
-> This blogpost is part of the series [“Let’s build a REST service”](/Toqw4/lets-build-a-rest-service). The source code of the project is [on Github](https://github.com/jotaen/j4n.io).
+> This blogpost is part of the series [“Let’s build a REST service”](/Toqw4/lets-build-a-rest-service), in which I build my own shortlink webservice. The source code of the project is [on Github](https://github.com/jotaen/j4n.io).
 
 # What is a RESTful webservice?
 
