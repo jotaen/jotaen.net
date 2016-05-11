@@ -18,9 +18,9 @@ This series is planned to contain five parts. (I will hand in the corresponding 
 
 - **Part 1: Kickoff** (This is the blogpost you currently read.)
 - **Part 2: Basics of microservices** How the term REST is defined and how the concepts can be applicable to practice.
-- **Part 3: Development with NodeJS** My service is implemented based on the ME(A)N-Stack (MongoDB, ExpressJS, NodeJS), which seems to be a pretty good choice for this particular project.
-- **Part 4: Testing and QA** Since microservices are small in scope and pretty much well-defined, they are not so hard to test. However, there is a whole bunch of testing utility and quality assurance tools to choose from.
-- **Part 5: Deploying and running** The best code is worth little, if it doesn’t run anywhere. In order to preserve a healthy ratio between application size and maintenance expenses, we will go into the cloud.
+- [**Part 3: Development with NodeJS**](/Q6eUW/coding-j4nio-with-nodejs) My service is implemented based on the ME(A)N-Stack (MongoDB, ExpressJS, NodeJS), which seems to be a pretty good choice for this particular project.
+- [**Part 4: Testing and QA**](/v24iU/testing-and-qa-of-j4nio) Since microservices are small in scope and pretty much well-defined, they are not so hard to test. However, there is a whole bunch of testing utility and quality assurance tools to choose from.
+- [**Part 5: Deploying and operating**](/Tt7Yh/deployment-and-operating) The best code is worth little, if it doesn’t run anywhere. In order to preserve a healthy ratio between application size and maintenance expenses, we will go into the cloud.
 
 
 # The idea

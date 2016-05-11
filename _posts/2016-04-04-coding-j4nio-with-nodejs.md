@@ -4,12 +4,14 @@ title:         Coding J4N.IO with NodeJS
 subtitle:      From the series “Let’s build a REST service”
 date:          2016-04-04
 tags:          [rest, microservice, api, project]
-redirect_from: /0baE4/
-permalink:     0baE4/coding-j4nio-with-nodejs
+redirect_from: /Q6eUW/
+permalink:     Q6eUW/coding-j4nio-with-nodejs
 image:         /assets/2016/strandkorbs-at-beach.jpg
 ---
 
-Enough of the talking – let’s roll up the sleeves. I want to point out though, that this is not a hands-on tutorial that goes into detail about specific technologies. There are hundreds of thousands of guides on how to setup an ExpressJS project and dozens on blogposts on which NPM module is the best choice with MongoDB.
+> This blogpost is part of the series [“Let’s build a REST service”](/Toqw4/lets-build-a-rest-service). The source code of the project is [on Github](https://github.com/jotaen/j4n.io).
+
+Enough of the talking – let’s roll up the sleeves. I want to point out though, that this is not a hands-on tutorial that goes into detail on specific technologies. There are hundreds of thousands of guides on how to setup an ExpressJS project and dozens on blogposts on which NPM module is the best choice with MongoDB.
 
 I rather like to concentrate on the general setup and the basic ideas behind the project, since these thoughts remain valid beyond particular (and frequently changing) implementation details.
 
@@ -26,20 +28,19 @@ However, for the j4n.io project it indeed suggested itself to pick NodeJS with M
 
 # Project structure
 
-The source files in the app directory can be grouped into three categories:
+I grouped the source files in the [`app` directory of my project](https://github.com/jotaen/j4n.io) into the three basic categories “bootstrapping”, “business logic” and “http logic”. These are not just metaphysic abstractions layers, but the according files are indeed separated in distinct folders. The touchpoint between these three abstraction levels is kept as strictly defined and minimal as possible.
 
-## Setup, bootstrapping
-When you look into the `bootstrap` folder, you instantly smell the dust of side-effects. Here is the place for all the dirty stuff, like accessing the process environment, establishing a database connection or starting the actual app. Because of all the global state, bootstrapping is difficult to deal with and can barely be tackled by tests. For that reason, it is good to keep these things simple and manage them all in one single place.
+The `app` folder contains about 350 lines of code, which is a good dimension for an application of that size. Although “lines of code” is a KPI, that certainly has to be handled with care, the size of the project is a significant property here: A microservice should not only be lightweight in regards of the size of its API.
 
 ## Business logic
 The business logic of the shortlink service consists of data pre-processing and persistence. These modules have a generic API – they do not know anything about HTTP or the framework they are embedded in. If I would choose a different HTTP framework or decide to write a CLI interface for accessing the database, I could reuse these modules without having to modify a single line of code. However, portability is not the primary reason for this strict demarcation: It’s rather a matter of good and clear code structure, which is achieved by defining abstraction layers precisely and keeping them strictly separate from one another.
 
 ## HTTP logic
-The shortlink data is modeled as resource.
-- Onion principle:
-  - Routing
-  - Middleware (preprocessing the request)
-  - Controller
+As most HTTP frameworks, ExpressJS offers middlewares and a controller to process the request. The middlewares enclose the controller like onion skins, which the request have to pass through. In the j4n.io project the middlewares accomplish typical tasks like request validation, data sanitization or protecting specific routes with basic authentication. That way, if a request had made it all the way down to the controller, the request can be considered valid and safe.
 
+As I described above, I consider it to be good practice to split between the logical layers: In this case the business unit is the one, that *does* something (i.e. an algorithm or a database operation), and the HTTP module is the one, that *uses* something (i.e. the business unit).
+
+## Setup, bootstrapping
+When you look into the `bootstrap` folder, you instantly smell the dust of side-effects. Here is the place for all the dirty stuff, like accessing the process environment, establishing a database connection or starting the actual app. Because of all the global state, bootstrapping is difficult to deal with and can barely be tackled by tests. For that reason, it is good to keep these things simple and manage them all in one single place. In return, the rest of the project is completely free of this: There is no other database connection to be opened and no environment variable to be read.
 
 *[NPM]: NodeJS Package Manager
