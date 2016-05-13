@@ -28,7 +28,7 @@ After you have initialized git in your home folder, the first thing you do is cr
 !/.bash_profile
 {% endhighlight %}
 
-If you want to version files within subfolders or even complete subfolders, things turn out to be a bit tricky. Let’s say, you want to commit your custom keyboard layouts (that I showed in a [previous blogpost](http://blog.jotaen.net/4haPC/stop-using-ascii-art)), that live in `~/Library/Keyboard Layouts/`. The following notation would be the correct way to put into `.gitignore`:
+If you want to version files within subfolders or even complete subfolders, things turn out to be a bit tricky. Let’s say, you want to commit your custom keyboard layouts (that I showed in a [previous blogpost](http://jotaen.net/4haPC/stop-using-ascii-art)), that live in `~/Library/Keyboard Layouts/`. The following notation would be the correct way to put into `.gitignore`:
 
 {% highlight shell %}
 # 1. Re-ignore subdirectory (WITH trailing slash)

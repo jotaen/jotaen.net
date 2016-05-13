@@ -2,4 +2,4 @@
 
 Hosted on github pages. Visit:
 
-### [blog.jotaen.net](http://blog.jotaen.net)
+### [jotaen.net](http://jotaen.net)
