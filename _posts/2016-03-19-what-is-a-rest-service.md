@@ -84,6 +84,11 @@ API versioning is a wildly discussed question[^3] – anyway, there ain’t (and
 
 I decided to go with the second most simple solution: Versioning my API via a query parameter (`?api=v1`). For both laziness and convenience, I let this parameter default to the latest available version.
 
+# Read on
+
+> [**Part 3: Development with NodeJS**](/Q6eUW/coding-j4nio-with-nodejs) My service is implemented based on the ME(A)N-Stack (MongoDB, ExpressJS, NodeJS), which seems to be a pretty good choice for this particular project.
+
+
 [^1]: The term “REST” goes originally back to [the dissertation of Roy Fielding](https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf) from 2000.
 [^2]: [Swagger.io](http://swagger.io/) is a popular framework for describing APIs. There also is an editor on the swagger website for rendering the YAML files.
 [^3]: [Here](http://www.lexicalscope.com/blog/2012/03/12/how-are-rest-apis-versioned/) is an outdated, but nonetheless helpful overview.

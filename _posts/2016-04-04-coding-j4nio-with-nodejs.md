@@ -43,4 +43,9 @@ As I described above, I consider it to be good practice to split between the log
 ## Setup, bootstrapping
 When you look into the `bootstrap` folder, you instantly smell the dust of side-effects. Here is the place for all the dirty stuff, like accessing the process environment, establishing a database connection or starting the actual app. Because of all the global state, bootstrapping is difficult to deal with and can barely be tackled by tests. For that reason, it is good to keep these things simple and manage them all in one single place. In return, the rest of the project is completely free of this: There is no other database connection to be opened and no environment variable to be read.
 
+# Read on
+
+> [**Part 4: Testing and QA**](/v24iU/testing-and-qa-of-j4nio) Since microservices are small in scope and pretty much well-defined, they are not so hard to test. However, there is a whole bunch of testing utility and quality assurance tools to choose from.
+
+
 *[NPM]: NodeJS Package Manager

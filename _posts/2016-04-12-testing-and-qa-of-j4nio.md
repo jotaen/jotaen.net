@@ -43,6 +43,10 @@ To avoid the hassle with integration tests, some people prefer to write mock tes
 
 However, a valuable use case for mock tests would be to test specific behavior of an external component, that would be otherwise difficult to provoke (such as a particular exception or a fragmentary data transmission).
 
+# Read on
+
+> [**Part 5: Deploying and operating**](/Tt7Yh/deployment-and-operating) The best code is worth little, if it doesn’t run anywhere. In order to preserve a healthy ratio between application size and maintenance expenses, we will go into the cloud.
+
 
 [^1]: By the way, this quality also becomes handy when you apply a refactoring to the innards: Without even having to touch them, the tests remain valid and tell you when you are done.
 [^2]: For my taste, the code-to-test ratio for j4n.io is adequate, but resides at the lower bounds though.

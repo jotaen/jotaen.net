@@ -45,3 +45,7 @@ In summary, these are the technical requirements for the j4n.io service:
 - Distinguishing between read access (which is allowed to anyone) and write access (which is restricted to me)
 
 Once the service is ready for production, I will update the information block of my blogpost layout (which is positioned underneath the header image) and add a permalink entry, where the corresponding shortlink will be listed.
+
+# Read on
+
+> Go to [**Part 2: Basics of microservices**](/fXts2/what-is-a-rest-service), where I explain the term REST and share some practical tips.
