@@ -4,14 +4,22 @@ title:         What are JSON Web Tokens?
 subtitle:      A QnA style blogpost
 date:          2016-06-19
 tags:          [jwt, qna]
-redirect_from: /abcdef/
-permalink:     abcdef/jwt-json-web-tokens
+redirect_from: /C3K4N/
+permalink:     C3K4N/jwt-json-web-tokens
 image:         /assets/2016/notebook.jpg
 ---
 
 This blogpost explains the basic idea behind JSON Web Tokens (short: JWT) in the context of web services and applications. It is written in a QnA style.
 
 ## Which purpose do JSON Web Tokens (JWT) fulfill?
+
+The [explanation on Wikipedia](https://en.wikipedia.org/wiki/JSON_Web_Token) is basically quite good, so I just cite it:
+
+> JSON Web Token (JWT) is a JSON-based open standard (RFC 7519) for passing claims between parties in web application environment. The tokens are designed to be compact, URL-safe and usable especially in web browser single sign-on (SSO) context. JWT claims can be typically used to pass identity of authenticated users between an identity provider and a service provider, or any other type of claims as required by business processes. The tokens can also be authenticated and encrypted.
+
+I recommend you to have a look at the [RFC 7519 full text](https://tools.ietf.org/html/rfc7519) – it’s not that long and quite legible.
+
+When you want to explore JWTs hands-on, then [jwt.io](https://jwt.io/) is a good starting point.
 
 ## How is “JWT” pronounced?
 
@@ -55,12 +63,12 @@ Don’t store sensitive information in the JWT, unless you encrypt the JWT. Also
 
 ## How are JWTs different from sessions?
 
+A session means, that client information gets stored on the server. The client only obtains a session identifier, so the server knows what information belongs to it. There are two major problems with this:
 
+1. The server has state. One and the same request behaves differently depending on the state of the internal session. This makes debugging and testing difficult.
+2. A single storage is needed to hold all the session information. This can be a big challenge in distributed applications.
 
-- Session: Client context gets stored on server
-- JWT: Client context gets sent on each request
-- Session: Hard to debug / test
-- Session: Single storage needed (complicated in distributed apps!)
+As opposed to this, JSON Web Tokens contain all the relevant data to identify a client and sends this along on each request.
 
 ## How do I have to construct the claim section?
 
@@ -85,32 +93,33 @@ There are two things to note about the values:
 
 ## How can JWTs be invalidated?
 
-If a user executes a logout in a session based web application, than the session is destroyed and thus the user’s session ID can no longer be resolved on the server.
+If a user executes a logout in a session based web application, the session is destroyed and thus the user’s session ID can no longer be resolved on the server.
 
 A JWT doesn’t work like this, since there is no server-side state that the JWT is checked against. Of course you could maintain a list of all issued JWT tokens and validate the JWT on each request. But that way you would loose the benefits of being stateless on the server and you would produce a massive lookup overhead, especially in distributed applications.
 
 The following pattern has established as a common practice to sort out this problem:
 
-1. Keep the expiration time short, e.g. 15 minutes.
+1. Keep the expiration time short, e.g. 15 minutes.
 2. When your application finds the JWT to be expired, it automatically tries to renew the JWT at the authentication service.
-3. The authentication service issues a new JWT, except when the former one is too old (e.g. 1 week) or if it was blacklisted (which is what you do on logout).
+3. The authentication service issues a new JWT, except when the former one is too old (like 1 week of inactivity) or if it was blacklisted (which is what you will do on logout).
 
 ## Are JWTs secure?
 
-From a cryptographic point of view JWTs are as secure as the utilized algorithms (like RSA). So in theory, they can be considered pretty much reliable.
+From a cryptographic point of view JWTs are as secure as the utilized algorithms (like RS256). So in theory, they can be considered pretty much reliable.
 
 However, it makes a big difference, how the JWT logic is implemented in your application. Here are some advices:
 
 - Don’t implement crypto stuff yourself and choose from one of the well-tested libraries that are available for many programming languages out there.
 - Make use of the standard claims, especially `exp`. Keep the period of validity short.
-- Ignore the `alg` header field, if you know the algorithm, that your JWT has been signated with.[^2] Take care of performing regular updates/upgrades of all code dependencies that are relevant to safety.
+- Ignore the `alg` header field, if you already know the algorithm, that your JWT has been signed with.[^2]
+- Take care of performing regular updates/upgrades of all code dependencies that are relevant to safety.
 
 ## What is the difference between the signature algorithms?
 
 There are two approaches to choose from:
 
 - **Symmetric algorithms** like HS256. The signature gets both created an validated with the same secret password.
-- **Asymmetric algorithms** like RSA256. The signature gets created with a private key and can be validated with a corresponding public key.
+- **Asymmetric algorithms** like RS256. The signature gets created with a private key and can be validated with a corresponding public key.
 
 In a distributed application it suggests itself to choose asymmetric validation: The private key can remain in a single, well protected place, while the public key can be distributed unworriedly.
 
