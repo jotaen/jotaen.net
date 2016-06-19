@@ -84,7 +84,7 @@ Yes, there are a few registered (reserved) claims, which are described in RFC 75
 - `exp` (**expiration time**): The time, as of the JWT is expired and must be considered invalid (UNIX Timestamp)
 - `nbf` (**not before**): The time, when the token becomes valid. Before that time, the token must not be accepted. (UNIX Timestamp)
 - `iat` (**issued at**): Timestamp, when the token was created (UNIX Timestamp)
-- `jti` (**Jwt ID**): A unique identifier for the token. This can be use for black- or whitelisting tokens. (String)
+- `jti` (**Jwt ID**): A unique identifier for the token. This can be used for black- or whitelisting tokens. (String)
 
 There are two things to note about the values:
 
@@ -111,7 +111,7 @@ However, it makes a big difference, how the JWT logic is implemented in your app
 
 - Don’t implement crypto stuff yourself and choose from one of the well-tested libraries that are available for many programming languages out there.
 - Make use of the standard claims, especially `exp`. Keep the period of validity short.
-- Ignore the `alg` header field, if you already know the algorithm, that your JWT has been signed with.[^2]
+- Ignore the `alg` header field[^2], if you already know the algorithm, that your JWT has been signed with.
 - Take care of performing regular updates/upgrades of all code dependencies that are relevant to safety.
 
 ## What is the difference between the signature algorithms?
