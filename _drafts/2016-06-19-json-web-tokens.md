@@ -1,8 +1,8 @@
 ---
 layout:        blogpost
 title:         What are JSON Web Tokens?
-subtitle:      A short QnA
-date:          2016-06-10
+subtitle:      A QnA style blogpost
+date:          2016-06-19
 tags:          [jwt, qna]
 redirect_from: /abcdef/
 permalink:     abcdef/jwt-json-web-tokens
@@ -11,17 +11,21 @@ image:         /assets/2016/notebook.jpg
 
 This blogpost explains the basic idea behind JSON Web Tokens (short: JWT) in the context of web services and applications. It is written in a QnA style.
 
-## What is the idea of JSON Web Tokens (JWT)?
+## Which purpose do JSON Web Tokens (JWT) fulfill?
+
+## How is “JWT” pronounced?
+
+You can pronounce it like the english word “jot”[^1] or just spell it out (*Jay, Double-u, Tee*). Both ways are pretty common.
 
 ## What does a JWT look like?
 
 A JWT consists of three parts:
 
-1. A **header** section, that contains some meta information, like the algorithm that was used for the signature or the content-type of the JWT.
-2. The **claim** section (or: payload section), where the data is stored.
+1. A **header** section, that contains some meta information in JSON format, like the algorithm that was used for the signature or the content-type of the JWT.
+2. The **claim** section (or: payload section), where the data is stored. This also is a JSON data structure.
 3. The **signature**, so that the data integrity of the token can be validated.
 
-The three parts are Base64-encoded and separated by a dot. A typical JWT would look like this:
+The three parts are base64-encoded and then separated by a dot. A ready-made JWT would look like this:
 
 {% highlight bash %}
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
@@ -29,7 +33,7 @@ eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.
 TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
 {% endhighlight %}
 
-The claim section contains the following data structure:
+The claim section contains the following data:
 
 {% highlight json %}
 {
@@ -43,13 +47,16 @@ The claim section contains the following data structure:
 
 Any information that is needed to be exchanged can be stored in the JWT. In web applications this might be a user ID or some other fundamental data like the user role or access privileges.
 
-Although the JWT looks cryptic at the first glance, its parts are just base64 encoded. That means, that the information is actually clear text. If you want to store sensitive information, the JWT must be encrypted.
+Although the JWT looks cryptic at the first glance, its parts are just base64 encoded. That means, that the information is actually clear text. However, if the client (or an attacker) would manipulate the claim section, the signature would become invalid.
 
-Also, remember that the JWT gets passed on each request, so make sure the payload isn’t too big.
+## Which information should not be stored in a JWT?
 
-## How are JWTs different from Sessions?
+Don’t store sensitive information in the JWT, unless you encrypt the JWT. Also, remember that the JWT gets passed on each request, so make sure the payload isn’t too big.
 
-A session
+## How are JWTs different from sessions?
+
+
+
 - Session: Client context gets stored on server
 - JWT: Client context gets sent on each request
 - Session: Hard to debug / test
@@ -80,9 +87,13 @@ There are two things to note about the values:
 
 If a user executes a logout in a session based web application, than the session is destroyed and thus the user’s session ID can no longer be resolved on the server.
 
-- Not directly
-- exp claim
-- blacklisting / whitelisting
+A JWT doesn’t work like this, since there is no server-side state that the JWT is checked against. Of course you could maintain a list of all issued JWT tokens and validate the JWT on each request. But that way you would loose the benefits of being stateless on the server and you would produce a massive lookup overhead, especially in distributed applications.
+
+The following pattern has established as a common practice to sort out this problem:
+
+1. Keep the expiration time short, e.g. 15 minutes.
+2. When your application finds the JWT to be expired, it automatically tries to renew the JWT at the authentication service.
+3. The authentication service issues a new JWT, except when the former one is too old (e.g. 1 week) or if it was blacklisted (which is what you do on logout).
 
 ## Are JWTs secure?
 
@@ -90,15 +101,21 @@ From a cryptographic point of view JWTs are as secure as the utilized algorithms
 
 However, it makes a big difference, how the JWT logic is implemented in your application. Here are some advices:
 
-- Don’t implement crypto stuff yourself and choose from one of the well-tested libraries that are available for many programming languages by this time.
+- Don’t implement crypto stuff yourself and choose from one of the well-tested libraries that are available for many programming languages out there.
 - Make use of the standard claims, especially `exp`. Keep the period of validity short.
-- Ignore the `alg` header field, if you know the algorithm, that your JWT has been signated with.[^2] Take care of performing regular updates/upgrades of all dependencies that are relevant to safety.
+- Ignore the `alg` header field, if you know the algorithm, that your JWT has been signated with.[^2] Take care of performing regular updates/upgrades of all code dependencies that are relevant to safety.
 
 ## What is the difference between the signature algorithms?
 
-There are two algorithms to choose from:
+There are two approaches to choose from:
 
-- **Symmetric**
+- **Symmetric algorithms** like HS256. The signature gets both created an validated with the same secret password.
+- **Asymmetric algorithms** like RSA256. The signature gets created with a private key and can be validated with a corresponding public key.
+
+In a distributed application it suggests itself to choose asymmetric validation: The private key can remain in a single, well protected place, while the public key can be distributed unworriedly.
+
+However, if issuer and audience of the JWT are one and the same, you can go with a symmetric algorithm.
 
 
-[^2]: There had been [a critical bug](https://auth0.com/blog/2015/03/31/critical-vulnerabilities-in-json-web-token-libraries/) in several JWT libraries.
+[^1]: RFC 7519 suggests to pronounce it “jot”.
+[^2]: In 2015 there had been [a critical bug](https://auth0.com/blog/2015/03/31/critical-vulnerabilities-in-json-web-token-libraries/) in several JWT libraries.
