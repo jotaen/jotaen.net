@@ -6,7 +6,7 @@ date:          2016-06-10
 tags:          [jwt, qna]
 redirect_from: /abcdef/
 permalink:     abcdef/jwt-json-web-tokens
-image:         /assets/2016/.jpg
+image:         /assets/2016/notebook.jpg
 ---
 
 This blogpost explains the basic idea behind JSON Web Tokens (short: JWT) in the context of web services and applications. It is written in a QnA style.
