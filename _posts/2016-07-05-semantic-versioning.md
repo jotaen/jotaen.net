@@ -88,7 +88,7 @@ So, instead of bundling one big release e.g. from `9.7.8` to `10.0.0`, you find 
 
 ## Make use of deprecation
 
-Breaking changes are always difficult to handle. They must be clearly communicated and even if they are small in scope, they can result in a lot of (unscheduled) work on the client side. From the second that you release a breaking change, affected consumers are forced to address this change in the near term, as they would be cut off from any further releases otherwise.
+Breaking changes are always difficult to handle. They must be clearly communicated and even if they are small in scope, they can result in a lot of (unscheduled) work on the client side. From the second you release a breaking change, affected consumers are forced to address this change in the near term, as they would be cut off from any further releases otherwise.
 
 In order to avoid that, it is a good practice to announce upcoming breaking changes by making use of deprecation. A deprecation can be a fully self-contained MINOR release. That way, consumers have the chance to schedule that.
 
@@ -98,7 +98,7 @@ As a side benefit, you can avoid inflationary bumping of the MAJOR version when 
 
 A common point of criticism is that SemVer doesn’t give any information about the generation of an API. If you add 120 new functions to your API, this would still be a MINOR release. However, a single extra line of breaking code would force the release to be MAJOR.
 
-As I mentioned above, SemVer doesn’t want to convey this information by design. It’s sole purpose is to give indication about compatibility. There are several ideas on how to extend SemVer by this aspect, e.g. [by introducing a fourth number](https://github.com/mojombo/semver/issues/213). Personally, I don’t think that this proposal add any value to the idea of SemVer. I would rather go with the [thoughts of Eric Elliot]([blogpost by Eric Elliot](https://medium.com/javascript-scene/software-versions-are-broken-3d2dc0da0783#.1rxoy6a2i)) and offer additional release names for marketing purpose.
+As I mentioned above, SemVer doesn’t want to convey this information by design. It’s sole purpose is to give indication about compatibility. There are several ideas on how to extend SemVer by this aspect, e.g. [by introducing a fourth number](https://github.com/mojombo/semver/issues/213). Personally, I don’t think that this proposal add any value to the idea of SemVer. I would rather go with the [thoughts of Eric Elliot](https://medium.com/javascript-scene/software-versions-are-broken-3d2dc0da0783) and offer additional release names for marketing purpose.
 
 
 [^1]: “API” denotes the public interface of an application: This can refer to a programming library/package just as to the specification of a RESTful microservice.
