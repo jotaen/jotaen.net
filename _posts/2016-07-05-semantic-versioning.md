@@ -1,7 +1,7 @@
 ---
 layout:        blogpost
 title:         Semantic versioning
-subtitle:      
+subtitle:      Communicate compatibility to API consumers
 date:          2016-07-05
 tags:          [semver, release management]
 redirect_from: /s0SRs/
