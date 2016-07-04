@@ -4,8 +4,8 @@ title:         Semantic versioning
 subtitle:      
 date:          2016-07-05
 tags:          [semver, release management]
-redirect_from: /abcdef/
-permalink:     abcdef/semantic-versioning
+redirect_from: /s0SRs/
+permalink:     s0SRs/semantic-versioning
 image:         /assets/2016/banksy-girl-with-balloon.jpg
 ---
 
