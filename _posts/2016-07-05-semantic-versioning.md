@@ -82,23 +82,23 @@ Consider releases to be irrevertable. Even if you break SemVer (e.g. by introduc
 
 ## Plan your releases ahead
 
-Especially when you maintain an open source project as a sideline, you likely do not have the time to permanently work on it. Perhaps, you find some spare time on a Sunday afternoon, work through a bunch of issues and publish a release by the evening. It may be tempting to pack the entire changeset into a single release in order to file it away. However, your API consumers can be graceful if you portion all the changes considerately into single releases. For you as the API maintainer there may be no difference between a MAJOR and PATCH release – in contrast to the consumers. As I explained above, different release categories have different meanings for them: A PATCH update can be fetched without needing to check the changelog, whereas a MAJOR release may result in additional work.
+Especially when you maintain an open source project as a sideline, you likely do not have the time to permanently work on it. Perhaps, you find some spare time on a Sunday afternoon, work through a bunch of issues and publish a release by the evening. It may be tempting to pack the entire changeset into a single release in order to file it away. However, your API consumers are graceful if you portion all the changes considerately into single releases. For you as the API maintainer there may be no difference between a MAJOR and PATCH release – in contrast to the consumers. As I explained above, different release categories have different meanings for them: A PATCH update can be fetched without needing to check the changelog, whereas a MAJOR release may result in additional work.
 
-So, instead of bundling one big release e.g. from `9.7.8` to `10.0.0`, you find a way to offer at least one intermediate releases (e.g. from `9.7.8` over `9.8.0` to `10.0.0`).
+So, instead of bundling one big release e.g. from `9.7.8` to `10.0.0`, try to find a way to offer at least one intermediate release – e.g. you first release a bugfix (`9.7.9`), then you add new stuff (`9.8.0`) and finally you introduce some breaking changes (`10.0.0`).
 
 ## Make use of deprecation
 
 Breaking changes are always difficult to handle. They must be clearly communicated and even if they are small in scope, they can result in a lot of (unscheduled) work on the client side. From the second you release a breaking change, affected consumers are forced to address this change in the near term, as they would be cut off from any further releases otherwise.
 
-In order to avoid that, it is a good practice to announce upcoming breaking changes by making use of deprecation. A deprecation can be a fully self-contained MINOR release. That way, consumers have the chance to schedule that.
+In order to avoid that, it is a good practice to announce upcoming breaking changes by making use of deprecation. A deprecation can be a fully self-contained MINOR release. That way, consumers have the chance to plan the migration ahead.
 
-As a side benefit, you can avoid inflationary bumping of the MAJOR version when you “gather” deprecations over a period of time and remove a whole bunch of functionality in one go.
+As a side benefit, you can avoid inflationary bumping of the MAJOR version when you “gather” deprecations over a period of time and eventually remove a whole bunch of functionality in one go.
 
 ## Consider additional labels to indicate generation
 
 A common point of criticism is that SemVer doesn’t give any information about the generation of an API. If you add 120 new functions to your API, this would still be a MINOR release. However, a single extra line of breaking code would force the release to be MAJOR.
 
-As I mentioned above, SemVer doesn’t want to convey this information by design. It’s sole purpose is to give indication about compatibility. There are several ideas on how to extend SemVer by this aspect, e.g. [by introducing a fourth number](https://github.com/mojombo/semver/issues/213). Personally, I don’t think that this proposal add any value to the idea of SemVer. I would rather go with the [thoughts of Eric Elliot](https://medium.com/javascript-scene/software-versions-are-broken-3d2dc0da0783) and offer additional release names for marketing purpose.
+As I mentioned above, SemVer doesn’t want to convey this information by design. It’s sole purpose is to give indication about compatibility. There are several ideas on how to extend SemVer by this aspect, e.g. [by introducing a fourth number](https://github.com/mojombo/semver/issues/213). Personally, I don’t think that this proposal adds any value to the idea of SemVer. I would rather go with the [thoughts of Eric Elliot](https://medium.com/javascript-scene/software-versions-are-broken-3d2dc0da0783) and offer additional release names for marketing purpose.
 
 
 [^1]: “API” denotes the public interface of an application: This can refer to a programming library/package just as to the specification of a RESTful microservice.
