@@ -20,21 +20,22 @@ void = {
     "status_code": 404
 }
 
-# Perform requests
+# Create placeholder resource (to obtain new token)
 create = requests.post(j4n_url, json=void, auth=HTTPBasicAuth('admin', api_key))
-if create.status_code==201:
-    token = create.json()["token"]
-    data = {
-        "url": "/".join([jotaen_url, token, path]),
-        "status_code": 302
-    }
-    url = "/".join([j4n_url, token])
-    update = requests.post(url, json=data, auth=HTTPBasicAuth('admin', api_key))
-    if update.status_code==200:
-        print("Token: " + token)
-    else:
-        print("Error")
-        print(update.json())
-else:
-    print("Error")
+if create.status_code!=201:
     print(create.json())
+    exit(1)
+
+# Update this token with real information
+token = create.json()["token"]
+data = {
+    "url": "/".join([jotaen_url, token, path]),
+    "status_code": 302
+}
+url = "/".join([j4n_url, token])
+update = requests.post(url, json=data, auth=HTTPBasicAuth('admin', api_key))
+if update.status_code==200:
+    print("Token: " + token)
+else:
+    print(update.json())
+    exit(1)
