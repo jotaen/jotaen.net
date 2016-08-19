@@ -1,0 +1,12 @@
+{
+  "posts": {
+    {% for post in site.posts %}
+      {% assign parts = post.url | split: '/' %}
+      "{{ parts[2] }}.txt": "{{ post.content | strip_html | inspect | remove_first: '&quot;' }}",
+    {% endfor %}
+  },
+  {% capture about %}
+    {% include_relative /about.html %}
+  {% endcapture %}
+  "about.txt": "{{ about | strip_html | inspect | remove_first: '&quot;' | replace: '\n\n\n\n', '\n' | replace: '\n\n\n', '\n' | replace: '\n\n', '\n' }}"
+}
