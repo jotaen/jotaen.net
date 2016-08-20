@@ -7,77 +7,72 @@ title: Not found (Error 404)
 <div id="webshell" class="webshell"></div>
 
 <style media="screen">
-  * {
-    font-family: monospace;
-    font-size: 18px;
-    line-height: 1.2;
-  }
-  html, body {
-    margin: 0;
-    padding: 0;
-  }
-  .webshell {
-    box-sizing: border-box;
-    height: 100vh;
-    background-color: #000;
-    cursor: text;
-    padding: 0.5em;
-    overflow-y: scroll;
-    color: #fff
-  }
-  .prompt {
-    margin-top: 1em;
-  }
-  .prompt:first-child {
-    margin-top: 0;
-  }
-  @media (min-width: 30em) {
-    .prompt {
-      margin-top: inherit;
-      float: left;
-      margin-right: 0.2em;
-    }
-  }
+.webshell {
+  height: 100vh;
+  background-color: #000;
+  color: #fff;
+  font-family: monospace;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.prompt {
+  position: relative;
+  float: left;
+  padding-right: 1em;
+  margin-top: 1em;
+}
+
+.input {
+  outline: none;
+  clear: left;
+}
+
+.prompt:after {
+  position: absolute;
+  top: 0;
+  right: 0.1em;
+  content: '$';
+  color: #777;
+  color: #c0253e;
+}
+
+.response:empty {
+  min-height: 0;
+}
+
+.list {
+  column-width: 10em;
+  column-gap: 3em;
+}
+
+.list-item {
+  word-wrap: break-word;
+}
+
+.text { color: #fff }
+.text-green { color: #65c858 }
+.text-yellow { color: #cac43b }
+.text-lightgray { color: #999 }
+
+@media (min-width: 30em) {
   .input {
-    position: relative;
-    display: flex;
-    outline: none;
-    padding-left: 1em;
+    clear: none;
   }
-  .input:before {
-    position: absolute;
-    left: 0em;
-    content: '$';
-    color: #777;
+
+  .input:empty {
+    display: inline-block; /* firefox bug */
   }
-  .input-current:before {
-    color: #c0253e;
+
+  .prompt {
+    margin-top: inherit;
+    margin-right: 0.2em;
   }
+
   .response {
-    clear: both;
-    white-space: pre-wrap;
-    margin-bottom: 0.2em;
-    min-height: 1em;
+    min-height: inherit;
   }
-  @media (min-width: 30em) {
-    .response {
-      min-height: inherit;
-    }
-  }
-  .list {
-    padding-left: 0;
-    margin: 0;
-    column-width: 20em;
-    column-gap: 3em;
-  }
-  .list-item {
-    list-style-type: none;
-    word-wrap: break-word;
-  }
-  .text { color: #fff }
-  .text-green { color: #65c858 }
-  .text-yellow { color: #cac43b }
-  .text-lightgray { color: #999 }
+}
 </style>
 
 <script src="/assets/js/webshell.js"></script>
