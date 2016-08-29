@@ -29,6 +29,13 @@
  *   homepage: https://lodash.com/
  *   version: 4.14.0
  *
+ * minimist:
+ *   license: MIT (http://opensource.org/licenses/MIT)
+ *   author: James Halliday <mail@substack.net>
+ *   maintainers: substack <mail@substack.net>
+ *   homepage: https://github.com/substack/minimist
+ *   version: 1.2.0
+ *
  * process:
  *   license: MIT (http://opensource.org/licenses/MIT)
  *   author: Roman Shtylman <shtylman@gmail.com>
@@ -771,6 +778,244 @@ function isPlainObject(value) {
 module.exports = isPlainObject;
 
 },{"./_getPrototype":6,"./_isHostObject":7,"./isObjectLike":9}],11:[function(require,module,exports){
+module.exports = function (args, opts) {
+    if (!opts) opts = {};
+
+    var flags = { bools : {}, strings : {}, unknownFn: null };
+
+    if (typeof opts['unknown'] === 'function') {
+        flags.unknownFn = opts['unknown'];
+    }
+
+    if (typeof opts['boolean'] === 'boolean' && opts['boolean']) {
+      flags.allBools = true;
+    } else {
+      [].concat(opts['boolean']).filter(Boolean).forEach(function (key) {
+          flags.bools[key] = true;
+      });
+    }
+
+    var aliases = {};
+    Object.keys(opts.alias || {}).forEach(function (key) {
+        aliases[key] = [].concat(opts.alias[key]);
+        aliases[key].forEach(function (x) {
+            aliases[x] = [key].concat(aliases[key].filter(function (y) {
+                return x !== y;
+            }));
+        });
+    });
+
+    [].concat(opts.string).filter(Boolean).forEach(function (key) {
+        flags.strings[key] = true;
+        if (aliases[key]) {
+            flags.strings[aliases[key]] = true;
+        }
+     });
+
+    var defaults = opts['default'] || {};
+
+    var argv = { _ : [] };
+    Object.keys(flags.bools).forEach(function (key) {
+        setArg(key, defaults[key] === undefined ? false : defaults[key]);
+    });
+
+    var notFlags = [];
+
+    if (args.indexOf('--') !== -1) {
+        notFlags = args.slice(args.indexOf('--')+1);
+        args = args.slice(0, args.indexOf('--'));
+    }
+
+    function argDefined(key, arg) {
+        return (flags.allBools && /^--[^=]+$/.test(arg)) ||
+            flags.strings[key] || flags.bools[key] || aliases[key];
+    }
+
+    function setArg (key, val, arg) {
+        if (arg && flags.unknownFn && !argDefined(key, arg)) {
+            if (flags.unknownFn(arg) === false) return;
+        }
+
+        var value = !flags.strings[key] && isNumber(val)
+            ? Number(val) : val
+        ;
+        setKey(argv, key.split('.'), value);
+
+        (aliases[key] || []).forEach(function (x) {
+            setKey(argv, x.split('.'), value);
+        });
+    }
+
+    function setKey (obj, keys, value) {
+        var o = obj;
+        keys.slice(0,-1).forEach(function (key) {
+            if (o[key] === undefined) o[key] = {};
+            o = o[key];
+        });
+
+        var key = keys[keys.length - 1];
+        if (o[key] === undefined || flags.bools[key] || typeof o[key] === 'boolean') {
+            o[key] = value;
+        }
+        else if (Array.isArray(o[key])) {
+            o[key].push(value);
+        }
+        else {
+            o[key] = [ o[key], value ];
+        }
+    }
+
+    function aliasIsBoolean(key) {
+      return aliases[key].some(function (x) {
+          return flags.bools[x];
+      });
+    }
+
+    for (var i = 0; i < args.length; i++) {
+        var arg = args[i];
+
+        if (/^--.+=/.test(arg)) {
+            // Using [\s\S] instead of . because js doesn't support the
+            // 'dotall' regex modifier. See:
+            // http://stackoverflow.com/a/1068308/13216
+            var m = arg.match(/^--([^=]+)=([\s\S]*)$/);
+            var key = m[1];
+            var value = m[2];
+            if (flags.bools[key]) {
+                value = value !== 'false';
+            }
+            setArg(key, value, arg);
+        }
+        else if (/^--no-.+/.test(arg)) {
+            var key = arg.match(/^--no-(.+)/)[1];
+            setArg(key, false, arg);
+        }
+        else if (/^--.+/.test(arg)) {
+            var key = arg.match(/^--(.+)/)[1];
+            var next = args[i + 1];
+            if (next !== undefined && !/^-/.test(next)
+            && !flags.bools[key]
+            && !flags.allBools
+            && (aliases[key] ? !aliasIsBoolean(key) : true)) {
+                setArg(key, next, arg);
+                i++;
+            }
+            else if (/^(true|false)$/.test(next)) {
+                setArg(key, next === 'true', arg);
+                i++;
+            }
+            else {
+                setArg(key, flags.strings[key] ? '' : true, arg);
+            }
+        }
+        else if (/^-[^-]+/.test(arg)) {
+            var letters = arg.slice(1,-1).split('');
+
+            var broken = false;
+            for (var j = 0; j < letters.length; j++) {
+                var next = arg.slice(j+2);
+
+                if (next === '-') {
+                    setArg(letters[j], next, arg)
+                    continue;
+                }
+
+                if (/[A-Za-z]/.test(letters[j]) && /=/.test(next)) {
+                    setArg(letters[j], next.split('=')[1], arg);
+                    broken = true;
+                    break;
+                }
+
+                if (/[A-Za-z]/.test(letters[j])
+                && /-?\d+(\.\d*)?(e-?\d+)?$/.test(next)) {
+                    setArg(letters[j], next, arg);
+                    broken = true;
+                    break;
+                }
+
+                if (letters[j+1] && letters[j+1].match(/\W/)) {
+                    setArg(letters[j], arg.slice(j+2), arg);
+                    broken = true;
+                    break;
+                }
+                else {
+                    setArg(letters[j], flags.strings[letters[j]] ? '' : true, arg);
+                }
+            }
+
+            var key = arg.slice(-1)[0];
+            if (!broken && key !== '-') {
+                if (args[i+1] && !/^(-|--)[^-]/.test(args[i+1])
+                && !flags.bools[key]
+                && (aliases[key] ? !aliasIsBoolean(key) : true)) {
+                    setArg(key, args[i+1], arg);
+                    i++;
+                }
+                else if (args[i+1] && /true|false/.test(args[i+1])) {
+                    setArg(key, args[i+1] === 'true', arg);
+                    i++;
+                }
+                else {
+                    setArg(key, flags.strings[key] ? '' : true, arg);
+                }
+            }
+        }
+        else {
+            if (!flags.unknownFn || flags.unknownFn(arg) !== false) {
+                argv._.push(
+                    flags.strings['_'] || !isNumber(arg) ? arg : Number(arg)
+                );
+            }
+            if (opts.stopEarly) {
+                argv._.push.apply(argv._, args.slice(i + 1));
+                break;
+            }
+        }
+    }
+
+    Object.keys(defaults).forEach(function (key) {
+        if (!hasKey(argv, key.split('.'))) {
+            setKey(argv, key.split('.'), defaults[key]);
+
+            (aliases[key] || []).forEach(function (x) {
+                setKey(argv, x.split('.'), defaults[key]);
+            });
+        }
+    });
+
+    if (opts['--']) {
+        argv['--'] = new Array();
+        notFlags.forEach(function(key) {
+            argv['--'].push(key);
+        });
+    }
+    else {
+        notFlags.forEach(function(key) {
+            argv._.push(key);
+        });
+    }
+
+    return argv;
+};
+
+function hasKey (obj, keys) {
+    var o = obj;
+    keys.slice(0,-1).forEach(function (key) {
+        o = (o[key] || {});
+    });
+
+    var key = keys[keys.length - 1];
+    return key in o;
+}
+
+function isNumber (x) {
+    if (typeof x === 'number') return true;
+    if (/^0x[0-9a-f]+$/i.test(x)) return true;
+    return /^[-+]?(?:\d+(?:\.\d*)?|\.\d+)(e[-+]?\d+)?$/.test(x);
+}
+
+
+},{}],12:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -932,7 +1177,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -991,7 +1236,7 @@ function applyMiddleware() {
     };
   };
 }
-},{"./compose":15}],13:[function(require,module,exports){
+},{"./compose":16}],14:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -1043,7 +1288,7 @@ function bindActionCreators(actionCreators, dispatch) {
   }
   return boundActionCreators;
 }
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1173,7 +1418,7 @@ function combineReducers(reducers) {
   };
 }
 }).call(this,require('_process'))
-},{"./createStore":16,"./utils/warning":18,"_process":11,"lodash/isPlainObject":10}],15:[function(require,module,exports){
+},{"./createStore":17,"./utils/warning":19,"_process":12,"lodash/isPlainObject":10}],16:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -1214,7 +1459,7 @@ function compose() {
     if (typeof _ret === "object") return _ret.v;
   }
 }
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -1477,7 +1722,7 @@ function createStore(reducer, initialState, enhancer) {
     replaceReducer: replaceReducer
   }, _ref2[_symbolObservable2["default"]] = observable, _ref2;
 }
-},{"lodash/isPlainObject":10,"symbol-observable":19}],17:[function(require,module,exports){
+},{"lodash/isPlainObject":10,"symbol-observable":20}],18:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -1526,7 +1771,7 @@ exports.bindActionCreators = _bindActionCreators2["default"];
 exports.applyMiddleware = _applyMiddleware2["default"];
 exports.compose = _compose2["default"];
 }).call(this,require('_process'))
-},{"./applyMiddleware":12,"./bindActionCreators":13,"./combineReducers":14,"./compose":15,"./createStore":16,"./utils/warning":18,"_process":11}],18:[function(require,module,exports){
+},{"./applyMiddleware":13,"./bindActionCreators":14,"./combineReducers":15,"./compose":16,"./createStore":17,"./utils/warning":19,"_process":12}],19:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -1552,7 +1797,7 @@ function warning(message) {
   } catch (e) {}
   /* eslint-enable no-empty */
 }
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 (function (global){
 /* global window */
 'use strict';
@@ -1560,7 +1805,7 @@ function warning(message) {
 module.exports = require('./ponyfill')(global || window || this);
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./ponyfill":20}],20:[function(require,module,exports){
+},{"./ponyfill":21}],21:[function(require,module,exports){
 'use strict';
 
 module.exports = function symbolObservablePonyfill(root) {
@@ -1581,7 +1826,7 @@ module.exports = function symbolObservablePonyfill(root) {
 	return result;
 };
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict'
 
 exports.changeLocation = (path) => ({
@@ -1625,7 +1870,7 @@ exports.activity = () => ({
   timestamp: new Date()
 })
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict'
 
 module.exports = () => {
@@ -1643,14 +1888,14 @@ module.exports = () => {
   return buffer
 }
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 'use strict'
 
 const makePathFromString = require('../makePathFromString')
 const filesystem = require('../filesystem')
 const CommandError = require('../errors')
 
-exports.help = ({
+exports.help = () => ({
   description: 'Concat and print out files',
   usage: 'cat [file, ...]'
 })
@@ -1668,13 +1913,13 @@ exports.main = (args, print, state) => {
   print(content)
 }
 
-},{"../errors":40,"../filesystem":41,"../makePathFromString":42}],24:[function(require,module,exports){
+},{"../errors":42,"../filesystem":43,"../makePathFromString":44}],25:[function(require,module,exports){
 'use strict'
 
 const makePathFromString = require('../makePathFromString')
 const action = require('../actions')
 
-exports.help = ({
+exports.help = () => ({
   description: 'Change the current working directory',
   usage: 'cd [directory]'
 })
@@ -1685,10 +1930,10 @@ exports.main = (args, print, state, dispatch) => {
   dispatch(action.changeLocation(path))
 }
 
-},{"../actions":21,"../makePathFromString":42}],25:[function(require,module,exports){
+},{"../actions":22,"../makePathFromString":44}],26:[function(require,module,exports){
 'use strict'
 
-exports.help = ({
+exports.help = () => ({
   description: 'Prints text on the console',
   usage: 'echo [word, ...]'
 })
@@ -1698,12 +1943,12 @@ exports.main = (args, print) => {
   print(text)
 }
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict'
 
 const action = require('../actions')
 
-exports.help = ({
+exports.help = () => ({
   description: 'Terminate session of currently logged in user',
   usage: 'exit'
 })
@@ -1712,7 +1957,7 @@ exports.main = (args, print, state, dispatch) => {
   dispatch(action.logout())
 }
 
-},{"../actions":21}],27:[function(require,module,exports){
+},{"../actions":22}],28:[function(require,module,exports){
 'use strict'
 
 const printAll = (print, commands) => {
@@ -1723,13 +1968,19 @@ const printAll = (print, commands) => {
 
 const printOne = (print, commands, name) => {
   const cmd = commands[name]
-  if (!cmd || !cmd.help) {
+  if (!cmd || typeof cmd.help !== 'function') {
     print('help: No topic found for command `' + name + '`')
     return
   }
-  if (cmd.help.description) print(cmd.help.description)
-  if (cmd.help.usage) print('usage: ' + cmd.help.usage)
+  const help = cmd.help()
+  if (help.description) print(help.description)
+  if (help.usage) print('usage: ' + help.usage)
 }
+
+exports.help = () => ({
+  description: 'Displays help messages',
+  usage: 'help [command]'
+})
 
 exports.main = (args, print) => {
   const commands = require('./index')
@@ -1737,7 +1988,7 @@ exports.main = (args, print) => {
   else printOne(print, commands, args[0])
 }
 
-},{"./index":28}],28:[function(require,module,exports){
+},{"./index":29}],29:[function(require,module,exports){
 'use strict'
 
 module.exports = {
@@ -1758,10 +2009,10 @@ module.exports = {
   whoami: require('./whoami')
 }
 
-},{"./cat":23,"./cd":24,"./echo":25,"./exit":26,"./help":27,"./info":29,"./ls":30,"./mkdir":31,"./put":32,"./pwd":33,"./rm":34,"./su":35,"./whoami":36}],29:[function(require,module,exports){
+},{"./cat":24,"./cd":25,"./echo":26,"./exit":27,"./help":28,"./info":30,"./ls":31,"./mkdir":32,"./put":33,"./pwd":34,"./rm":35,"./su":36,"./whoami":37}],30:[function(require,module,exports){
 'use strict'
 
-exports.help = ({
+exports.help = () => ({
   description: 'Print info about this system',
   usage: 'info'
 })
@@ -1781,14 +2032,14 @@ exports.main = (args, print) => {
   print()
 }
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 'use strict'
 
 const filesystem = require('../filesystem')
 const makePathFromString = require('../makePathFromString')
 const CommandError = require('../errors')
 
-exports.help = ({
+exports.help = () => ({
   description: 'List the content of a directory',
   usage: 'ls [directory]'
 })
@@ -1813,7 +2064,7 @@ exports.main = (args, print, state) => {
   print(result)
 }
 
-},{"../errors":40,"../filesystem":41,"../makePathFromString":42}],31:[function(require,module,exports){
+},{"../errors":42,"../filesystem":43,"../makePathFromString":44}],32:[function(require,module,exports){
 'use strict'
 
 const makePathFromString = require('../makePathFromString')
@@ -1821,7 +2072,7 @@ const action = require('../actions')
 const filesystem = require('../filesystem')
 const CommandError = require('../errors')
 
-exports.help = ({
+exports.help = () => ({
   description: 'Create a new directory',
   usage: 'mkdir [directory]'
 })
@@ -1835,33 +2086,51 @@ exports.main = (args, print, state, dispatch) => {
   })
 }
 
-},{"../actions":21,"../errors":40,"../filesystem":41,"../makePathFromString":42}],32:[function(require,module,exports){
+},{"../actions":22,"../errors":42,"../filesystem":43,"../makePathFromString":44}],33:[function(require,module,exports){
 'use strict'
 
 const makePathFromString = require('../makePathFromString')
 const action = require('../actions')
 const filesystem = require('../filesystem')
 const CommandError = require('../errors')
+const argparse = require('minimist')
 
-exports.help = ({
+exports.help = () => ({
   description: 'Create a new file',
   usage: 'put [filename] [content]'
 })
 
+exports.spec = () => ({
+  boolean: ['amend', 'overwrite'],
+  alias: {
+    'a': 'amend',
+    'c': 'overwrite'
+  },
+  default: {
+    'amend': false,
+    'overwrite': false
+  }
+})
+
 exports.main = (args, print, state, dispatch) => {
-  const currentLocation = state.currentLocation
-  const path = makePathFromString(args[0], currentLocation)
-  const tree = state.fileTree
+  const opts = argparse(args, this.spec())
+  const path = makePathFromString(opts._[0], state.currentLocation)
   const destination = path.slice(0, -1)
-  if (!filesystem.isDirectory(tree, destination)) throw new CommandError.NotADirectory(destination)
-  const content = args.slice(1).join(' ')
+  if (!filesystem.isDirectory(state.fileTree, destination)) throw new CommandError.NotADirectory(destination)
+  let content = ''
+  if (opts.amend) {
+    const previousContent = filesystem.find(state.fileTree, path)
+    content = !previousContent ? '' : previousContent
+  }
+  if (opts.overwrite || opts.amend) dispatch(action.delete(path))
+  content += opts._.slice(1).join(' ')
   dispatch(action.createFile(path, content))
 }
 
-},{"../actions":21,"../errors":40,"../filesystem":41,"../makePathFromString":42}],33:[function(require,module,exports){
+},{"../actions":22,"../errors":42,"../filesystem":43,"../makePathFromString":44,"minimist":11}],34:[function(require,module,exports){
 'use strict'
 
-exports.help = ({
+exports.help = () => ({
   description: 'Print current working directory',
   usage: 'pwd'
 })
@@ -1872,7 +2141,7 @@ exports.main = (args, print, state) => {
   print(output)
 }
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict'
 
 const makePathFromString = require('../makePathFromString')
@@ -1880,7 +2149,7 @@ const action = require('../actions')
 const filesystem = require('../filesystem')
 const Command = require('../errors')
 
-exports.help = ({
+exports.help = () => ({
   description: 'Remove a file or directory',
   usage: 'rm [path, ...]'
 })
@@ -1895,12 +2164,12 @@ exports.main = (args, print, state, dispatch) => {
   })
 }
 
-},{"../actions":21,"../errors":40,"../filesystem":41,"../makePathFromString":42}],35:[function(require,module,exports){
+},{"../actions":22,"../errors":42,"../filesystem":43,"../makePathFromString":44}],36:[function(require,module,exports){
 'use strict'
 
 const action = require('../actions')
 
-exports.help = ({
+exports.help = () => ({
   description: 'Switch current user',
   usage: 'su [username]'
 })
@@ -1909,12 +2178,12 @@ exports.main = (args, print, state, dispatch) => {
   dispatch(action.login(args[0]))
 }
 
-},{"../actions":21}],36:[function(require,module,exports){
+},{"../actions":22}],37:[function(require,module,exports){
 'use strict'
 
 const stack = require('../stack')
 
-exports.help = ({
+exports.help = () => ({
   description: 'Print out name of currently logged in user',
   usage: 'whoami'
 })
@@ -1924,10 +2193,11 @@ exports.main = (args, print, state) => {
   print(userName)
 }
 
-},{"../stack":49}],37:[function(require,module,exports){
+},{"../stack":51}],38:[function(require,module,exports){
 'use strict'
 
 const createStore = require('redux').createStore
+const middlewares = require('./middlewares')
 const action = require('../actions')
 const createBuffer = require('../buffer')
 const parse = require('./parse')
@@ -1939,7 +2209,7 @@ const state = require('../state')
 
 module.exports = (commands, reducers, initialState) => {
   const startState = Object.assign({}, state.default(), initialState)
-  const store = createStore(reducers, startState)
+  const store = createStore(reducers, startState, middlewares)
 
   const findExec = (commands, commandName) => {
     if (commands[commandName]) {
@@ -2021,7 +2291,17 @@ module.exports = (commands, reducers, initialState) => {
   }
 }
 
-},{"../actions":21,"../buffer":22,"../filesystem":41,"../makePathFromString":42,"../render/plainText":48,"../state":50,"./parse":38,"./tokenize":39,"redux":17}],38:[function(require,module,exports){
+},{"../actions":22,"../buffer":23,"../filesystem":43,"../makePathFromString":44,"../render/plainText":50,"../state":52,"./middlewares":39,"./parse":40,"./tokenize":41,"redux":18}],39:[function(require,module,exports){
+'use strict'
+
+const {compose} = require('redux')
+
+module.exports = compose(
+  // Redux DevTools Extension:
+  typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
+)
+
+},{"redux":18}],40:[function(require,module,exports){
 'use strict'
 
 const tokenize = require('./tokenize')
@@ -2035,6 +2315,7 @@ const createJob = (operator) => {
   }
   if (operator === '>') {
     command.command = 'put'
+    command.args.push('--overwrite')
     command.wantsInput = true
   } else if (operator === '>>') {
     command.command = 'put'
@@ -2066,7 +2347,7 @@ module.exports = (statement) => {
   return queue
 }
 
-},{"./tokenize":39}],39:[function(require,module,exports){
+},{"./tokenize":41}],41:[function(require,module,exports){
 'use strict'
 
 const stringLiteral = /^"((?:\\\s|\\"|\\\\|[^"\\])*)"/
@@ -2108,7 +2389,7 @@ module.exports = (statement) => {
   return tokenList
 }
 
-},{}],40:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 'use strict'
 
 exports.PathNotFound = PathNotFound
@@ -2158,7 +2439,7 @@ function InvalidArgument (parameter) {
 InvalidArgument.prototype = Object.create(Error.prototype)
 InvalidArgument.prototype.constructor = InvalidArgument
 
-},{}],41:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict'
 
 const deepmerge = require('deepmerge')
@@ -2205,7 +2486,7 @@ exports.insert = (tree, path, content) => {
   return deepmerge(tree, branch)
 }
 
-},{"deepmerge":1}],42:[function(require,module,exports){
+},{"deepmerge":1}],44:[function(require,module,exports){
 'use strict'
 
 const slashSplit = (pathString) => {
@@ -2232,7 +2513,7 @@ module.exports = (pathString, referenceLocation) => {
   return resolveDots(path, referenceLocation.slice(0))
 }
 
-},{}],43:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 'use strict'
 
 exports.SAVE_INPUT = (state, action) => {
@@ -2246,7 +2527,7 @@ exports.ACTIVITY = (state, action) => {
   return Object.assign({}, state, {lastActivity: action.timestamp})
 }
 
-},{}],44:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 'use strict'
 
 const filesystem = require('../filesystem')
@@ -2272,13 +2553,11 @@ exports.CREATE_PATH = (state, action) => {
 exports.REMOVE_PATH = (state, action) => {
   const path = action.path
   const tree = state.fileTree
-  const target = filesystem.find(tree, path)
-  if (target === undefined) throw new CommandError.PathNotFound(path)
   const newTree = filesystem.remove(tree, path)
   return Object.assign({}, state, {fileTree: newTree})
 }
 
-},{"../errors":40,"../filesystem":41}],45:[function(require,module,exports){
+},{"../errors":42,"../filesystem":43}],47:[function(require,module,exports){
 'use strict'
 
 const dict = Object.assign({},
@@ -2294,7 +2573,7 @@ module.exports = (state, action) => {
   return state
 }
 
-},{"./engine":43,"./filesystem":44,"./sessions":46}],46:[function(require,module,exports){
+},{"./engine":45,"./filesystem":46,"./sessions":48}],48:[function(require,module,exports){
 'use strict'
 
 const CommandError = require('../errors')
@@ -2312,13 +2591,13 @@ exports.LOGOUT = (state, action) => {
   return Object.assign({}, state, {sessions})
 }
 
-},{"../errors":40}],47:[function(require,module,exports){
+},{"../errors":42}],49:[function(require,module,exports){
 'use strict'
 
 const entities = require('html-entities').XmlEntities.encode
 
 const text = (input) => {
-  return '<div>' + entities(input) + '</div>'
+  return '<span>' + entities(input) + '</span>'
 }
 
 const list = (input) => {
@@ -2335,11 +2614,11 @@ module.exports = (input) => {
   else if (Array.isArray(input)) return list(input)
 }
 
-},{"html-entities":2}],48:[function(require,module,exports){
+},{"html-entities":2}],50:[function(require,module,exports){
 'use strict'
 
 const text = (input) => {
-  return input + '\n'
+  return input
 }
 
 const list = (input) => {
@@ -2354,7 +2633,7 @@ module.exports = (input) => {
   else if (Array.isArray(input)) return list(input)
 }
 
-},{}],49:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 'use strict'
 
 exports.latest = (stack) => {
@@ -2363,7 +2642,7 @@ exports.latest = (stack) => {
   return name
 }
 
-},{}],50:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 'use strict'
 
 exports.default = () => ({
@@ -2389,7 +2668,7 @@ exports.copy = (state) => {
   return this.deserialize(this.serialize(state))
 }
 
-},{}],51:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 'use strict'
 
 module.exports = () => {
@@ -2432,7 +2711,7 @@ module.exports = () => {
   document.getElementsByTagName('head')[0].appendChild(style)
 }
 
-},{}],52:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 'use strict'
 
 const createEngine = require('../core/engine')
@@ -2514,7 +2793,7 @@ module.exports = (id, options) => {
 
   const print = (output) => {
     const outputAsHtml = output.reduce((rendered, line) => {
-      return (rendered + render(line))
+      return (rendered + '<div>' + render(line) + '</div>')
     }, '')
     element.writeResponse(outputAsHtml)
   }
@@ -2595,7 +2874,7 @@ module.exports = (id, options) => {
   }
 }
 
-},{"../commands/index":28,"../core/engine":37,"../reducers/index":45,"../render/html":47,"../stack":49,"./basicStyling":51,"./element":53,"./persistState":54,"html-entities":2}],53:[function(require,module,exports){
+},{"../commands/index":29,"../core/engine":38,"../reducers/index":47,"../render/html":49,"../stack":51,"./basicStyling":53,"./element":55,"./persistState":56,"html-entities":2}],55:[function(require,module,exports){
 'use strict'
 
 const entities = require('html-entities').XmlEntities
@@ -2704,7 +2983,7 @@ module.exports = (id) => {
   }
 }
 
-},{"html-entities":2}],54:[function(require,module,exports){
+},{"html-entities":2}],56:[function(require,module,exports){
 exports.read = (id) => {
   const key = 'webshelljs_' + id
   const value = window.localStorage.getItem(key)
@@ -2725,5 +3004,5 @@ exports.save = (id, state) => {
   window.localStorage.setItem(key, value)
 }
 
-},{}]},{},[52])(52)
+},{}]},{},[54])(54)
 });
