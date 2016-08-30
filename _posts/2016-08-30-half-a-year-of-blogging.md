@@ -11,13 +11,13 @@ image:         /assets/2016/clock-berlin-alexanderplatz.jpg
 
 On January 17th 2016 – roughly 7 months ago – I revived this blog. I originally launched it in 2014 but I didn’t get off the stick back then. In 2014 I yielded only 4 posts; in 2015 I didn’t write a single one at all. And moreover, I noticed that in 2015 I could not even find any time to work on own projects (besides work), which eventually frustrated me a lot.
 
-During christmas break I reworked the whole blog and [set out to publish posts regularly from then on](/e9gb1/put-your-stuff-into-the-world). I published 17 posts in the last couple of months (including this one) and now I think it’s a good point in time to draw a conclusion on where this “experiment” took me to. These are the five things, that I learned:
+During christmas break I reworked the whole blog and [set out to publish posts regularly from then on](/e9gb1/put-your-stuff-into-the-world). I published 17 posts in the last couple of months (including this one) and now I think it’s a good point in time to draw a conclusion on where this “experiment” took me to. These are my five key takeaways:
 
 ## I earned great benefits from blogging
 
 I learned a lot from blogging: On the one hand, my writing skills have improved by a great measure. On the other, my ability to concisely communicate an idea or a story increased and I feel much more confident in doing so.
 
-When it comes to handling a topic, being bounded by the length of one blogpost helps me to find a meaningful scope. This is something that I was predicting in my [“kickoff” post this year](/e9gb1/put-your-stuff-into-the-world) and it turned out to be very true:
+When it comes to handling a topic, being bounded by the length of one blogpost helps me to find a meaningful scope. This is something that I predicted in my [“kickoff” post](/e9gb1/put-your-stuff-into-the-world) and it turned out to be very true:
 
 > Constantly recurring deadlines will help me to bring my ideas and thoughts into an order, slice each topic into a bite-sized chunk and get that finished.
 
