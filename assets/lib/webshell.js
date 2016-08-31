@@ -1827,169 +1827,194 @@ module.exports = function symbolObservablePonyfill(root) {
 };
 
 },{}],22:[function(require,module,exports){
-'use strict'
+'use strict';
 
-exports.changeLocation = (path) => ({
-  type: 'CHANGE_LOCATION',
-  path
-})
+exports.changeLocation = function (path) {
+  return {
+    type: 'CHANGE_LOCATION',
+    path: path
+  };
+};
 
-exports.createDirectory = (path) => ({
-  type: 'CREATE_PATH',
-  path,
-  content: {}
-})
+exports.createDirectory = function (path) {
+  return {
+    type: 'CREATE_PATH',
+    path: path,
+    content: {}
+  };
+};
 
-exports.delete = (path) => ({
-  type: 'REMOVE_PATH',
-  path
-})
+exports.delete = function (path) {
+  return {
+    type: 'REMOVE_PATH',
+    path: path
+  };
+};
 
-exports.createFile = (path, content) => ({
-  type: 'CREATE_PATH',
-  path,
-  content: content ? String(content) : ''
-})
+exports.createFile = function (path, content) {
+  return {
+    type: 'CREATE_PATH',
+    path: path,
+    content: content ? String(content) : ''
+  };
+};
 
-exports.login = (userName) => ({
-  type: 'LOGIN',
-  userName
-})
+exports.login = function (userName) {
+  return {
+    type: 'LOGIN',
+    userName: userName
+  };
+};
 
-exports.logout = () => ({
-  type: 'LOGOUT'
-})
+exports.logout = function () {
+  return {
+    type: 'LOGOUT'
+  };
+};
 
-exports.saveInput = (input) => ({
-  type: 'SAVE_INPUT',
-  input
-})
+exports.saveInput = function (input) {
+  return {
+    type: 'SAVE_INPUT',
+    input: input
+  };
+};
 
-exports.activity = () => ({
-  type: 'ACTIVITY',
-  timestamp: new Date()
-})
+exports.activity = function () {
+  return {
+    type: 'ACTIVITY',
+    timestamp: new Date()
+  };
+};
 
 },{}],23:[function(require,module,exports){
-'use strict'
+'use strict';
 
-module.exports = () => {
-  let storage = []
-  const buffer = {}
+module.exports = function () {
+  var storage = [];
+  var buffer = {};
 
-  buffer.print = (output) => {
-    storage.push(output)
-  }
+  buffer.print = function (output) {
+    storage.push(output);
+  };
 
-  buffer.get = () => {
-    return storage
-  }
+  buffer.get = function () {
+    return storage;
+  };
 
-  return buffer
-}
+  return buffer;
+};
 
 },{}],24:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const makePathFromString = require('../makePathFromString')
-const filesystem = require('../filesystem')
-const CommandError = require('../errors')
+var makePathFromString = require('../makePathFromString');
+var filesystem = require('../filesystem');
+var CommandError = require('../errors');
 
-exports.help = () => ({
-  description: 'Concat and print out files',
-  usage: 'cat [file, ...]'
-})
+exports.help = function () {
+  return {
+    description: 'Concat and print out files',
+    usage: 'cat [file, ...]'
+  };
+};
 
-exports.main = (args, print, state) => {
-  if (args.length === 0) throw new CommandError.InvalidArgument()
+exports.main = function (args, print, state) {
+  if (args.length === 0) throw new CommandError.InvalidArgument();
 
-  const content = args.reduce((result, pathString) => {
-    const path = makePathFromString(pathString, state.currentLocation)
-    const node = filesystem.find(state.fileTree, path)
-    if (node === undefined) throw new CommandError.PathNotFound(path)
-    if (!filesystem.isFile(state.fileTree, path)) throw new CommandError.NotAFile(path)
-    return (result.concat(node))
-  }, '')
-  print(content)
-}
+  var content = args.reduce(function (result, pathString) {
+    var path = makePathFromString(pathString, state.currentLocation);
+    var node = filesystem.find(state.fileTree, path);
+    if (node === undefined) throw new CommandError.PathNotFound(path);
+    if (!filesystem.isFile(state.fileTree, path)) throw new CommandError.NotAFile(path);
+    return result.concat(node);
+  }, '');
+  print(content);
+};
 
 },{"../errors":42,"../filesystem":43,"../makePathFromString":44}],25:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const makePathFromString = require('../makePathFromString')
-const action = require('../actions')
+var makePathFromString = require('../makePathFromString');
+var action = require('../actions');
 
-exports.help = () => ({
-  description: 'Change the current working directory',
-  usage: 'cd [directory]'
-})
+exports.help = function () {
+  return {
+    description: 'Change the current working directory',
+    usage: 'cd [directory]'
+  };
+};
 
-exports.main = (args, print, state, dispatch) => {
-  const currentLocation = state.currentLocation
-  const path = makePathFromString(args[0], currentLocation)
-  dispatch(action.changeLocation(path))
-}
+exports.main = function (args, print, state, dispatch) {
+  var currentLocation = state.currentLocation;
+  var path = makePathFromString(args[0], currentLocation);
+  dispatch(action.changeLocation(path));
+};
 
 },{"../actions":22,"../makePathFromString":44}],26:[function(require,module,exports){
-'use strict'
+'use strict';
 
-exports.help = () => ({
-  description: 'Prints text on the console',
-  usage: 'echo [word, ...]'
-})
+exports.help = function () {
+  return {
+    description: 'Prints text on the console',
+    usage: 'echo [word, ...]'
+  };
+};
 
-exports.main = (args, print) => {
-  const text = args.join(' ')
-  print(text)
-}
+exports.main = function (args, print) {
+  var text = args.join(' ');
+  print(text);
+};
 
 },{}],27:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const action = require('../actions')
+var action = require('../actions');
 
-exports.help = () => ({
-  description: 'Terminate session of currently logged in user',
-  usage: 'exit'
-})
+exports.help = function () {
+  return {
+    description: 'Terminate session of currently logged in user',
+    usage: 'exit'
+  };
+};
 
-exports.main = (args, print, state, dispatch) => {
-  dispatch(action.logout())
-}
+exports.main = function (args, print, state, dispatch) {
+  dispatch(action.logout());
+};
 
 },{"../actions":22}],28:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const printAll = (print, commands) => {
-  const list = Object.keys(commands).sort()
-  print('Commands:')
-  print(list)
-}
+var printAll = function printAll(print, commands) {
+  var list = Object.keys(commands).sort();
+  print('Commands:');
+  print(list);
+};
 
-const printOne = (print, commands, name) => {
-  const cmd = commands[name]
+var printOne = function printOne(print, commands, name) {
+  var cmd = commands[name];
   if (!cmd || typeof cmd.help !== 'function') {
-    print('help: No topic found for command `' + name + '`')
-    return
+    print('help: No topic found for command `' + name + '`');
+    return;
   }
-  const help = cmd.help()
-  if (help.description) print(help.description)
-  if (help.usage) print('usage: ' + help.usage)
-}
+  var help = cmd.help();
+  if (help.description) print(help.description);
+  if (help.usage) print('usage: ' + help.usage);
+};
 
-exports.help = () => ({
-  description: 'Displays help messages',
-  usage: 'help [command]'
-})
+exports.help = function () {
+  return {
+    description: 'Displays help messages',
+    usage: 'help [command]'
+  };
+};
 
-exports.main = (args, print) => {
-  const commands = require('./index')
-  if (args.length === 0) printAll(print, commands)
-  else printOne(print, commands, args[0])
-}
+exports.main = function (args, print) {
+  var commands = require('./index');
+  if (args.length === 0) printAll(print, commands);else printOne(print, commands, args[0]);
+};
 
 },{"./index":29}],29:[function(require,module,exports){
-'use strict'
+'use strict';
 
 module.exports = {
   cat: require('./cat'),
@@ -2007,1002 +2032,1009 @@ module.exports = {
   rm: require('./rm'),
   su: require('./su'),
   whoami: require('./whoami')
-}
+};
 
 },{"./cat":24,"./cd":25,"./echo":26,"./exit":27,"./help":28,"./info":30,"./ls":31,"./mkdir":32,"./put":33,"./pwd":34,"./rm":35,"./su":36,"./whoami":37}],30:[function(require,module,exports){
-'use strict'
+'use strict';
 
-exports.help = () => ({
-  description: 'Print info about this system',
-  usage: 'info'
-})
+exports.help = function () {
+  return {
+    description: 'Print info about this system',
+    usage: 'info'
+  };
+};
 
-exports.main = (args, print) => {
-  print('                __         __         ____    _     ')
-  print(' _      _____  / /_  _____/ /_  ___  / / /   (_)____')
-  print('| | /| / / _ \\/ __ \\/ ___/ __ \\/ _ \\/ / /   / / ___/')
-  print('| |/ |/ /  __/ /_/ (__  ) / / /  __/ / /   / (__  ) ')
-  print('|__/|__/\\___/_.___/____/_/ /_/\\___/_/_(_)_/ /____/  ')
-  print('                                       /___/        ')
-  print('')
-  print('webshell.js • The command line interpreter that runs in your browser')
-  print('See: https://github.com/jotaen/webshell.js')
-  print()
-  print('Created by: Jan Heuermann • http://jotaen.net')
-  print()
-}
+exports.main = function (args, print) {
+  print('                __         __         ____    _     ');
+  print(' _      _____  / /_  _____/ /_  ___  / / /   (_)____');
+  print('| | /| / / _ \\/ __ \\/ ___/ __ \\/ _ \\/ / /   / / ___/');
+  print('| |/ |/ /  __/ /_/ (__  ) / / /  __/ / /   / (__  ) ');
+  print('|__/|__/\\___/_.___/____/_/ /_/\\___/_/_(_)_/ /____/  ');
+  print('                                       /___/        ');
+  print('');
+  print('webshell.js • The command line interpreter that runs in your browser');
+  print('See: https://github.com/jotaen/webshell.js');
+  print();
+  print('Created by: Jan Heuermann • http://jotaen.net');
+  print();
+};
 
 },{}],31:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const filesystem = require('../filesystem')
-const makePathFromString = require('../makePathFromString')
-const CommandError = require('../errors')
+var filesystem = require('../filesystem');
+var makePathFromString = require('../makePathFromString');
+var CommandError = require('../errors');
 
-exports.help = () => ({
-  description: 'List the content of a directory',
-  usage: 'ls [directory]'
-})
+exports.help = function () {
+  return {
+    description: 'List the content of a directory',
+    usage: 'ls [directory]'
+  };
+};
 
-exports.main = (args, print, state) => {
-  const tree = state.fileTree
-  const currentLocation = state.currentLocation
-  let path = []
-  if (args.length > 0) path = makePathFromString(args[0], currentLocation)
-  else path = currentLocation
+exports.main = function (args, print, state) {
+  var tree = state.fileTree;
+  var currentLocation = state.currentLocation;
+  var path = [];
+  if (args.length > 0) path = makePathFromString(args[0], currentLocation);else path = currentLocation;
 
-  if (!filesystem.find(tree, path)) throw new CommandError.PathNotFound(path)
-  if (!filesystem.isDirectory(tree, path)) throw new CommandError.NotADirectory(path)
+  if (!filesystem.find(tree, path)) throw new CommandError.PathNotFound(path);
+  if (!filesystem.isDirectory(tree, path)) throw new CommandError.NotADirectory(path);
 
-  const targetDirectory = filesystem.find(tree, path)
-  const result = Object.keys(targetDirectory).sort().map((node) => {
-    let suffix = ''
-    const nodePath = path.concat(node)
-    if (filesystem.isDirectory(tree, nodePath)) suffix = '/'
-    return node + suffix
-  })
-  print(result)
-}
+  var targetDirectory = filesystem.find(tree, path);
+  var result = Object.keys(targetDirectory).sort().map(function (node) {
+    var suffix = '';
+    var nodePath = path.concat(node);
+    if (filesystem.isDirectory(tree, nodePath)) suffix = '/';
+    return node + suffix;
+  });
+  print(result);
+};
 
 },{"../errors":42,"../filesystem":43,"../makePathFromString":44}],32:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const makePathFromString = require('../makePathFromString')
-const action = require('../actions')
-const filesystem = require('../filesystem')
-const CommandError = require('../errors')
+var makePathFromString = require('../makePathFromString');
+var action = require('../actions');
+var filesystem = require('../filesystem');
+var CommandError = require('../errors');
 
-exports.help = () => ({
-  description: 'Create a new directory',
-  usage: 'mkdir [directory]'
-})
+exports.help = function () {
+  return {
+    description: 'Create a new directory',
+    usage: 'mkdir [directory]'
+  };
+};
 
-exports.main = (args, print, state, dispatch) => {
-  args.forEach((pathString) => {
-    const path = makePathFromString(pathString, state.currentLocation)
-    const destination = path.slice(0, -1)
-    if (!filesystem.isDirectory(state.fileTree, destination)) throw new CommandError.NotADirectory(destination)
-    dispatch(action.createDirectory(path))
-  })
-}
+exports.main = function (args, print, state, dispatch) {
+  args.forEach(function (pathString) {
+    var path = makePathFromString(pathString, state.currentLocation);
+    var destination = path.slice(0, -1);
+    if (!filesystem.isDirectory(state.fileTree, destination)) throw new CommandError.NotADirectory(destination);
+    dispatch(action.createDirectory(path));
+  });
+};
 
 },{"../actions":22,"../errors":42,"../filesystem":43,"../makePathFromString":44}],33:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const makePathFromString = require('../makePathFromString')
-const action = require('../actions')
-const filesystem = require('../filesystem')
-const CommandError = require('../errors')
-const argparse = require('minimist')
+var _this = this;
 
-exports.help = () => ({
-  description: 'Create a new file',
-  usage: 'put [filename] [content]'
-})
+var makePathFromString = require('../makePathFromString');
+var action = require('../actions');
+var filesystem = require('../filesystem');
+var CommandError = require('../errors');
+var argparse = require('minimist');
 
-exports.spec = () => ({
-  boolean: ['amend', 'overwrite'],
-  alias: {
-    'a': 'amend',
-    'c': 'overwrite'
-  },
-  default: {
-    'amend': false,
-    'overwrite': false
-  }
-})
+exports.help = function () {
+  return {
+    description: 'Create a new file',
+    usage: 'put [filename] [content]'
+  };
+};
 
-exports.main = (args, print, state, dispatch) => {
-  const opts = argparse(args, this.spec())
-  const path = makePathFromString(opts._[0], state.currentLocation)
-  const destination = path.slice(0, -1)
-  if (!filesystem.isDirectory(state.fileTree, destination)) throw new CommandError.NotADirectory(destination)
-  let content = ''
+exports.spec = function () {
+  return {
+    boolean: ['amend', 'overwrite'],
+    alias: {
+      'a': 'amend',
+      'c': 'overwrite'
+    },
+    default: {
+      'amend': false,
+      'overwrite': false
+    }
+  };
+};
+
+exports.main = function (args, print, state, dispatch) {
+  var opts = argparse(args, _this.spec());
+  var path = makePathFromString(opts._[0], state.currentLocation);
+  var destination = path.slice(0, -1);
+  if (!filesystem.isDirectory(state.fileTree, destination)) throw new CommandError.NotADirectory(destination);
+  var content = '';
   if (opts.amend) {
-    const previousContent = filesystem.find(state.fileTree, path)
-    content = !previousContent ? '' : previousContent
+    var previousContent = filesystem.find(state.fileTree, path);
+    content = !previousContent ? '' : previousContent;
   }
-  if (opts.overwrite || opts.amend) dispatch(action.delete(path))
-  content += opts._.slice(1).join(' ')
-  dispatch(action.createFile(path, content))
-}
+  if (opts.overwrite || opts.amend) dispatch(action.delete(path));
+  content += opts._.slice(1).join(' ');
+  dispatch(action.createFile(path, content));
+};
 
 },{"../actions":22,"../errors":42,"../filesystem":43,"../makePathFromString":44,"minimist":11}],34:[function(require,module,exports){
-'use strict'
+'use strict';
 
-exports.help = () => ({
-  description: 'Print current working directory',
-  usage: 'pwd'
-})
+exports.help = function () {
+  return {
+    description: 'Print current working directory',
+    usage: 'pwd'
+  };
+};
 
-exports.main = (args, print, state) => {
-  const location = state.currentLocation
-  const output = '/' + location.join('/')
-  print(output)
-}
+exports.main = function (args, print, state) {
+  var location = state.currentLocation;
+  var output = '/' + location.join('/');
+  print(output);
+};
 
 },{}],35:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const makePathFromString = require('../makePathFromString')
-const action = require('../actions')
-const filesystem = require('../filesystem')
-const Command = require('../errors')
+var makePathFromString = require('../makePathFromString');
+var action = require('../actions');
+var filesystem = require('../filesystem');
+var Command = require('../errors');
 
-exports.help = () => ({
-  description: 'Remove a file or directory',
-  usage: 'rm [path, ...]'
-})
+exports.help = function () {
+  return {
+    description: 'Remove a file or directory',
+    usage: 'rm [path, ...]'
+  };
+};
 
-exports.main = (args, print, state, dispatch) => {
-  const tree = state.fileTree
-  args.forEach((pathString) => {
-    const path = makePathFromString(pathString, state.currentLocation)
-    const node = filesystem.find(tree, path)
-    if (node === undefined) throw new Command.PathNotFound(path)
-    dispatch(action.delete(path))
-  })
-}
+exports.main = function (args, print, state, dispatch) {
+  var tree = state.fileTree;
+  args.forEach(function (pathString) {
+    var path = makePathFromString(pathString, state.currentLocation);
+    var node = filesystem.find(tree, path);
+    if (node === undefined) throw new Command.PathNotFound(path);
+    dispatch(action.delete(path));
+  });
+};
 
 },{"../actions":22,"../errors":42,"../filesystem":43,"../makePathFromString":44}],36:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const action = require('../actions')
+var action = require('../actions');
 
-exports.help = () => ({
-  description: 'Switch current user',
-  usage: 'su [username]'
-})
+exports.help = function () {
+  return {
+    description: 'Switch current user',
+    usage: 'su [username]'
+  };
+};
 
-exports.main = (args, print, state, dispatch) => {
-  dispatch(action.login(args[0]))
-}
+exports.main = function (args, print, state, dispatch) {
+  dispatch(action.login(args[0]));
+};
 
 },{"../actions":22}],37:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const stack = require('../stack')
+var stack = require('../stack');
 
-exports.help = () => ({
-  description: 'Print out name of currently logged in user',
-  usage: 'whoami'
-})
+exports.help = function () {
+  return {
+    description: 'Print out name of currently logged in user',
+    usage: 'whoami'
+  };
+};
 
-exports.main = (args, print, state) => {
-  const userName = stack.latest(state.sessions)
-  print(userName)
-}
+exports.main = function (args, print, state) {
+  var userName = stack.latest(state.sessions);
+  print(userName);
+};
 
 },{"../stack":51}],38:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const createStore = require('redux').createStore
-const middlewares = require('./middlewares')
-const action = require('../actions')
-const createBuffer = require('../buffer')
-const parse = require('./parse')
-const render = require('../render/plainText')
-const filesystem = require('../filesystem')
-const makePathFromString = require('../makePathFromString')
-const tokenize = require('./tokenize')
-const state = require('../state')
+var createStore = require('redux').createStore;
+var middlewares = require('./middlewares');
+var action = require('../actions');
+var createBuffer = require('../buffer');
+var parse = require('./parse');
+var render = require('../render/plainText');
+var filesystem = require('../filesystem');
+var makePathFromString = require('../makePathFromString');
+var tokenize = require('./tokenize');
+var state = require('../state');
 
-module.exports = (commands, reducers, initialState) => {
-  const startState = Object.assign({}, state.default(), initialState)
-  const store = createStore(reducers, startState, middlewares)
+module.exports = function (commands, reducers, initialState) {
+  var startState = Object.assign({}, state.default(), initialState);
+  var store = createStore(reducers, startState, middlewares);
 
-  const findExec = (commands, commandName) => {
+  var findExec = function findExec(commands, commandName) {
     if (commands[commandName]) {
-      return commands[commandName].main
+      return commands[commandName].main;
     } else if (commandName !== undefined) {
-      return () => { throw new Error('Command not found') }
+      return function () {
+        throw new Error('Command not found');
+      };
     } else {
-      return () => {}
+      return function () {};
     }
-  }
+  };
 
-  const makeArgs = (previous, job) => {
-    let args = job.args
+  var makeArgs = function makeArgs(previous, job) {
+    var args = job.args;
     if (job.wantsInput) {
-      const plainTextOutput = previous.output.reduce((result, output) => {
-        return (result + render(output))
-      }, '')
-      args.push(plainTextOutput)
+      var plainTextOutput = previous.output.reduce(function (result, output) {
+        return result + render(output);
+      }, '');
+      args.push(plainTextOutput);
     }
-    return args
-  }
+    return args;
+  };
 
-  const process = (previous, job) => {
-    if (previous.error && job.stopOnFailure) return previous
-    const buffer = createBuffer()
-    const execute = findExec(commands, job.command)
+  var process = function process(previous, job) {
+    if (previous.error && job.stopOnFailure) return previous;
+    var buffer = createBuffer();
+    var execute = findExec(commands, job.command);
 
     try {
-      const args = makeArgs(previous, job)
-      execute(args, buffer.print, stateCopy(), store.dispatch)
-      return {error: false, output: buffer.get()}
+      var args = makeArgs(previous, job);
+      execute(args, buffer.print, stateCopy(), store.dispatch);
+      return { error: false, output: buffer.get() };
     } catch (e) {
-      return {error: true, output: [job.command + ': ' + e.message]}
+      return { error: true, output: [job.command + ': ' + e.message] };
     }
-  }
+  };
 
-  const evaluate = (line) => {
-    store.dispatch(action.activity())
-    store.dispatch(action.saveInput(line))
-    const queue = parse(line)
-    const result = queue.reduce(process, {error: false, output: ['']})
+  var evaluate = function evaluate(line) {
+    store.dispatch(action.activity());
+    store.dispatch(action.saveInput(line));
+    var queue = parse(line);
+    var result = queue.reduce(process, { error: false, output: [''] });
 
     return {
       output: result.output
-    }
-  }
+    };
+  };
 
-  const stateCopy = () => state.copy(store.getState())
+  var stateCopy = function stateCopy() {
+    return state.copy(store.getState());
+  };
 
-  const complete = (line) => {
-    const parts = tokenize(line).map(token => token.content)
-    if (parts.length === 0) return []
-    const last = parts.pop()
-    const tree = store.getState().fileTree
-    const location = store.getState().currentLocation
-    const path = makePathFromString(last, location)
-    if (last.slice(-1) === '/') path.push('')
-    const partial = path.pop()
-    const result = filesystem.find(tree, path)
-    if (!result) return []
-    return Object.keys(result).filter((item) => {
-      return (item.indexOf(partial) === 0)
-    }).map((item) => {
-      let p = ''
-      const absolutePath = path.join('/')
-      if (absolutePath.length > 0) p += '/' + absolutePath
-      p += '/' + item + '/'
+  var complete = function complete(line) {
+    var parts = tokenize(line).map(function (token) {
+      return token.content;
+    });
+    if (parts.length === 0) return [];
+    var last = parts.pop();
+    var tree = store.getState().fileTree;
+    var location = store.getState().currentLocation;
+    var path = makePathFromString(last, location);
+    if (last.slice(-1) === '/') path.push('');
+    var partial = path.pop();
+    var result = filesystem.find(tree, path);
+    if (!result) return [];
+    return Object.keys(result).filter(function (item) {
+      return item.indexOf(partial) === 0;
+    }).map(function (item) {
+      var p = '';
+      var absolutePath = path.join('/');
+      if (absolutePath.length > 0) p += '/' + absolutePath;
+      p += '/' + item + '/';
       return {
         preceding: parts.join(' '),
         partial: p
-      }
-    })
-  }
+      };
+    });
+  };
 
   return {
-    evaluate,
+    evaluate: evaluate,
     state: stateCopy,
-    complete
-  }
-}
+    complete: complete
+  };
+};
 
 },{"../actions":22,"../buffer":23,"../filesystem":43,"../makePathFromString":44,"../render/plainText":50,"../state":52,"./middlewares":39,"./parse":40,"./tokenize":41,"redux":18}],39:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const {compose} = require('redux')
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+var _require = require('redux');
+
+var compose = _require.compose;
+
 
 module.exports = compose(
-  // Redux DevTools Extension:
-  typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
-)
+// Redux DevTools Extension:
+(typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : function (f) {
+  return f;
+});
 
 },{"redux":18}],40:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const tokenize = require('./tokenize')
+var tokenize = require('./tokenize');
 
-const createJob = (operator) => {
-  const command = {
+var createJob = function createJob(operator) {
+  var command = {
     command: undefined,
     args: [],
     wantsInput: false,
     stopOnFailure: true
-  }
+  };
   if (operator === '>') {
-    command.command = 'put'
-    command.args.push('--overwrite')
-    command.wantsInput = true
+    command.command = 'put';
+    command.args.push('--overwrite');
+    command.wantsInput = true;
   } else if (operator === '>>') {
-    command.command = 'put'
-    command.args.push('--amend')
-    command.wantsInput = true
+    command.command = 'put';
+    command.args.push('--amend');
+    command.wantsInput = true;
   } else if (operator === '|') {
-    command.wantsInput = true
-    command.wantsInput = true
+    command.wantsInput = true;
+    command.wantsInput = true;
   } else if (operator === '&') {
-    command.stopOnFailure = false
-  } else if (operator === '&&') {
-  }
-  return command
-}
+    command.stopOnFailure = false;
+  } else if (operator === '&&') {}
+  return command;
+};
 
-module.exports = (statement) => {
-  const tokens = tokenize(statement)
-  let queue = []
-  const lastJob = tokens.reduce((job, token) => {
+module.exports = function (statement) {
+  var tokens = tokenize(statement);
+  var queue = [];
+  var lastJob = tokens.reduce(function (job, token) {
     if (token.kind === 'operator') {
-      queue.push(job)
-      return createJob(token.content)
+      queue.push(job);
+      return createJob(token.content);
     }
-    if (!job.command) job.command = token.content
-    else job.args.push(token.content)
-    return job
-  }, createJob())
-  queue.push(lastJob)
-  return queue
-}
+    if (!job.command) job.command = token.content;else job.args.push(token.content);
+    return job;
+  }, createJob());
+  queue.push(lastJob);
+  return queue;
+};
 
 },{"./tokenize":41}],41:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const stringLiteral = /^"((?:\\\s|\\"|\\\\|[^"\\])*)"/
-const operator = /^(&&|&|\||>>|>)/
-const symbol = /^(\\\s|[^\s])+/
+var stringLiteral = /^"((?:\\\s|\\"|\\\\|[^"\\])*)"/;
+var operator = /^(&&|&|\||>>|>)/;
+var symbol = /^(\\\s|[^\s])+/;
 
-module.exports = (statement) => {
-  let remain = statement
-  let tokenList = []
+module.exports = function (statement) {
+  var remain = statement;
+  var tokenList = [];
   while (remain.length > 0) {
-    remain = remain.trim()
+    remain = remain.trim();
     if (stringLiteral.test(remain)) {
-      const matchResult = remain.match(stringLiteral)
-      const completeMatch = matchResult[0]
-      const stringContent = matchResult[1].replace(/\\"/g, '"')
+      var matchResult = remain.match(stringLiteral);
+      var completeMatch = matchResult[0];
+      var stringContent = matchResult[1].replace(/\\"/g, '"');
       tokenList.push({
         kind: 'string',
         content: stringContent
-      })
-      remain = remain.substr(completeMatch.length)
+      });
+      remain = remain.substr(completeMatch.length);
     } else if (operator.test(remain)) {
-      const operatorName = remain.match(operator)[0]
+      var operatorName = remain.match(operator)[0];
       tokenList.push({
         kind: 'operator',
         content: operatorName
-      })
-      remain = remain.substr(operatorName.length)
+      });
+      remain = remain.substr(operatorName.length);
     } else if (symbol.test(remain)) {
-      const symbolName = remain.match(symbol)[0]
+      var symbolName = remain.match(symbol)[0];
       tokenList.push({
         kind: 'symbol',
         content: symbolName.replace(/\\ /g, ' ')
-      })
-      remain = remain.substr(symbolName.length)
+      });
+      remain = remain.substr(symbolName.length);
     } else {
-      throw new Error('Invalid input sequence: ' + remain)
+      throw new Error('Invalid input sequence: ' + remain);
     }
   }
-  return tokenList
-}
+  return tokenList;
+};
 
 },{}],42:[function(require,module,exports){
-'use strict'
+'use strict';
 
-exports.PathNotFound = PathNotFound
-exports.PathAlreadyExists = PathAlreadyExists
-exports.NotADirectory = NotADirectory
-exports.NotAFile = NotAFile
-exports.InvalidArgument = InvalidArgument
+exports.PathNotFound = PathNotFound;
+exports.PathAlreadyExists = PathAlreadyExists;
+exports.NotADirectory = NotADirectory;
+exports.NotAFile = NotAFile;
+exports.InvalidArgument = InvalidArgument;
 
-function PathNotFound (path) {
-  this.name = 'PathNotFound'
-  this.message = '/' + path.join('/') + ': No such file or directory'
-  this.stack = (new Error()).stack
+function PathNotFound(path) {
+  this.name = 'PathNotFound';
+  this.message = '/' + path.join('/') + ': No such file or directory';
+  this.stack = new Error().stack;
 }
-PathNotFound.prototype = Object.create(Error.prototype)
-PathNotFound.prototype.constructor = PathNotFound
+PathNotFound.prototype = Object.create(Error.prototype);
+PathNotFound.prototype.constructor = PathNotFound;
 
-function PathAlreadyExists (path) {
-  this.name = 'PathAlreadyExists'
-  this.message = '/' + path.join('/') + ': File or directory does already exist'
-  this.stack = (new Error()).stack
+function PathAlreadyExists(path) {
+  this.name = 'PathAlreadyExists';
+  this.message = '/' + path.join('/') + ': File or directory does already exist';
+  this.stack = new Error().stack;
 }
-PathAlreadyExists.prototype = Object.create(Error.prototype)
-PathAlreadyExists.prototype.constructor = PathAlreadyExists
+PathAlreadyExists.prototype = Object.create(Error.prototype);
+PathAlreadyExists.prototype.constructor = PathAlreadyExists;
 
-function NotADirectory (path) {
-  this.name = 'NotADirectory'
-  this.message = '/' + path.join('/') + ': Is not a directory'
-  this.stack = (new Error()).stack
+function NotADirectory(path) {
+  this.name = 'NotADirectory';
+  this.message = '/' + path.join('/') + ': Is not a directory';
+  this.stack = new Error().stack;
 }
-NotADirectory.prototype = Object.create(Error.prototype)
-NotADirectory.prototype.constructor = NotADirectory
+NotADirectory.prototype = Object.create(Error.prototype);
+NotADirectory.prototype.constructor = NotADirectory;
 
-function NotAFile (path) {
-  this.name = 'NotAFile'
-  this.message = '/' + path.join('/') + ': Is not a file'
-  this.stack = (new Error()).stack
+function NotAFile(path) {
+  this.name = 'NotAFile';
+  this.message = '/' + path.join('/') + ': Is not a file';
+  this.stack = new Error().stack;
 }
-NotAFile.prototype = Object.create(Error.prototype)
-NotAFile.prototype.constructor = NotAFile
+NotAFile.prototype = Object.create(Error.prototype);
+NotAFile.prototype.constructor = NotAFile;
 
-function InvalidArgument (parameter) {
-  this.name = 'InvalidArgument'
-  if (!parameter) this.message = 'Empty parameter not allowed'
-  else this.message = parameter + ': Invalid argument'
-  this.stack = (new Error()).stack
+function InvalidArgument(parameter) {
+  this.name = 'InvalidArgument';
+  if (!parameter) this.message = 'Empty parameter not allowed';else this.message = parameter + ': Invalid argument';
+  this.stack = new Error().stack;
 }
-InvalidArgument.prototype = Object.create(Error.prototype)
-InvalidArgument.prototype.constructor = InvalidArgument
+InvalidArgument.prototype = Object.create(Error.prototype);
+InvalidArgument.prototype.constructor = InvalidArgument;
 
 },{}],43:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const deepmerge = require('deepmerge')
+var _this = this;
 
-exports.find = (tree, path) => {
-  return path.reduce((tree, item) => {
-    if (typeof tree === 'object') {
-      if (typeof tree[item] === 'object' || typeof tree[item] === 'string') {
-        return tree[item]
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+var deepmerge = require('deepmerge');
+
+exports.find = function (tree, path) {
+  return path.reduce(function (tree, item) {
+    if ((typeof tree === 'undefined' ? 'undefined' : _typeof(tree)) === 'object') {
+      if (_typeof(tree[item]) === 'object' || typeof tree[item] === 'string') {
+        return tree[item];
       }
     }
-    return undefined
-  }, tree)
-}
+    return undefined;
+  }, tree);
+};
 
-exports.isFile = (tree, path) => {
-  const branch = this.find(tree, path)
-  return typeof branch === 'string'
-}
+exports.isFile = function (tree, path) {
+  var branch = _this.find(tree, path);
+  return typeof branch === 'string';
+};
 
-exports.remove = (tree, path) => {
-  const copy = Object.assign({}, tree)
-  let last = path.length
-  path.reduce((tr, item) => {
-    last--
-    if (tr === undefined || tr[item] === undefined) return undefined
-    if (last === 0) delete tr[item]
-    else return tr[item]
-  }, copy)
-  return copy
-}
+exports.remove = function (tree, path) {
+  var copy = Object.assign({}, tree);
+  var last = path.length;
+  path.reduce(function (tr, item) {
+    last--;
+    if (tr === undefined || tr[item] === undefined) return undefined;
+    if (last === 0) delete tr[item];else return tr[item];
+  }, copy);
+  return copy;
+};
 
-exports.isDirectory = (tree, path) => {
-  const branch = this.find(tree, path)
-  return typeof branch === 'object'
-}
+exports.isDirectory = function (tree, path) {
+  var branch = _this.find(tree, path);
+  return (typeof branch === 'undefined' ? 'undefined' : _typeof(branch)) === 'object';
+};
 
-exports.insert = (tree, path, content) => {
-  const branch = path.reverse().reduce((obj, key) => {
-    const node = {}
-    node[key] = obj
-    return node
-  }, content)
-  return deepmerge(tree, branch)
-}
+exports.insert = function (tree, path, content) {
+  var branch = path.reverse().reduce(function (obj, key) {
+    var node = {};
+    node[key] = obj;
+    return node;
+  }, content);
+  return deepmerge(tree, branch);
+};
 
 },{"deepmerge":1}],44:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const slashSplit = (pathString) => {
-  return pathString.split('/').filter((node) => {
-    return node !== ''
-  })
-}
+var slashSplit = function slashSplit(pathString) {
+  return pathString.split('/').filter(function (node) {
+    return node !== '';
+  });
+};
 
-const resolveDots = (path, referencePath) => {
-  return path.reduce((result, node) => {
-    if (node === '..') return result.slice(0, -1)
-    else if (node === '.') return result
-    else return result.concat(node)
-  }, referencePath)
-}
+var resolveDots = function resolveDots(path, referencePath) {
+  return path.reduce(function (result, node) {
+    if (node === '..') return result.slice(0, -1);else if (node === '.') return result;else return result.concat(node);
+  }, referencePath);
+};
 
-const isAbsolutePath = (pathString) => (pathString.substr(0, 1) === '/')
+var isAbsolutePath = function isAbsolutePath(pathString) {
+  return pathString.substr(0, 1) === '/';
+};
 
-module.exports = (pathString, referenceLocation) => {
-  const path = slashSplit(pathString)
+module.exports = function (pathString, referenceLocation) {
+  var path = slashSplit(pathString);
   if (isAbsolutePath(pathString)) {
-    return resolveDots(path, [])
+    return resolveDots(path, []);
   }
-  return resolveDots(path, referenceLocation.slice(0))
-}
+  return resolveDots(path, referenceLocation.slice(0));
+};
 
 },{}],45:[function(require,module,exports){
-'use strict'
+'use strict';
 
-exports.SAVE_INPUT = (state, action) => {
-  const sanitizedInput = action.input.trim()
-  if (sanitizedInput === '') return state
-  const history = state.history.concat([String(sanitizedInput)])
-  return Object.assign({}, state, {history})
-}
+exports.SAVE_INPUT = function (state, action) {
+  var sanitizedInput = action.input.trim();
+  if (sanitizedInput === '') return state;
+  var history = state.history.concat([String(sanitizedInput)]);
+  return Object.assign({}, state, { history: history });
+};
 
-exports.ACTIVITY = (state, action) => {
-  return Object.assign({}, state, {lastActivity: action.timestamp})
-}
+exports.ACTIVITY = function (state, action) {
+  return Object.assign({}, state, { lastActivity: action.timestamp });
+};
 
 },{}],46:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const filesystem = require('../filesystem')
-const CommandError = require('../errors')
+var filesystem = require('../filesystem');
+var CommandError = require('../errors');
 
-exports.CHANGE_LOCATION = (state, action) => {
-  const path = action.path
-  const tree = state.fileTree
-  const target = filesystem.find(tree, path)
-  if (target === undefined) throw new CommandError.PathNotFound(path)
-  if (!filesystem.isDirectory(tree, path)) throw new CommandError.NotADirectory(path)
-  return Object.assign({}, state, {currentLocation: path})
-}
+exports.CHANGE_LOCATION = function (state, action) {
+  var path = action.path;
+  var tree = state.fileTree;
+  var target = filesystem.find(tree, path);
+  if (target === undefined) throw new CommandError.PathNotFound(path);
+  if (!filesystem.isDirectory(tree, path)) throw new CommandError.NotADirectory(path);
+  return Object.assign({}, state, { currentLocation: path });
+};
 
-exports.CREATE_PATH = (state, action) => {
-  const path = action.path
-  const tree = state.fileTree
-  if (filesystem.find(tree, path)) throw new CommandError.PathAlreadyExists(path)
-  const newTree = filesystem.insert(tree, path, action.content)
-  return Object.assign({}, state, {fileTree: newTree})
-}
+exports.CREATE_PATH = function (state, action) {
+  var path = action.path;
+  var tree = state.fileTree;
+  if (filesystem.find(tree, path)) throw new CommandError.PathAlreadyExists(path);
+  var newTree = filesystem.insert(tree, path, action.content);
+  return Object.assign({}, state, { fileTree: newTree });
+};
 
-exports.REMOVE_PATH = (state, action) => {
-  const path = action.path
-  const tree = state.fileTree
-  const newTree = filesystem.remove(tree, path)
-  return Object.assign({}, state, {fileTree: newTree})
-}
+exports.REMOVE_PATH = function (state, action) {
+  var path = action.path;
+  var tree = state.fileTree;
+  var newTree = filesystem.remove(tree, path);
+  return Object.assign({}, state, { fileTree: newTree });
+};
 
 },{"../errors":42,"../filesystem":43}],47:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const dict = Object.assign({},
-  require('./engine'),
-  require('./filesystem'),
-  require('./sessions')
-)
+var dict = Object.assign({}, require('./engine'), require('./filesystem'), require('./sessions'));
 
-module.exports = (state, action) => {
+module.exports = function (state, action) {
   if (dict[action.type]) {
-    return dict[action.type](state, action)
+    return dict[action.type](state, action);
   }
-  return state
-}
+  return state;
+};
 
 },{"./engine":45,"./filesystem":46,"./sessions":48}],48:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const CommandError = require('../errors')
+var CommandError = require('../errors');
 
-exports.LOGIN = (state, action) => {
+exports.LOGIN = function (state, action) {
   if (typeof action.userName !== 'string' || action.userName === '') {
-    throw new CommandError.InvalidArgument(action.userName)
+    throw new CommandError.InvalidArgument(action.userName);
   }
-  const sessions = state.sessions.concat([String(action.userName)])
-  return Object.assign({}, state, {sessions})
-}
+  var sessions = state.sessions.concat([String(action.userName)]);
+  return Object.assign({}, state, { sessions: sessions });
+};
 
-exports.LOGOUT = (state, action) => {
-  const sessions = state.sessions.slice(0, -1)
-  return Object.assign({}, state, {sessions})
-}
+exports.LOGOUT = function (state, action) {
+  var sessions = state.sessions.slice(0, -1);
+  return Object.assign({}, state, { sessions: sessions });
+};
 
 },{"../errors":42}],49:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const entities = require('html-entities').XmlEntities.encode
+var entities = require('html-entities').XmlEntities.encode;
 
-const text = (input) => {
-  return '<span>' + entities(input) + '</span>'
-}
+var text = function text(input) {
+  return '<span>' + entities(input) + '</span>';
+};
 
-const list = (input) => {
-  const items = input.reduce((result, item) => {
-    result += '<li class="list-item">' + entities(item) + '</li>'
-    return result
-  }, '')
-  return '<ul class="list">' + items + '</ul>'
-}
+var list = function list(input) {
+  var items = input.reduce(function (result, item) {
+    result += '<li class="list-item">' + entities(item) + '</li>';
+    return result;
+  }, '');
+  return '<ul class="list">' + items + '</ul>';
+};
 
-module.exports = (input) => {
-  if (input === undefined) return '<div>&nbsp;</div>'
-  else if (typeof input === 'string') return text(input)
-  else if (Array.isArray(input)) return list(input)
-}
+module.exports = function (input) {
+  if (input === undefined) return '<div>&nbsp;</div>';else if (typeof input === 'string') return text(input);else if (Array.isArray(input)) return list(input);
+};
 
 },{"html-entities":2}],50:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const text = (input) => {
-  return input
-}
+var text = function text(input) {
+  return input;
+};
 
-const list = (input) => {
-  return input.reduce((result, item) => {
-    return (result + item + '\n')
-  }, '')
-}
+var list = function list(input) {
+  return input.reduce(function (result, item) {
+    return result + item + '\n';
+  }, '');
+};
 
-module.exports = (input) => {
-  if (input === undefined) return '\n'
-  else if (typeof input === 'string') return text(input)
-  else if (Array.isArray(input)) return list(input)
-}
+module.exports = function (input) {
+  if (input === undefined) return '\n';else if (typeof input === 'string') return text(input);else if (Array.isArray(input)) return list(input);
+};
 
 },{}],51:[function(require,module,exports){
-'use strict'
+'use strict';
 
-exports.latest = (stack) => {
-  const name = stack[stack.length - 1]
-  if (!name) return ''
-  return name
-}
+exports.latest = function (stack) {
+  var name = stack[stack.length - 1];
+  if (!name) return '';
+  return name;
+};
 
 },{}],52:[function(require,module,exports){
-'use strict'
+'use strict';
 
-exports.default = () => ({
-  currentLocation: [],
-  fileTree: {},
-  history: [],
-  lastActivity: null,
-  sessions: ['root']
-})
+var _this = this;
 
-exports.serialize = (state) => {
-  const obj = !state ? {} : state
-  return JSON.stringify(obj)
-}
+exports.default = function () {
+  return {
+    currentLocation: [],
+    fileTree: {},
+    history: [],
+    lastActivity: null,
+    sessions: ['root']
+  };
+};
 
-exports.deserialize = (string) => {
-  const state = JSON.parse(string)
-  if (state.lastActivity) state.lastActivity = new Date(state.lastActivity)
-  return state
-}
+exports.serialize = function (state) {
+  var obj = !state ? {} : state;
+  return JSON.stringify(obj);
+};
 
-exports.copy = (state) => {
-  return this.deserialize(this.serialize(state))
-}
+exports.deserialize = function (string) {
+  var state = JSON.parse(string);
+  if (state.lastActivity) state.lastActivity = new Date(state.lastActivity);
+  return state;
+};
+
+exports.copy = function (state) {
+  return _this.deserialize(_this.serialize(state));
+};
 
 },{}],53:[function(require,module,exports){
-'use strict'
+'use strict';
 
-module.exports = () => {
-  var style = document.createElement('style')
-  style.type = 'text/css'
-  style.innerHTML = `
-    .webshell {
-      box-sizing: border-box;
-      cursor: text;
-      padding: 0.5em;
-      overflow-y: scroll;
-    }
-
-    .input {
-      display: block;
-      min-width: 3em;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-    }
-
-    .input:empty {
-      min-height: 1em;
-      line-height: normal;
-    }
-
-    .response {
-      clear: both;
-      white-space: pre-wrap;
-    }
-
-    .list {
-      padding-left: 0;
-      margin: 0;
-    }
-
-    .list-item {
-      list-style-type: none;
-    }
-  `
-  document.getElementsByTagName('head')[0].appendChild(style)
-}
+module.exports = function () {
+  var style = document.createElement('style');
+  style.type = 'text/css';
+  style.innerHTML = '\n    .webshell {\n      box-sizing: border-box;\n      cursor: text;\n      padding: 0.5em;\n      overflow-y: scroll;\n    }\n\n    .input {\n      display: block;\n      min-width: 3em;\n      word-wrap: break-word;\n      white-space: pre-wrap;\n    }\n\n    .input:empty {\n      min-height: 1em;\n      line-height: normal;\n    }\n\n    .response {\n      clear: both;\n      white-space: pre-wrap;\n    }\n\n    .list {\n      padding-left: 0;\n      margin: 0;\n    }\n\n    .list-item {\n      list-style-type: none;\n    }\n  ';
+  document.getElementsByTagName('head')[0].appendChild(style);
+};
 
 },{}],54:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const createEngine = require('../core/engine')
-const persistState = require('./persistState')
-const reducers = require('../reducers/index')
-const commands = require('../commands/index')
-const render = require('../render/html')
-const stack = require('../stack')
-const createElement = require('./element')
-const basicStyling = require('./basicStyling')
-const entities = require('html-entities').XmlEntities
+var createEngine = require('../core/engine');
+var persistState = require('./persistState');
+var reducers = require('../reducers/index');
+var commands = require('../commands/index');
+var render = require('../render/html');
+var stack = require('../stack');
+var createElement = require('./element');
+var basicStyling = require('./basicStyling');
+var entities = require('html-entities').XmlEntities;
 
-module.exports = (id, options) => {
+module.exports = function (id, options) {
   //
   //  INITIALIZATION
   //
 
-  const defaultOptions = {
+  var defaultOptions = {
     initialState: {}
-  }
-  const opts = Object.assign({}, defaultOptions, options)
+  };
+  var opts = Object.assign({}, defaultOptions, options);
 
-  const refresh = (window.location.href.search(/\?refresh/) !== -1)
+  var refresh = window.location.href.search(/\?refresh/) !== -1;
   if (refresh) {
-    persistState.delete(id)
-    window.location = window.location.href.split('?')[0]
+    persistState.delete(id);
+    window.location = window.location.href.split('?')[0];
   }
-  const savedState = persistState.read(id)
-  const initialState = savedState || opts.initialState
+  var savedState = persistState.read(id);
+  var initialState = savedState || opts.initialState;
 
-  const engine = createEngine(commands, reducers, initialState)
-  let currentHistoryItem = -1
-  ;(() => {})(currentHistoryItem) // this line is a workaround for an incorrectly issued linter error
-  const element = createElement(id)
+  var engine = createEngine(commands, reducers, initialState);
+  var currentHistoryItem = -1;(function () {})(currentHistoryItem); // this line is a workaround for an incorrectly issued linter error
+  var element = createElement(id);
 
-  basicStyling()
+  basicStyling();
 
   //
   //  METHOD DEFINITIONS
   //
 
-  const prompt = () => {
-    currentHistoryItem = -1
-    const state = engine.state()
-    const userName = stack.latest(state.sessions)
-    const path = '/' + state.currentLocation.join('/')
-    const html = [
-      '<span class="text-green">' + entities.encode(userName) + '</span>',
-      '<span class="text-lightgray">@</span>',
-      '<span class="text-yellow">' + entities.encode(path) + '</span>'
-    ].join('')
-    element.prompt(html)
-  }
+  var prompt = function prompt() {
+    currentHistoryItem = -1;
+    var state = engine.state();
+    var userName = stack.latest(state.sessions);
+    var path = '/' + state.currentLocation.join('/');
+    var html = ['<span class="text-green">' + entities.encode(userName) + '</span>', '<span class="text-lightgray">@</span>', '<span class="text-yellow">' + entities.encode(path) + '</span>'].join('');
+    element.prompt(html);
+  };
 
-  const welcome = () => {
-    const state = engine.state()
-    const userName = stack.latest(state.sessions)
-    const date = state.lastActivity
-    let hello = 'Hello ' + userName + '!'
+  var welcome = function welcome() {
+    var state = engine.state();
+    var userName = stack.latest(state.sessions);
+    var date = state.lastActivity;
+    var hello = 'Hello ' + userName + '!';
     if (date instanceof Date) {
-      hello += ' Last activity: ' + date.toLocaleString()
-      hello += '<br>Reset the shell to its default state by <a class="text text-lightgray" href="?refresh">clicking here</a>'
+      hello += ' Last activity: ' + date.toLocaleString();
+      hello += '<br>Reset the shell to its default state by <a class="text text-lightgray" href="?refresh">clicking here</a>';
     }
-    element.writeResponse(hello)
-  }
+    element.writeResponse(hello);
+  };
 
-  const flush = (additionalContent) => {
-    const input = element.readInput()
-    const text = input + (typeof additionalContent === 'string' ? additionalContent : '')
-    element.writeInput(text)
-    element.setInput('')
-    return input
-  }
+  var flush = function flush(additionalContent) {
+    var input = element.readInput();
+    var text = input + (typeof additionalContent === 'string' ? additionalContent : '');
+    element.writeInput(text);
+    element.setInput('');
+    return input;
+  };
 
-  const terminate = () => {
-    element.writeResponse('Bye bye.')
-    element.freeze()
-  }
+  var terminate = function terminate() {
+    element.writeResponse('Bye bye.');
+    element.freeze();
+  };
 
-  const print = (output) => {
-    const outputAsHtml = output.reduce((rendered, line) => {
-      return (rendered + '<div>' + render(line) + '</div>')
-    }, '')
-    element.writeResponse(outputAsHtml)
-  }
+  var _print = function _print(output) {
+    var outputAsHtml = output.reduce(function (rendered, line) {
+      return rendered + '<div>' + render(line) + '</div>';
+    }, '');
+    element.writeResponse(outputAsHtml);
+  };
 
-  const propose = (line) => {
-    element.setInput(line)
-  }
+  var propose = function propose(line) {
+    element.setInput(line);
+  };
 
   //
   // EVENT HANDLERS
   //
 
-  element.onTab(() => {
-    const input = element.readInput()
-    const result = engine.complete(input)
-    let line = ''
+  element.onTab(function () {
+    var input = element.readInput();
+    var result = engine.complete(input);
+    var line = '';
     if (result.length === 1) {
-      line = result[0].preceding + ' ' + result[0].partial
+      line = result[0].preceding + ' ' + result[0].partial;
     } else {
-      flush()
-      print([result.map(item => item.partial)])
-      prompt()
-      line = input
+      flush();
+      _print([result.map(function (item) {
+        return item.partial;
+      })]);
+      prompt();
+      line = input;
     }
-    propose(line)
-  })
+    propose(line);
+  });
 
-  element.onCancel(() => {
-    flush('^C')
-    print([])
-    prompt()
-    propose('')
-  })
+  element.onCancel(function () {
+    flush('^C');
+    _print([]);
+    prompt();
+    propose('');
+  });
 
-  element.onArrowUp(() => {
-    currentHistoryItem++
-    const history = engine.state().history.reverse()
-    if (currentHistoryItem > history.length - 1) currentHistoryItem = history.length - 1
-    const old = typeof history[currentHistoryItem] === 'string' ? history[currentHistoryItem] : ''
-    propose(old)
-  })
+  element.onArrowUp(function () {
+    currentHistoryItem++;
+    var history = engine.state().history.reverse();
+    if (currentHistoryItem > history.length - 1) currentHistoryItem = history.length - 1;
+    var old = typeof history[currentHistoryItem] === 'string' ? history[currentHistoryItem] : '';
+    propose(old);
+  });
 
-  element.onArrowDown(() => {
-    currentHistoryItem--
-    const history = engine.state().history.reverse()
-    if (currentHistoryItem < -1) currentHistoryItem = -1
-    const old = typeof history[currentHistoryItem] === 'string' ? history[currentHistoryItem] : ''
-    propose(old)
-  })
+  element.onArrowDown(function () {
+    currentHistoryItem--;
+    var history = engine.state().history.reverse();
+    if (currentHistoryItem < -1) currentHistoryItem = -1;
+    var old = typeof history[currentHistoryItem] === 'string' ? history[currentHistoryItem] : '';
+    propose(old);
+  });
 
-  element.onReturn(() => {
-    const input = flush()
-    const {output} = engine.evaluate(input)
-    print(output)
-    const state = engine.state()
+  element.onReturn(function () {
+    var input = flush();
+
+    var _engine$evaluate = engine.evaluate(input);
+
+    var output = _engine$evaluate.output;
+
+    _print(output);
+    var state = engine.state();
     if (!state) {
-      terminate()
-      return
+      terminate();
+      return;
     }
-    persistState.save(id, state)
-    prompt()
-  })
+    persistState.save(id, state);
+    prompt();
+  });
 
   //
   // START
   //
 
-  welcome()
-  prompt()
+  welcome();
+  prompt();
 
   return {
-    print: (input, response) => {
-      flush(input)
-      print((response === undefined ? [] : response))
-      prompt()
+    print: function print(input, response) {
+      flush(input);
+      _print(response === undefined ? [] : response);
+      prompt();
     },
-    focus: () => element.focus()
-  }
-}
+    focus: function focus() {
+      return element.focus();
+    }
+  };
+};
 
 },{"../commands/index":29,"../core/engine":38,"../reducers/index":47,"../render/html":49,"../stack":51,"./basicStyling":53,"./element":55,"./persistState":56,"html-entities":2}],55:[function(require,module,exports){
-'use strict'
+'use strict';
 
-const entities = require('html-entities').XmlEntities
+var entities = require('html-entities').XmlEntities;
 
-module.exports = (id) => {
-  const webshell = document.getElementById(id)
-  webshell.innerHTML = '<div class="input input-current" id="' + id + '-cursor" contentEditable="true"></div>'
-  const input = document.getElementById(id + '-cursor')
-  const eventHandler = {
-    onArrowDown: () => {},
-    onArrowUp: () => {},
-    onCancel: () => {},
-    onReturn: () => {},
-    onTab: () => {}
-  }
+module.exports = function (id) {
+  var webshell = document.getElementById(id);
+  webshell.innerHTML = '<div class="input input-current" id="' + id + '-cursor" contentEditable="true"></div>';
+  var input = document.getElementById(id + '-cursor');
+  var eventHandler = {
+    onArrowDown: function onArrowDown() {},
+    onArrowUp: function onArrowUp() {},
+    onCancel: function onCancel() {},
+    onReturn: function onReturn() {},
+    onTab: function onTab() {}
+  };
 
-  const scroll = () => {
-    webshell.scrollTop = webshell.scrollHeight
-  }
+  var scroll = function scroll() {
+    webshell.scrollTop = webshell.scrollHeight;
+  };
 
-  const freeze = () => {
-    webshell.removeChild(input)
-  }
+  var freeze = function freeze() {
+    webshell.removeChild(input);
+  };
 
-  const focus = () => {
-    input.focus()
-  }
+  var focus = function focus() {
+    input.focus();
+  };
 
-  const prompt = (text) => {
-    input.insertAdjacentHTML('beforebegin', '<div class="prompt">' + text + '</div>')
-    scroll()
-  }
+  var prompt = function prompt(text) {
+    input.insertAdjacentHTML('beforebegin', '<div class="prompt">' + text + '</div>');
+    scroll();
+  };
 
-  const readInput = () => {
-    return entities.decode(input.innerHTML).replace(/&nbsp;/g, ' ')
-  }
+  var readInput = function readInput() {
+    return entities.decode(input.innerHTML).replace(/&nbsp;/g, ' ');
+  };
 
-  const setInput = (text) => {
-    input.innerHTML = !text ? '' : text
+  var setInput = function setInput(text) {
+    input.innerHTML = !text ? '' : text;
     if (text.length > 0) {
-      const range = document.createRange()
-      const sel = window.getSelection()
-      range.setStart(input.childNodes[0], text.length)
-      range.collapse(true)
-      sel.removeAllRanges()
-      sel.addRange(range)
-      focus()
+      var range = document.createRange();
+      var sel = window.getSelection();
+      range.setStart(input.childNodes[0], text.length);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range);
+      focus();
     }
-  }
+  };
 
-  const writeResponse = (text) => {
-    input.insertAdjacentHTML('beforebegin', '<div class="response">' + text + '</div>')
-    scroll()
-  }
+  var writeResponse = function writeResponse(text) {
+    input.insertAdjacentHTML('beforebegin', '<div class="response">' + text + '</div>');
+    scroll();
+  };
 
-  const writeInput = (text) => {
-    input.insertAdjacentHTML('beforebegin', '<div class="input">' + entities.encode(text) + '</div>')
-    scroll()
-  }
+  var writeInput = function writeInput(text) {
+    input.insertAdjacentHTML('beforebegin', '<div class="input">' + entities.encode(text) + '</div>');
+    scroll();
+  };
 
   webshell.onclick = function (event) {
-    if (event.target === webshell) focus()
-  }
+    if (event.target === webshell) focus();
+  };
 
   input.onkeydown = function (event) {
     switch (event.keyCode) {
       case 13:
-        eventHandler.onReturn()
-        event.preventDefault()
-        return false
+        eventHandler.onReturn();
+        event.preventDefault();
+        return false;
       case 38:
-        eventHandler.onArrowUp()
-        event.preventDefault()
-        return false
+        eventHandler.onArrowUp();
+        event.preventDefault();
+        return false;
       case 40:
-        eventHandler.onArrowDown()
-        event.preventDefault()
-        return false
+        eventHandler.onArrowDown();
+        event.preventDefault();
+        return false;
       case 67:
-        if (!event.ctrlKey) return true
-        eventHandler.onCancel()
-        event.preventDefault()
-        return false
+        if (!event.ctrlKey) return true;
+        eventHandler.onCancel();
+        event.preventDefault();
+        return false;
       case 9:
-        eventHandler.onTab()
-        event.preventDefault()
-        return false
+        eventHandler.onTab();
+        event.preventDefault();
+        return false;
       default:
-        return true
+        return true;
     }
-  }
+  };
 
   return {
-    freeze,
-    focus,
-    onArrowDown: (cb) => { eventHandler.onArrowDown = cb },
-    onArrowUp: (cb) => { eventHandler.onArrowUp = cb },
-    onCancel: (cb) => { eventHandler.onCancel = cb },
-    onReturn: (cb) => { eventHandler.onReturn = cb },
-    onTab: (cb) => { eventHandler.onTab = cb },
-    prompt,
-    readInput,
-    setInput,
-    writeInput,
-    writeResponse
-  }
-}
+    freeze: freeze,
+    focus: focus,
+    onArrowDown: function onArrowDown(cb) {
+      eventHandler.onArrowDown = cb;
+    },
+    onArrowUp: function onArrowUp(cb) {
+      eventHandler.onArrowUp = cb;
+    },
+    onCancel: function onCancel(cb) {
+      eventHandler.onCancel = cb;
+    },
+    onReturn: function onReturn(cb) {
+      eventHandler.onReturn = cb;
+    },
+    onTab: function onTab(cb) {
+      eventHandler.onTab = cb;
+    },
+    prompt: prompt,
+    readInput: readInput,
+    setInput: setInput,
+    writeInput: writeInput,
+    writeResponse: writeResponse
+  };
+};
 
 },{"html-entities":2}],56:[function(require,module,exports){
-exports.read = (id) => {
-  const key = 'webshelljs_' + id
-  const value = window.localStorage.getItem(key)
-  if (!value) return undefined
-  const result = JSON.parse(value)
-  if (result.lastActivity) result.lastActivity = new Date(result.lastActivity)
-  return result
-}
+exports.read = function (id) {
+  var key = 'webshelljs_' + id;
+  var value = window.localStorage.getItem(key);
+  if (!value) return undefined;
+  var result = JSON.parse(value);
+  if (result.lastActivity) result.lastActivity = new Date(result.lastActivity);
+  return result;
+};
 
-exports.delete = (id) => {
-  const key = 'webshelljs_' + id
-  window.localStorage.removeItem(key)
-}
+exports.delete = function (id) {
+  var key = 'webshelljs_' + id;
+  window.localStorage.removeItem(key);
+};
 
-exports.save = (id, state) => {
-  const key = 'webshelljs_' + id
-  const value = JSON.stringify(state)
-  window.localStorage.setItem(key, value)
-}
+exports.save = function (id, state) {
+  var key = 'webshelljs_' + id;
+  var value = JSON.stringify(state);
+  window.localStorage.setItem(key, value);
+};
 
 },{}]},{},[54])(54)
 });
