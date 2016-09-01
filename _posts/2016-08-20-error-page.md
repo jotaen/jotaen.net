@@ -21,8 +21,8 @@ To visit my new error page, you must enter a non existing URL on my domain. (Or 
 
 You can also fiddle around in this box:
 
-<script src="/assets/lib/webshell.js"></script>
-<link rel="stylesheet" property="stylesheet" href="../assets/lib/webshell-dark.css">
+<script src="http://static.jotaen.net/webshell.js/dist/webshell.js"></script>
+<link rel="stylesheet" property="stylesheet" href="/assets/static/webshell-dark.css">
 <div id="tryItOut" class="webshell" style="height: 20em"></div>
 <script>createWebshell('tryItOut')</script>
 
