@@ -4,8 +4,8 @@ title:         Run Monitor
 subtitle:      How I keep track of my run training
 date:          2016-09-07
 tags:          [project, information design]
-redirect_from: /asdfc/
-permalink:     asdfc/run-monitor
+redirect_from: /oBPhB/
+permalink:     oBPhB/run-monitor
 image:         /assets/2016/run-monitor.jpg
 ---
 
