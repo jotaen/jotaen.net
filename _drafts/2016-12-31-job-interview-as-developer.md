@@ -1,55 +1,89 @@
 ---
 layout:        blogpost
-title:         Job interview
-subtitle:      From the applicant’s perspective
+title:         The job interview
+subtitle:      From the candidates’ perspective
 date:          2016-12-31
-tags:          [hr, hiring]
+tags:          [hiring, recruiting]
 redirect_from: /abcdef/
-permalink:     abcdef/job-interview
+permalink:     abcdef/the-job-interview
 image:         /assets/2016/.jpg
 ---
 
 # General process
 
+- There is no right/wrong. But there might be red flags
+- Questions are entry point for a conversation
 - Meet the people you actually gonna work with
+
+
+# Architecture / Technology
+
+### What does your tech stack currently look like?
+- Programming languages, runtimes
+- Frameworks, libraries
+- Build and deployment
+
+### Who makes decisions on technologies?
+- How are the flight levels calibrated between team, teamleads, CTO and upper management?
+
+### How does the architecture evolve?
+- Are there dedicated architects, that specify/predetermine an architecture?
+- How do you review your architectural choices?
+
+
+# Code
+
+### What standards, policies and conventions do you have?
+- Communication, documentation
+
+### How do you ensure quality?
+- Testing concept?
+- Code metrics?
+- Code reviews, merge policies?
+
+### What does your testing concept look like?
+
+
+# Build / Deployment
+
+### What steps have to happen when I want to change production code?
+
+- Technology: version control; tests; CI
+- Process: code review; business approval; deploy process
+
+### Who can make releases and who is responsible for that?
+
+### Do you release on friday evenings?
+
 
 # Team
 
-## How do you know, what you do on each day?
+### How do you know, what you do on each day?
 
-## Who makes decisions on technology and how does software architecture evolve?
+### What is the current team performance?
 
-- How are the flight levels calibrated between team, teamleads, CTO and upper management? (Delegation Poker)
-- Are there dedicated architects, that specify/predetermine an architecture?
+### What are the biggest impediments at the moment?
+- What do you do to solve them?
 
-## Are you innovative?
 
-## How does code gets released? What happens between my computer and the production stage?
+# Production
 
-- Process: code review; business approval; deploy process
-- Technology: version control; tests; CI
+### How do you know, that your software is healthy right now?
 
-## How do you know, that your software is working? Which measurements do you have?
+### Who is responsible for monitoring the production applications?
 
-- Code/software quality
-- Test concept
-- Monitoring, alerting
-- Process of finding and fixing bugs
-- On a scale of 1–10: How confident are you with your application/software as a whole?
+### How do you find, track, analyse and fix bugs?
 
-## Show me a piece of code (or a part of your software) that you are proud of!
 
-## With whom do I collaborate? And with whom not? How does collaboration look like?
+# Process
+
+### How do you plan features?
+
+### With whom do I collaborate? And with whom not? How does collaboration look like?
 
 - Who is involved in the product development process? (PO/PM, UX, FE, BE, QA, …)
 - How do these people communicate/collaborate with each other?
 
-## What technology do you use at the moment?
-
-## How do you get better on individual, team and company level?
-
-## Tell me 3 things that you love most about your job! And 3 that you hate!
-
-# Management
-
-##
+### What do you do to get better?
+- What does innovation mean to you?
+- On individual, team and company level
