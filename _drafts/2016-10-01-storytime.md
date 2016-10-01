@@ -4,9 +4,9 @@ title:         Storytime
 subtitle:      Learning from challenges
 date:          2016-10-01
 tags:          [meta]
-redirect_from: /abcdef/
-permalink:     abcdef/storytime
-image:         /assets/2016/.jpg
+redirect_from: /V4ZPG/
+permalink:     V4ZPG/storytime
+image:         /assets/2016/bookshelf.jpg
 ---
 
 I recently got asked to write up a story about a challenging software project that I was involved into. It’s probably not the hardest coding problem I ever worked on, but is nonetheless an exciting project and — apart from coding — gives you a good insight into my understanding of an agile and iterative approach to solving problems.
