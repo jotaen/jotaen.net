@@ -1,9 +1,9 @@
 ---
 layout:        blogpost
 title:         The job interview
-subtitle:      From the candidates’ perspective
+subtitle:      Asking questions as a candidate
 date:          2016-12-31
-tags:          [hiring, recruiting]
+tags:          [hiring, job]
 redirect_from: /abcdef/
 permalink:     abcdef/the-job-interview
 image:         /assets/2016/.jpg
