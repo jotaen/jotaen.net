@@ -11,9 +11,10 @@ image:         /assets/2016/.jpg
 
 # General process
 
-- There is no right/wrong. But there might be red flags
-- Questions are entry point for a conversation
 - Meet the people you actually gonna work with
+- Different companies/positions have different interview processes/questions
+- There is no right/wrong. But there might be red flags
+- Questions are examples and more an entry point for a conversation
 
 
 # Architecture / Technology
@@ -33,9 +34,6 @@ image:         /assets/2016/.jpg
 
 # Code
 
-### What standards, policies and conventions do you have?
-- Communication, documentation
-
 ### How do you ensure quality?
 - Testing concept?
 - Code metrics?
@@ -43,26 +41,35 @@ image:         /assets/2016/.jpg
 
 ### What does your testing concept look like?
 
+### What standards, policies and conventions do you have?
+- Communication, documentation
 
-# Build / Deployment
+
+# Build / Deployment / Releasing
 
 ### What steps have to happen when I want to change production code?
 
-- Technology: version control; tests; CI
+- Technology: version control; CI; tests; deploy setup
 - Process: code review; business approval; deploy process
 
 ### Who can make releases and who is responsible for that?
+- Developer vs. release manager vs. entire team (incl. PO/PM)?
 
 ### Do you release on friday evenings?
+- Follow up: How often do you usually release?
 
 
 # Team
 
 ### How do you know, what you do on each day?
+- Sprint planning; work-day planning
 
 ### What is the current team performance?
+- Are there measurements on team performance?
+- Who takes care of addressing impediments?
 
 ### What are the biggest impediments at the moment?
+- How do you identify them? (Retrospective, Scrum Master/Agile coach)
 - What do you do to solve them?
 
 
@@ -78,9 +85,10 @@ image:         /assets/2016/.jpg
 # Process
 
 ### How do you plan features?
+- How do ideas become features?
+- How are developers involved into the feature/product process?
 
 ### With whom do I collaborate? And with whom not? How does collaboration look like?
-
 - Who is involved in the product development process? (PO/PM, UX, FE, BE, QA, …)
 - How do these people communicate/collaborate with each other?
 
