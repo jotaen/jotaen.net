@@ -2,11 +2,11 @@
 layout:        blogpost
 title:         The job interview
 subtitle:      Asking questions as a candidate
-date:          2016-12-31
+date:          2016-10-23
 tags:          [hiring, job]
 redirect_from: /abcdef/
 permalink:     abcdef/the-job-interview
-image:         /assets/2016/.jpg
+image:         /assets/2016/interview-table.jpg
 ---
 
 Most software companies put a lot of thought into the elaboration of an interview process for applicants. This is not for nothing: Even though software developers are a dime a dozen, it is hard to find good people who are not just smart and fit into the company culture, but have at the same time a solid track record in what they do.
