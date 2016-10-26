@@ -12,8 +12,8 @@ options = parser.parse_args()
 api_key =  os.environ.get('API_KEY')
 
 # Setup data
-j4n_url = "http://j4n.io"
-jotaen_url = "http://jotaen.net"
+j4n_url = "http://www.j4n.io"
+jotaen_url = "http://www.jotaen.net"
 path = options.path.strip("/")
 void = {
     "url": j4n_url,
