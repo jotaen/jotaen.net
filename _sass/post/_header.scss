@@ -51,7 +51,9 @@
   text-transform: capitalize;
   display: inline;
   background-color: $color-red;
-  box-shadow: 0.05em 0 0 $color-red, -0.05em -0 0 $color-red;
+  $sw: 0.6em;
+  $sh: 0.2em;
+  box-shadow: $sw $sh 0 $color-red, $sw -#{$sh} 0 $color-red, -#{$sw} #{$sh} 0 $color-red, -#{$sw} -#{$sh} 0 $color-red;
   padding: 0.3em;
   color: #fff;
   font-style: italic;
