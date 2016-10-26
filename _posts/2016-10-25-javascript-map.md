@@ -36,7 +36,7 @@ const R = require('ramda')
 const square = (n) => n * n
 const numbers = [1, 2, 3]
 
-// Native Javascript:
+// standard Javascript:
 numbers.map(square) // => [1, 4, 9]
 
 // lodash:
@@ -49,7 +49,7 @@ R.map(square)(numbers) // => [1, 4, 9]
 
 # Data structures
 
-One major difference are the types, that can be mapped over and the types that get returned. In native Javascript, the `map` method is exclusively available on the `Array` prototype, so it is not possible to apply this functionality to an object or any other value – at least not without transforming them to an array upfront.
+One major difference are the types, that can be mapped over and the types that get returned. In standard Javascript, the `map` method is exclusively available on the `Array` prototype, so it is not possible to apply this functionality to an object or any other value – at least not without transforming them to an array upfront.
 
 This is, where both lodash and Ramda take a more powerful approach: They can handle other types, lodash even supports `null` and `undefined`. However, they behave a bit differently in the data structure that they return. lodash consistently returns an array, no matter what you input. Ramda on the other hand keeps the original structure in the certain case where the functor is an object.
 
@@ -98,7 +98,7 @@ _.map(prices, applyRebate(0.5))
 
 # What’s next?
 
-The comparisons spotted in this blogpost show the most basic and obvious differences between native Javascript, lodash and Ramda. But there still remain (as usual) certain edge cases, that you may stumble across some time. One is pointed out in [this piece written by Reg Braithwaite](https://github.com/raganwald-deprecated/homoiconic/blob/master/2013/01/madness.md).
+The comparisons spotted in this blogpost show the most basic and obvious differences between standard Javascript, lodash and Ramda. But there still remain (as usual) certain edge cases, that you may stumble across some time. One is pointed out in [this piece written by Reg Braithwaite](https://github.com/raganwald-deprecated/homoiconic/blob/master/2013/01/madness.md).
 
 
 [^1]: Functions that take another function as argument or return one are called “higher-order function”. This is also referred to as “function as data”.
