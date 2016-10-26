@@ -4,8 +4,8 @@ title:         The map method
 subtitle:      Exploring functional javascript
 date:          2016-10-25
 tags:          [javascript, functional programming, code]
-redirect_from: /abc123/
-permalink:     abc123/javascript-map
+redirect_from: /PzmvA/
+permalink:     PzmvA/javascript-map
 image:         /assets/2016/topographic-map.jpg
 ---
 
