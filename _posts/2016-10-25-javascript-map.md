@@ -86,14 +86,11 @@ console.log(typeof squareMap) // => function
 squareMap(numbers) // => [1, 4, 9]
 {% endhighlight %}
 
-Currying looks somewhat magical at the first glance, but when you have a closer look, it is a rather simple concept that allows higher decoupling and composability of code. Let’s consider the `applyRebate` function above, where the rebate of `0.5` was hardcoded. We could improve this by making `applyRebate` a higher-order function[^1] that can be curried.
+Currying looks somewhat magical at the first glance, but when you have a closer look, it is a rather simple concept that allows higher decoupling and composability of code. Let’s consider the `applyRebate` function above, where the rebate of `0.5` was hardcoded, which makes it super specific. We can improve this by using a higher-order function[^1] that can be curried. Since Ramda only passes the actual value to our callback, we don’t need to implement something simple like `applyRebate` ourselves – instead, we just use Ramda’s `multiply` function and are able to write it like that:
 
 {% highlight javascript %}
-const applyRebate = (percent) => (value) => percent * value
 const prices = {shoes: 60, pants: 80}
-
-R.map(applyRebate(0.5), prices)
-_.map(prices, applyRebate(0.5))
+const res = R.map(R.multiply(0.5), prices)
 {% endhighlight %}
 
 # What’s next?
