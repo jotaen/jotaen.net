@@ -74,7 +74,7 @@ R.map(identity, undefined) // => ERROR!
 
 # Currying
 
-A basic feature of Ramda is that functions can be curried. That means, you don’t need to pass all arguments at once, but you can pass them one after the other in subsequent calls. The actual function body is invoked just with the last call. That way, it is possible to “configure” functions and pass them around. Currying is the main reason why Ramda has a different order of the arguments (compared to lodash or `Array.prototype`).
+A basic idea in functional programming is that functions can be curried. That means, you don’t need to pass all arguments at once, but you can pass them one after the other in subsequent calls. The actual function body is invoked just with the last call. That way, it is possible to “configure” functions and pass them around. Currying is the main reason why Ramda has a different order of the arguments (compared to lodash or `Array.prototype`). It’s also possible to curry functions in lodash, in which case you will have to import it with `require('lodash/fp')` ([read this guide](https://github.com/lodash/lodash/wiki/FP-Guide)).
 
 {% highlight javascript %}
 const square = (n) => n * n
@@ -86,7 +86,7 @@ console.log(typeof squareMap) // => function
 squareMap(numbers) // => [1, 4, 9]
 {% endhighlight %}
 
-Currying looks somewhat magical at the first glance, but when you have a closer look, it is a rather simple concept that allows higher decoupling and composability of code. Let’s consider the `applyRebate` function above, where the rebate of `0.5` was hardcoded, which makes it super specific. We can improve this by using a higher-order function[^1] that can be curried. Since Ramda only passes the actual value to our callback, we don’t need to implement something simple like `applyRebate` ourselves – instead, we just use Ramda’s `multiply` function and are able to write it like that:
+Currying looks somewhat magical at the first glance, but when you have a closer look, it is a rather simple concept that allows higher decoupling and composability of code. Let’s consider the `applyRebate` function above, where the rebate of `0.5` was hardcoded, which makes it super specific. We can improve this by using a higher-order function[^1] that can be curried. Since Ramda only passes the actual value to our callback, we don’t need to implement something simple like `applyRebate` ourselves – instead, we just use the `multiply` function and are able to write it like that:
 
 {% highlight javascript %}
 const prices = {shoes: 60, pants: 80}
