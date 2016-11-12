@@ -3,10 +3,10 @@ layout:        blogpost
 title:         Optimizing for print
 subtitle:      The champions league of responsive webdesign
 date:          2016-11-12
-tags:          [layout, styling]
+tags:          [layout, meta, typography]
 redirect_from: /abc34/
 permalink:     abc34/optimizing-for-print
-image:         /assets/2016/printer.jpg
+image:         /assets/2016/printing-press.jpg
 ---
 
 Responsive webdesign not just means that you can optimize for various screen (or viewport) sizes. Beyond that, you can adjust the layout also for entirely different output devices – for instance, a printer. And before you wonder: yes, even in 2016 there are perfectly valid reasons to print out a website:
