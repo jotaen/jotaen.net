@@ -15,6 +15,7 @@
     background-color: $color-lightgrey2;
     @media print {
       border-top: $border;
+      background-color: transparent;
     }
   }
   @include medium-view {

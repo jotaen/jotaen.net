@@ -64,29 +64,34 @@
   text-transform: capitalize;
   display: inline;
   background-color: $color-red;
-  $sw: 0.6em;
-  $sh: 0.2em;
-  box-shadow: $sw $sh 0 $color-red, $sw -#{$sh} 0 $color-red, -#{$sw} #{$sh} 0 $color-red, -#{$sw} -#{$sh} 0 $color-red;
   padding: 0.3em;
   color: #fff;
   font-style: italic;
   @media print {
     background-color: transparent;
-    box-shadow: none;
     color: $color-black;
     padding-left: 0;
   }
 }
 
+$sw: 0.6em;
+$sh: 0.2em;
+
 .post-header__title {
   line-height: 1.5;
   font-size: 1.9rem;
+  box-shadow: $sw $sh 0 $color-red, $sw -#{$sh} 0 $color-red, -#{$sw} #{$sh} 0 $color-red, -#{$sw} -#{$sh} 0 $color-red;
+  @media print {
+    box-shadow: none;
+  }
 }
 
 .post-header__subtitle {
   font-size: 1.2rem;
+  box-shadow: $sw $sh 0 $color-red, -#{$sw} #{$sh} 0 $color-red;
   @media print {
     color: $color-grey;
+    box-shadow: none;
   }
 }
 

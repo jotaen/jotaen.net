@@ -17,9 +17,11 @@
     margin-right: 0.2em;
   }
 
-  // &:hover,
-  // &--hover {
-  //   background-color: $color-green;
-  //   color: $color-white;
-  // }
+  @media print {
+    border: none;
+    padding: 0;
+    margin-right: 0.3em;
+    line-height: inherit;
+    color: $color-grey;
+  }
 }
