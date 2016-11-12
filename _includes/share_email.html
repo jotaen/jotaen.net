@@ -1,0 +1,5 @@
+mailto:?subject={{
+  "Blogpost: " | append: page.title | append: " – " | append: page.subtitle | uri_escape
+}}&body={{
+  "Read this blogpost: " | append: site.domain | append: page.url | uri_escape
+}}
