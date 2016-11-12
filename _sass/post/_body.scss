@@ -21,6 +21,16 @@
   }
 }
 
+@media print {
+  .post-body a {
+    color: $color-black;
+    text-decoration: none;
+    &:after{
+      content: " [➚ " attr(href) "]";
+    }
+  }
+}
+
 .post-body > p,
 .post-body > ul,
 .post-body > ol,

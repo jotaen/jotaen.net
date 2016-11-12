@@ -32,6 +32,13 @@ layout: page
     {% include publish_date.html %}
   </dd>
 
+  <dt class="post-info__label screen-hide">
+    Retrieved as from:
+  </td>
+  <dd class="post-info__data screen-hide">
+    <script>document.write(new Date().toLocaleString());</script>
+  </dd>
+
   <dt class="post-info__label">
     Reading time:
   </td>
@@ -46,10 +53,10 @@ layout: page
     <a href="http://{% include shortlink.html %}">{% include shortlink.html %}</a>
   </dd>
 
-  <dt class="post-info__label">
+  <dt class="post-info__label print-hide">
     Share:
   </td>
-  <dd class="post-info__data">
+  <dd class="post-info__data print-hide">
     ▸ On <a href="{% include share_twitter.html %}" target="_blank">Twitter</a><br>
     ▸ Via <a href="{% include share_email.html %}">E-Mail</a>
   </dd>

@@ -3,12 +3,19 @@
 .post-info {
   z-index: 999;
   color: $color-grey;
+  @media print {
+    opacity: 0.7;
+  }
   margin-top: 0;
   font-size: 0.95em;
   @include narrow-view {
     padding: 0.5em 1em 0 1em;
-    border-bottom: 1px solid $color-grey;
+    $border: 1px solid $color-grey;
+    border-bottom: $border;
     background-color: $color-lightgrey2;
+    @media print {
+      border-top: $border;
+    }
   }
   @include medium-view {
     border-left: 1px solid $color-grey;

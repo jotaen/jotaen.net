@@ -31,6 +31,13 @@
       background: linear-gradient(to right, rgba(255,255,255,0.35), rgba(255,255,255,0));
     }
   }
+
+  @media print {
+    height: auto;
+    min-height: auto;
+    background-color: inherit;
+    background-image: none !important;
+  }
 }
 
 .post-header__headline {
@@ -43,6 +50,12 @@
   width: 90%;
   @include medium-view {
     padding-left: 1.2em;
+  }
+  @media print {
+    position: relative;
+    text-align: left;
+    padding-left: 0;
+    max-width: $width-content-column;
   }
 }
 
@@ -57,6 +70,12 @@
   padding: 0.3em;
   color: #fff;
   font-style: italic;
+  @media print {
+    background-color: transparent;
+    box-shadow: none;
+    color: $color-black;
+    padding-left: 0;
+  }
 }
 
 .post-header__title {
@@ -66,6 +85,9 @@
 
 .post-header__subtitle {
   font-size: 1.2rem;
+  @media print {
+    color: $color-grey;
+  }
 }
 
 .post-header__image-info {
