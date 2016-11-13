@@ -21,12 +21,12 @@ Since I recently optimized the print layout for my blog, I want to share my thou
 
 ## Page format
 
-Let’s start with the page format: Fortunately, the situation in print is a bit more neat than it is on screen. Basically, there are just two page formats to considerate that are most common in home and office environments:
+Let’s start with the page format: Fortunately, the situation in print is a bit more neat than it is on screen. Basically, there are just two page formats to consider, which are most common in home and office environments. Both formats vary in sizes and ratio
 
 - DIN A4: 210mm × 297mm
 - US letter: 215.9mm × 279.4mm
 
-Both formats vary in sizes and ratio: DIN A4 is more longish whereas the US letter format is more clinched. Eventually both formats are quite similar though.
+DIN A4 is more longish whereas the US letter format is more clinched. Eventually, both formats are quite similar though.
 
 In terms of the width, I optimized the print layout for the DIN A4 format, because when it fits there it automatically will work on US letters (since these are wider). However, I ignored the differences in height, since blogposts are continuous text – I just let the browser or printer take care of the pagination.
 
@@ -77,7 +77,7 @@ Since I use a comparatively small font size on my blog, I didn’t make any adju
 
 ### Where to put the CSS?
 
-There are various possibilities for organizing the CSS code for the print styling. They can be defined as entirely separated style sheets and embedded via a `<link rel="myPrint.css" media="print">` tag in the HTML head section. This has the advantage that the CSS code only gets loaded when the user actually wants to print the page.
+There are various possibilities for organizing the CSS code for the print styling. They can be defined as entirely separate style sheets and embedded via a `<link rel="myPrint.css" media="print">` tag in the HTML head section. This has the advantage that the CSS code only gets loaded when the user actually wants to print the page.
 
 However, I prefer to have my stuff organized in a logical way: I decided to handle the print styling in place and keep it along with all the other rules. When using CSS preprocessing (SASS, LESS) this can be done like so:
 
@@ -102,4 +102,6 @@ You can enforce a page break with the `break-before` CSS property in order to en
 
 ### Developing
 
-When you want to check the print rendering result, you can use the print preview of your browser. However, you might find that workflow a bit too sluggish: Most browsers offer rendering options in the development tools, that let you emulate the media types. But: every browser renders differently, so make sure that you cover and test on all major browsers (and not just one).
+When you want to check the print rendering result, you can use the print preview of your browser. However, you might find that workflow a bit too sluggish: Most browsers offer rendering options in the development tools, so that you can emulate the media types.
+
+And one last thing: Testing print layouts is equally effortful than testing screen layouts. Every browser renders differently, so make sure that you cover all major browsers.
