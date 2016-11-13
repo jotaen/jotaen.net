@@ -2,14 +2,14 @@
 layout:        blogpost
 title:         Optimizing for print
 subtitle:      The champions league of responsive webdesign
-date:          2016-11-12
+date:          2016-11-13
 tags:          [layout, meta, typography]
-redirect_from: /abc34/
-permalink:     abc34/optimizing-for-print
+redirect_from: /L9yVd/
+permalink:     L9yVd/optimizing-for-print
 image:         /assets/2016/printing-press.jpg
 ---
 
-Responsive webdesign not just means that you can optimize for various screen (or viewport) sizes. Beyond that, you can adjust the layout also for entirely different output devices – for instance, a printer. And before you wonder: yes, even in 2016 there are perfectly valid reasons to print out a website:
+Responsive webdesign doesn’t mean that you can just optimize for various screen (or viewport) sizes. Beyond that, you can adjust the layout also for entirely different output devices – for instance, a printer. And before you wonder: yes, even in 2016 there are perfectly valid reasons to print out a website:
 
 - You don’t want to expose an (expensive) electronic device in a dirty or wet environment
 - You want to proof-read a draft text but you prefer to use real pencils for making annotations
@@ -26,15 +26,15 @@ Let’s start with the page format: Fortunately, the situation in print is a bit
 - DIN A4: 210mm × 297mm
 - US letter: 215.9mm × 279.4mm
 
-Both formats vary in sizes a little bit: DIN A4 is a bit more longish whereas the US letter format comes a bit more clinched. Eventually both formats are quite similar though.
+Both formats vary in sizes and ratio: DIN A4 is more longish whereas the US letter format is more clinched. Eventually both formats are quite similar though.
 
 In terms of the width, I optimized the print layout for the DIN A4 format, because when it fits there it automatically will work on US letters (since these are wider). However, I ignored the differences in height, since blogposts are continuous text – I just let the browser or printer take care of the pagination.
 
-By the way, the basic layout of the pages can be setup in CSS with the [`@page` at-rule](https://developer.mozilla.org/en/docs/Web/CSS/@page).
+By the way, the basic page layout can be setup in CSS via [`@page`](https://developer.mozilla.org/en/docs/Web/CSS/@page).
 
 ## Ink is expensive
 
-Most people have an intuitive understanding that every printed sheet of paper comes at a certain cost. It would be a mistake to think that this only applies to print and that resources in a virtual environment are for free. In fact, the cost of a single webpage request can [easily outrange the average daily income](https://whatdoesmysitecost.com) in poorer countries. However, that would be a whole topic in itself.
+Most people have an intuitive understanding that every printed sheet of paper comes at a certain cost. It would be a mistake to think that this exclusively applies to print and that resources in a virtual environment are for free. In fact, the cost of a single webpage request can [easily outrange the average daily income](https://whatdoesmysitecost.com) in poorer countries. However, that would be a whole topic in itself.
 
 Most browsers automatically address some basic issues in order to save ink. (E.g. they will not print background images or background colors.) But especially in terms of images or other colored areas you should consider whether printing them adds any value. For example I don’t print the header image of my blogposts, because they have just illustrative purpose an can thus be spared out.
 
@@ -48,7 +48,10 @@ I see no value in printing out interactive items that would become meaningless i
 
 - Navigation
 - Footer
+- Search box
 - Social buttons
+
+Anyway, make sure that the layout doesn’t become too simplistic on the other hand. The user should be able to recognize the visual identity of the original website.
 
 ### Weblinks need to be spelled in full
 
@@ -62,7 +65,7 @@ The user may see an underlined word and recognize it as link, but the address in
 }
 {% endhighlight %}
 
-That way, the address of a link is written out and appears right after the link text. (Try it out by looking at the print preview of this page.) Depending of the length it might be a pain to typewrite the URL, but after all the URL is still existing.
+That way, the address of a link is written out and appears right after the link text. (Try it out by looking at the print preview of this page.) Depending on the length it might be a pain to typewrite the URL, but after all the URL information is preserved.
 
 ## Typography
 
@@ -87,15 +90,15 @@ However, I prefer to have my stuff organized in a logical way: I decided to hand
 
 ### Units, dimensions
 
-The correct unit for a printer is `pt`. When you really want to carry it to the extremes, then you can tweak every unit with a media query. On the other hand though, most modern browsers do a good job in properly calculating the conversions by themselves.
+The correct unit for a printer is `pt`. When you really want to carry it to the extremes, then you can tweak every unit with a media query. I think this isn’t worth the hassle: most modern browsers do a good job in properly calculating the conversions by themselves.
 
 ### Relative dates
 
-In case you use relative dates on your website (e.g. “yesterday”, “3 days ago”) remember that these become meaningless when printed out.
+In case you use relative dates on your website (e.g. “yesterday”, “3 days ago”) remember that these become meaningless when printed out. You need to display them as fully qualified date string.
 
 ### Page breaks
 
-You can enforce a page break with the `break-before` CSS property in order to ensure that different sections get printed on different pages. This allows the user to just print out certain sections that he is interested in by using the range feature of the print dialog.
+You can enforce a page break with the `break-before` CSS property in order to ensure that different sections get printed on different pages. This allows the user to just print out certain sections that he is interested in by setting the page range in the print dialog.
 
 ### Developing
 
