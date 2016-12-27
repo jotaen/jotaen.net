@@ -30,7 +30,7 @@ As different companies and positions have different demands and expectations, th
 # Architecture, Technology
 
 ### What does your current tech stack look like?
-These questions should give a good overview over the basic setup:
+These questions should give a good overview over the most basic setup:
 
 - Which programming languages do you use?
 - What databases and major frameworks did you choose?
@@ -46,10 +46,18 @@ I think there is no golden trail for establishing architectures as this highly d
 In my experience, it is important that everyone is encouraged to make his voice heard in technical discussions and shares a common understanding in which direction the development is heading to. However, there are different flight levels that must be well calibrated between the single developer, the team, CTO and product management (think e.g. of the “Make vs. Buy” question).
 
 
-# Team
+# Product process
 
 ### How do you know what to do each day?
-This again is a very basic question to understand the work processes. The daily workflow is a good starting point, but it is admittedly the least important. I’m more interested to get a feeling for the points of intersection with the product management and with other teams. I have made the best experience with cross-functional teams, where developers, PMs, design, UX,… collaborate hand in hand from the very beginning. Although methodologies like Kanban came from the industry originally, it’s neither effective nor efficient to think of software development like a production line, where ideas traverse the departments from construction to assembly. A good indicator is to scan the boundaries of some roles in the team: What does the UX guy know about FE development? Who (apart from operating) is involved in maintaining the build processes? What do the backend developer know about upcoming style and layout changes?
+This again is a very basic question to understand the work processes. The daily workflow is a good starting point, but it is admittedly the least insightful. I’m more interested to get a feeling for the points of intersection with the product management and with other teams. I have made the best experience with cross-functional teams, where developers, PMs, design, UX,… collaborate hand in hand from the very beginning.
+
+### How does product development happen?
+Although methodologies such as Kanban came from the industry originally, I don’t like to think of software development as a production line, where ideas traverse the departments from construction to assembly. Although I don’t argue that these setups do not work (in fact they do), it’s not the setup that I seek and want to work in.
+
+A good indicator is to scan some roles in the team and see how the boundaries are staked out: What does the UX guy know about FE development? Who (apart from operating) is involved in maintaining the build tools? What do the backend developers know about upcoming style and layout changes?
+
+
+# Team
 
 ### What is the current team performance?
 There are various ways of measuring the performance and throughput of a team. When working in sprints, most teams practise some sort of estimates, which helps planning the upcoming workload. It’s also common to review the outcome of a sprint and see whether the estimates were accurate. For me, it doesn’t matter which method is being used, as long as there is a functioning cycle of planning and evaluation. The team should show awareness for this topic and foster a culture of perseverant improvement.
@@ -63,6 +71,7 @@ If possible, I try to get an insight into the recent retrospectives and speak ab
 The first response to this question is often about educational budgets, which I’m not primarily interested in. It’s of course a big plus when a company pays my tickets, but in the end people don’t get better just because they attend a conference or a workshop once in a while. It’s worth diving a bit deeper into that topic, e.g. by asking these questions:
 
 - Do you think your company/team is innovative? What does innovation mean to you?
+- Do you perform regular code reviews?
 - How do you share knowledge within teams and across teams?
 - When was the last time you introduced a technology that nobody had experience with?
 - Do you engage in open source?
@@ -72,37 +81,30 @@ The first response to this question is often about educational budgets, which I�
 # Code
 
 ### How do you ensure quality?
-- Code metrics?
-- Code reviews, merge policies?
-- Consistency (standards, policies and conventions)
+A common misconception is that code quality correlates with age. Developers tend to think that way, because they prefer to produce new stuff rather than to understand and deal with existing one. Therefore, a common response to this question is an admission that there is some amount of legacy code they have to deal with, but that they do their best to produce clean and well tested code now. However, if the company produced bad code in the past, what makes them think that they won’t repeat the same mistakes again?
+
+These are some indicators for quality that I look out for:
+
+- Metrics (especially coverage)
+- Regular reviews
+- Policies and conventions (that not just exist on paper)
 
 ### What is your overall code coverage?
-I prefer to ask this question exactly that way, even though scarcely anybody will know the overall figure for this. Test coverage is an excellent example to see how people deal with metrics and how they think that these numbers reflect the actual quality. My personal opinion is that coverage is one of the most important developer metrics and everyone should roughly know about it. However, the goal is to have a useful and well-conceived testing approach in the end, not to aim for 100% by all means.
+I prefer to ask this question exactly that way, even though scarcely anybody will know an overall figure for this. Test coverage is an excellent example to see how people deal with metrics and how they think that these numbers reflect the actual quality. My personal opinion is that coverage is one of the most important developer metrics and everyone should at least qualitatively know about it. But: the goal is to have a useful and well-conceived testing approach in the end, not to aim for 100% by all means.
 
 ### How do you find, track, analyse and fix bugs?
+This is a very revealing question. I’m not satisfied with hearing the general process, I rather like to go into detail about a recent bug they had. Who reported it? How long did it take someone to respond? How did they analyse and fix it? And, most of all: What did they learn from it?
 
 
 # Build, Deployment, Production
 
-### What steps have to happen when I want to change production code?
-In my experience, the maturity of a team can be better assessed by looking at  tooling and processing rather than what trendy frontend library they use. A  fully automated, stable continuous deployment setup for example requires a significant amount of work, and this is not just a matter of developer convenience – seing a constant investment here shows that the company understands how these processes pay off on a business level. Moreover, they might even be an indicator for the overall productivity. 
+### What steps have to happen when I want to push code to production?
+In my experience, the maturity of a team can be better assessed by looking at  tooling and processing rather than what trendy frontend library they use. A  fully automated, stable continuous deployment setup for example requires a significant amount of work. And this is not just a matter of developer convenience – seing a constant investment here shows that the company understands how these processes pay off on a business level. Moreover, they might even be an indicator for the overall productivity. 
 
 This question also gives a good insight into the responsibility for releases: Do they have fixed release dates that are demanded by the product manager or is it the developers themselves who push on with getting their stuff out.
 
 ### Do you release on friday evenings?
-This is a bit of a trick question and I don’t know whether I would ask it literally. The idea behind it is to see how confident they feel with their infrastructure and whether they trust their monitoring to make a reliable assertion about the healthiness of the application. It’s can be also interesting to ask for the latest major incident, how it was resolved and what they did afterwards to prevent it from happening again.
-
-
-# Product process
-
-### How do you plan features?
-- How do ideas become features?
-- How are developers involved into the feature/product process?
-
-### With whom do I collaborate? And with whom not?
-- How does collaboration look like?
-- Who is involved in the product development process? (PO/PM, UX, FE, BE, QA, …)
-- How do these people communicate/collaborate with each other?
+This is a bit of a trick question and I don’t know whether I would ask it literally. The idea behind it is to see how confident they feel with their infrastructure and whether they trust their monitoring to make a reliable assertion about the healthiness of the application. It can be also interesting to ask for the latest major incident, how it was resolved and what they did afterwards to prevent it from happening again.
 
 
 [^1]: [“A developer’s guide to interviewing”](https://medium.com/@djsmith42/how-to-interview-as-a-developer-candidate-b666734f12dd#.8ytpeoyjb) by Dave Smith was a huge inspiration; with this blogpost I tried to establish my own version of it.
