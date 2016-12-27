@@ -2,10 +2,10 @@
 layout:        blogpost
 title:         The job interview
 subtitle:      Asking questions as a candidate
-date:          2016-12-04
+date:          2016-12-27
 tags:          [hiring, job]
-redirect_from: /abcdef/
-permalink:     abcdef/the-job-interview
+redirect_from: /EDIqf/
+permalink:     EDIqf/the-job-interview
 image:         /assets/2016/interview-table.jpg
 ---
 
