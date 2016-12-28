@@ -15,14 +15,14 @@ There are tons of articles that give advice for HR on how to measure the skillse
 
 A few weeks ago I was looking for a new job and had spent much thought on how to find a place I would really love to work. I tried to establish a methodological procedure on how to approach my search and came up with three criteria that I attempt to evaluate when meeting a potential company:
 
-1. **Team** – I attribute a lot of importance to a transparent, progressive and diverse environment. I want to collaborate with people who are self-aware and enthusiastic (but not obsessed) with what they do. Being part of a supportive and respectful team is in my eyes one of the most substantial aspects of employee hapiness.
-2. **Product** – Although I see writing code and mastering tools as a craft I continuously am about to get better in, my true motivation comes from the product that I am contributing to. Being part of that is what makes my work meaningful eventually and I need to feel a strong idenfication so that I can bring in my own ideas.
+1. **Team** – I attribute a lot of importance to a transparent, progressive and diverse environment. I want to collaborate with people who are self-aware and enthusiastic (but not obsessed) with what they do. Being part of a supportive and respectful team is in my eyes one of the most substantial aspects of employee happiness.
+2. **Product** – Although I see writing code and mastering tools as a craft I continuously am about to get better in, my true motivation comes from the product that I am contributing to. Being part of that is what makes my work meaningful eventually and I need to feel a strong identification so that I can bring in my own ideas.
 3. **Technology** – I want to constantly move myself forward and learn new things, but I do not give excessive weight to particular technologies. An ambitious and self-critical team culture is much more important here than working with certain programming languages or the latest libraries. In regards to the product, I like to see technology as an enabler of productivity.
 
 
 # General process
 
-A few thoughts upfront: Although it is called a job “interview”, I consider this term to be too one-sided. The purpose of the whole process is to get to know each other and to find out if both sides see a way in working together. In fact, I think the interview is a conversation, where I meet the people who I actually gonna work with and look whether it “feels right”.
+A few thoughts upfront: Although it is called a job “interview”, I consider this term to be too one-sided. The purpose of the whole process is to get to know each other and to find out if both sides see a way in working together. In fact, the interview is a conversation, where I meet the people who I actually gonna work with and look whether it “feels right”.
 
 As different companies and positions have different demands and expectations, the procedure described in this blogpost is highly opinionated: The questions must be seen as examples and are eventually just an entry point for a conversation. Also, there is no right/wrong and either no scorecard that gives a measurable answer in the end. (However, there might be red cards, of course.) The topics that I raise here should yield a good picture and serve as a basis for me to make a reasonable decision.
 
@@ -34,7 +34,7 @@ These questions should give a good overview over the most basic setup:
 
 - “Which programming languages do you use?”
 - “What databases and major frameworks did you choose?”
-- “How does your architecture look like? (e.g. microservices vs. monolith)”
+- “What does your architecture look like? (e.g. microservices vs. monolith)”
 - “What tools do you use for build, CI, monitoring, deployment, etc.”
 - “On which infrastructure is your application running?”
 
@@ -54,13 +54,13 @@ This again is a very basic question to understand the work processes. The daily 
 A good indicator is to scan some roles in the team and see how the boundaries are staked out: What does the UX guy know about FE development? Who (apart from operating) is involved in maintaining the build tools? What do the backend developers know about upcoming style and layout changes?
 
 ### “How does product development happen?”
-Although methodologies such as Kanban came from the industry originally, I don’t like to think of software development as a production line, where ideas traverse the departments from construction to assembly. Although I don’t argue that these setups would not work (in fact they do), it’s just not the setup that I seek and want to be part of. When speaking in industrial metaphores, I like to see software development more as a workshop, where all contributors work simultaneously from different sides on all the various aspects of the “workpiece”.
+Although methodologies such as Kanban came from the industry originally, I don’t like to think of software development as a production line, where ideas traverse the departments from construction to assembly. Although I don’t argue that these setups would not work (in fact they do), it’s just not the setup that I seek and want to be part of. When speaking in industrial metaphors, I like to see software development more as a workshop, where all contributors work simultaneously from different sides on all the various aspects of the “workpiece”.
 
 
 # Team
 
 ### “What is your current team performance?”
-There are various ways of measuring the performance and throughput of a team. When working in sprints, most teams practise some sort of estimates, which helps planning the upcoming workload. It’s also common to review the outcome of a sprint and see whether the estimates were accurate. For me, it doesn’t matter which method is being used, as long as there is a functioning cycle of planning and evaluation. The team should show awareness for this topic and foster a culture of perseverant improvement.
+There are various ways of measuring the performance and throughput of a team. When working in sprints, most teams practice some sort of estimates, which help planning the upcoming workload. It’s also common to review the outcome of a sprint and see whether the estimates were accurate. For me, it doesn’t matter which method is being used, as long as there is a functioning cycle of planning and evaluation. The team should show awareness for this topic and foster a culture of perseverant improvement.
 
 ### “How do you deal with impediments?”
 Each team faces impediments and hindrances that prevent it from delivering the highest possible performance. But just because a team executes weekly retrospectives doesn’t mean they systematically tackle the major barriers one after the other. Continuous improvement (Kaizen) is matter of culture, not processes.
@@ -81,29 +81,30 @@ The first response to this question is often about educational budgets, which I�
 # Code
 
 ### “How do you ensure quality?”
-A common misconception is that code quality correlates with age. Developers tend to think that way, because they prefer to produce new stuff rather than to understand and deal with existing one. Therefore, a common response to this question is an admission that there is some amount of legacy code they have to deal with, but that they do their best to produce clean and well tested code now. However, if the company produced bad code in the past, what makes them think that they won’t repeat the same mistakes again?
+A common misconception is that code quality correlates its with age. Developers tend to think that way, because they prefer to produce new stuff rather than to understand and deal with existing one. Therefore, a common response to this question is an admission that there is some amount of legacy code they have to deal with, but that they do their best to produce clean and well tested code now. However, if the company produced bad code in the past, what makes them think that they won’t repeat the same mistakes again?
 
 These are some indicators for quality that I look out for:
 
 - Metrics (especially coverage)
 - Regular reviews
 - Policies and conventions (that not just exist on paper)
+- Frequent refactorings
 
 ### “What is your overall code coverage?”
 I prefer to ask this question exactly that way, even though scarcely anybody will know an overall figure for this. Test coverage is an excellent example to see how people deal with metrics and how they think that these numbers reflect the actual quality. My personal opinion is that coverage is one of the most important developer metrics and everyone should at least qualitatively know about it. But: the goal is to have a useful and well-conceived testing approach in the end, not to aim for 100% by all means.
 
-### “How do you find, track, analyse and fix bugs?”
-This is a very revealing question. I’m not satisfied with hearing the general process, I rather like to go into detail about a recent bug they had. Who reported it? How long did it take someone to respond? How did they analyse and fix it? And, most of all: What did they learn from it?
+### “How do you find, track, analyze and fix bugs?”
+This is a very revealing question. I’m not satisfied with hearing the general process, I rather like to go into detail about a recent bug they had. Who reported it? How long did it take someone to respond? How did they analyze and fix it? And, most of all: What did they learn from it?
 
 
 # Build, Deployment, Production
 
 ### “What steps have to happen when I want to push code to production?”
-In my experience, the maturity of a team can be better assessed by looking at  tooling and processing rather than what trendy frontend library they use. A  fully automated, stable continuous deployment setup for example requires a significant amount of work. And this is not just a matter of developer convenience – seing a constant investment here shows that the company understands how these processes pay off on a business level. Moreover, they might even be an indicator for the overall productivity. 
+In my experience, the professional maturity of a team can be better assessed by looking at  tooling and processing rather than what trendy frontend library they use. A fully automated, stable continuous deployment setup for example requires a significant amount of work. And this is not just a matter of developer convenience – seeing a constant investment here shows that the company understands how these processes pay off on a business level. Moreover, they might even be an indicator for the overall productivity. 
 
 This question also gives a good insight into the responsibility for releases: Do they have fixed release dates that are demanded by the product manager or is it the developers themselves who push on with getting their stuff out.
 
-### “Do you release on friday evenings?”
+### “Do you release on Friday evenings?”
 This is a bit of a trick question and I don’t know whether I would ask it literally. The idea behind it is to see how confident they feel with their infrastructure and whether they trust their monitoring to make a reliable assertion about the healthiness of the application. It can be also interesting to ask for the latest major incident, how it was resolved and what they did afterwards to prevent it from happening again.
 
 
