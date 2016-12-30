@@ -88,7 +88,8 @@ $sh: 0.2em;
 
 .post-header__subtitle {
   font-size: 1.2rem;
-  box-shadow: $sw $sh 0 $color-red, -#{$sw} #{$sh} 0 $color-red;
+  line-height: 1.5;
+  box-shadow: $sw $sh 0 $color-red, -#{$sw} #{$sh} 0 $color-red, $sw 0 0 $color-red, -#{$sw} 0 0 $color-red;
   @media print {
     color: $color-grey;
     box-shadow: none;
