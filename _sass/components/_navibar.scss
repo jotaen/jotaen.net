@@ -35,7 +35,7 @@
     @include narrow-view {
       position: absolute;
       width: 2000px;
-      right: 233px;
+      right: 247px;
     }
     @include medium-view {
       margin-top: 1em;
@@ -47,12 +47,14 @@
 .navibar__logo {
   display: block;
   height: $width-navibar * 0.8;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 7px;
   @include narrow-view {
-    margin: 4px 10px 0 12px;
+    margin: -4px 10px 0 12px;
     float: right;
   }
   @include medium-view {
-    margin: 40px 0 47px -28px;
+    margin: 40px 0 47px -33px;
     -webkit-transform: rotate(270deg);
     -moz-transform: rotate(270deg);
     -o-transform: rotate(270deg);
