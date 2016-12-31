@@ -1,11 +1,9 @@
 @import "library";
 
-$box-height: 150px;
-
 .teaser {
   position: relative;
   max-width: $width-content-column;
-  min-height: $box-height;
+  overflow: hidden;
   clear: both;
   padding: 2em 0;
   border-top: 1px solid $color-grey;
@@ -15,7 +13,7 @@ $box-height: 150px;
 
   &__image {
     width: 200px;
-    height: $box-height;
+    height: 150px;
     @include medium-view {
       float: left;
       margin-right: 15px;

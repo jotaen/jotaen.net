@@ -7,6 +7,10 @@ title:  Blog Index
 
   <h1 class="pagetitle">– {{ page.title }} –</h1>
 
+  <div class="teaser">
+    {% include follow.html %}
+  </div>
+
   {% for post in site.posts %}
   <article class="teaser">
     <a href="{{ post.url | prepend: site.baseurl }}" class="a--reset">

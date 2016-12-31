@@ -1,0 +1,57 @@
+.follow {
+  &__heading {
+    margin: 0;
+    text-align: center;
+    &:before {
+      content: "☞";
+      font-size: 1.2em;
+      margin-right: 0.5em;
+    }
+  }
+
+  &__list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    & > li {
+      float: left;
+      text-align: center;
+      line-height: 2;
+    }
+    & > li:first-child {
+      width: 42%;
+      padding-right: 2%;
+    }
+    & > li:last-child {
+      width: 52%;
+      border-left: 1px solid #ccc;
+      padding-left: 2%;
+    }
+  }
+
+  &__twitter {
+    color: $color-white;
+    background-color: $color-blue;
+    border: 1px solid $color-blue;
+    padding: 0.2rem 0.5rem;
+    font-size: 1rem;
+    & > svg {
+      height: 22px;
+      display: block;
+      float: left;
+      margin: -3px 3px 0 -3px;
+    }
+  }
+
+  &__email {
+    padding: 0.2rem;
+    width: 55%;
+  }
+
+  &__button {
+    color: $color-white;
+    border: 1px solid $color-green;
+    background-color: $color-green;
+    padding: 0.2rem 0.5rem;
+  }
+}
