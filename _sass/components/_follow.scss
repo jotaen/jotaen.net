@@ -1,6 +1,6 @@
 .follow {
   &__heading {
-    margin: 0;
+    margin-top: 0;
     text-align: center;
     &:before {
       content: "☞";
@@ -13,19 +13,31 @@
     list-style-type: none;
     padding-left: 0;
     margin: 0;
-    & > li {
-      float: left;
-      text-align: center;
-      line-height: 2;
+    @include narrow-view {
+      & > li {
+        margin: 0.5em auto;
+        padding: 1em 0;
+        width: 80%;
+      }
+      & > li:first-child {
+        border-bottom: 1px solid #ccc;
+      }
     }
-    & > li:first-child {
-      width: 42%;
-      padding-right: 2%;
-    }
-    & > li:last-child {
-      width: 52%;
-      border-left: 1px solid #ccc;
-      padding-left: 2%;
+    @include medium-view {
+      & > li {
+        float: left;
+        text-align: center;
+        line-height: 2;
+        padding-bottom: 1em;
+      }
+      & > li:first-child {
+        width: 44%;
+      }
+      & > li:last-child {
+        width: 51%;
+        border-left: 1px solid #ccc;
+        padding-left: 4%;
+      }
     }
   }
 
