@@ -39,14 +39,20 @@
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-62283896-1', 'auto');
       ga('send', 'pageview');
-      setInterval(function() {
-        ga('send', {
-          hitType: 'event',
-          eventCategory: 'Heartbeat',
-          eventAction: 'pulse',
-          eventValue: 30
-        });
-      }, 30000);
+
+      (function(intervalInSeconds, maxStrokes) {
+        var i = 0;
+        var heartbeater = setInterval(function() {
+          i++;
+          if (i >= maxStrokes) clearInterval(heartbeater);
+          ga('send', {
+            hitType: 'event',
+            eventCategory: 'Heartbeat',
+            eventAction: 'pulse',
+            eventValue: 30
+          });
+        }, intervalInSeconds*1000);
+      })(10, 120); // max runtime: 20 minutes (120 strokes á 10 seconds)
     </script>
 
   </body>
