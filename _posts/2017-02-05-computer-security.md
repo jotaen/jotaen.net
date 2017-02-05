@@ -74,13 +74,13 @@ A lot of malware is installed with the unknowing assistance of the user itself. 
 
 > **Encrypt all physical devices and always activate access control mechanisms.**
 
-Electronic devices like laptops or smartphones are full of personal data with email and social media software setup and ready to go. If someone steals one your devices he should not be able to access any of this. However, just a login password is not sufficient here, because the thief can extract the storage drive and copy all the data, thereby bypassing the login mechanism of the operating system.
+Electronic devices like laptops or smartphones are full of personal data; email and social media software are setup and ready to go. If someone steals one your devices he should not be able to access any of this. However, just configuring a login password is not sufficient, because the thief can extract the storage drive and copy all the data, thereby bypassing the login mechanism of the operating system.
 
-Harddrive encryption is cheap and easy nowadays, and every modern operating system offers seamless support for it. Use it for all devices, especially:
+Harddrive encryption is cheap and easy nowadays, and every modern operating system offers seamless support for it. Without knowing the password, the storage remains safe. Use full disc encryption for all devices, especially:
 
 - Computers
 - Portable devices (e.g. smartphone)
-- External storage drives
+- External storage drives (e.g. for backups)
 - USB sticks
 
 
@@ -88,19 +88,19 @@ Harddrive encryption is cheap and easy nowadays, and every modern operating syst
 
 > **Never connect to untrusted networks. Never exchange meaningful data via unsecure communication channels.**
 
-Every time you login somewhere or you send an email, data will be transmitted via a network connection. When you connect to some random WiFi hotspot in your neighbourhood, you cannot know whether it is infiltrated or otherwise contaminated – it is not overly complicated to setup a router to record all data being exchanged. Unless you don’t use secure protocols like HTTPS or IMAP SSL, you should consider all your communication public.
+Every time you login somewhere or you send an email, data will be transmitted via a network connection. When you connect to some random WiFi hotspot in your neighbourhood, you cannot know whether it is infiltrated or otherwise contaminated – it is not overly complicated to setup a network router to record all data being exchanged. Unless you don’t use secure protocols like HTTPS or IMAP SSL, you should consider all of your communication to be public.
 
 
 ## Backups and recovery
 
 > **Backup all critical data regularly. Keep recovery keys available in a safe place.**
 
-Remember, that all the security mechanisms that you setup for protection take effect to *everyone*. The login prompt of your computer cannot know whether its you or some evil invader. In case you forget the password with which you had encrypted your hard drive, all your data remains inaccessable. There will be no backdoor, and nobody can help you to recover any of your data whatsoever. Therefore you should always keep the reverse scenario in mind. For example, many services offer you recovery keys – you can print them out and then store them in a safe place.
+Remember, that all the security mechanisms that you setup for protection take effect to *everyone*. The login prompt of your computer cannot know whether its you or some evil invader. In case you forget the password with which you had encrypted your hard drive, all your data remains inaccessable. There will be no backdoor, and nobody can help you to recover any of your data whatsoever. Therefore you should always keep the reverse scenario in mind. For example, many services offer you recovery keys – you can print them out and then keep them stored in a safe place.
 
-Making regular backups is actually no security specific thing. However, remember to encrypt your backup drives the same way as your computer, since they contains the same data.
+By the way: Making regular backups is actually no security specific thing. However, remember to encrypt your backup drives the same way like your computer, since they contain the same sensitive data.
 
 
 
-[^1]: Read this story of [the theft of about USD 70 million](https://en.wikipedia.org/wiki/Banco_Central_burglary_at_Fortaleza) from the central bank of brazil.
+[^1]: Even big banks cannot be completely secured: Read this story of [the theft of about USD 70 million](https://en.wikipedia.org/wiki/Banco_Central_burglary_at_Fortaleza) from the central bank of brazil.
 
 [^2]: Rate your password in this [password strength checker](https://howsecureismypassword.net/). However, take the result with a grain of salt, since the estimated time of a brute force attack can vary by great measure.
