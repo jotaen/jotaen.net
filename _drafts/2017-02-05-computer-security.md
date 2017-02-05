@@ -4,8 +4,8 @@ title:         Protect yourself
 subtitle:      A basic guideline to computer security
 date:          2017-02-05
 tags:          [security]
-redirect_from: /asdf3/
-permalink:     asdf3/security
+redirect_from: /dSXhh/
+permalink:     dSXhh/protect-yourself
 image:         /assets/2017/abus-lock.jpg
 ---
 
