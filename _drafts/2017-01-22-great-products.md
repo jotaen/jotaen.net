@@ -2,7 +2,7 @@
 layout:        blogpost
 title:         What makes a great product?
 subtitle:      Learning from the successes of others
-date:          2017-01-22
+date:          2017-02-10
 tags:          [product management]
 redirect_from: /asdf9/
 permalink:     asdf9/what-makes-a-great-product
@@ -18,14 +18,21 @@ Back in the day I worked in a place where we introduced a project management too
 # The Open/Closed Principle
 
 - Expert tools (people who know the domain)
-- Trello
-    + Let’s you pick up where you left off
+- Example: Slack
     + Doesn’t impose a process on you, but suggests workflows by offering useful features
-    + Open/Closed: It’s core idea is clear and stable (you cannot customize much). But it’s open for being extended and flavoured.
+    + Open/Closed: It’s core idea is clear and stable. But it’s open for being extended and flavoured.
 
-# Being expert
+# Breathe of expertise
 
-- Wistia
 - Why do people go to specialized retailers instead of buying on the internet? Because of expertise
+- Example: Namecheap
 
-# Low hurdles, straightforward concept
+# Fast, simple and straightforward
+
+- Low registration/onboarding hurdle, let users start right away
+- Lets you pick up where you left off
+- Example: Trello
+
+# Respect
+
+- Don’t sign up users for your newsletters
