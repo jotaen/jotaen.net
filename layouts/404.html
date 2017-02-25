@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    {{ partial "meta.html" . }}
+    {{ partial "assets.html" . }}
+    <title>Error 404 • jotaen.net</title>
+  </head>
+  <body>
+    <div id="webshell" class="webshell"></div>
+
+    <link rel="stylesheet" property="stylesheet" href="webshell-dark.css">
+    <script src="http://static.jotaen.net/webshell.js/dist/webshell.js"></script>
+
+    <script type="text/javascript">
+      var fileTree = {
+        {{ range where .Data.Pages "Type" "posts" }}
+            "{{ .Slug }}.md": "{{ .RawContent }}",
+        {{ end }}
+      }
+
+      var webshell = createWebshell('webshell', {initialState: {
+        fileTree: fileTree,
+        sessions: ['root', 'jotaen']
+      }});
+
+      webshell.print('webserver start --port=80', [
+        'Starting webserver on port 80...',
+        undefined,
+        'Error: Uncaught PageNotFound exception',
+        '       at: module jotaen.net',
+        '       at: function route(url)',
+        '           url: `' + window.location.pathname + '`',
+        undefined,
+        'Exit webserver with status 404',
+        undefined
+      ]);
+
+      webshell.focus();
+    </script>
+
+    {{ partial "ga.html" . }}
+  </body>
+</html>
