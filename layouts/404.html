@@ -9,7 +9,7 @@
 
   <script type="text/javascript">
     var fileTree = {
-      {{ range where .Data.Pages "Type" "posts" }}
+      {{ range where .Data.Pages "Type" "post" }}
           "{{ .Slug }}.md": "{{ .RawContent }}",
       {{ end }}
     }
