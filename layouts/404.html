@@ -1,43 +1,37 @@
-<!doctype html>
-<html>
-  <head>
-    {{ partial "meta.html" . }}
-    {{ partial "assets.html" . }}
-    <title>Error 404 • jotaen.net</title>
-  </head>
-  <body>
-    <div id="webshell" class="webshell"></div>
+{{ define "title" }}Page Not Found{{ end }}
 
-    <link rel="stylesheet" property="stylesheet" href="webshell-dark.css">
-    <script src="http://static.jotaen.net/webshell.js/dist/webshell.js"></script>
+{{ define "main" }}
 
-    <script type="text/javascript">
-      var fileTree = {
-        {{ range where .Data.Pages "Type" "posts" }}
-            "{{ .Slug }}.md": "{{ .RawContent }}",
-        {{ end }}
-      }
+  <div id="webshell" class="webshell"></div>
 
-      var webshell = createWebshell('webshell', {initialState: {
-        fileTree: fileTree,
-        sessions: ['root', 'jotaen']
-      }});
+  <link rel="stylesheet" property="stylesheet" href="webshell-dark.css">
+  <script src="http://static.jotaen.net/webshell.js/dist/webshell.js"></script>
 
-      webshell.print('webserver start --port=80', [
-        'Starting webserver on port 80...',
-        undefined,
-        'Error: Uncaught PageNotFound exception',
-        '       at: module jotaen.net',
-        '       at: function route(url)',
-        '           url: `' + window.location.pathname + '`',
-        undefined,
-        'Exit webserver with status 404',
-        undefined
-      ]);
+  <script type="text/javascript">
+    var fileTree = {
+      {{ range where .Data.Pages "Type" "posts" }}
+          "{{ .Slug }}.md": "{{ .RawContent }}",
+      {{ end }}
+    }
 
-      webshell.focus();
-    </script>
+    var webshell = createWebshell('webshell', {initialState: {
+      fileTree: fileTree,
+      sessions: ['root', 'jotaen']
+    }});
 
-    {{ partial "ga.html" . }}
-  </body>
-</html>
+    webshell.print('webserver start --port=80', [
+      'Starting webserver on port 80...',
+      undefined,
+      'Error: Uncaught PageNotFound exception',
+      '       at: module jotaen.net',
+      '       at: function route(url)',
+      '           url: `' + window.location.pathname + '`',
+      undefined,
+      'Exit webserver with status 404',
+      undefined
+    ]);
+
+    webshell.focus();
+  </script>
+
+{{ end }}
