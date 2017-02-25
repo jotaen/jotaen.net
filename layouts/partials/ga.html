@@ -1,0 +1,22 @@
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-62283896-1', 'auto');
+  ga('send', 'pageview');
+
+  (function(intervalInSeconds, maxStrokes) {
+    var i = 0;
+    var heartbeater = setInterval(function() {
+      i++;
+      if (i >= maxStrokes) clearInterval(heartbeater);
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'Heartbeat',
+        eventAction: 'pulse',
+        eventValue: 30
+      });
+    }, intervalInSeconds*1000);
+  })(10, 120); // max runtime: 20 minutes (120 strokes á 10 seconds)
+</script>
