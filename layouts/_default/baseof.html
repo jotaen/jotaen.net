@@ -12,6 +12,8 @@
     <!-- <link href="//cloud.webtype.com/css/b8d2a612-d632-460b-a769-5b0c55713f92.css" rel="stylesheet" type="text/css" /> -->
     <link rel="stylesheet" href="/style.css?{{ .Now.Unix }}">
     <script defer="true" src="/scripts.js?{{ .Now.Unix }}"></script>
+
+    {{ block "head" . }}{{ end }}
   </head>
   <body>
 

@@ -1,10 +1,18 @@
 {{ define "title" }}{{ .Title }}{{ end }}
 
+{{ define "head"}}
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@jot4en">
+  <meta name="twitter:title" content="{{ .Title }}">
+  <meta name="twitter:description" content="{{ .Params.Subtitle }}">
+  <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ .Params.Image }}">
+{{ end }}
+
 {{ define "main" }}
   
   {{ partial "nav.html" . }}
 
-  <main>
+  <main class="content post-body">
     {{ .Content }}
   </main>
 
