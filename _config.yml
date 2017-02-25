@@ -1,7 +1,0 @@
-domain: http://jotaen.net
-timezone: Europe/Berlin
-markdown: kramdown
-
-gems:
-  - jekyll-feed
-  - jekyll-redirect-from
