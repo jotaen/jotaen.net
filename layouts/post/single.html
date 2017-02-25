@@ -12,8 +12,94 @@
   
   {{ partial "nav.html" . }}
 
-  <main class="content post-body">
-    {{ .Content }}
-  </main>
+  <article>
+
+    <header class="post-header" style="background-image:url({{ .Params.Image }})" alt="{{ .Title }}">
+      <h1 class="post-header__headline content">
+        <span class="post-header__title">{{ .Title }}</span><br>
+        <span class="post-header__subtitle">{{ .Params.Subtitle }}</span>
+      </h1>
+      {{ if .Params.Image_info }}
+        <div class="post-header__image-info">
+          &#8505;
+          <p>{{ .Params.Image_info }}</p>
+        </div>
+      {{ end }}
+
+    </header>
+
+    <aside>
+      <dl class="post-info">
+        <dt class="post-info__label">
+          Author:
+        </dt>
+        <dd class="post-info__data">
+          Jan Heuermann
+        </dd>
+
+        <dt class="post-info__label">
+          Published:
+        </dt>
+        <dd class="post-info__data">
+          <time datetime="{{ .Date }}">
+            {{ dateFormat "Jan. _2, 2006" .Date }}
+          </time>
+        </dd>
+
+        <dt class="post-info__label screen-hide">
+          Retrieved as from:
+        </dt>
+        <dd class="post-info__data screen-hide">
+          <script>document.write(new Date().toLocaleString());</script>
+        </dd>
+
+        <dt class="post-info__label">
+          Reading time:
+        </dt>
+        <dd class="post-info__data">
+          {{ .ReadingTime }}&nbsp;min.
+        </dd>
+
+        <dt class="post-info__label">
+          Permalink:
+        </dt>
+        <dd class="post-info__data">
+          <a href="http://j4n.io/{{ .Params.Id }}">j4n.io/{{ .Params.Id }}</a>
+        </dd>
+
+        <dt class="post-info__label print-hide">
+          Share:
+        </dt>
+        <dd class="post-info__data print-hide">
+          ▸ On <a href="https://twitter.com/intent/tweet?source={{ .Permalink | safeURL }}&text={{ print "“" .Title " – " .Params.Subtitle "”" | safeURL }}&via=jot4en" target="_blank">Twitter</a><br>
+          ▸ Via <a href="mailto:?subject={{ print "Blogpost: " .Title " – " .Params.Subtitle | safeURL }}&body={{ print "Read this blogpost: " .Permalink | safeURL }}">E-Mail</a>
+        </dd>
+
+        <dt class="post-info__label">
+          Tags:
+        </dt>
+        <dd class="post-info__data">
+          <ul class="ul--reset">
+            {{ range .Params.Tags }}
+              <li class="tag" title="Tag: {{ . }}">{{ . }}</li>
+            {{ end }}
+          </ul>
+        </dd>
+      </dl>
+    </aside>
+
+    <main class="content post-body">
+      {{ .Content }}
+    </main>
+
+  </article>
+
+  <footer class="content post-footer">
+    <p>
+      My name is Jan, I live in Berlin and work as software developer. I’m interested in the entire stack of web development and all topics around it.
+    </p>
+    <p class="spacer"></p>
+    {{ partial "follow.html" }}
+  </footer>
 
 {{ end }}

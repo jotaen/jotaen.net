@@ -1,4 +1,5 @@
 +++
+id = "styleguide"
 type = "post"
 title = "Living styleguide"
 subtitle = "The Haute Couture of my blogposts"
@@ -78,7 +79,7 @@ puts greet("Mary")
 
 [^3]
 
-![Abseiling from the salbit summit needle in the swiss alps](/assets/static/salbit.jpg)
+![Abseiling from the salbit summit needle in the swiss alps](/salbit.jpg)
 
 ## Blockquote
 
