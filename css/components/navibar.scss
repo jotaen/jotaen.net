@@ -1,4 +1,4 @@
-@import "library";
+@import "../library";
 
 .navibar {
   overflow: visible;
@@ -10,7 +10,7 @@
     content: '';
     display: block;
     opacity: 0.7;
-    background-image: url("/assets/static/dot.png");
+    background-image: url("dot.png");
     background-size: $dot-size;
     @include narrow-view {
       margin-top: ($width-navibar * 0.5) - ($dot-size * 0.2);

@@ -1,4 +1,4 @@
-@import "library";
+@import "../library";
 
 .about__page {
   position: fixed;
@@ -6,7 +6,7 @@
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
-  background-image: url("/assets/static/salbit.jpg");
+  background-image: url("salbit.jpg");
   background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
