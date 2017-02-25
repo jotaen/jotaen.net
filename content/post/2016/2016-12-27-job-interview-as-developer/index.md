@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         The job interview
-subtitle:      Asking questions as a candidate
-date:          2016-12-27
-tags:          [hiring, job]
-redirect_from: /EDIqf/
-permalink:     EDIqf/the-job-interview
-image:         /assets/2016/interview-table.jpg
----
++++
+type = "post"
+title = "The job interview"
+subtitle = "Asking questions as a candidate"
+date = "2016-12-27"
+tags = ["hiring", "job"]
+image = "/assets/2016/interview-table.jpg"
+id = "EDIqf"
+url = "EDIqf/the-job-interview"
+aliases = ["EDIqf"]
++++
 
 Most software companies put a lot of thought into the elaboration of an interview process for applicants. This is not for nothing: Even though software developers are a dime a dozen, it is hard to find good people who are not just smart and fit into the company culture, but also have a solid track record in what they do.
 

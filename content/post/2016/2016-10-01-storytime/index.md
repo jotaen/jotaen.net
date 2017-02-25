@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         Storytime
-subtitle:      Learning from challenges
-date:          2016-10-01
-tags:          [meta, thoughts]
-redirect_from: /V4ZPG/
-permalink:     V4ZPG/storytime
-image:         /assets/2016/bookshelf.jpg
----
++++
+type = "post"
+title = "Storytime"
+subtitle = "Learning from challenges"
+date = "2016-10-01"
+tags = ["meta", "thoughts"]
+image = "/assets/2016/bookshelf.jpg"
+id = "V4ZPG"
+url = "V4ZPG/storytime"
+aliases = ["V4ZPG"]
++++
 
 I recently got asked to write up a challenging software project that I was involved into and what I have learned from it. The following story is not the hardest coding problem I ever worked on, but is nonetheless an exciting project and — apart from coding — gives you a good insight into my understanding of an agile and iterative approach to solving problems.
 

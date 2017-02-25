@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         J4N.IO – Deployment and operating
-subtitle:      From the series “Let’s build a REST service”
-date:          2016-04-24
-tags:          [operating, deployment, microservice, project]
-redirect_from: /Tt7Yh/
-permalink:     Tt7Yh/deployment-and-operating
-image:         /assets/2016/beachchair-ocean.jpg
----
++++
+type = "post"
+title = "J4N.IO – Deployment and operating"
+subtitle = "From the series “Let’s build a REST service”"
+date = "2016-04-24"
+tags = ["operating", "deployment", "microservice", "project"]
+image = "/assets/2016/beachchair-ocean.jpg"
+id = "Tt7Yh"
+url = "Tt7Yh/deployment-and-operating"
+aliases = ["Tt7Yh"]
++++
 
 > This blogpost is part of the series [“Let’s build a REST service”](/Toqw4/lets-build-a-rest-service), in which I build my own shortlink webservice. The source code of the project is [on Github](https://github.com/jotaen/j4n.io).
 

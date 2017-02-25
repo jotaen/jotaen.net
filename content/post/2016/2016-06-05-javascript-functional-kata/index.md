@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         “The discount campaign”
-subtitle:      A functional javascript code kata
-date:          2016-06-05
-tags:          [javascript, kata]
-redirect_from: /L2hWc/
-permalink:     L2hWc/the-discount-campaign
-image:         /assets/2016/aikido-dojo.jpg
----
++++
+type = "post"
+title = "“The discount campaign”"
+subtitle = "A functional javascript code kata"
+date = "2016-06-05"
+tags = ["javascript", "kata"]
+image = "/assets/2016/aikido-dojo.jpg"
+id = "L2hWc"
+url = "L2hWc/the-discount-campaign"
+aliases = ["L2hWc"]
++++
 
 The term kata originated from martial arts such as Karate. A kata is a sequence of a few dozens of movements (kicks, punches, jumps), which the executor performs against an imaginary opponent. For example, in the Shotokan Karate style there exist 30 different katas. Each one has a different thematic priority and they all share the goal of perfecting the basic techniques and moves.[^1]
 

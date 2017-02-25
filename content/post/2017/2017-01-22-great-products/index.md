@@ -1,13 +1,15 @@
----
-layout:        blogpost
-title:         What makes a great product?
-subtitle:      Learning from the successes of others
-date:          2017-02-10
-tags:          [product management]
-redirect_from: /asdf9/
-permalink:     asdf9/what-makes-a-great-product
-image:         /assets/2017/swiss-army-knife.jpg
----
++++
+draft = true
+layout = "post"
+title = "What makes a great product?"
+subtitle = "Learning from the successes of others"
+date = "2017-02-10"
+tags = ["product management"]
+image = "/assets/2017/swiss-army-knife.jpg"
+id = "asdf9"
+url = "asdf9/what-makes-a-great-product"
+aliases = ["asdf9"]
++++
 
 Perhaps it’s just a coincidence, but when I talk to other web developers about the tools they use and the workflows they have, I noticed that a majority agree on a basic set of products nowadays: Trello, Slack, Confluence, Github.
 

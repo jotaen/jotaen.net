@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         Run Monitor
-subtitle:      How I keep track of my run training
-date:          2016-09-07
-tags:          [project, information design]
-redirect_from: /oBPhB/
-permalink:     oBPhB/run-monitor
-image:         /assets/2016/run-monitor.jpg
----
++++
+type = "post"
+title = "Run Monitor"
+subtitle = "How I keep track of my run training"
+date = "2016-09-07"
+tags = ["project", "information design"]
+image = "/assets/2016/run-monitor.jpg"
+id = "oBPhB"
+url = "oBPhB/run-monitor"
+aliases = ["oBPhB"]
++++
 
 In October I am running a half marathon. I am training for this event since a couple of weeks and my goal is to run 21.1 kilometres in 2 hours or less. The training is going pretty well so far, however, I think that every averagely athletic person can finish a half marathon. So, the difficulty is not to accomplish it at all, but to achieve a good time and to be not too destroyed afterwards.
 

@@ -1,14 +1,15 @@
----
-layout:        blogpost
-title:         Put your stuff into the world!
-subtitle:      Facing the challenges of being a software developer
-date:          2016-01-17
-tags:          [meta, thoughts]
-redirect_from: /e9gb1/
-permalink:     e9gb1/put-your-stuff-into-the-world
-image:         /assets/2016/space-clouds.jpg
-image_info:    This NASA/ESA Hubble Space Telescope image shows the center of the Lagoon Nebula, an object with a deceptively tranquil name, in the constellation of Sagittarius. The region is filled with intense winds from hot stars, churning funnels of gas, and energetic star formation, all embedded within an intricate haze of gas and pitch-dark dust.
----
++++
+type = "post"
+title = "Put your stuff into the world!"
+subtitle = "Facing the challenges of being a software developer"
+date = "2016-01-17"
+tags = ["meta", "thoughts"]
+image = "/assets/2016/space-clouds.jpg"
+image_info = "This NASA/ESA Hubble Space Telescope image shows the center of the Lagoon Nebula, an object with a deceptively tranquil name, in the constellation of Sagittarius. The region is filled with intense winds from hot stars, churning funnels of gas, and energetic star formation, all embedded within an intricate haze of gas and pitch-dark dust."
+id = "e9gb1"
+url = "e9gb1/put-your-stuff-into-the-world"
+aliases = ["e9gb1"]
++++
 
 I started to work as full time software developer one year ago. Viewing this time in retrospective I can state two things: The first is that I didn’t regret my choice of profession a single time. I don’t know any other branch out there, which is so dedicated to collaboration, productivity and innovation. My learning curve throughout the last year has been steep and I’m not willing to let it flatten – there is just too much cool stuff happening, which is worth to be explored. On the other hand, there is a thing which I dreadfully miss and which I, as yet, was not able to deal with: Having time for my *own* projects – fiddling around with new technologies, following up own ideas and  creating things, even if it’s only for amusement’s sake.
 

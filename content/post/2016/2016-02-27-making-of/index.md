@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         Behind the scenes
-subtitle:      The making-of of my blog
-date:          2016-02-27
-tags:          [meta, thoughts, design]
-redirect_from: /cpQw4/
-permalink:     cpQw4/behind-the-scenes
-image:         /assets/2016/electrical-supplies.jpg
----
++++
+type = "post"
+title = "Behind the scenes"
+subtitle = "The making-of of my blog"
+date = "2016-02-27"
+tags = ["meta", "thoughts", "design"]
+image = "/assets/2016/electrical-supplies.jpg"
+id = "cpQw4"
+url = "cpQw4/behind-the-scenes"
+aliases = ["cpQw4"]
++++
 
 During christmas break I refactored (and also revived) this blog, which was motivated by my intend to blog on a regular basis. When I started it, I developed a tiny PHP website framework as a side project and my blog was its first use case. This was big fun and I learned a lot. But even though I still believe in its initial idea, my interest in PHP decreased in a great measure throughout the last year. I never managed to finish a single release of the framework and the only reason for me to catch up on that would be to properly file that project away.
 

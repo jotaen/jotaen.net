@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         Coding J4N.IO with NodeJS
-subtitle:      From the series “Let’s build a REST service”
-date:          2016-04-04
-tags:          [rest, microservice, nodejs, project]
-redirect_from: /Q6eUW/
-permalink:     Q6eUW/coding-j4nio-with-nodejs
-image:         /assets/2016/strandkorbs-at-beach.jpg
----
++++
+type = "post"
+title = "Coding J4N.IO with NodeJS"
+subtitle = "From the series “Let’s build a REST service”"
+date = "2016-04-04"
+tags = ["rest", "microservice", "nodejs", "project"]
+image = "/assets/2016/strandkorbs-at-beach.jpg"
+id = "Q6eUW"
+url = "Q6eUW/coding-j4nio-with-nodejs"
+aliases = ["Q6eUW"]
++++
 
 > This blogpost is part of the series [“Let’s build a REST service”](/Toqw4/lets-build-a-rest-service), in which I build my own shortlink webservice. The source code of the project is [on Github](https://github.com/jotaen/j4n.io).
 

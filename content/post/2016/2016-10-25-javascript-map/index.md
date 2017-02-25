@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         The map method
-subtitle:      Exploring functional javascript
-date:          2016-10-25
-tags:          [javascript, functional programming, code]
-redirect_from: /PzmvA/
-permalink:     PzmvA/javascript-map
-image:         /assets/2016/topographic-map.jpg
----
++++
+type = "post"
+title = "The map method"
+subtitle = "Exploring functional javascript"
+date = "2016-10-25"
+tags = ["javascript", "functional programming", "code"]
+image = "/assets/2016/topographic-map.jpg"
+id = "PzmvA"
+url = "PzmvA/javascript-map"
+aliases = ["PzmvA"]
++++
 
 A few weeks ago I published a blogpost in which I presented a [functional code kata in Javascript](/L2hWc/the-discount-campaign) and explained how I solved it using build-in Javascript methods (e.g. `Array.prototype.map`). However, it is worth to have a look at different implementations of these concepts in third party libraries, because there are slight but important differences.
 

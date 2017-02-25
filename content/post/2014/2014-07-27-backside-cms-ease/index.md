@@ -1,14 +1,14 @@
----
-layout:        blogpost
-title:         The backside of CMS-ease
-subtitle:      Providing a basis for clients to get along
-date:          2014-07-27
-tags:          [cms, thoughts]
-redirect_from: /xba0w/
-permalink:     xba0w/the-backside-of-cms-ease
-image:         /assets/2014/cms-book-stack.jpg
----
-
++++
+type = "post"
+title = "The backside of CMS-ease"
+subtitle = "Providing a basis for clients to get along"
+date = "2014-07-27"
+tags = ["cms", "thoughts"]
+image = "/assets/2014/cms-book-stack.jpg"
+id = "xba0w"
+url = "xba0w/the-backside-of-cms-ease"
+aliases = ["xba0w"]
++++
 
 Recently, I got asked to relaunch the website of the [local mountaineers association](http://dav-aachen.de). Their previous website was eventually so broken, that they could hardly maintain it at all. (The CMS was outdated since 6 years!) However, they had a reason for waiting so long and I think this is a good example, which shows, that content management systems also have some backsides.
 

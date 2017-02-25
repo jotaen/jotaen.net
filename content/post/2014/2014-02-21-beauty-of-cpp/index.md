@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         The beauty of C++
-subtitle:      A tribute to the best programming language
-date:          2014-02-21
-tags:          [c++, misc]
-redirect_from: /wgCB2/
-permalink:     wgCB2/the-beauty-of-cplusplus
-image:         /assets/2014/beauty-of-cpp.jpg
----
++++
+type = "post"
+title = "The beauty of C++"
+subtitle = "A tribute to the best programming language"
+date = "2014-02-21"
+tags = ["c++", "misc"]
+image = "/assets/2014/beauty-of-cpp.jpg"
+id = "wgCB2"
+url = "wgCB2/the-beauty-of-cplusplus"
+aliases = ["wgCB2"]
++++
 
 Over the past two years I worked at a company where we developed desktop applications to operate and control technical prototypes. We used C++, because it covers the wide range from low-level stuff like direct memory access, as well as offering features of a high-level programming language. However, especially in terms of C++ I still find it hard to classify my own level of skill. On the one hand the concepts are basically no rocket science. But on the other, there were also these rare but awkward moments – for example when it took two hours to debug like 3 lines of code – which I never experienced with another language. Going over a list like the [issues on Guru Of The Week](http://www.gotw.ca/gotw) can put you right back in your place.
 

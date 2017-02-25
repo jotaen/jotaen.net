@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         Halftime!
-subtitle:      Five learnings from half a year of blogging
-date:          2016-08-30
-tags:          [meta, blogging]
-redirect_from: /h0JQH/
-permalink:     h0JQH/6-months-of-blogging
-image:         /assets/2016/clock-berlin-alexanderplatz.jpg
----
++++
+type = "post"
+title = "Halftime!"
+subtitle = "Five learnings from half a year of blogging"
+date = "2016-08-30"
+tags = ["meta", "blogging"]
+image = "/assets/2016/clock-berlin-alexanderplatz.jpg"
+id = "h0JQH"
+url = "h0JQH/6-months-of-blogging"
+aliases = ["h0JQH"]
++++
 
 On January 17th 2016 – roughly 7 months ago – I revived this blog. I originally launched it in 2014 but I didn’t get off the stick back then. In 2014 I yielded only 4 posts; in 2015 I didn’t write a single one at all. And moreover, I noticed that in 2015 I could not even find any time to work on own projects (besides work), which eventually frustrated me a lot.
 

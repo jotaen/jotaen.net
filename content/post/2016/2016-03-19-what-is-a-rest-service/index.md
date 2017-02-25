@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         What is a REST service?
-subtitle:      From the series “Let’s build a REST service”
-date:          2016-03-19
-tags:          [rest, microservice, api, project]
-redirect_from: /fXts2/
-permalink:     fXts2/what-is-a-rest-service
-image:         /assets/2016/hammock.jpg
----
++++
+type = "post"
+title = "What is a REST service?"
+subtitle = "From the series “Let’s build a REST service”"
+date = "2016-03-19"
+tags = ["rest", "microservice", "api", "project"]
+image = "/assets/2016/hammock.jpg"
+id = "fXts2"
+url = "fXts2/what-is-a-rest-service"
+aliases = ["fXts2"]
++++
 
 > This blogpost is part of the series [“Let’s build a REST service”](/Toqw4/lets-build-a-rest-service), in which I build my own shortlink webservice. The source code of the project is [on Github](https://github.com/jotaen/j4n.io).
 

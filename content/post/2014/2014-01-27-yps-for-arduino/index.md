@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         Working with events and objects on Arduino
-subtitle:      A rapid prototyping framework called yps
-date:          2014-01-27
-tags:          [arduino, c++, framework, project]
-redirect_from: /w7yGk/
-permalink:     w7yGk/working-with-events-and-objects-on-arduino
-image:         /assets/2014/arduino.jpg
----
++++
+type = "post"
+title = "Working with events and objects on Arduino"
+subtitle = "A rapid prototyping framework called yps"
+date = "2014-01-27"
+tags = ["arduino", "c++", "framework", "project"]
+image = "/assets/2014/arduino.jpg"
+id = "w7yGk"
+url = "/w7yGk/working-with-events-and-objects-on-arduino"
+aliases = ["w7yGk"]
++++
 
 Sometimes, I use my Arduino for experimenting with basic electrical circuits and setups. I appreciate the approach to have a fully functional microcontroller, you just can play around with, without needing to bother yourself too much with elementary stuff like hardware programmers or the soldering of circuit boards. However, I always thought that writing sketches could be a bit more convenient, so that you can focus rather on creating your actual circuitry than on how it is to be implemented as sketch.
 

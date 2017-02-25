@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         Yet another website framework
-subtitle:      Trading upon constraints in small projects
-date:          2014-12-14
-tags:          [php, web, framework, project]
-redirect_from: /xZVFm/
-permalink:     xZVFm/yet-another-website-framework
-image:         /assets/2014/yawf-sketches.jpg
----
++++
+type = "post"
+title = "Yet another website framework"
+subtitle = "Trading upon constraints in small projects"
+date = "2014-12-14"
+tags = ["php", "web", "framework", "project"]
+image = "/assets/2014/yawf-sketches.jpg"
+id = "xZVFm"
+url = "xZVFm/yet-another-website-framework"
+aliases = ["xZVFm"]
++++
 
 I was always seeking for a tiny framework to develop tiny websites (like this blog is). Basically, website frameworks are a dime a dozen: Apart from big players like Symfony or CakePHP, there are thousands of these lightweight projects all over Github. However, it was not only the agony of choice, which made me hesitate – especially in terms of the smaller projects, I found them often to be quite specialized or too badly documented to get started as an “outsider”.
 

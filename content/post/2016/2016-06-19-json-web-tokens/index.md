@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         What are JSON Web Tokens?
-subtitle:      A QnA style blogpost
-date:          2016-06-19
-tags:          [jwt, qna]
-redirect_from: /C3K4N/
-permalink:     C3K4N/jwt-json-web-tokens
-image:         /assets/2016/notebook.jpg
----
++++
+type = "post"
+title = "What are JSON Web Tokens?"
+subtitle = "A QnA style blogpost"
+date = "2016-06-19"
+tags = ["jwt", "qna"]
+image = "/assets/2016/notebook.jpg"
+id = "C3K4N"
+url = "C3K4N/jwt-json-web-tokens"
+aliases = ["C3K4N"]
++++
 
 This blogpost explains the basic idea behind JSON Web Tokens (short: JWT) in the context of web services and applications. It is written in a QnA style.
 

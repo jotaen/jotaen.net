@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         Protect yourself
-subtitle:      A basic guideline to computer security
-date:          2017-02-05
-tags:          [security]
-redirect_from: /dSXhh/
-permalink:     dSXhh/protect-yourself
-image:         /assets/2017/abus-lock.jpg
----
++++
+layout = "post"
+title = "Protect yourself"
+subtitle = "A basic guideline to computer security"
+date = "2017-02-05"
+tags = ["security"]
+image = "/assets/2017/abus-lock.jpg"
+id = "dSXhh"
+url = "dSXhh/protect-yourself"
+aliases = ["dSXhh"]
++++
 
 Every now and then, friends or relatives ask me for advice on how to protect their computers against hackers and malware. This is a tough question and there is no magic bullet or golden answer one could give. First of all: why are we getting hacked at all? Basically for the same reasons why people vandalize, steal or rob in real life: They want to enrich themselves, demonstrate superiority or just do damage for whatever reason. 
 

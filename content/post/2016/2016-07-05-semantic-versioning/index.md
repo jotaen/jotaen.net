@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         Semantic versioning
-subtitle:      Communicate compatibility to API consumers
-date:          2016-07-05
-tags:          [semver, release management]
-redirect_from: /s0SRs/
-permalink:     s0SRs/semantic-versioning
-image:         /assets/2016/banksy-girl-with-balloon.jpg
----
++++
+type = "post"
+title = "Semantic versioning"
+subtitle = "Communicate compatibility to API consumers"
+date = "2016-07-05"
+tags = ["semver", "release management"]
+image = "/assets/2016/banksy-girl-with-balloon.jpg"
+id = "s0SRs"
+url = "s0SRs/semantic-versioning"
+aliases = ["s0SRs"]
++++
 
 A common approach to versioning APIs[^1] is to indicate the progression of an API via the version number: A significant improvement or an effortful rewrite of the code would result in a new major version (e.g. from 1.3 to 2.0), whereas small changes or minor fixes only would entail the incrementation of a decimal place. The advantage of this is that the version number reflects the generation of an API. (Of course, this must be handled consistently across all releases.) On the downside, this kind of version management is a bit arbitrary, since everybody will treat it differently.
 

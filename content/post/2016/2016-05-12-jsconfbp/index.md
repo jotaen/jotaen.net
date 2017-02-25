@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         JavaScript city tour (1/2)
-subtitle:      First day of the JSConf Budapest, May 2016
-date:          2016-05-12
-tags:          [conference, javascript]
-redirect_from: /AyHtk/
-permalink:     AyHtk/jsconf-budapest-2016-part1
-image:         /assets/2016/budapest.jpg
----
++++
+type = "post"
+title = "JavaScript city tour (1/2)"
+subtitle = "First day of the JSConf Budapest, May 2016"
+date = "2016-05-12"
+tags = ["conference", "javascript"]
+image = "/assets/2016/budapest.jpg"
+id = "AyHtk"
+url = "AyHtk/jsconf-budapest-2016-part1"
+aliases = ["AyHtk"]
++++
 
 These are my notes on the first day of the [JSConf in Budapest](http://jsconfbp.com/)[^1], which  took place at May 12th and 13th in the Akvarium Klub in the heart of city.
 

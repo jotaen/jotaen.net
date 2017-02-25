@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         Testing and QA of J4N.IO
-subtitle:      From the series “Let’s build a REST service”
-date:          2016-04-12
-tags:          [testing, ci, microservice, project]
-redirect_from: /v24iU/
-permalink:     v24iU/testing-and-qa-of-j4nio
-image:         /assets/2016/swing-in-dawn.jpg
----
++++
+type = "post"
+title = "Testing and QA of J4N.IO"
+subtitle = "From the series “Let’s build a REST service”"
+date = "2016-04-12"
+tags = ["testing", "ci", "microservice", "project"]
+image = "/assets/2016/swing-in-dawn.jpg"
+id = "v24iU"
+url = "v24iU/testing-and-qa-of-j4nio"
+aliases = ["v24iU"]
++++
 
 > This blogpost is part of the series [“Let’s build a REST service”](/Toqw4/lets-build-a-rest-service), in which I build my own shortlink webservice. The source code of the project is [on Github](https://github.com/jotaen/j4n.io).
 

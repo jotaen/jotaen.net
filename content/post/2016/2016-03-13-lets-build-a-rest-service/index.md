@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         Let’s build a REST service
-subtitle:      Kickoff for a five part blogpost series
-date:          2016-03-13
-tags:          [rest, microservice, api, project]
-redirect_from: /Toqw4/
-permalink:     Toqw4/lets-build-a-rest-service
-image:         /assets/2016/bench.jpg
----
++++
+type = "post"
+title = "Let’s build a REST service"
+subtitle = "Kickoff for a five part blogpost series"
+date = "2016-03-13"
+tags = ["rest", "microservice", "api", "project"]
+image = "/assets/2016/bench.jpg"
+id = "Toqw4"
+url = "Toqw4/lets-build-a-rest-service"
+aliases = ["Toqw4"]
++++
 
 This is the first blogpost of a small series about microservices. In my current side project, I am working on a tiny REST API, that acts as a weblink shortener. In this kickoff post I want to describe the basic idea behind the project and give a look-out on the topics I am going to cover.
 

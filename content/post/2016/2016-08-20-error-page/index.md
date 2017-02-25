@@ -1,13 +1,14 @@
----
-layout:        blogpost
-title:         Make 404s fun!
-subtitle:      Suddenly find yourself on the shell of a crashed web server
-date:          2016-08-20
-tags:          [project, meta, 404, webshell]
-redirect_from: /jBZuH/
-permalink:     jBZuH/errorpage-with-webshelljs
-image:         /assets/2016/errorpage-webshell.jpg
----
++++
+type = "post"
+title = "Make 404s fun!"
+subtitle = "Suddenly find yourself on the shell of a crashed web server"
+date = "2016-08-20"
+tags = ["project", "meta", "404", "webshell"]
+image = "/assets/2016/errorpage-webshell.jpg"
+id = "jBZuH"
+url = "jBZuH/errorpage-with-webshelljs"
+aliases = ["jBZuH"]
++++
 
 Error pages are a topic in itself: In the best case, people don’t see the error page of a website for a single time. And if they do so, they probably followed a broken or outdated link and find themselves stuck, since they don’t came out in the place they were actually looking for. This being the case, most error pages offer a search form or a possibility to contact someone.
 
