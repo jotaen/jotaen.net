@@ -1,3 +1,9 @@
 baseurl = "https://www.jotaen.net"
 languageCode = "en-us"
 disablePathToLower = true
+
+[blackfriday]
+  smartypants = false
+  smartDashes = false
+  latexDashes = false
+  
