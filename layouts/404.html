@@ -9,7 +9,7 @@
 
   <script type="text/javascript">
     var fileTree = {
-      {{ range where .Data.Pages "Type" "post" }}
+      {{ range where .Data.Pages "Type" "posts" }}
           "{{ dateFormat "2006-01-02" .Date  }}-{{ .Title | urlize }}.md": "{{ .RawContent }}",
       {{ end }}
     }
