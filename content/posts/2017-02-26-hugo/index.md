@@ -1,13 +1,13 @@
 +++
 draft = true
 title = "Fast, cheap and automated"
-subtitle = "Deploy static websites to AWS"
+subtitle = "Deploying static websites to AWS"
 date = "2017-02-26"
 tags = ["deployment", "cloud"]
 image = "/posts/2017-02-26-hugo/cloud-dashboards.jpg"
-id = "asdf1"
-url = "asdf1/title"
-aliases = ["asdf1"]
+id = "e7ywT"
+url = "e7ywT/deploying-static-website-to-aws"
+aliases = ["e7ywT"]
 +++
 
 For the last year I relied on the [Jekyll](https://jekyllrb.com/) static site generator for my blog and hosted it on [Github pages](https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/). This was a super convenient experience, because it’s probably the easiest way to kick off a self hosted website. However, I sat down this weekend and migrated all the content to the [Hugo](https://gohugo.io) static site generator and setup the hosting with AWS S3 and AWS Cloudfront.
