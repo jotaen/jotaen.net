@@ -93,7 +93,6 @@
 
 .post-body sup[id^="fnref"] {
   @include broad-view {
-    display: inline-block;
-    float: left;
+    display: none;
   }
 }

@@ -1,22 +1,20 @@
 "use strict";
 
-// Add a gloss (sidenote) into the sidebar
-// - node: the gloss DOM node
-// - dest: the
-var add_inline_gloss = function(node, dest) {
-  node.classList.add("post-gloss__in-sidebar");
-  dest.insertBefore(node, dest.firstChild);
-};
-
 (function create_sidebar_glosses_from_footnotes(document) {
-  var footnotes = document.getElementsByClassName("footnote");
+  var container = document.getElementsByClassName("footnotes")[0];
+  if (!container) return;
+  var footnotes = container.getElementsByTagName("li");
   [].forEach.call(footnotes, function(_, i) {
     var nr = i+1;
-    var content = document.getElementById("fn:"+nr);
-    var dest = document.getElementById("fnref:"+nr);
-    var clone = content.cloneNode(true);
 
-    add_inline_gloss(clone.firstElementChild, dest);
+    var content = document.getElementById("fn:" + nr);    
+    var sidenote = document.createElement("div");
+    sidenote.classList.add("post-gloss__in-sidebar");
+    sidenote.innerHTML = content.innerHTML;
+    sidenote.removeChild(sidenote.lastElementChild); // remove "return" link
+
+    var ref = document.getElementById("fnref:" + nr);
+    ref.parentElement.insertBefore(sidenote, ref);
   });
 }(document));
 
