@@ -71,7 +71,7 @@
           Share:
         </dt>
         <dd class="post-info__data print-hide">
-          ▸ On <a href="https://twitter.com/intent/tweet?source={{ .Permalink | safeURL }}&text={{ print "“" .Title " – " .Params.Subtitle "”" | safeURL }}&via=jot4en" target="_blank">Twitter</a><br>
+          ▸ On <a href="https://twitter.com/intent/tweet?source={{ .Permalink | safeURL }}&text={{ print "“" .Title " – " .Params.Subtitle "” " "http://j4n.io/" .Params.Id | safeURL }}&via=jot4en" target="_blank">Twitter</a><br>
           ▸ Via <a href="mailto:?subject={{ print "Blogpost: " .Title " – " .Params.Subtitle | safeURL }}&body={{ print "Read this blogpost: " .Permalink | safeURL }}">E-Mail</a>
         </dd>
 
