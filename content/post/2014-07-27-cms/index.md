@@ -4,7 +4,7 @@ title = "The backside of CMS-ease"
 subtitle = "Providing a basis for clients to get along"
 date = "2014-07-27"
 tags = ["cms", "thoughts"]
-image = "/assets/2014/cms-book-stack.jpg"
+image = "/post/2014-07-27-cms/book-stack.jpg"
 id = "xba0w"
 url = "xba0w/the-backside-of-cms-ease"
 aliases = ["xba0w"]
@@ -18,7 +18,7 @@ For this project, I worked not only on the relaunch itself, but spent much dilig
 
 [^1]
 
-![Layouts of the new website compared to the print design](/assets/2014/davac-layout.png)
+![Layouts of the new website compared to the print design](/post/2014-07-27-cms/davac-layout.png)
 
 ## Basic approach
 
