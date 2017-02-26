@@ -1,10 +1,16 @@
 language: go
-install: go get -v github.com/spf13/hugo
-script:
+
+install:
+  - go get -v github.com/spf13/hugo
+  - pip install --user awscli
   - npm install
+
+script:
   - npm run sass
   - hugo
-  - s3cmd sync --delete-removed -M -r / s3://www.jotaen.net/
+  - aws s3 sync public/ s3://www.jotaen.net/ --delete
+
+after_success:
 
 notifications:
   email: false
