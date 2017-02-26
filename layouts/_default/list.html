@@ -14,7 +14,7 @@
 
     {{ range where .Data.Pages.ByPublishDate "Type" "posts" }}
       <article class="teaser">
-        <a href="/{{ .RelPermalink }}" class="a--reset">
+        <a href="/{{ trim .RelPermalink "/" }}" class="a--reset">
           {{ $img := (split .Params.Image ".") }}
           <img src="{{ index $img 0 }}.small.{{ index $img 1 }}" class="teaser__image">
         </a>
@@ -24,13 +24,13 @@
         </span>
 
         <h1 class="teaser__title">
-          <a href="/{{ .RelPermalink }}" class="a--reset">
+          <a href="/{{ trim .RelPermalink "/" }}" class="a--reset">
             {{ .Title }}
           </a>
         </h1>
 
         <h2 class="teaser__subtitle">
-          <a href="/{{ .RelPermalink }}" class="a--reset">
+          <a href="/{{ trim .RelPermalink "/" }}" class="a--reset">
             {{ .Params.Subtitle }}
           </a>
         </h2>

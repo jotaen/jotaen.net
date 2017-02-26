@@ -5,7 +5,7 @@ date = "2014-01-27"
 tags = ["arduino", "c++", "framework", "project"]
 image = "/posts/2014-01-27-arduino/arduino.jpg"
 id = "w7yGk"
-url = "/w7yGk/working-with-events-and-objects-on-arduino"
+url = "w7yGk/working-with-events-and-objects-on-arduino"
 aliases = ["w7yGk"]
 +++
 
