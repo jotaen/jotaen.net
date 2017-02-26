@@ -42,7 +42,7 @@ Here are the data structures for request and response of this particular blogpos
 #### Request: PUT /fXts2
 {% highlight json %}
 {
-  "url": "http://jotaen.net/fXts2/what-is-a-rest-service",
+  "url": "https://www.jotaen.net/fXts2/what-is-a-rest-service",
   "status_code": 302
 }
 {% endhighlight %}
@@ -51,7 +51,7 @@ Here are the data structures for request and response of this particular blogpos
 {% highlight json %}
 {
   "token": "fXts2",
-  "url": "http://jotaen.net/fXts2/what-is-a-rest-service",
+  "url": "https://www.jotaen.net/fXts2/what-is-a-rest-service",
   "status_code": 302,
   "created": "2016-03-19T15:02:09Z",
   "updated": "2016-03-19T15:02:09Z"

@@ -1,5 +1,3 @@
 # My Blog
 
-Hosted on github pages. Visit:
-
-### [jotaen.net](http://jotaen.net)
+**[www.jotaen.net](https://www.jotaen.net)**
