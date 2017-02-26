@@ -1,0 +1,12 @@
+language: go
+install: go get -v github.com/spf13/hugo
+script:
+  - npm install
+  - npm run sass
+  - hugo
+  - s3cmd sync --delete-removed -M -r / s3://www.jotaen.net/
+
+notifications:
+  email: false
+  slack:
+    secure: bdlzlt0wycWnWa3Rq0W8hLoY0B+FiyoILqOstBcjIXC4q8XFKFZeGM25f4EvapWu+0osG9vd2ulVBzyPaP7VYVHct5V1cgnae9DbAWl6v0/myxfTUkXBxw1kkcI91hck6nBhBrzMufn5gM4iMlzleDprqtQSSJGsHyZezSJzQ7nnvVH0IRON5o/KCNYizjQBWw9Hd7K6lIJETWQ0CARd12LZ8Be3rHj2Xgzn6hoT3IPRcICyl40CkAlhXpN5VShsnmYmfXssb14BPcnGGuT7beFuEUvYBAwVIwBs9D57grbegM78UZpROy46b5hA8apys2q82ikZEZ3I+LsAaBA7E82M4Zbd8AWgBQmH2wkE6hBkYYII3unNXZwrLuvTy4b9QYjUCZ+YfDj2Sd1LtXA5FdHlC8Ke4LEusRj6Li+FC8UqyxAEwmwmmGrSeq9RBI4lQCnQHuqf/NyM+LDPLQ2Y9i4D9k0aUYwGj7WQ3qGOA7zROVZDCnJYM++6ch9RmK0Ysr/+JBicgoBzjCIX51U+uaw2/qjribKzYW52yE9Kwsnpq4JOCgdbJnjbeoPG6vaO0M/O/9GMMhMTLikuAiKDAR/Y6qYOO1oik/xLfPfC6NVGKCxuV1nXd5VerX1VEOxR5oE+SHb1Y7qX32Oue7hv+oN+eIJM7/o2YBNz24zipTk=
