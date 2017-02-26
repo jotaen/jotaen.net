@@ -3,7 +3,7 @@ title = "Spread your configuration"
 subtitle = "Syncing dotfiles with git"
 date = "2016-02-07"
 tags = ["mac", "dotfiles"]
-image = "/assets/2016/mac-with-stickers.jpg"
+image = "/posts/2016-02-07-dotfiles/mac-with-stickers.jpg"
 id = "2uNLp"
 url = "2uNLp/syncing-dotfiles-with-git"
 aliases = ["2uNLp"]
@@ -64,4 +64,4 @@ TLDR; In brief: follow these steps to add a config file/folder:
 
 That way, where-ever you are, you may enjoy your lovely colored bash profile, which you created on a drizzly Sunday evening…
 
-![Colored bash profile](/assets/2016/bash-profile.jpg)
+![Colored bash profile](/posts/2016-02-07-dotfiles/bash-profile.jpg)

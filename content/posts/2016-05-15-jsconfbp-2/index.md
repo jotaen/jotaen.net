@@ -3,7 +3,7 @@ title = "JavaScript city tour (2/2)"
 subtitle = "Second day of the JSConf Budapest, May 2016"
 date = "2016-05-15"
 tags = ["conference", "javascript"]
-image = "/assets/2016/budapest-skyline.jpg"
+image = "/posts/2016-05-15-jsconfbp-2/budapest-skyline.jpg"
 id = "lxrmc"
 url = "lxrmc/jsconf-budapest-2016-part2"
 aliases = ["lxrmc"]
@@ -11,7 +11,7 @@ aliases = ["lxrmc"]
 
 These are my notes on the second day of the [JSConf in Budapest](http://jsconfbp.com/)[^1], which  took place at May 12th and 13th in the Akvarium Klub in the heart of city.
 
-By the way: I took the image above at Friday afternoon after the conference. If you like it, you can [download it in full resolution](/assets/2016/budapest-skyline-full.jpg). It’s public domain! (Sorry for low quality though, I took it with my phone.)
+By the way: I took the image above at Friday afternoon after the conference. If you like it, you can [download it in full resolution](/posts/2016-05-15-jsconfbp-2/budapest-skyline.original.jpg). It’s public domain! (Sorry for low quality though, I took it with my phone.)
 
 ## “Building an Offline Page for theguardian.com”
 

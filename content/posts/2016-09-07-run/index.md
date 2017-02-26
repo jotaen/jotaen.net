@@ -3,7 +3,7 @@ title = "Run Monitor"
 subtitle = "How I keep track of my run training"
 date = "2016-09-07"
 tags = ["project", "information design"]
-image = "/assets/2016/run-monitor.jpg"
+image = "/posts/2016-09-07-run/run-monitor.jpg"
 id = "oBPhB"
 url = "oBPhB/run-monitor"
 aliases = ["oBPhB"]
@@ -21,7 +21,7 @@ Enough of the words: make mincemeat out of my run performance and see the dashbo
 
 Designing this tiny dashboard app was actually pretty fun, as I put a lot of thought in the information design. As I explained above, the key idea is to have a comprehensive and intuitive comparison of one particular training session to the goal of running 21.1 km in 2 hours. There are four measurements:
 
-![Distance](/assets/2016/run-monitor-graphs.jpg)
+![Dashboard showing a circle graph, a speedometer, a pie chart and a progress bar](/posts/2016-09-07-run/run-monitor-dashboard.jpg)
 
 ### Distance
 
