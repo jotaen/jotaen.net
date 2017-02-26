@@ -6,6 +6,8 @@
   <meta name="twitter:title" content="{{ .Title }}">
   <meta name="twitter:description" content="{{ .Params.Subtitle }}">
   <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ .Params.Image }}">
+
+  <script defer="true" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" onload="hljs.initHighlightingOnLoad()"></script>
 {{ end }}
 
 {{ define "main" }}

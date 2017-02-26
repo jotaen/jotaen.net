@@ -15,7 +15,7 @@ This blogpost is a beginner’s guide to JS promises. You will learn what a prom
 
 Let’s make an example: If javascript were a synchronous programming language, you could write a database request like this:
 
-{% highlight js %}
+```JavaScript
 try {
   let result = db.find({id: 5});
   // let’s assume, we had defined the process function:
@@ -23,11 +23,11 @@ try {
 } catch(error) {
   console.log(error);
 }
-{% endhighlight %}
+```
 
 However, the `db` object behaves asynchronously, like many things in JavaScript. The main thread will not wait for the `db.find` method to be finished, for which reason the above code sample won’t work as expected. To get around this problem, it was a common pattern for a long time to pass a callback function into asynchronous methods as a parameter like this:
 
-{% highlight js %}
+```JavaScript
 db.find({id: 5}, (error, result) => {
   if (error) {
     console.log(error);
@@ -35,7 +35,7 @@ db.find({id: 5}, (error, result) => {
     process(result);
   }
 });
-{% endhighlight %}
+```
 
 Why is this bad?
 
@@ -49,13 +49,13 @@ Why is this bad?
 
 Basically, the conditional approach from the first example isn’t that bad in principle. We just need to find a way to make it work for asynchronous actions. This is where promises step in. How does the following code sample read to you?
 
-{% highlight js %}
+```JavaScript
 db.find({id: 5})
 .then(process)
 .catch((error) => {
   console.log(error);
 });
-{% endhighlight %}
+```
 
 `db.find` now returns an object; more precisely: a promise object. The code comes quite close to the native `if else` statement and offers a clear API for the actual control flow (which is happening inside the promise). A promise can have three states:
 
@@ -80,7 +80,7 @@ If you want to work with promises seriously, you are best advised to acquaint yo
 
 There is a proposal for ES7, which introduces async functions and the keyword `await`. With that, we eventually have pretty much the same code as in the initial example:
 
-{% highlight js %}
+```JavaScript
 (async function() {
   try {
     let result = await db.find({id: 5});
@@ -89,7 +89,7 @@ There is a proposal for ES7, which introduces async functions and the keyword `a
     console.log(error);
   }
 }());
-{% endhighlight %}
+```
 
 But: this is still experimental by now. Maybe the syntax will change, maybe it won’t make its way into the standard[^3]. Either way, you will have to use a preprocessor (transpiler, compiler, whateveriler) like Traceur or Babel in order to make this code work.
 

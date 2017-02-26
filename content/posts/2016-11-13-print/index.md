@@ -57,13 +57,13 @@ Anyway, make sure that the layout doesn’t become too simplistic on the other h
 
 The user may see an underlined word and recognize it as link, but the address information of a weblink is lost. (This is technically the `href` attribute of a link.) I solved this issue with the following CSS:
 
-{% highlight scss %}
+```CSS
 @media print {
     a:after {
       content: " [➚ " attr(href) "]";
     }
 }
-{% endhighlight %}
+```
 
 That way, the address of a link is written out and appears right after the link text. (Try it out by looking at the print preview of this page.) Depending on the length it might be a pain to typewrite the URL, but after all the URL information is preserved.
 
@@ -81,12 +81,12 @@ There are various possibilities for organizing the CSS code for the print stylin
 
 However, I prefer to have my stuff organized in a logical way: I decided to handle the print styling in place and keep it along with all the other rules. When using CSS preprocessing (SASS, LESS) this can be done like so:
 
-{% highlight scss %}
+```CSS
 .some-class {
     margin-top: 1em;
     @media print { margin-top: 20pt; }
 }
-{% endhighlight %}
+```
 
 ### Units, dimensions
 

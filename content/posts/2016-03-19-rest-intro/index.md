@@ -40,15 +40,15 @@ The API responses are also JSON. This is important to be consistent with: it app
 Here are the data structures for request and response of this particular blogpost. As you see, the response contains some additional meta-data, that cannot be manipulated via the request.
 
 #### Request: PUT /fXts2
-{% highlight json %}
+```JSON
 {
   "url": "https://www.jotaen.net/fXts2/what-is-a-rest-service",
   "status_code": 302
 }
-{% endhighlight %}
+```
 
 #### Response: GET /fXts2
-{% highlight json %}
+```JSON
 {
   "token": "fXts2",
   "url": "https://www.jotaen.net/fXts2/what-is-a-rest-service",
@@ -56,7 +56,7 @@ Here are the data structures for request and response of this particular blogpos
   "created": "2016-03-19T15:02:09Z",
   "updated": "2016-03-19T15:02:09Z"
 }
-{% endhighlight %}
+```
 
 From the 70 HTTP predefined status codes, I chose the following ones for my API:
 

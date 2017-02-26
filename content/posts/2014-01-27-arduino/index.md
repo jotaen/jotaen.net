@@ -21,7 +21,7 @@ Here are two implementations of the same line-up: A LED, which blinks at 2 Hz, 
 
 ### An common Arduino sketch
 
-{% highlight cpp %}
+```C++
 int button = 7;
 int led = 13;
 
@@ -45,11 +45,11 @@ void loop() {
     lastToggled = millis();
   }
 }
-{% endhighlight %}
+```
 
 ### The same process implemented with yps
 
-{% highlight cpp %}
+```C++
 #include <yps.h>
 
 DigitalInput<7> button;
@@ -75,4 +75,4 @@ void onLaunch() {
   button.onHigh(speedInterval);
   button.onLow(resetInterval);
 }
-{% endhighlight %}
+```

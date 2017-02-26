@@ -15,15 +15,15 @@ To say it with the words of Howard Wolowitz from The Big Bang Theory: I have str
 
 Anyway – the reason why I’m writing all this is, that I set out to condense all the awesomeness of C++ and put it into a single piece of code. This is the outcome:
 
-{% highlight cpp %}
+```C++
 int main() {
   B<j>*a=(&r_)->n((!e||S::t)?r(*(o+u++)):s%t)[_r^=--u,p];
 }
-{% endhighlight %}
+```
 
 What purpose does this programm fulfill? – Well, I don’t know. But in some way I like it. However, I wrote a header file, with which the programm compiles, but I don’t know what that is actually good for either. (Except for making the programm compile.)
 
-{% highlight cpp %}
+```C++
 // compiles with gcc 4.2.1
 
 typedef int j;
@@ -43,7 +43,7 @@ struct S { static const bool t = true; };
 R_ r_;
 bool e;
 int u,s,p,_r,t,o[0];
-{% endhighlight %}
+```
 
 
 ## Reward

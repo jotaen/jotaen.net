@@ -17,7 +17,7 @@ There are only few things to know in order to get started, so within 5 minutes y
 
 After you have initialized git in your home folder, the first thing you do is creating a `.gitignore` file, since you cannot track the folder in its entirety – you likely want to commit particular files and folders. Unfortunately, git doesn’t support whitelisting natively. However, there is a workaround by blacklisting (i.e. ignoring) everything and then in turn unignoring the files and folders you wish to check in.
 
-{% highlight shell %}
+```Bash
 # First, ignore everything:
 *
 
@@ -26,16 +26,16 @@ After you have initialized git in your home folder, the first thing you do is cr
 !/.gitignore_global
 !/.bash
 !/.bash_profile
-{% endhighlight %}
+```
 
 If you want to version files within subfolders or even complete subfolders, things turn out to be a bit tricky. Let’s say, you want to commit your custom keyboard layouts (that I showed in a [previous blogpost](/4haPC/stop-using-ascii-art)), that live in `~/Library/Keyboard Layouts/`. The following notation would be the correct way to put into `.gitignore`:
 
-{% highlight shell %}
+```Bash
 # 1. Re-ignore subdirectory (WITH trailing slash)
 /Library/
 # 2. Unignore the desired folder (WITHOUT trailing slash)
 !/Library/Keyboard Layouts
-{% endhighlight %}
+```
 
 You literally have to work your way down to the target:
 
@@ -46,10 +46,10 @@ You literally have to work your way down to the target:
 
 Your entire home folder (with every subfolder in it) is a repo now – of course this would be annoying. Thankfully, there is a pragmatic solution for that: Just create a bash alias, that let’s you easily “switch git on and off”:
 
-{% highlight shell %}
+```Bash
 alias git-disable="mv .git ._git"
 alias git-enable="mv ._git .git"
-{% endhighlight %}
+```
 
 # Instruction manual
 

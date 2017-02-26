@@ -25,7 +25,7 @@ The owner of a skateboard shop asks you for help: In order to attract more stude
 
 The customer data can be found in the [`data/customer.json`](https://github.com/jotaen/code-katas.js/tree/master/discount-campaign/data/customer.json) file. This is what the data structure looks like:
 
-{% highlight json %}
+```JSON
 [
   {
     "name": "Rebecca Miller",
@@ -38,7 +38,7 @@ The customer data can be found in the [`data/customer.json`](https://github.com/
     ]
   }
 ]
-{% endhighlight %}
+```
 
 The conditions for participation for customers are defined as follows:
 
@@ -58,7 +58,7 @@ It is **not allowed to use control flow statements** to solve this kata: Do not 
 
 The [solution I came up with](https://github.com/jotaen/code-katas.js/tree/master/discount-campaign)[^2] is just one possibility to solve this kata. My script generates the following output:
 
-{% highlight text %}
+```Text
 Revenue for students in 2015
 ----------------------------
 Jan:  1155.36 €
@@ -75,7 +75,7 @@ Nov:  1228.07 €
 Dec:  1582.14 €
 ===============
 ∑    14960.71 €
-{% endhighlight %}
+```
 
 Although the whole thing is a command line utility, I consider it to be important to put some thought into the presentation of the calculated result.
 

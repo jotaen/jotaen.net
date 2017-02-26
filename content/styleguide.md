@@ -56,14 +56,14 @@ The font face has a technical look goes nicely with this blog, whose topics cove
 
 [^2]
 
-{% highlight ruby %}
+```Ruby
 # Returns a personalized salutation string
 def greet(name)
   return "Hey, #{name}! How are you doing?"
 end
 
 puts greet("Mary")
-{% endhighlight %}
+```
 
 ## List
 

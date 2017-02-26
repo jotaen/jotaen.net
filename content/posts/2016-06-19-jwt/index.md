@@ -35,21 +35,21 @@ A JWT consists of three parts:
 
 The three parts are base64-encoded and then separated by a dot. A ready-made JWT would look like this:
 
-{% highlight bash %}
+```Text
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.
 TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
-{% endhighlight %}
+```
 
 The claim section contains the following data:
 
-{% highlight json %}
+```JSON
 {
   "sub": "1234567890",
   "name": "John Doe",
   "admin": true
 }
-{% endhighlight %}
+```
 
 ## Which information can be stored in a JWT?
 
