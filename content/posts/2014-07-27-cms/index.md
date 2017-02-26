@@ -17,7 +17,7 @@ For this project, I worked not only on the relaunch itself, but spent much dilig
 
 [^1]
 
-![Layouts of the new website compared to the print design](/posts/2014-07-27-cms/davac-layout.png)
+![Comparison of the print layouts (magazine) to the new website](/posts/2014-07-27-cms/davac-layout.png)
 
 ## Basic approach
 

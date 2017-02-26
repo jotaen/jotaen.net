@@ -42,7 +42,7 @@ Despite tests and other quality gates there are always things that can go wrong 
 
 Although the test suite needs about 10 seconds to pass, the entire build and deploy process from scratch takes a few minutes. Since I don’t want to sit and wait for it to be completed, I created a Slack channel, where all information get pushed, as soon as it become available:
 
-![Slack notifications](/assets/2016/slack-j4nio.png)
+![A slack message notifying about a successful deployment](/assets/2016/slack-j4nio.png)
 
 The second notification is the smoke test, which I explained above. When it appears, I know that the deployment passed through and everything is working fine. As a future improvement I plan a failing health check to result in an automated rollback to the latest stable version of the app.
 

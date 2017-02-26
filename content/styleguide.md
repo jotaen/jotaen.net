@@ -79,7 +79,7 @@ puts greet("Mary")
 
 [^3]
 
-![Abseiling from the salbit summit needle in the swiss alps](/salbit.jpg)
+![A climber abseils from a very exposed summit needle](/salbit.jpg)
 
 ## Blockquote
 

@@ -64,4 +64,4 @@ TLDR; In brief: follow these steps to add a config file/folder:
 
 That way, where-ever you are, you may enjoy your lovely colored bash profile, which you created on a drizzly Sunday evening…
 
-![Colored bash profile](/posts/2016-02-07-dotfiles/bash-profile.jpg)
+![A bash profile with a colored prompt](/posts/2016-02-07-dotfiles/bash-profile.jpg)

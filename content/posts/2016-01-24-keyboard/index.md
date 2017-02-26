@@ -71,7 +71,7 @@ In general, the easiest way is to import your currently used keyboard layout, cu
 
 [^3]
 
-![Keyboard layout with](/posts/2016-01-24-keyboard/keyboard-layout.gif)
+![A keyboard that shows customized keybindings](/posts/2016-01-24-keyboard/keyboard-layout.gif)
 
 Last but not least, I recommend you to activate the keyboard icon in the system tray via your system settings. That way, you can quickly display a virtual keyboard, which reveals all the “hidden” characters when you press `shift` or `option`. That can be good reminder sometimes.
 
