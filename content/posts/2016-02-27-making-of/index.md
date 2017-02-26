@@ -46,4 +46,4 @@ If you are interested to get a complete impression of the styling of my blogpost
 
 [^1]: Now I go with SASS by the way, but I think there is not that much difference between the two of them.
 
-*[DRY]: Don’t repeat yourself
+<!-- *[DRY]: Don’t repeat yourself -->

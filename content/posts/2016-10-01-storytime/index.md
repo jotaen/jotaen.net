@@ -37,4 +37,4 @@ Having told you this story lets me point out three things that I take away and g
 
 [^1]: Read here about [shearing layers](https://en.wikipedia.org/wiki/Shearing_layers) and see this [video](https://www.youtube.com/watch?v=HTSbtM12IZw)
 
-*[MVP]: Minimum Viable Product
+<!-- *[MVP]: Minimum Viable Product -->

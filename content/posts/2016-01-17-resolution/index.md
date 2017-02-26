@@ -49,4 +49,4 @@ Let’s see, where this leads to!
 [^2]: This isn’t a classical New Years Resolution; the point in time rather happens to be a coincidence.
 [^3]: Disclaimer: The topic must not necessarily be related to code!
 
-*[CET]: Central european time
+<!-- *[CET]: Central european time -->

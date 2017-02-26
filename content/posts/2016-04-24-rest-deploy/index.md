@@ -49,4 +49,4 @@ The second notification is the smoke test, which I explained above. When it appe
 
 [^1]: Modulus.io is the only service involved here, which charge something. All the other services are free for open-source projects
 
-*[PAAS]: Platform as a service
+<!-- *[PAAS]: Platform as a service -->

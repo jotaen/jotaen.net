@@ -93,5 +93,5 @@ I decided to go with the second most simple solution: Versioning my API via a qu
 [^2]: [Swagger.io](http://swagger.io/) is a popular framework for describing APIs. There also is an editor on the swagger website for rendering the YAML files.
 [^3]: [Here](http://www.lexicalscope.com/blog/2012/03/12/how-are-rest-apis-versioned/) is an outdated, but nonetheless helpful overview.
 
-*[CRUD]: Create, Read, Update, Delete
-*[YAGNI]: You ain’t gonna need it
+<!-- *[CRUD]: Create, Read, Update, Delete -->
+<!-- *[YAGNI]: You ain’t gonna need it -->

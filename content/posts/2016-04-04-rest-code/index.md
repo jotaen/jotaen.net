@@ -48,4 +48,4 @@ When you look into the `bootstrap` folder, you instantly smell the dust of side-
 > [**Part 4: Testing and QA**](/v24iU/testing-and-qa-of-j4nio) Since microservices are small in scope and pretty much well-defined, they are not so hard to test. However, there is a whole bunch of testing utility and quality assurance tools to choose from.
 
 
-*[NPM]: NodeJS Package Manager
+<!-- *[NPM]: NodeJS Package Manager -->
