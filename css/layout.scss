@@ -95,3 +95,9 @@ body {
     display: none;
   }
 }
+
+.prepend-blurred:before {
+  content: "&ß#üø$";
+  filter: blur(2px);
+  letter-spacing: -3px;
+}

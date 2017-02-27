@@ -37,16 +37,14 @@ var hide_label = function() {
 }(document));
 
 (function reveal_email(document, window) {
-  var links = document.getElementsByTagName('a');
+  var links = document.getElementsByClassName('prepend-blurred');
   var popup = function() {
     window.open("http://www.google.com/recaptcha/mailhide/d?k=01AxKftslD25l2Xrd7GQrq3A==&c=yzyOzUPufidKpnaMgGVxAw==", "", "toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300");
     return false;
   };
   [].forEach.call(links, function(link) {
-    if (link.getAttribute("href") == "mailto:j...@jotaen.net") {
-      link.setAttribute("href", "http://www.google.com/recaptcha/mailhide/d?k=01AxKftslD25l2Xrd7GQrq3A==&c=yzyOzUPufidKpnaMgGVxAw==");
-      link.setAttribute("title", "I’m so sorry for that captcha hassle, but you know how it is :(");
-      link.onclick = popup;
-    }
+    link.setAttribute("href", "http://www.google.com/recaptcha/mailhide/d?k=01AxKftslD25l2Xrd7GQrq3A==&c=yzyOzUPufidKpnaMgGVxAw==");
+    link.setAttribute("title", "I’m so sorry for that captcha hassle, but you know how it is :(");
+    link.onclick = popup;
   });
 }(document, window));
