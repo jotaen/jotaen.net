@@ -128,25 +128,27 @@ Sidenote: It’s not recommended to set CNAME records for root level domains, al
 
 ## AWS CloudFront and HTTPS 
 
-CloudFront is the CDN service of AWS that can be put ahead of S3. This means that all our content isn’t served directly out of the bucket anymore, but it is cached by additional CDN servers (so-called edges) all around the globe.
+CloudFront is the CDN service of AWS that can be put ahead of S3. This means that all our content isn’t delivered directly out of the bucket anymore, but it is served by CDN servers (so-called edges) all around the globe.
 
-The biggest benefit for a smaller website like this blog is not performance. (S3 is usually pretty quick already.) Instead, CloudFront gives us the ability to setup a free SSL certificate, which would not be possible with S3 alone. But of course there are downsides: caching can be annoying sometimes, because file changes take much longer to be rolled out. Also, CloudFront is a bit more expensive then S3 (depending on how you use it).[^4]
+The biggest benefit for a smaller website like this blog is not performance. (S3 is usually pretty quick already.) Instead, CloudFront gives us the ability to setup a SSL certificate, which would not be possible with S3 alone. Note that even though the CloudFront default certificates are free, CloudFront itself is a bit more expensive then S3 (depending on how you use it).[^4]
 
-In order to setup CloudFront, create a Distribution in the AWS Console. Here are some tips:
+In order to setup CloudFront, create a Distribution in the AWS Console. It’s up to you whether you want to use the caching mechanism or not. Caching can be annoying sometimes, because file changes take much longer to be rolled out. If you set a custom TTL of 0, CloudFront will check the origin for modifications on each request.[^5] Don’t worry about the performance implications – they are most likely neglectable.
+
+Here are some further tips for the configuration:
 
 - **Price class** Beware that the pricing is highly dependent on the number of edges you want to deploy to.
+- **TTL** CloudFront respects the original caching headers, but you can override the expiration times with the TTL values, even with a value of 0.
 - **Origin**: Choose the public S3 endpoint address as origin, not the internal name. This is important, because otherwise sub-path requests wouldn’t be resolved to the according `index.html` files in subdirectories.
 - **Permissions** Since our S3 bucket still acts as public webserver, we don’t change the bucket permissions. It has the additional benefit that we can switch between CloudFront and S3 by means of our CNAME DNS entries. That way, both services don’t depend on each other.
 - **HTTPS**: Activate HTTPS with a default CloudFront certificate. It’s free and AWS will take care of everything.
 - **CNAME**: You must list all the CNAMEs that you have setup, otherwise the according requests will all fail.
 - **Query String Forwarding**: It can be handy to activate this, if you would like to bypass caching for particular assets (by appending an arbitrary query value in your HTML.)
-- **TTL** CloudFront respects the original caching headers, but you can override the expiration times with the TTL values.
 
 When you decide for CloudFront, you might consider to use [`s3cmd`](http://s3tools.org/usage) instead of the AWS CLI in the deploy step, because it provides the option to automatically trigger cache invalidation for uploaded files (with the `--cf-invalidate` option.)
 
 ## Provisioning tools
 
-Nowadays, infrastructure can be setup in a modern DevOps fashion with tools like [terraform](https://www.terraform.io/). This is not just cool, but it brings in several benefits like predictability and reproducibility. On the other hand though, this would add another layer of complexity and is most likely overkill for a simple setup like ours. The infrastructure that is described here can be easily maintained via the AWS web interface (aka Cloud Console).
+Nowadays, infrastructure can be setup in a modern DevOps fashion with tools like [terraform](https://www.terraform.io/). This is not just cool, but it brings in several benefits like predictability and reproducibility. On the other hand though, this would add another layer of complexity and is probably overkill for a simple setup like ours. The infrastructure that is described here can be easily maintained via the AWS web interface (aka Cloud Console).
 
 
 
@@ -154,3 +156,4 @@ Nowadays, infrastructure can be setup in a modern DevOps fashion with tools like
 [^2]: It’s a common good practice to only grant the exact necessary access rights, even though it is more complicated.
 [^3]: Setting up a CNAME record for the root domain can [break email delivery on this domain](https://joshstrange.com/why-its-a-bad-idea-to-put-a-cname-record-on-your-root-domain).
 [^4]: You can estimate your AWS expenses with this [handy calculator](https://calculator.s3.amazonaws.com/index.html).
+[^5]: See the [AWS docs](https://aws.amazon.com/blogs/aws/amazon-cloudfront-support-for-dynamic-content/). This [StackOverflow post](http://stackoverflow.com/questions/10621099/what-is-a-ttl-0-in-cloudfront-useful-for) also provides useful information.
