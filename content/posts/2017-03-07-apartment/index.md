@@ -1,11 +1,11 @@
 +++
-title = "Flat-hunting in Berlin"
-subtitle = "How to approach the search"
-date = "2017-03-05"
+title = "Apartment-hunting"
+subtitle = "How to approach the search in Berlin"
+date = "2017-03-07"
 tags = ["off-topic", "berlin"]
-image = "/posts/2017-xx-xx-apartment/berlin-graffiti.jpg"
+image = "/posts/2017-03-07-apartment/berlin-graffiti.jpg"
 id = "cDjSY"
-url = "cDjSY/flat-hunting-in-berlin"
+url = "cDjSY/apartment-hunting-in-berlin"
 aliases = ["cDjSY"]
 +++
 
