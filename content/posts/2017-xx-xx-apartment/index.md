@@ -1,5 +1,4 @@
 +++
-draft = true
 title = "Flat-hunting in Berlin"
 subtitle = "The nightmarish rental situation"
 date = "2017-03-05"
