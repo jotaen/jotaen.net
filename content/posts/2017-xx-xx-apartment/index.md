@@ -1,6 +1,6 @@
 +++
 title = "Flat-hunting in Berlin"
-subtitle = "The nightmarish rental situation"
+subtitle = "How to approach the search"
 date = "2017-03-05"
 tags = ["off-topic", "berlin"]
 image = "/posts/2017-xx-xx-apartment/berlin-graffiti.jpg"
@@ -20,14 +20,14 @@ Looking for a rental flat is not just annoying and exhausting, it is also tremen
 
 So, if you are looking for a nice place, you need to be both persevering and efficient. I condensed my experiences in this blogpost in the hope that they will be a useful resource for someone else. Moreover, the information are not specific to Berlin, but they are applicable for all of Germany.
 
-# Approaching the search
+# The search
 
 ## Where to look?
 
 These are the common places to go:
 
-- [immobilienscout24](https://www.immobilienscout24.de/) is probably the first choice for flats with the largest selection. Their biggest competitor is [immowelt](https://www.immowelt.de/), but they have usually fewer offers which are mostly just crossposts.
-- Portals like [wg-gesucht](http://www.wg-gesucht.de/) and [studenten-wg](https://www.studenten-wg.de/) are the biggest communities for finding shared flats.
+- [immobilienscout24](https://www.immobilienscout24.de/) has the largest selection and is probably the first choice to look for flats. Their biggest competitor is [immowelt](https://www.immowelt.de/), but they have usually fewer offers which are mostly just crossposts.
+- Portals like [wg-gesucht](http://www.wg-gesucht.de/) and [studenten-wg](https://www.studenten-wg.de/) are the biggest communities for finding shared flats, but there are also ads for single person spaces.
 - Some landlords advertise at [ebay Kleinanzeigen](https://www.ebay-kleinanzeigen.de/), but it wasn’t valuable for me so far.
 
 Apart from that there are various fee-based services that let you place a “wanted”-ad. I never tried one of these and I have never heard anything good about them.
@@ -47,13 +47,13 @@ If you don’t have one of these documents, you should try to provide equivalent
 
 One thing I learned is that you need to be lightning fast and super responsive. I saw flat advertisements that had been enabled for no longer than a couple of hours. So just checking the platforms every evening means that you will probably miss some good opportunities.
 
-A lot of inspection appointments are invitational-only. In order to stand out of the mass, I always take the time to write a few personal lines in my initial inquiry. Furthermore, passing a photo along with your other documents can help you being reckognized and remembered.
+A lot of inspection appointments are invitational-only. In order to stand out of the mass, I always take the time to write a few personal lines in my initial inquiry. Furthermore, passing a photo along with the other documents can help you being recognized and remembered.
 
 However: be careful how much personal data you want to reveal before actually meeting someone in person. There are also [fake advertisements](https://blog.immobilienscout24.de/vorsicht-betrug-so-erkennen-sie-gefaelschte-immobilieninserate/) being published every now and then.
 
 ## Bribing
 
-A colleague asked me the other day whether he should offer the landlord some extra money in order to increase his chances. I don’t have any experience with this, but bribing is a highly uncommon thing in Germany and usually considered criminal. I guess that it will rather raise suspicions instead of making anything better.
+A colleague asked me the other day whether he should offer the potential landlord some extra money in order to increase his chances. I don’t have any experience with this, but bribing is a highly uncommon thing in Germany and usually considered criminal. I guess that it will rather raise suspicions instead of making anything better.
 
 ## Bridging the first time
 
@@ -69,7 +69,7 @@ Subleasing may be a bit stressful, but you can take advantage of it, because whe
 
 # Law of tenancy
 
-In Germany there are special laws and rules that govern the apartment market. Therefore rental contracts are usually standard and just a few parameters are up for individual agreement. However, these are good to be informed about.
+In Germany there are special laws and rules that govern the apartment market. Therefore rental contracts are usually standard and just a few parameters are up for individual agreement. However, these are good to be informed about, so I always ask for these things early on.
 
 ## Minimum rental period
 
@@ -90,7 +90,7 @@ Personally, I think a minimum rental period of one year is acceptable, but I wou
 With a regular contract the rent is fixed once the contract has been signed. It can only be increased afterwards when the landlord provides a really strong reason, for instance substantial modernisation works on the building. Therefore, other contract types have come into fashion in the last couple of years:
 
 - **Stepped rent** (“Staffelmiete”) This means that the rent is increased by a fixed rate over a predetermined period. Usually you end up paying 10%–20% more after a couple of years.
-- **Indexed rent** (“Indexmiete”) This means that the rent can be annually adjusted according to the official German consumer’s price index. Even though there are a few benefits for the tenant, the price index has continuously increased since it’s being tracked. Therefore you should expect your rent to go up by a few Euros per year until you move out.
+- **Indexed rent** (“Indexmiete”) This means that the rent can be annually adjusted according to the official German consumer’s price index. Even though there are a few benefits for the tenant, the price index has continuously increased since it’s being tracked. Therefore you should expect your rent to go up by a few Euros per year – until you move out.
 
 ## Commission fee
 
@@ -99,7 +99,7 @@ Sometimes you don’t deal with the landlord directly but with a real estate age
 - If you contact the agency with a generic search request then you need to pay them upon successful acquisition
 - If the landlord commissions the agency to find appropriate candidates then he needs to pay the fee
 
-That means, if you just react to an advertisement, you can never be charged with a commission fee. Infact, this would be illegal. If they try to do it anyway, they would be guilty of fraud and liable to prosecution. Luckily this never happened to me directly, but instead of accepting it out of desperation, I would file a charge and report it to the police.
+That means, if you just react to an advertisement, you can never be charged with a commission fee. Infact, this would be illegal. If they try to do it anyway, they would be guilty of fraud and liable to prosecution.
 
 
 [^1]: The Schufa tries to sell some extra service around their appraisals. This is not mandatory, you can [request it without paying anything](https://www.meineschufa.de/index.php?site=11_3_1)!
