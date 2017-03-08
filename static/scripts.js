@@ -48,3 +48,16 @@ var hide_label = function() {
     link.onclick = popup;
   });
 }(document, window));
+
+
+var selectText = function(domNode) {
+  if (document.selection) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(domNode);
+    range.select();
+  } else if (window.getSelection) {
+    var range = document.createRange();
+    range.selectNode(domNode);
+    window.getSelection().addRange(range);
+  }
+}
