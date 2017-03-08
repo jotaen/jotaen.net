@@ -53,7 +53,7 @@ However: be careful how much personal data you want to reveal before actually me
 
 ## Bribing
 
-A colleague asked me the other day whether he should offer the potential landlord some extra money in order to increase his chances. I don’t have any experience with this, but bribing is a highly uncommon thing in Germany and usually considered criminal. I guess that it will rather raise suspicions instead of making anything better.
+A colleague asked me the other day whether he could increase his chances by offering the potential landlord a “bounty” or suggesting to pay a higher rent. I don’t have any experience with this, but bribing is a highly uncommon thing in Germany and usually considered criminal. I guess that it will rather raise suspicions instead of making anything better.
 
 ## Bridging the first time
 
