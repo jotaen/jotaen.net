@@ -18,23 +18,25 @@
   });
 }(document));
 
-var show_label = function() {
-  var label = this.getElementsByClassName("icon__label")[0];
-  label.style.display = "block";
-};
-
-var hide_label = function() {
-  var label = this.getElementsByClassName("icon__label")[0];
-  label.style.display = "none";
-};
 
 (function add_event_listeners_to_menu_icons(document) {
+  var show_label = function() {
+    var label = this.getElementsByClassName("icon__label")[0];
+    label.style.display = "block";
+  };
+
+  var hide_label = function() {
+    var label = this.getElementsByClassName("icon__label")[0];
+    label.style.display = "none";
+  };
+
   var icons = document.getElementsByClassName("icon--navi");
   [].forEach.call(icons, function(icon, i) {
     icon.addEventListener("mouseover", show_label);
     icon.addEventListener("mouseout",  hide_label);
   });
 }(document));
+
 
 (function reveal_email(document, window) {
   var links = document.getElementsByClassName('prepend-blurred');
