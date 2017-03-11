@@ -6,7 +6,8 @@
   height: 40%;
   min-height: 280px;
   @include medium-view {
-    height: 45%;
+    height: 45vh;
+    max-height: 400px;
   }
   overflow: hidden;
   background-color: $color-black;
