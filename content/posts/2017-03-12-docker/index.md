@@ -5,9 +5,9 @@ subtitle = "A short, fun and explorative tutorial for developers"
 date = "2017-03-12"
 tags = ["docker", "devops"]
 image = "/posts/2017-03-12-docker/container-vessel.jpg"
-id = "abcde"
-url = "abcde/docker-abc"
-aliases = ["abcde"]
+id = "nQ7yq"
+url = "nQ7yq/docker-tutorial-for-developers"
+aliases = ["nQ7yq"]
 +++
 
 - Run scripts in well defined environment
