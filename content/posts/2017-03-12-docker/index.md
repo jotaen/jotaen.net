@@ -19,7 +19,7 @@ The thing is, as a software developer you don’t really have to know *everythin
 
 Basically, Docker behaves the same way as a virtual machine. But instead of bundling an entire operating system it directly uses the kernel of the host system and just encapsulates the infrastructure that is specific for a particular container. Therefore, both resource usage and startup times are orders of magnitude lower compared to VMs.
 
-This blogpost provides a starting point for software developers. I wrote it up for people who don’t have any or just very little experience with Docker so far but want to learn how to use it.
+This blogpost provides a starting point for software developers who don’t have any or just very little experience with Docker so far. I walk you through the basic concepts and point out how Docker is intended to be used.
 
 One general tip upfront when working with the docker command line: If you get stuck, there is a `--help` option for all cli commands, e.g. `docker images --help`. Other than that, Docker provides excellent [documentation](https://docs.docker.com/engine/reference/commandline/cli/) for the cli with more in-depth explanations.
 
@@ -86,7 +86,7 @@ CONTAINER ID        IMAGE               COMMAND                CREATED          
 cc7168e0d60e        alpine              "echo 'Hello World'"   27 seconds ago      Exited (0) 28 seconds ago                     gifted_lewin
 ```
 
-Since starting containers is so cheap and fast, you mostly use them just a single time and throw them away afterwards. In order to remove containers we call `docker rm` and pass it one or multiple ids:
+Since creating containers is usually fast, you often use them just a single time and throw them away afterwards. In order to remove containers we call `docker rm` and pass it one or multiple ids:
 
 ```bash
 $ docker rm 1f324e2fb7b5
@@ -109,20 +109,67 @@ $ docker run --rm alpine echo "Hello World"
 Hello World
 ```
 
+### Interactive mode
+
+Sometimes it can be handy to establish a ssh-like connection into a container. This is what the interactive mode is for – we can start a new container in the interactive mode or connect to a currently running container:
+
+```bash
+$ docker run -it alpine sh
+> cd home
+> pwd
+home
+> exit
+$
+```
+
+When we want to look around in a running container, we use `docker exec -it [container-id] sh` to “login”.
+
 ## Volumes
 
-We can use volumes in order to share data between containers or between container and host system. A volume is a storage that can be attached to a container. It has it’s own lifecycle that is independent from containers and images. Volumes are stateful and mutable.
+Data volumes can be mounted into a container in order to persist data independently from the container or image lifecycle. Instead of reusing containers, volumes are the prefered way to share, persist and exchange state.
 
-- Folder from host system
-- Volumes that other containers expose
-- Dedicated volume
+### Folders from the host system
+In order to get files from the host system into a container we can mount it as data volume:
 
-# “Run, docker, run!”
+```bash
+$ # Create new folder + file on host system:
+$ mkdir hello && touch hello/world.txt
+$ # Mount `hello` folder to `/example` in container and list:
+$ docker run -v $(pwd)/hello:/example alpine ls /example
+world.txt
+```
 
-- Docker run interactive mode
-- Port mapping
-- The entrypoint can also be overwritten from the outside with the `--entrypoint` option
-- Docker logs
+Two things are important when mounting a host system folder:
+
+- Pathes must always be absolute (that’s why we use `$(pwd)` here)
+- If there is already a folder existing at the mount point, the mounted volume would “overlay” this path. However, this doesn’t apply for the other mounting methods!
+
+### Dedicated volumes
+We can also create a Docker volume as a separate entity and attach it to the container by referencing its name or id:
+
+```bash
+$ # Create new volume with name `my-demo-volume`
+$ docker volume create my-demo-volume
+my-demo-volume
+# Mount our new volume and create a file in it:
+$ docker run -v my-demo-volume:/home alpine touch /home/hello.txt
+# Create new container and list content of home:
+$ docker run -v my-demo-volume:/home alpine ls /home
+hello.txt
+```
+
+Sidenote: If the destination path is already existing in the image, all its content is copied to the volume when the container is started.
+
+### Volumes from another container
+It’s also possible to mount all volumes from another container. This technique is referred to as “data containers”:
+
+```bash
+$ # Declare `/home` as volume of a container named `foobar`:
+$ docker run -v /home --name foobar alpine touch /home/hello.txt
+$ # Mount all volumes from container `foobar` into new container:
+$ docker run --volumes-from foobar alpine ls /home
+hello.txt
+```
 
 
 [^1]: If you run this for the very first time, Docker automatically fetches the images from Docker Hub. You can explicitly do this with `docker pull`.
