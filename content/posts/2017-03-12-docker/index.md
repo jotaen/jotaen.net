@@ -10,16 +10,16 @@ url = "nQ7yq/docker-tutorial-for-developers"
 aliases = ["nQ7yq"]
 +++
 
-I remember me being slighty overwhelmed back in the day when I started to use Docker. Its idea sounded simple and the sales pitch was convincing, but I had difficulties finding a starting point, even though I was already familiar with Vagrant.
+I remember me being slighty overwhelmed back in the day when I started to use Docker. Its idea sounded simple and the sales pitch was convincing, but I had difficulties to find a starting point, even though I was already familiar with Vagrant at that time.
 
-The thing is, as a software developer you don’t really have to know *everything* about Docker in order to take advantage of it. Docker is a very powerful tool with an enormous and vibrant ecosystem around it, but it’s important to know that it is not solely aimed at DevOps engineers. You don’t need to worry about how to orchestrate distributed applications with Docker swarm or how to setup sophisticated build and deploy pipelines. When you just focus on understanding the fundamental concepts and learning the basic commands for the CLI, then this can be already sufficient to improve your local development workflow and make your daily life more convenient:
+This blogpost is a tutorial in which I’ll walk you through the basics of Docker. It is aimed at people who have any or just rudimentary experience with Docker so far. The goal is that you understand the concepts behind it and see the basic usage of the Docker CLI.
 
-- You can work on multiple software projects without needing to switch language or system library versions
+The thing is, you don’t really have to know *everything* about Docker in order to take advantage of it. Docker is a very powerful tool with an enormous and vibrant ecosystem around it, but it’s not solely aimed at DevOps engineers. You don’t need to worry about how to orchestrate distributed applications with Docker swarm or how to setup sophisticated build and deploy pipelines. It can be already sufficient to just learn about local container management. Once you are into it, you can start to improve your development workflow and make your daily life more convenient:
+
 - You can run external services like databases or message brokers in encapsulated containers without needing to install all these services on the host machine
+- You can work on multiple software projects in parallel without needing to switch language or system library versions
 
 Basically, Docker behaves the same way as a virtual machine. But instead of bundling an entire operating system it directly uses the kernel of the host system and just encapsulates the infrastructure that is specific for a particular container. Therefore, both resource usage and startup times are orders of magnitude lower compared to VMs.
-
-This blogpost provides a starting point for software developers who don’t have any or just very little experience with Docker so far. I walk you through the basic concepts and point out how Docker is intended to be used.
 
 One general tip upfront when working with the docker command line: If you get stuck, there is a `--help` option for all cli commands, e.g. `docker images --help`. Other than that, Docker provides excellent [documentation](https://docs.docker.com/engine/reference/commandline/cli/) for the cli with more in-depth explanations.
 
@@ -59,11 +59,11 @@ Docker images have an entrypoint that is invoked when the container is started. 
 Usually you come pretty far with the (official) images provided on [Docker Hub](https://hub.docker.com/)[^2]. However, if you need customization, you need to build your own one. These are the most common ways to do this:
 
 - Write a [**Dockerfile**](https://docs.docker.com/engine/reference/builder/): The Dockerfile contains instructions to create a new image and also defines the interface for ports and volumes.
-- **Commit** a container: With `docker commit` you can extract the state of a container on the fly as new image.
+- **Commit** a container: With `docker commit` you can capture the state of a container as new image “on the fly”.
 
 ## Containers
 
-A container is the running instance of an image and provides the runtime in which a command is executed. Here is the container lifecycle each time we execute `docker run`:
+A container is the running instance of an image and provides the runtime in which a command is executed. Here is the container lifecycle when we execute `docker run`:
 
 1. A fresh new container gets created, based on the specified image
 2. The container is started; the command gets passed to the entrypoint and processed
