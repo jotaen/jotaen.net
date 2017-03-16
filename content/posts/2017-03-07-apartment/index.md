@@ -77,13 +77,13 @@ The statutory notice period for terminating a rental contract is 3 months in adv
 
 Some people underestimate the severity of this clause. Consider the following scenarios and the entailing consequences:
 
-- You loose your job and cannot afford to pay the rent anymore
+- You lose your job and cannot afford to pay the rent anymore
 - You are expecting a child and need to find a bigger place
 - You receive the job offer of your life, but you would need to relocate
 
 In all of these cases you wouldn’t be legally permitted to cancel the contract early. At least, it would be completely up to the goodwill of the landlord – in the worst case, there is no way out. Of course you could try to sublet your apartment for the remaining period, but you are still solely responsible for everything what’s happening inside.
 
-Personally, I think a minimum rental period of one year is acceptable, but I wouldn’t go higher than that. Just do the maths: If the apartment is EUR 700 a month with a minimum time of 4 years, you would owe EUR 33,600 as of the moment you sign the contract.
+Personally, I think a minimum rental period of one year is acceptable, but I wouldn’t go higher than that. Just do the math: If the apartment is EUR 700 a month with a minimum time of 4 years, you would owe EUR 33,600 as of the moment you sign the contract.
 
 ## Stepped or indexed rent
 
