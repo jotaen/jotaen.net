@@ -5,9 +5,9 @@ subtitle = "About change, persistence and making decisions"
 date = "2017-03-19"
 tags = ["thoughts"]
 image = "/posts/2017-03-19-buildings/village-spain.jpg"
-id = "abcde"
-url = "abcde/shearing-layers"
-aliases = ["abcde"]
+id = "VZ3NI"
+url = "VZ3NI/shearing-layers"
+aliases = ["VZ3NI"]
 +++
 
 When we look at buildings, we tend to ascribe much importance to outward facing attributes: Where they are located, what their facade looks like, how they fit into their surrounding environment. We call this aspect “architecture” and define it as the process of planning, designing, and constructing a building.
