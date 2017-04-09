@@ -1,5 +1,4 @@
 +++
-draft = true
 title = "Shearing layers"
 subtitle = "About change, persistence and making decisions"
 date = "2017-04-09"
