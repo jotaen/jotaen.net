@@ -1,5 +1,5 @@
 +++
-type = "post"
+type = "posts"
 title = "Living styleguide"
 subtitle = "The Haute Couture of my blogposts"
 date = "2014-12-27"
