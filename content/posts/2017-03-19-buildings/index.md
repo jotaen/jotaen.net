@@ -1,7 +1,7 @@
 +++
 draft = true
 title = "Shearing layers"
-subtitle = "How we can learn from buildings"
+subtitle = "About change, persistence and making decisions"
 date = "2017-03-19"
 tags = ["thoughts"]
 image = "/posts/2017-03-19-buildings/village-spain.jpg"
@@ -10,27 +10,32 @@ url = "abcde/shearing-layers"
 aliases = ["abcde"]
 +++
 
-Growing software is the same thing as developing a building. The most interesting thing about buildings is not their initial concept but how it evolved and adapted over time.
+When we look at buildings, we tend to ascribe much importance to outward facing attributes: Where they are located, what their facade looks like, how they fit into their surrounding environment. We call this aspect “architecture” and define it as the process of planning, designing, and constructing a building.
 
-One of the biggest mistake in architecture is to focus exlucisvely on the overall look or other outward facing attributes. But building a house is nothing that you finish – it is something that you start. The same holds true for software: just releasing a feature that meets the initial requirements is not sufficient for sustaining a business in the long term. Both technical and market environments are always evolving, and features must constantly adjust to suit the unfolding patterns of their usage.
+Although it is easy to assess a construction work on the basis of its appearance, this doesn’t yield a complete picture: the question whether a building can be considered successful or not will rather emerge over time. “A building is nothing that you finish – it is something that you start.” This quote is from Stewart Brand’s documentary “How Buildings Learn”, in which he looks at the life of buildings after they have been put up. He categorizes the various aspects of a building into different layers, each of which behaving differently in their ability to respond to change:
 
-But how can we deal with this inherently volatile situation? It is hardly possible to forsee every upcoming trend and we should generally strive for staying flexible. The ability for change is a critical premise for what we call agile software development nowadays. However, certain decisions must be made in the early stages and cannot be deferred. It is wasteful to forearm for all imaginable alterations, but it is critical to be aware 
+- **Site**: the geographical setting, where the building is located
+- **Structure**: the foundation and load-bearing elements
+- **Skin**: facade and other exterior surfaces and elements
+- **Services**: wiring, plumbing, heating, air conditioning, elevators
+- **Space plan**: internal partitioning, floor plan
+- **Stuff**: furniture, decoration, things
 
-## Shearing layers
+These layers of change are concrete and tangible, because a house is made of physical material. For instance, changing the site means relocating the entire house from one spot to another, whereas rearranging the furniture in a single room is done with a flick of the wrist. The required amount of work is apparent in both cases and transparent from the very beginning.
 
-- **Site**: The geographical setting where the building is located.
-- **Structure**: Foundation and load-bearing elements
-- **Skin**: The facade and other exterior surfaces and elements
-- **Services**: Wiring, plumbing, heating, air conditioning, elevators
-- **Space plan**: 
-- **Stuff**:
+<div>{{< youtube HTSbtM12IZw >}}</div>
 
-When considering buildings, the layers of change are concrete and tangible, because a house is made of physical material. Changing the site would mean to relocate the entire house from one spot to another, and the enormous amount of work is apparent. But unlike buildings, software is not made of physical material. Its main building block is source code that is poured into patterns and assembled to abstractions, eventually forming the basic structure that the application consists of. This makes the costs of change much harder to judge.
+When we describe software we often borrow expressions from construction work: We *build* software, we create *architecture*, we provide and *maintain infrastructure*, and even on a code level we speak of patterns like *facades*. But unlike buildings, software is not made of physical material. Its main building block is source code that is poured into patterns and assembled to abstractions, forming the essential but virtual structure that the application eventually consists of. This makes the cost of change far more difficult to judge or – at the worst – easy to overlook at all.
 
-## Minutes
+The similarities in the lifecycles of software and buildings are astonishing. And just as buildings, the success of software doesn’t manifest in its initial concept or its primary design. Instead, the most decisive criterion for a software product is whether it stays competitive in today’s fast pacing industry: how it evolves over time and whether it is able to adapt to unforeseen requirements in a short amount of time. Both technical and market environments are always changing, and software must constantly be adjusted and moved forward to suit the unfolding patterns of its usage.
 
-- Technical dept
-- Architectures concentrate more on the look
-- How can we know about detail design decisions, if we don’t revisit the scene of the crime
-- “Let it be such work as our descendants will thank us for” (John Ruskin)
-virtual
+But how do we find a viable and sustainable way under these inherently volatile circumstances? It’s hardly possible to forsee every upcoming trend and wasteful to forearm for every imaginable alteration. And while it is basically a good habit to defer decisions to the last possible moment, we cannot stay open for modification forever and must make certain commitments along the way in order to move forward.
+
+Decisions are chance and burden at the same time: they have the potential to speed us up, but they also add momentum and gradually decrease our ability to change the course. Thinking of the shearing layers helps to identify and classify the severity of decisions. We can move forward rapidly when we are sure that the cost of change is low. But we should also recognize when it’s time to slow down. Maybe this is because we need to make an investment into the foundation. Or maybe we need to redeem the depts that we had taken earlier.
+
+> Therefore, when we build, let us think that we build forever. Let it not be for present delight, nor for present use alone; let it be such work as our descendants will thank us for, and let us think, as we lay stone on stone, that a time is to come when those stones will be held sacred because our hands have touched them, and that men will say as they look upon the labour and wrought substance of them, “See! this our fathers did for us.” For, indeed, the greatest glory of a building is not in its stones, or in its gold. Its glory is in its Age.[^1]
+
+In the end, the interesting question is not *what* decisions we have made, but *how* we made them and how we considered the interplay of change and persistence. We are not just building for the here and now. We are working on products that grow through our steady contributions and that stay alive because we build them with change in mind.
+
+
+[^1]: John Ruskin, “The Lamp of Memory”
