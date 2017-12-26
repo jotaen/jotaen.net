@@ -10,7 +10,9 @@ url = "oGBQj/critical-debug-info"
 aliases = ["oGBQj"]
 +++
 
-<!--Log strategy: why do we log? for whom do we log?-->
+Logging is not only a powerful technique during the development phase, it rather is an inherent responsibility of every application that runs in production: logs allow us to see what’s going on, trace back bugs and optimize our applications in accordance with their actual usage patterns.
+
+In order to know what to log and in which places, it is crucial to understand what people will work with the logs later on and to find out what exact insights they are trying to retrieve from them. This blog post should help to outline how logging can be setup in modern web applications, especially if they are hosted on fully-managed cloud platforms (PAAS). Whatever the case will be, though: the most important thing is to define a consistent strategy and stick to it.
 
 # Log levels
 
@@ -62,9 +64,9 @@ Bottom line: use this level to provide contextual information that allow you to 
 The only limits for debug logs are probably disk space and data privacy.
 
 
-# Logging in real life
+# Logging in practice
 
-Knowing what log levels there are and understanding the idea behind them is only half the battle. In order to use logging in a sensible way there are practical aspects you should be aware of. Let me illustrate this with some piece of code: in the following example you see a method from a service layer of a web application. Its job is to read a post (e.g. a blog post) from a database and serve it to the user. (Of course only in case the post was found and the user has appropriate permissions to access it.)
+Knowing what log levels there are and understanding the idea behind them is only half the battle. In order to use logging in a sensible way there are practical aspects you should be aware of. Let me illustrate this with some piece of code: in the following example you see a method from a service layer of a web application. Its job is to read a post (e.g. a blog post) from a database and serve it to the user – of course only in case the post was found and the user has appropriate permissions to access it.
 
 [^1]
 ```java
@@ -106,40 +108,43 @@ Only because something failed on the server doesn’t mean that the client must 
 
 Consider the database connection failure: a read operation on a post resource is idempotent and a network failure is most likely a temporary thing. If the server did translate `ConnectionException` into HTTP status 503, the client could just wait a couple of seconds and then retry the operation. The retry is likely to succeed and the user would hardly ever notice about it.
 
-On the other hand, imagine the cases where the post is not found or the user doesn’t have proper rights to access to it. The client will show an error to the user explaining them why the post cannot be retrieved. However, from the point of view of the server this is actually well-defined behaviour. (Performing this check is literally in the job description of that method.) The server only informs in the logs about this occurrence, but there is nothing going wrong in the first place – hence the “info” level.
+On the other hand, imagine the cases where the post is not found or the user doesn’t have proper rights to access it. The client will show an error to the user explaining them why the post cannot be retrieved. However, from the point of view of the server this is actually well-defined behaviour. (Performing this check is literally in the job description of that method.) The server only informs in the logs about this occurrence, but there is nothing going wrong in the first place – hence the “info” level.
 
-## Logging only becomes powerful with heuristic analysis
+## Logging alone is only one side of the coin
 
-Log statements should be written from the current point of view of the application. They shouldn’t make assumptions about any external implications or the circumstances that might have led to the failure to begin with.
+Log statements should be written from the current point of view of the application. They shouldn’t make assumptions about any external circumstances that might have led to the failure to begin with:
 
 - A single connection timeout can stem from a temporary glitch in the local network. However, if the connections continue to fail over a longer period of time, a more fundamental problem might be the root cause.
 - A single failing authentication check can be triggered by one user whose session was expired. However, a rapid increase in failing authentication checks can indicate that someone is trying to brute-force the API.
 
-Especially if you consider the second case it’s arguably not wrong to bump the log level to “warning”. However, the effect that you are aiming for cannot be accomplished by the logging alone; instead you might even end up with producing a lot of noise in the logs due to false positives.
+Especially if you consider the second case it’s arguably not wrong to bump the log level to “warning”. However, the effect that you are aiming for cannot be accomplished by logging alone; instead you might even end up with producing a lot of noise in the logs due to false positives.
 
 A more suitable way is to complement your logging setup with tools[^2] that are able to perform heuristic analysis of logs, preferrably in realtime. This allows you – on an overarching level – to define precise thresholds, visualise borderline behaviour and respond to unfolding deficiencies effectively.
 
 ## Log statements should be machine processable
 
-In the example above I use “info” logs for plain descriptions and provide concrete values in “debug” logs. This is only a personal preference: you can also find good reasons to provide the values within one single “info” statement. But no matter how you do it eventually, you should make sure that logs can be found and aggregated by their message.
+In the example above I use “info” logs for plain descriptions and provide concrete values in “debug” logs. This is only a personal preference: you can also find good reasons to provide the values within one single “info” statement. But no matter how you do it eventually, you should make sure that logs can be found and aggregated by means of their message.
 
-Imagine we replaced the three log statements in the authentication failure with one single line and inserted the data into the continuous text, like so:
-*“User with id `%s` is not allowed to access post with id `%s` because their role is `%s`”*. This format is unnecessarily hard to search for:
+Imagine we replaced the three log statements in the authentication failure condition with one single line and inserted the data into the continuous text, like so:
+*“User with id `%s` is not allowed to access post with id `%s` because their role is `%s`”*. This would be a format that is unnecessarily hard to search for:
 
 - If you are interested how often that code branch gets invoked you would need to search for only a fragement of the sentence which doesn’t contain any ids.
-- If you are interested in all events with a particular post-id or user-id you would need to take into account how exactly these sentences are phrased. (As opposed to having a unified format.)
+- If you are interested in all events with a particular post-id or user-id you would need to take into account how exactly these sentences are phrased. (As opposed to having an application-wide unified format.)
 
-One related tip: it is very convenient if you can identify all logs on a per-request basis. That way, if you see an error in the logs, you can inspect all log messages of that particular request that got issued prior to the error. Consult the documentation of your HTTP framework and log library on how to do that. Supplementing this technique with a log prerocessor can make for a powerful setup.
+One related thing: it is very convenient if you can identify all logs on a per-request basis. That way, if you see an error in the logs, you can inspect all log messages of that particular request that got issued prior to the error. That way you also don’t need to repeat the same context all over again (such as ids). Consult the documentation of your HTTP framework resp. log library on how to do that. Supplementing this technique with a log pre-processor can make for a very powerful setup.
 
-## Logging is impure
+## Logging is an impure operation
 
-Logging something in the application is very meta and therefore might feel like an extraordinary thing to do. If you use battle-proof libraries (which you should) it is furthermore a cheap and resilient operation. Keep in mind though, that every log line that gets written or sent somewhere is technically a side effect that relies on global state.
+Logging is a meta level procedure, because it is not tightly related to the business logic itself. Therefore logging might feel like an extraordinary thing to do. If you use battle-proof libraries (which you should) it is furthermore a cheap and resilient operation. Keep in mind though, that every log command gets written or sent somewhere; it’s an ordinary side effect that relies on global state and no different than writing to a file directly. Hence, the presence of logging will have an affect on code architecture.
 
 In the example above `canBeReadBy` could also just return a boolean value instead of an `Auth` object. However, then we either wouldn’t get to know why the authentication check has failed in the first place, or we would need to log within the `Post` class. The first might not be acceptable from a debugging perspective, whereas the latter might not be acceptable from a code design perspective (e.g. because the permission check is designed to be strictly pure). Returning the authentication result in form of an object allows us to pass on the responsibility of logging to the caller while still providing enough of the original context.
 
-Another downside of logging can be its verbosity: if you copy & pasted the example into an editor and omit all log statements you would see how much more concise the code will become all of a sudden. I personally prefer to keep logging in the upper layers of my application, but I leave it as explicit and granular as necessary there.
+Another implication of logging can be its verbosity: if you copy & pasted the example into an editor and omit all log statements you would see how much more concise the code will become all of a sudden. I personally prefer to keep logging in the upper layers of my application, because this is the place which is engaged with side effects anyway. There, however, I leave it as explicit and granular as necessary. – Yes to being DRY, but no magic.
 
 
 [^1]: This is the method written in Java. Just assume this: 1) The principal represents the inquiring user. 2) The log and database objects were injected into the class upon construction. 3) Exceptions are handled by an upper layer and get translated into HTTP status codes there.
 
 [^2]: Examples for full-featured logging tools are [Kibana](https://www.elastic.co/products/kibana), [Google Stackdriver](https://cloud.google.com/stackdriver) or [AWS CloudWatch](https://aws.amazon.com/cloudwatch/).
+
+<!-- *[DRY]: Don’t repeat yourself -->
+<!-- *[PAAS]: Platform as a service -->
