@@ -12,7 +12,7 @@
       {{ partial "follow.html" }}
     </div>
 
-    {{ range where .Data.Pages.ByPublishDate "Type" "posts" }}
+    {{ range where .Data.Pages.ByPublishDate.Reverse "Type" "posts" }}
       <article class="teaser">
         <a href="/{{ trim .RelPermalink "/" }}" class="a--reset">
           {{ $img := (split .Params.Image ".") }}
