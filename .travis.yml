@@ -1,7 +1,8 @@
 language: go
 
 install:
-  - go get -v github.com/spf13/hugo
+  - sudo apt-get upgrade -qq
+  - sudo apt-get install -y hugo
   - pip install --user awscli
   - npm install
 
