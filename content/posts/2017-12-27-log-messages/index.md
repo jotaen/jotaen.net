@@ -1,5 +1,4 @@
 +++
-draft = true
 title = "Critical debug info"
 subtitle = "Sensible logging in web applications"
 date = "2017-12-27"
