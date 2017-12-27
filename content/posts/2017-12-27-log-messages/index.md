@@ -12,11 +12,11 @@ aliases = ["oGBQj"]
 
 Logging is not only a powerful technique during the development phase, it rather is an inherent responsibility of every application that runs in production: logs allow us to see what’s going on, trace back bugs and optimize our applications in accordance with their actual usage patterns.
 
-In order to know what to log and in which places, it is crucial to understand what people will work with the logs later on and to find out what exact insights they are trying to retrieve from them. This blog post should help to outline how logging can be setup in modern web applications, especially if they are hosted on fully-managed cloud platforms (PAAS). Whatever the case will be, though: the most important thing is to define a consistent strategy and stick to it.
+In order to know what to log and in which places, it is crucial to understand which people will work with the logs later on and what exact insights they are trying to retrieve from them. This blog post outlines how logging can be setup in modern web applications, especially if they are hosted on fully-managed cloud platforms (PAAS). Whatever the case will be, though: the most important thing is to define a consistent strategy and stick to it.
 
 # Log levels
 
-The usage of a certain set of log levels is widely supported by log libraries and has been established to be a common best practice. Some libraries define additional log levels and therefore allow for a more fine-granular shading or slightly different semantics. But at its heart it boils down to five essential ones: critical, error, warning, info, debug.
+The usage of a certain set of log levels has been established to be a common best practice over the years. These categories are widely supported by libraries and logging tools across different languages and platforms. Some libraries define additional log levels and therefore allow for a more fine-granular shading or slightly different semantics. But at its heart it boils down to five essential ones: critical, error, warning, info, debug.
 
 ### Critical
 
@@ -57,16 +57,16 @@ Bottom line: use this level to describe the current state of a request from a hi
 
 ### Debug
 
-While “info” logs tell you *what* has happend, the “debug” logs provide context to understand *why* and *how exactly* something occured. Context is fluent or at least transient, meaning that it will vanish or change over time. With “debug” statements you can capture the most important bits in the logs.
+While “info” logs tell you *what* has happend, the “debug” logs provide context to understand *why* and *how exactly* something occurred. Context is fluent or at least transient, meaning that it will vanish or change over time. With “debug” statements you can capture the most important bits in the logs.
 
-Bottom line: use this level to provide contextual information that allow you to backtrace and understand an issue later on. (Tip: maybe it helps you to put yourself into the shoes of a developer who needs to fix a bug.)
+Bottom line: use this level to provide contextual information that allow you to backtrace and understand an issue later on. (Tip: maybe it helps you to put yourself into the shoes of a developer who needs to fix a bug. What information would they wish for?)
 
-The only limits for debug logs are probably disk space and data privacy.
+The only limits for debug logs are probably disk space and data privacy. If debug logs become too cluttered, you can consider to introduce the “trace” level for even more detail.
 
 
 # Logging in practice
 
-Knowing what log levels there are and understanding the idea behind them is only half the battle. In order to use logging in a sensible way there are practical aspects you should be aware of. Let me illustrate this with some piece of code: in the following example you see a method from a service layer of a web application. Its job is to read a post (e.g. a blog post) from a database and serve it to the user – of course only in case the post was found and the user has appropriate permissions to access it.
+Knowing what log levels there are and understanding the idea behind them is only half the battle. In order to use logging in a sensible way there are practical aspects you should be aware of. Let me illustrate this with some piece of code: in the following example you see a method from a service layer of a web server. Its job is to read a post (e.g. a blog post) from a database and serve it to the user – of course only in case the post was found and the user has appropriate permissions to access it.
 
 [^1]
 ```java
@@ -108,7 +108,7 @@ Only because something failed on the server doesn’t mean that the client must 
 
 Consider the database connection failure: a read operation on a post resource is idempotent and a network failure is most likely a temporary thing. If the server did translate `ConnectionException` into HTTP status 503, the client could just wait a couple of seconds and then retry the operation. The retry is likely to succeed and the user would hardly ever notice about it.
 
-On the other hand, imagine the cases where the post is not found or the user doesn’t have proper rights to access it. The client will show an error to the user explaining them why the post cannot be retrieved. However, from the point of view of the server this is actually well-defined behaviour. (Performing this check is literally in the job description of that method.) The server only informs in the logs about this occurrence, but there is nothing going wrong in the first place – hence the “info” level.
+On the other hand, imagine the cases where the post is not found or the user doesn’t have proper rights to access it. The client will show an error to the user explaining them why the post cannot be retrieved. However, from the point of view of the server this is actually well-defined behaviour. (Performing these checks is literally in the job description of that method.) The server only informs in the logs about this occurrence, but there is nothing going wrong in the first place – hence the “info” level.
 
 ## Logging alone is only one side of the coin
 
@@ -131,20 +131,19 @@ Imagine we replaced the three log statements in the authentication failure condi
 - If you are interested how often that code branch gets invoked you would need to search for only a fragement of the sentence which doesn’t contain any ids.
 - If you are interested in all events with a particular post-id or user-id you would need to take into account how exactly these sentences are phrased. (As opposed to having an application-wide unified format.)
 
-One related thing: it is very convenient if you can identify all logs on a per-request basis. That way, if you see an error in the logs, you can inspect all log messages of that particular request that got issued prior to the error. That way you also don’t need to repeat the same context all over again (such as ids). Consult the documentation of your HTTP framework resp. log library on how to do that. Supplementing this technique with a log pre-processor can make for a very powerful setup.
+One related thing: it is very convenient if you can identify all logs on a per-request basis. That way, if you see an error in the logs, you can inspect all log messages of that particular request that got issued prior to the error. This brings the additional benefit that you don’t have to provide the same contextual data all over again (such as ids). Consult the documentation of your HTTP framework resp. log library on how to do that. Supplementing this technique with a log processing pipeline can make for a very powerful setup.
 
 ## Logging is an impure operation
 
-Logging is a meta level procedure, because it is not tightly related to the business logic itself. Therefore logging might feel like an extraordinary thing to do. If you use battle-proof libraries (which you should) it is furthermore a cheap and resilient operation. Keep in mind though, that every log command gets written or sent somewhere; it’s an ordinary side effect that relies on global state and no different than writing to a file directly. Hence, the presence of logging will have an affect on code architecture.
+Logging is a meta level procedure, because it is not tightly related to the business logic itself. Therefore logging might feel like an extraordinary thing to do. If you use battle-proof libraries (which you should) it is furthermore a cheap and resilient operation. Keep in mind though, that every log command gets written or sent somewhere; it’s an ordinary side effect that relies on global state and in that it’s no different from writing to a file directly. Hence, bear logging in mind while developing your code architecture.
 
-In the example above `canBeReadBy` could also just return a boolean value instead of an `Auth` object. However, then we either wouldn’t get to know why the authentication check has failed in the first place, or we would need to log within the `Post` class. The first might not be acceptable from a debugging perspective, whereas the latter might not be acceptable from a code design perspective (e.g. because the permission check is designed to be strictly pure). Returning the authentication result in form of an object allows us to pass on the responsibility of logging to the caller while still providing enough of the original context.
+In the example above `canBeReadBy` could also just return a boolean value instead of an `Auth` object. However, then we either wouldn’t get to know why the authentication check has failed in the first place, or we would need to log within that method. The first might not be acceptable from a debugging perspective, whereas the latter might not be acceptable from a code design perspective (e.g. as the permission check is designed to be strictly pure). Returning the authentication result in form of an object allows us to pass on the responsibility of logging to the caller while still providing enough of the original context.
 
-Another implication of logging can be its verbosity: if you copy & pasted the example into an editor and omit all log statements you would see how much more concise the code will become all of a sudden. I personally prefer to keep logging in the upper layers of my application, because this is the place which is engaged with side effects anyway. There, however, I leave it as explicit and granular as necessary. – Yes to being DRY, but no magic.
+Another implication of logging can be its verbosity: if you copy & pasted the example into an editor and omit all log statements you would see how much more concise the code will become all of a sudden. I personally prefer to keep logging in the upper layers of my application, because this is the place which is engaged with side effects anyway. There, however, I leave it as explicit and granular as necessary.
 
 
 [^1]: This is the method written in Java. Just assume this: 1) The principal represents the inquiring user. 2) The log and database objects were injected into the class upon construction. 3) Exceptions are handled by an upper layer and get translated into HTTP status codes there.
 
 [^2]: Examples for full-featured logging tools are [Kibana](https://www.elastic.co/products/kibana), [Google Stackdriver](https://cloud.google.com/stackdriver) or [AWS CloudWatch](https://aws.amazon.com/cloudwatch/).
 
-<!-- *[DRY]: Don’t repeat yourself -->
 <!-- *[PAAS]: Platform as a service -->
