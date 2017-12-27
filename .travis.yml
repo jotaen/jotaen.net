@@ -1,14 +1,17 @@
 language: go
 
+sudo: required
+
+services:
+  - docker
+
 install:
-  - sudo apt-get upgrade -qq
-  - sudo apt-get install -y hugo
   - pip install --user awscli
-  - npm install
 
 script:
-  - npm run sass
-  - hugo
+  - docker run --rm -v $(pwd):/app -w /app node:9.3.0-alpine npm install
+  - docker run --rm -v $(pwd):/app -w /app node:9.3.0-alpine npm run sass
+  - docker run --rm -v $(pwd):/app -w /app jojomi/hugo:0.31 hugo
 
 after_success:
   - aws s3 sync public/ s3://www.jotaen.net/ --delete
