@@ -8,11 +8,11 @@
   }
   margin-top: 0;
   font-size: 0.95em;
+  background-color: $color-lightgrey2;
   @include narrow-view {
     padding: 0.5em 1em 0 1em;
     $border: 1px solid $color-grey;
     border-bottom: $border;
-    background-color: $color-lightgrey2;
     @media print {
       border-top: $border;
       background-color: transparent;
@@ -22,6 +22,7 @@
     border-left: 1px solid $color-grey;
     margin-left: 14%;
     padding: 0.5em;
+    background-color: $color-lightgrey1;
   }
   @include broad-view {
     position: absolute;
