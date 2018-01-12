@@ -3,10 +3,10 @@ draft = true
 title = "Open heart surgery"
 subtitle = "Successful data migration during full operation"
 date = "2018-01-08"
-tags = ["logging", "operating"]
-image = "/posts/2018-01-08-data-migration/asdf9.jpg"
+tags = ["database"]
+image = "/posts/2018-01-08-data-migrations/engine.jpg"
 id = "asdf9"
-url = "asdf9/data-migration"
+url = "asdf9/data-migrations"
 aliases = ["asdf9"]
 +++
 
