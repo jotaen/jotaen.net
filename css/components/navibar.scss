@@ -6,19 +6,18 @@
 
   &:before,
   &:after {
-    $dot-size: 10px;
+    $thickness: 10px;
     content: '';
     display: block;
-    opacity: 0.7;
-    background-image: url("dot.png");
-    background-size: $dot-size;
+    opacity: 0.6;
+    background-color: #d4d4d4;
     @include narrow-view {
-      margin-top: ($width-navibar * 0.5) - ($dot-size * 0.2);
-      height: $dot-size * 0.5;
+      margin-top: ($width-navibar * 0.5) - ($thickness * 0.2);
+      height: $thickness * 0.5;
     }
     @include medium-view {
-      margin-left: ($width-navibar * 0.5) - ($dot-size * 0.3);
-      width: $dot-size * 0.5;
+      margin-left: ($width-navibar * 0.5) - ($thickness * 0.3);
+      width: $thickness * 0.5;
     }
   }
 
