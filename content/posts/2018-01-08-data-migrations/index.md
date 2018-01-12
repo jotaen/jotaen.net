@@ -12,19 +12,6 @@ aliases = ["asdf9"]
 
 - Compare to code-freeze migrations
 
-# Basic recipe
-
-Rename `oldProperty` -> `newProperty`
-
-1. Introduce `newProperty` as a proxy to `oldProperty`. All read and write operations are just passed through.
-2. Deprecate `oldProperty` and migrate all clients of that API.
-  - If `newProperty` is backwards compatible: proxy `oldProperty` to `newProperty`
-  - If `newProperty` is not backwards compatible: drop write support for `oldProperty` altogether
-3. Shift write sovereignity to `newProperty`: write and read operations go to `newProperty`, but read operations fall back to `oldProperty`.
-4. Run a batch migration to copy all values from `oldProperty` to `newProperty`. That effectively makes `oldProperty` obsolete.
-5. Remove `oldProperty` altogether
-
-
 # Example
 
 Let’s say we have a module that manages employees in an application. All user data is stored in a MongoDB, which the module has full ownership of. (This means there is no other client.)
@@ -88,11 +75,11 @@ db.read = (employeeId) => {
 };
 ```
 
-The code supports both fields now. It derives the migration status from the presence of the new value: the new field is favoured but we fall back to the old one. A mismatch of the two fields can be prevented just to be on the safe side.
+The code supports both fields now. It derives the migration status from the presence of the new value: the new field is favoured but it falls back to the old one. A mismatch of the two fields can be intercepted to be on the safe side with consitency.
 
 If it is possible to refactor the entire client code at once in one atomic operation, you can simplify this implementation a bit.
 
-Note that this field is introduced with a constraint that makes it fully backwards compatible. We also do not omit the old property right away, we rather keep it updated and consistent. This can be crucial in case you need to rollback your deployment, which means that the previous code version would come into effect again. However, documents with the new field might already have been written in the meantime, which the old code version might not be able to gracefully deal with.
+Note that this field is introduced with a constraint that makes it fully backwards compatible. We also do not omit the old property right away, we rather keep it updated and consistent. This can be crucial in case you need to rollback your deployment, which means that the previous code version would come into effect again. Documents with the new field could have already been written in the meantime, which the old code version might not be able to gracefully deal with.
 
 ### 2. Migrate all client code
 
@@ -155,26 +142,44 @@ db.read = (userId) => {
 }
 ```
 
-The migration is completed.
+The migration is thereby completed.
+
+# Basic recipe
+
+Essentially, this is the basic recipe for a migration from `oldField` to `newField`:
+
+1. Introduce `newField`:
+  - Make it fully compatible through constraints.
+  - Always write in both fields.
+  - For read operations fall back to `oldField` if the new one isn’t set yet.
+2. Deprecate `oldField` and migrate all consumers of the API.
+3. Shift sole write sovereignity to `newField`. Read operations continue to fall back to `oldField`.
+4. Run a migration to copy all values from `oldField` to `newField`.
+5. Remove `oldField` altogether
 
 # Asymmetric migration
 
-The first example showed a symmetric migration, because during the transition period we enforced a constraint that allowed us to compute the new property from the old one and vice versa. This, however, is not always possible. Imagine, we wanted to migrate the birth information from only the year (stored as integer value) to a full date, like so:
+The first example showed a symmetric migration – during the transition period we enforced a constraint that allowed us to compute the new property from the old one and vice versa. This, however, is not always possible.
+
+- Migrations can be destructive: you migrate to a format that only allows for a subset of the previously available value range.
+- On the other hand, even if you migrate to a format that supports a superset of possible values, it can still happen that the new format mandates information that was not existing previously.
+
+In order to illustrate both cases, let’s say we wanted to migrate the birth information from only the year (stored as integer value) to a full date. In addition to that you want to migrate backwards from multiple `locations` to a singular `workplace`.
 
 ```json
 {
     _id: ObjectId("7abe787zabce78a12"),
     name: "John Doe",
     birthdate: Date("1979-08-15"),
-    locations: ["Buenos Aires", "Singapoore", "Berlin"]
+    workplace: "Singapoore"
 }
 ```
 
-There is no way we can calculate the full date on the fly. Thus, the database layer alone is not able to drive this migration on its own. This leaves us with basically three options:
+These kinds of migrations are non-trivial and cannot be handled by the database layer alone. While it’s obvious that we can do *something* about the date, there is no way we can calculate the full date on the fly. This leaves us with basically three options:
 
 ### Remove the data
 
-If the value is optional for the application and not critical for the business, we introduce the `birthdate` field additionally and initialise it with `null`.
+If the value is optional for the application and not critical for the business, we introduce the new fields additionally and initialise them with `null`:
 
 ```json
 {
@@ -182,15 +187,21 @@ If the value is optional for the application and not critical for the business, 
     name: "John Doe",
     birthdate: null,
     birthyear: 1979,
-    locations: ["Buenos Aires", "Singapoore", "Berlin"]
+    locations: null
 }
 ```
 
-The application would stop providing write support for that field and encourage its users to enter the new information. At some point the `birthyear` field will eventually be frozen and made read-only in the database layer. It then can either be dropped or kept around for historical reasons.
+The application would stop providing write support for the old fields and encourage its users to enter the new information. At some point the deprecated fields will eventually be frozen and made read-only in the database layer. They can then either be dropped or kept around for historical reasons.
 
-### Lock the document
+### Best guess
 
-If the value is business critical and must be migrated, the document would be locked altogether. It depends then on the application requirements how strict this will be treated. If it’s not possible to make the field optional the document must eventually be locked or even erased.
+We could try to calculate a best guess for the new data format. In this case we would have to assume an arbitrary month and day (e.g. `Date("1979-01-01")`) but that isn’t really a feasable option here.
+
+For `locations` there are two ways. We can either choose one of them or we can join the array together to one string. Both are not immaculate though: the first means losing data, whereas the second wouldn’t be a singular value in the logical sense.
+
+### Flag the document
+
+If the data can neither be guessed nor made optional, the document must be flagged somehow and treated by the client in a special way. It depends on the application requirements how strict this will be. As the very last resort – when backwards compatibility is terminated – the document must eventually be locked or even erased:
 
 ```js
 db.read = (userId) => {
@@ -200,6 +211,9 @@ db.read = (userId) => {
     if (!user.birthdate) {
         throw new Error("Document invalid: birthdate missing.")
     }
+    if (!user.workplace) {
+        throw new Error("Document invalid: workplace missing.")
+    }
     return user ? {
         name: user.name,
         birthyear: user.birthyear,
@@ -207,7 +221,3 @@ db.read = (userId) => {
     } : null;
 }
 ```
-
-### Best guess
-
-Last but not least we could try to calculate a best guess for the new data format. In this case we would have to assume an arbitrary month and day (e.g. `Date("1979-01-01")`) but that isn’t really a feasable option here.
