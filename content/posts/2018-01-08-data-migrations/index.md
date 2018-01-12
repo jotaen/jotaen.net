@@ -1,7 +1,7 @@
 +++
 draft = true
 title = "Open heart surgery"
-subtitle = "Successful data migration during full operation"
+subtitle = "Successful data migrations during full operation"
 date = "2018-01-08"
 tags = ["database"]
 image = "/posts/2018-01-08-data-migrations/engine.jpg"
@@ -10,13 +10,21 @@ url = "asdf9/data-migrations"
 aliases = ["asdf9"]
 +++
 
-- Compare to code-freeze migrations
+Modern web applications are expected to run 24/7 without noticeable downtime. While code changes can be pushed out almost instantaneously due to modern continuous delivery pipelines, database migrations are a delicate and rather expensive process.
 
-# Example
+Freezing the database (and therefore the application as a whole) is not viable because of business demands, even though it would make the lives of software developers a lot simpler. Minor database migrations also don’t justify to disrupt the development activity – instead, they should be seemless, safe and gradual.
 
-Let’s say we have a module that manages employees in an application. All user data is stored in a MongoDB, which the module has full ownership of. (This means there is no other client.)
+This blog post outlines an exemplary procedure. It should be applicable for the smaller kinds of migrations that developers are facing during their daily work.
 
-The database documents which represent the articles look like this in the MongoDB collection:
+# Breaking new ground
+
+I want to guide you to the procedure by means of an example. One word about technology upfront: the sample code is written in NodeJS and we are using MongoDB as database (which is a document store). In the end, it shouldn’t really matter though what kind of database you are using and whether you employ a dynamically or statically typed language. The underlying ideas are the same and the concept would be even similar if you migrated a public HTTP API.
+
+## Initial situation
+
+Let’s say we have a module that manages employees in an application. All user data is stored in a MongoDB, which the module has full ownership of. (This means there exists no other piece of code that has direct access to the database.)
+
+The database documents which represent the employees look like this in the collection:
 
 ```json
 {
@@ -27,7 +35,7 @@ The database documents which represent the articles look like this in the MongoD
 }
 ```
 
-The application should now also support employees who work in multiple locations. They should be allowed to enter all the locations that they work from:
+Requirements change and the application shall now also support employees who work from multiple locations:
 
 ```json
 {
@@ -40,7 +48,7 @@ The application should now also support employees who work in multiple locations
 
 So, effectively we want two things here: rename the field and convert the value to the new format.
 
-### 1. Support symmetric writes and reads
+## 1. Support symmetric writes and reads
 
 We introduce the new field in the database layer of the application. For **read operations** we derive the migration status from the presence of the new field. The new field is favoured but the code falls back to the old one:
 
@@ -81,29 +89,29 @@ employees.create = (employee, isMigrated) => {
 };
 ```
 
-Note that `locations` is introduced with a constraint that makes it fully backwards compatible. We also do not omit the old field right away, we rather keep it up to date and consistent. Both is crucial in the event of a deployment rollback, which means that the previous code version would come into effect again. The problem is here that documents with the new field could have already been written in the meantime, which the old code version is unable to gracefully deal with. Be it likely or not, but by ignoring this you literally slam the door behind you upon your next deployment – the way back is locked.
+Note that `locations` is introduced with a constraint that makes it fully backwards compatible. We also do not omit the old field right away, we rather keep it up to date and consistent. This not only reduces complexity while the migration is in progress, it is also crucial in the event of a deployment rollback, which means that a previous application version would come into effect again. The problem is here that documents with the new field could have already been written in the meantime, which the old code version is unable to gracefully deal with. Be it likely or not, but by ignoring this you literally slam the door behind you upon your next deployment – the way back is locked.
 
-### 2. Migrate all client code
+## 2. Migrate all client code
 
 With the first step the new property has become available to the application and the old one is deprecated. We can take all the necessary time to refactor the places where employee objects are used to the new format. However, there is of course still the constraint that only one value is supported in the array!
 
 If it is possible to safely refactor the entire client code in one atomic transition along with the changes to the database layer, you can simplify the implementation by omitting the migration flag in the database service API.
 
-### 3. Stop persisting the deprecated property
+## 3. Stop persisting the deprecated property
 
 Once the period of grace for a potential rollback has elapsed we can discontinue to write the old property into the database. In this example, we are effectively only removing a single line of code:
 
 ```js
 // ...
-    return userCollection.insert({
-        name: user.name,
-        employedSince: user.employedSince,
-        locations: user.locations || [user.workplace]
+    return mongodb.insert({
+        name: employee.name,
+        employedSince: employee.employedSince,
+        locations: employee.locations || [employee.workplace]
     });
 // ...
 ```
 
-### 4. Migrate the data
+## 4. Migrate the data
 
 With the previous step, the values of all old properties are effectively frozen. That allows us to run over all the user documents in the collection and persist the conversion that we did on the fly in our db module above:
 
@@ -112,7 +120,7 @@ let migrationCount = 0;
 
 db.find({}).forEach((employee) => {
     const isMigrated = Array.isArray(employee.locations);
-    db.update({ _id: employee._id }, {
+    mongodb.update({ _id: employee._id }, {
         name: employee.name,
         employedSince: employee.employedSince,
         locations: isMigrated ? employee.locations : [employee.workplace]
@@ -126,7 +134,7 @@ Generally you should keep in mind to write your migration algorithm in an idempo
 
 If you want to have an extra safety net, you don’t have to drop the old field right away. You could also keep it in the database for some time and then clean it up later.
 
-### 5. Drop all support for the deprecated property
+## 5. Drop all support for the deprecated property
 
 Now that the data has been fully migrated we can drop the support of the deprecated property to the outside world.
 
@@ -156,16 +164,20 @@ Once this has happened the constraint for the new property is obsolete and the c
 
 # Basic recipe
 
-Essentially, this is the basic recipe for a migration from `oldField` to `newField`:
+Essentially, this is the basic recipe for a migration from `old` to `new`:
 
-1. Introduce `newField`:
+1. Introduce `new`:
   - Make it fully compatible through constraints.
   - Always write both the old and new field.
-  - For read operations fall back to `oldField` if the new one isn’t set yet.
-2. Deprecate `oldField` and migrate all consumers of the API.
-3. Shift sole write sovereignity to `newField`. Read operations continue to fall back to `oldField`.
-4. Run a migration to copy all values from `oldField` to `newField`.
-5. Remove `oldField` altogether.
+  - For read operations fall back to `old` if `new` isn’t set yet.
+2. Deprecate `old` and migrate all consumers of the API.
+3. Shift sole write sovereignity to `new`. Read operations continue to fall back to `old`.
+4. Run a migration to copy all values from `old` to `new`.
+5. Remove `old` altogether from the code.
+
+In practice the migration plan probably varies here and there. Depending on the circumstances you may take shortcuts, but it is also very well possible that a migration cannot be accomplished within one process at all. There are also slight technical differences depending on the kind of database that is being used.
+
+In the end, the important thing is to come up with a plan upfront that describes all steps as concise and explicit as possible. The procedure can be intimidating, especially for developers who are not so experienced with it, which makes it crucial for everyone to know what the current status is and what comes next.
 
 # Asymmetric migration
 
