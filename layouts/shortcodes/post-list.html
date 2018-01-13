@@ -1,5 +1,8 @@
 {{ range first (index .Params 0 | default 9999) (where .Page.Site.RegularPages.ByPublishDate.Reverse "Type" "posts") }}
-  <article class="teaser">
+  <article
+    class="teaser"
+    data-tags="{{ range .Params.Tags }}{{ . | urlize }} {{ end }}
+  ">
     <a href="/{{ trim .RelPermalink "/" }}" class="a--reset">
       {{ $img := (split .Params.Image ".") }}
       <img src="{{ index $img 0 }}.small.{{ index $img 1 }}" class="teaser__image">
