@@ -1,4 +1,4 @@
-{{ range where .Page.Site.Pages.ByPublishDate.Reverse "Type" "posts" }}
+{{ range where .Page.Site.RegularPages.ByPublishDate.Reverse "Type" "posts" }}
   <article class="teaser">
     <a href="/{{ trim .RelPermalink "/" }}" class="a--reset">
       {{ $img := (split .Params.Image ".") }}
