@@ -3,7 +3,7 @@ draft = true
 title = "Open heart surgery"
 subtitle = "Successful data migrations during full operation"
 date = "2018-01-08"
-tags = ["database"]
+tags = ["database", "operations", "strategy"]
 image = "/posts/2018-01-08-data-migrations/engine.jpg"
 id = "c5PaA"
 url = "c5PaA/successful-data-migration"
@@ -12,7 +12,7 @@ aliases = ["c5PaA"]
 
 Modern web applications are expected to run 24/7 without noticeable downtime. While code changes can be pushed out almost instantaneously thanks to modern continuous delivery pipelines, database migrations are a delicate and rather expensive process.
 
-Freezing the database (and therefore the application as a whole) is not viable due to business requirements, even though it would make the lives of software developers a lot simpler. Minor database migrations also don’t justify to disrupt the development activity – instead, they should be conducted seamlessly and with minimal risk.
+Freezing the database (and therefore the application as a whole) is not viable due to business requirements, even though it would make the lives of software developers a lot simpler. Minor schema migrations also don’t justify to disrupt development activity – instead, they should be performed seamlessly and with minimal risk.
 
 # Breaking new ground
 
@@ -224,7 +224,7 @@ We could try to compute a best guess for the new data format:
 
 ## Remove or lock
 
-As the very last resort, if backwards compatibility is terminated and the data can neither be guessed nor made optional, the document must be made inaccessible. In a schema based database this would mean removing these datasets; in a schemaless database we could also consider to “lock” the document.
+As the very last resort, if backwards compatibility is terminated and the data can neither be guessed nor made optional, the document must be made inaccessible. In a schema based database this would mean removing these datasets; in a schemaless database we could also consider to “lock” the document:
 
 ```js
 employees.getById = (id) => {
@@ -237,12 +237,7 @@ employees.getById = (id) => {
         if (!doc.workplace) {
             throw new Error("Filed `workplace` missing.")
         }
-        return {
-            id: _id.toHexString(),
-            name: doc.name,
-            employmentDate: doc.employmentDate,
-            workplace: doc.workplace
-        };
+        // ...
     });
 };
 ```
