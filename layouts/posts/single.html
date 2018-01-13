@@ -11,9 +11,6 @@
 {{ end }}
 
 {{ define "main" }}
-  
-  {{ partial "nav.html" . }}
-
   <article>
 
     <header class="post-header" style="background-image:url({{ .Params.Image }})" alt="{{ .Title }}">
@@ -97,5 +94,4 @@
     <p class="spacer"></p>
     {{ partial "follow.html" }}
   </footer>
-
 {{ end }}
