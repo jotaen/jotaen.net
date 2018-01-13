@@ -5,9 +5,9 @@ subtitle = "Successful data migrations during full operation"
 date = "2018-01-08"
 tags = ["database"]
 image = "/posts/2018-01-08-data-migrations/engine.jpg"
-id = "asdf9"
-url = "asdf9/data-migrations"
-aliases = ["asdf9"]
+id = "c5PaA"
+url = "c5PaA/successful-data-migration"
+aliases = ["c5PaA"]
 +++
 
 Modern web applications are expected to run 24/7 without noticeable downtime. While code changes can be pushed out almost instantaneously thanks to modern continuous delivery pipelines, database migrations are a delicate and rather expensive process.
