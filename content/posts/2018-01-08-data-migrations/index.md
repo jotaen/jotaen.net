@@ -1,5 +1,4 @@
 +++
-draft = true
 title = "Open heart surgery"
 subtitle = "Successful data migrations during full operation"
 date = "2018-01-08"
@@ -81,13 +80,13 @@ employees.create = (employee, isMigrated) => {
         employedSince: employee.employedSince,
         workplace: isMigrated ? employee.locations[0] : employee.workplace,
         locations: isMigrated ? employee.locations : [employee.workplace]
-    }).then(doc => {
-        return doc.insertedId.toHexString()
+    }).then((doc) => {
+        return doc.insertedId.toHexString();
     });
 };
 ```
 
-Note that `locations` is introduced with a constraint that makes it fully backwards compatible. We also do not omit the old field right away, we rather keep it up to date and consistent. This not only reduces complexity while the migration is in progress, it is also crucial in the event of a deployment rollback, which means that a previous application version would come into effect again. The problem is here that documents with the new field could have already been written in the meantime, which the old code version is unable to gracefully deal with. Be it likely or not, but by ignoring this you literally slam the door behind you upon your next deployment.
+Note that `locations` is introduced with a constraint that makes it fully backwards compatible. We also do not omit the old field right away, we rather keep it up to date and consistent. This not only reduces complexity while the migration is in progress, it is also crucial in the event of a deployment rollback, which means that a previous application version would come into effect again. The problem is here that documents with the new field could have already been written in the meantime, which the old code version might be unable to gracefully deal with. Be it likely or not, but by ignoring this you literally slam the door behind you upon your next deployment.
 
 ## 2. Migrate all client code
 
@@ -100,13 +99,15 @@ If it is possible to safely refactor the entire client code in one atomic transi
 Once the period of grace for a potential rollback has elapsed we can discontinue to write the old property into the database. In this example, we are effectively only removing a single line of code.
 
 ```js
+employees.create = (employee) => {
 // ...
     return mongodb.insertOne({
         name: employee.name,
         employedSince: employee.employedSince,
         locations: employee.locations || [employee.workplace]
-    })
+    });
 // ...
+};
 ```
 
 ## 4. Migrate the data
@@ -128,7 +129,7 @@ db.find().forEach((doc) => {
 
 Generally you should keep in mind to write your migration algorithm in an idempotent way, so that you can safely run it multiple times. (Imagine the database connection failed halfway in between and you’d need to start over.)
 
-If you want to have an extra safety net, you don’t have to drop the old field. Keep in mind though, that especially in document stores the latter has a potential pitfall: if someone else reinvents the old fields in the future without knowing or checking that it had already existed at some point in the past, they might find themselves badly surprised to retrieve “random” values for their “new” field. Possible workarounds are to rename the field to something obvious like `ARCHIVED_workplace` (and then perhaps drop it later) or to export it to a separate archive collection.
+If you want to have an extra safety net, you don’t have to drop the old field. Keep in mind though, that especially in document stores the latter has a potential pitfall: if someone reinvents the old fields in the future without knowing or checking that it had already existed at some point in the past, they might find themselves badly surprised to retrieve “random” values for their “new” field. Possible workarounds are to rename the field to something obvious like `ARCHIVED_workplace` (and then perhaps drop it later) or to export it to a separate archive collection.
 
 ## 5. Drop all support for the deprecated property
 
@@ -153,8 +154,8 @@ employees.create = (employee) => {
         name: employee.name,
         employedSince: employee.employedSince,
         locations: employee.locations
-    }).then(doc => {
-        return doc.insertedId.toHexString()
+    }).then((doc) => {
+        return doc.insertedId.toHexString();
     });
 };
 ```
@@ -213,7 +214,7 @@ If the property is optional for the application and not critical for the busines
 }
 ```
 
-The application would stop providing write support for the old fields and encourage its users to enter the new information. At some point the deprecated fields will eventually be dropped or made read-only in the database layer, in order to keep them around for historical reference.
+The application would stop providing write support for the old fields and encourage its users to enter the new information. At some point the deprecated fields will eventually be either dropped or made read-only, if they should be kept around for historical reference.
 
 ## Best guess
 
@@ -232,10 +233,10 @@ employees.getById = (id) => {
         _id: id
     }).then((doc) => {
         if (!(doc.employmentDate instanceof Date)) {
-            throw new Error("Field `employmentDate` invalid.")
+            throw new Error("Field `employmentDate` invalid.");
         }
         if (!doc.workplace) {
-            throw new Error("Filed `workplace` missing.")
+            throw new Error("Filed `workplace` missing.");
         }
         // ...
     });
