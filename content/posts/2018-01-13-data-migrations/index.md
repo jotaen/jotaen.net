@@ -1,9 +1,9 @@
 +++
 title = "Open heart surgery"
 subtitle = "Successful data migrations during full operation"
-date = "2018-01-08"
+date = "2018-01-13"
 tags = ["database", "operations", "strategy"]
-image = "/posts/2018-01-08-data-migrations/engine.jpg"
+image = "/posts/2018-01-13-data-migrations/engine.jpg"
 id = "c5PaA"
 url = "c5PaA/successful-data-migration"
 aliases = ["c5PaA"]
