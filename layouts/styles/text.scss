@@ -58,7 +58,7 @@ a:active,
 .link--hover,
 .link--active {
   background-color: $color-blue;
-  color: $color-white !important;
+  color: $color-white;
 }
 
 a:visited,
@@ -71,15 +71,17 @@ a:visited:active,
 .link--visited:hover,
 .link--visited:active {
   background-color: $color-purple;
-  color: $color-white !important;
+  color: $color-white;
 }
 
 .a--reset,
 .a--reset:hover,
+.a--reset:active,
+.a--reset:visited,
 .a--reset:visited:hover, {
-  color: inherit !important;
-  background-color: transparent;
-  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+  text-decoration: inherit;
 }
 
 code {

@@ -3,15 +3,15 @@
 .tag {
   display: inline-block;
   border: 1px solid $color-green;
-  padding: 0.2em 0.4em 0.1em 0.4em;
+  padding: 0.2em 0.4em 0 0.4em;
   font-size: 0.85em;
-  color: $color-green;
+  color: $color-green !important;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   white-space: nowrap;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.6em;
 
-  a:before {
+  &:before {
     content: "#";
     margin-right: 0.3em;
   }

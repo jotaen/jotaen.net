@@ -84,6 +84,10 @@ body {
   margin: 0;
 }
 
+.li--inline {
+  display: inline-block;
+}
+
 .screen-hide {
   @media screen {
     display: none;

@@ -25,8 +25,8 @@
 
   <ul class="ul--reset teaser__tags">
     {{ range .Params.Tags }}
-      <li class="tag" title="Tag: {{ . }}">
-        <a href="/archive/#{{ . }}" class="a--reset">{{ . }}</a>
+      <li class="li--inline" title="Tag: {{ . }}">
+        <a href="/archive/#{{ . }}" class="a--reset tag">{{ . }}</a>
       </li>
     {{ end }}
   </ul>
