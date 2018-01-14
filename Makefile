@@ -5,17 +5,19 @@ serve:
 		-v $$(pwd):/app \
 		-p 1313:1313 \
 		-w /app \
-		jojomi/hugo \
+		jojomi/hugo:0.30 \
 		hugo server --bind=0.0.0.0 --buildDrafts
 
 hugo:
+	rm -rf public/
 	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
-		jojomi/hugo \
+		jojomi/hugo:0.30 \
 		hugo
 
 css:
+	rm -f ./static/style.css
 	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
