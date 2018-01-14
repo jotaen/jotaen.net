@@ -39,22 +39,6 @@ body {
   background-color: $color-brown;
 }
 
-.navibar {
-  z-index: 1000;
-  @include narrow-view {
-    position: absolute;
-    top: 5px;
-    width: 100%;
-  }
-  @include medium-view {
-    position: fixed;
-    left: 13px;
-  }
-  @media print {
-    display: none;
-  }
-}
-
 .content {
   margin-left: 1em;
   margin-right: 1em;
