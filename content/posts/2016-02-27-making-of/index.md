@@ -30,7 +30,7 @@ It didn’t take all that long to find a solution: [Jekyll](https://jekyllrb.com
 
 ## Frontend
 
-Even though I didn’t intend to change the layout of my blog, I entirely rewrote my stylesheets. I did that not just for the sake of housekeeping, it truly was a necessary refactoring: My former stylesheets where written in LESS[^1] (which was new to me 2 years ago) and I frankly didn’t have much clue of what I was doing. Indeed, I did a lot of rookie mistakes:
+Even though I didn’t intend to change the layout of my blog, I entirely rewrote my stylesheets. I did that not just for the sake of housekeeping, it truly was a necessary refactoring: My former stylesheets where written in LESS[^1] – which was new to me 2 years ago – and I frankly didn’t have much clue of what I was doing. Indeed, I did a lot of rookie mistakes:
 
 - I made excessive use of variables, because I over-obeyed the DRY rule. As a result, I achieved the opposite of what I actually intended: my stylesheets where highly coupled and strongly dependent on one another. **→ Modularity: singular.**
 - For some reason, I decided to keep my markup clean from CSS classes and the possibility to nest classes in LESS/SASS played into my hands (at least, that was what I thought). As a downside, my stylesheets became gigantic monoliths and reusability disrupted completely. **→ Changeability: painful.**

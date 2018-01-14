@@ -18,7 +18,7 @@ This blogpost is a classical 3-episode essay: introduction, analysis, conclusion
 
 ## Satisfying one’s motivations
 
-There is a thought-provoking vlog post by Mattias Johannson[^1] (“[Silly side projects](https://www.youtube.com/watch?v=RpWsBCaJQQ8)”), where he describes a phenomenon of decreasing motivation, which can be traced back to the *overjustification effect*:
+There is a thought-provoking vlog post by Mattias Johannson (“[Silly side projects](https://www.youtube.com/watch?v=RpWsBCaJQQ8)”)[^1], where he describes a phenomenon of decreasing motivation, which can be traced back to the *overjustification effect*:
 
 > The overjustification effect occurs when an expected external incentive such as money or prizes decreases a person's intrinsic motivation to perform a task. The overall effect of offering a reward for a previously unrewarded activity is a shift to extrinsic motivation and the undermining of pre-existing intrinsic motivation. Once rewards are no longer offered, interest in the activity is lost; prior intrinsic motivation does not return, and extrinsic rewards must be continuously offered as motivation to sustain the activity. (Source: [Wikipedia](https://en.wikipedia.org/wiki/Overjustification_effect))
 
