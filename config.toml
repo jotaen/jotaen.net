@@ -1,6 +1,7 @@
 baseurl = "https://www.jotaen.net"
 languageCode = "en-us"
 disablePathToLower = true
+ignoreFiles = [ "\\.scss$" ]
 
 [blackfriday]
   smartypants = false

@@ -1,8 +1,7 @@
-.PHONY: serve hugo hugo-clean
+.PHONY: serve hugo css css-install
 
 serve:
-	docker run \
-		--rm \
+	docker run --rm \
 		-v $$(pwd):/app \
 		-p 1313:1313 \
 		-w /app \
@@ -10,13 +9,27 @@ serve:
 		hugo server --bind=0.0.0.0 --buildDrafts
 
 hugo:
-	docker run \
-		--rm \
+	rm -rf public/
+	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
 		jojomi/hugo \
 		hugo
 
-hugo-clean:
-	rm -rf public/
+css:
+	rm -f ./static/style.css
+	docker run --rm \
+		-v $$(pwd):/app \
+		-w /app \
+		node:9.3.0-alpine \
+		./node_modules/.bin/node-sass \
+			--output-style \
+			compressed \
+			./layouts/index.scss > ./static/style.css
 
+css-install:
+	docker run --rm \
+		-v $$(pwd):/app \
+		-w /app \
+		node:9.3.0-alpine \
+		npm install

@@ -9,9 +9,9 @@ install:
   - pip install --user awscli
 
 script:
-  - docker run --rm -v $(pwd):/app -w /app node:9.3.0-alpine npm install
-  - docker run --rm -v $(pwd):/app -w /app node:9.3.0-alpine npm run sass
-  - docker run --rm -v $(pwd):/app -w /app jojomi/hugo:0.31 hugo
+  - make css-install
+  - make css
+  - make hugo
 
 after_success:
   - aws s3 sync public/ s3://www.jotaen.net/ --delete
