@@ -65,6 +65,13 @@
     }
   }
 
+  &__disclaimer {
+    display: block;
+    color: $color-grey;
+    font-size: 0.9em;
+    margin-top: 0.4em;
+  }
+
   &__footer {
     text-align: center;
     font-size: 13px;
