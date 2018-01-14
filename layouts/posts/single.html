@@ -74,7 +74,9 @@
         <dd class="post-info__data">
           <ul class="ul--reset">
             {{ range .Params.Tags }}
-              <li class="tag" title="Tag: {{ . }}">{{ . }}</li>
+              <li class="tag" title="Tag: {{ . }}">
+                <a href="/archive/#{{ . }}" class="a--reset">{{ . }}</a>
+              </li>
             {{ end }}
           </ul>
         </dd>

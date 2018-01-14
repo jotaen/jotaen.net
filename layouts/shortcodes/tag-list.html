@@ -17,11 +17,15 @@
   window.addEventListener("hashchange", filterList, false);
 
   window.addEventListener("load", function() {
-    const currentTag = window.location.hash.substr(1);
-    if (currentTag !== "") {
-      filterList();
-    }
+    filterList();
   });
+
+  (function hideTeaserWhileLoading() {
+    const style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = '.teaser { display: none; }';
+    document.getElementsByTagName('head')[0].appendChild(style);
+  })();
 </script>
 
 <select id="all-tags" onchange="appendHashtag(this.value)">
