@@ -9,7 +9,6 @@ serve:
 		hugo server --bind=0.0.0.0 --buildDrafts
 
 hugo:
-	rm -rf public/
 	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
@@ -17,7 +16,6 @@ hugo:
 		hugo
 
 css:
-	rm -f ./static/style.css
 	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
