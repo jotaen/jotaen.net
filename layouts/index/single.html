@@ -13,8 +13,19 @@
     {{ partial "teaser.html" . }}
   {{ end }}
 
-  <div class="teaser teaser--flat">
-    <a href="/archive">See all blog posts…</a>
+  <div class="teaser teaser--flat" style="text-align: center">
+    <div>
+      Browse all {{ len (where .Page.Site.RegularPages "Type" "posts") }} posts <a href="/archive">in the archive</a>.
+    </div>
+
+    <div>
+      {{ range $category, $tags := .Site.Data.tags }}
+        {{ $category }}:
+        {{ range $name := $tags }}
+          <a href="/archive/#{{ $name | urlize }}" class="a--reset tag">{{ $name }}</a>
+        {{ end }}
+      {{ end }}
+    </div>
   </div>
 
   <div class="teaser teaser__footer">

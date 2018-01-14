@@ -1,0 +1,23 @@
+domain = [
+  "blogging",
+  "conference",
+  "practice",
+  "thoughts",
+  "worklife"
+]
+
+stack = [
+  "backend",
+  "database",
+  "deployment",
+  "design",
+  "devops",
+  "frontend",
+  "operation"
+]
+
+topics = [
+  "functional programming",
+  "security",
+  "testing"
+]

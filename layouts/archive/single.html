@@ -36,8 +36,12 @@
       <select id="all-tags" onchange="appendHashtag(this.value)">
         <option value="_all">Show all</option>
         <option disabled>────────────</option>
-        {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-          <option value="{{ $name | urlize }}">{{ $name }}</option>
+        {{ range $category, $tags := .Site.Data.tags }}
+          <optgroup label="{{ $category }}">
+            {{ range $name := $tags }}
+            <option value="{{ $name | urlize }}">{{ $name }}</option>
+            {{ end }}
+          </optgroup>
         {{ end }}
       </select>
     </div>
