@@ -49,19 +49,27 @@ Within the Travis account we connect our Github repo. Everytime we push somethin
 ```YAML
 language: go
 
+sudo: required
+
+services:
+  - docker
+
 install:
-  - go get -v github.com/spf13/hugo
   - pip install --user awscli
 
 script:
-  - hugo
+  - docker run --rm -v $(pwd):/app -w /app jojomi/hugo:0.31 hugo
+
+after_success:
   - aws s3 sync public/ s3://YOUR_BUCKET_NAME/ --delete
 ```
 
-Our file consists of two blocks. (All commands get executed in the order they are specified.)
+Our file consists of several blocks:
 
-1. `install`: Since the binaries for hugo and AWS are not part of the [Travis default environment](https://docs.travis-ci.com/user/ci-environment/), we must install them first.
-2. `script`: This is where the actual build happens. Note, that we use the AWS CLI rather then the out-of-the-box [Travis S3 deployment](https://docs.travis-ci.com/user/deployment/s3/), because the latter one doesn’t take care of deleting orphaned files, which is a major annoyance. Replace the constant with your bucket name.
+1. `sudo: required` is necessary because we want to use docker within the build step. (Which we declare in `services`).
+2. `install`: Since the binary for AWS is not part of the [Travis default environment](https://docs.travis-ci.com/user/ci-environment/), we must install it first.
+3. `script`: This is where the actual build happens. Here we also specifiy the Hugo version we want to use for performing the build.
+5. `after_success`: Only if the previous step was successful we upload the resulting artifacts to AWS. Note that we use the AWS CLI rather then the out-of-the-box [Travis S3 deployment](https://docs.travis-ci.com/user/deployment/s3/), because the latter one doesn’t take care of deleting orphaned files, which is a major annoyance. Replace the constant with your bucket name.
 
 In order for the AWS CLI to work, we must provide three [environment variables](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-environment) in the settings of your Travis project: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_DEFAULT_REGION`. Make sure to obfuscate them in the build log! More on these keys later.
 
