@@ -9,4 +9,9 @@ input, .control {
   background: none;
   border: none;
   /* normalize end */
+
+  &:hover, &:active {
+    border-width: 3px;
+    margin: -2px;
+  }
 }
