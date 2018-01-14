@@ -141,7 +141,7 @@ In the example above `canBeReadBy` could also just return a boolean value instea
 Another implication of logging can be its verbosity: if you copy & pasted the example into an editor and omit all log statements you would see how much more concise the code will become all of a sudden. I personally prefer to keep logging in the upper layers of my application, because this is the place which is engaged with side effects anyway. There, however, I leave it as explicit and granular as necessary.
 
 
-[^1]: This is the method written in Java. Just assume this: 1) The principal represents the inquiring user. 2) The log and database objects were injected into the class upon construction. 3) Exceptions are handled by an upper layer and get translated into HTTP status codes there.
+[^1]: <br>This is the method written in Java. Just assume this: 1) The principal represents the inquiring user. 2) The log and database objects were injected into the class upon construction. 3) Exceptions are handled by an upper layer and get translated into HTTP status codes there.
 
 [^2]: Examples for full-featured logging tools are [Kibana](https://www.elastic.co/products/kibana), [Google Stackdriver](https://cloud.google.com/stackdriver) or [AWS CloudWatch](https://aws.amazon.com/cloudwatch/).
 
