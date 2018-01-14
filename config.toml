@@ -1,7 +1,7 @@
 baseurl = "https://www.jotaen.net"
 languageCode = "en-us"
 disablePathToLower = true
-ignoreFiles = [ "\\.scss$" ]
+ignoreFiles = [ "\\.scss$", "credits\\.pdf$" ]
 disableKinds = ["taxonomy","taxonomyTerm"]
 
 [blackfriday]
