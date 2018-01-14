@@ -14,7 +14,7 @@ script:
   - docker run --rm -v $(pwd):/app -w /app jojomi/hugo:0.31 hugo
 
 after_success:
-  - aws s3 sync public/ s3://www.jotaen.net/ --delete
+  - test $TRAVIS_BRANCH = "master" && aws s3 sync public/ s3://www.jotaen.net/ --delete
 
 notifications:
   email: false
