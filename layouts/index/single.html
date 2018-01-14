@@ -7,7 +7,7 @@
   <h1 class="pagetitle">– Home –</h1>
 
   {{ range $i, $teaser := first 7 (where .Page.Site.RegularPages.ByPublishDate.Reverse "Type" "posts") }}
-    {{ if eq $i 1 }}
+    {{ if eq $i 2 }}
       {{ partial "subscribe.html" }}
     {{ end }}
     {{ partial "teaser.html" . }}
