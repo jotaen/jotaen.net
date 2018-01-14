@@ -1,0 +1,23 @@
+.tagbrowser {
+  &__list {
+    @include medium-view {
+      width: 33%;
+      float: left;
+      text-align: center
+    }
+  }
+
+  &__item {
+    display: inline-block;
+    margin-right: 1em;
+    @include medium-view {
+      margin-right: 0;
+      display: block;
+    }
+  }
+
+  &__heading {
+    @include font-regular;
+    text-transform: capitalize;
+  }
+}

@@ -15,20 +15,27 @@
 
   <div class="teaser teaser--flat teaser--centered">
     <h3 class="teaser__banner">Browse all {{ len (where .Page.Site.RegularPages "Type" "posts") }} posts <a href="/archive">in the archive</a>…</h3>
-  </div>
 
-  <div class="teaser teaser--flat">
-    <div>
+    <p>Or jump right into a specific topic:</p>
+  
+    <div class="tagbrowser">
       {{ range $category, $tags := .Site.Data.tags }}
-        {{ $category }}:
-        {{ range $name := $tags }}
-          <a href="/archive/#{{ $name | urlize }}" class="a--reset tag">{{ $name }}</a>
-        {{ end }}
+        <div class="tagbrowser__list">
+          <h4 class="tagbrowser__heading">{{ $category }}</h4>
+          <ul class="ul--reset">
+            {{ range $name := $tags }}
+              <li class="li--reset tagbrowser__item">
+                <a href="/archive/#{{ $name | urlize }}" class="a--reset tag">{{ $name }}</a>
+                <span class="teaser--light">({{ $.Site.Taxonomies.tags.Count $name }})</span>
+              </li>
+            {{ end }}
+          </ul>
+        </div>
       {{ end }}
     </div>
   </div>
 
-  <div class="teaser teaser__footer">
+  <div class="teaser teaser__footer teaser--light">
     <a href="/impressum" class="a--reset">Legal: Impressum &amp; Datenschutz</a>
   </div>
 

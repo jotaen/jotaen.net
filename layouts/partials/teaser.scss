@@ -30,8 +30,6 @@
 
   &__publish-date {
     display: block;
-    color: $color-grey;
-    font-size: 0.9em;
     margin: 0;
     @include medium-view {
       margin-left: 215px;
@@ -80,9 +78,12 @@
 
   &__footer {
     text-align: center;
-    font-size: 13px;
     min-height: 1px;
     opacity: 0.7;
+  }
+
+  &--light {
     color: $color-grey;
+    font-size: 0.9em;
   }
 }
