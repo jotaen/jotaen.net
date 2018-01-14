@@ -11,7 +11,6 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link href="//cloud.webtype.com/css/b8d2a612-d632-460b-a769-5b0c55713f92.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/style.css?{{ now.Unix }}">
-    <script defer="true" src="/scripts.js?{{ now.Unix }}"></script>
 
     {{ block "head" . }}{{ end }}
   </head>
@@ -43,6 +42,26 @@
           </li>
         </ul>
       </nav>
+
+      <script>
+        (function add_event_listeners_to_menu_icons(document) {
+          var show_label = function() {
+            var label = this.getElementsByClassName("icon__label")[0];
+            label.style.display = "block";
+          };
+
+          var hide_label = function() {
+            var label = this.getElementsByClassName("icon__label")[0];
+            label.style.display = "none";
+          };
+
+          var icons = document.getElementsByClassName("icon--navi");
+          [].forEach.call(icons, function(icon, i) {
+            icon.addEventListener("mouseover", show_label);
+            icon.addEventListener("mouseout",  hide_label);
+          });
+        }(document));
+      </script>
     {{ end }}
 
     {{ block "main" . }}{{ end }}
