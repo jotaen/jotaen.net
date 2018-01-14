@@ -2,7 +2,7 @@
 title = "The map method"
 subtitle = "Exploring functional javascript"
 date = "2016-10-25"
-tags = ["javascript", "functional programming", "code"]
+tags = ["coding", "fp"]
 image = "/posts/2016-10-25-map/topographic-map.jpg"
 id = "PzmvA"
 url = "PzmvA/javascript-map"

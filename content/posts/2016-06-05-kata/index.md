@@ -2,7 +2,7 @@
 title = "“The discount campaign”"
 subtitle = "A functional javascript code kata"
 date = "2016-06-05"
-tags = ["javascript", "kata"]
+tags = ["coding", "fp"]
 image = "/posts/2016-06-05-kata/aikido-dojo.jpg"
 id = "L2hWc"
 url = "L2hWc/the-discount-campaign"

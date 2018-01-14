@@ -2,7 +2,7 @@
 title = "Docker ABC"
 subtitle = "A short, fun and explorative tutorial for software developers"
 date = "2017-03-12"
-tags = ["docker", "devops", "tutorial"]
+tags = ["devops"]
 image = "/posts/2017-03-12-docker/container-vessel.jpg"
 id = "nQ7yq"
 url = "nQ7yq/docker-tutorial-for-developers"

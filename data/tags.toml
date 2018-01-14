@@ -1,7 +1,9 @@
 domain = [
   "blogging",
   "conference",
+  "off-topic",
   "practice",
+  "project",
   "thoughts",
   "worklife"
 ]
@@ -13,11 +15,13 @@ stack = [
   "design",
   "devops",
   "frontend",
-  "operation"
+  "operation",
+  "tooling"
 ]
 
 topics = [
-  "functional programming",
+  "coding",
+  "fp",
   "security",
   "testing"
 ]

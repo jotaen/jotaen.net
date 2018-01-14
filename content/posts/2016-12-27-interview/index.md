@@ -2,7 +2,7 @@
 title = "The job interview"
 subtitle = "Asking questions as a candidate"
 date = "2016-12-27"
-tags = ["hiring", "job"]
+tags = ["worklife", "thoughts"]
 image = "/posts/2016-12-27-interview/interview-table.jpg"
 id = "EDIqf"
 url = "EDIqf/the-job-interview"

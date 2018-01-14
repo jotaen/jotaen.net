@@ -2,7 +2,7 @@
 title = "Apartment-hunting"
 subtitle = "How to approach the search in Berlin"
 date = "2017-03-07"
-tags = ["off-topic", "berlin"]
+tags = ["off-topic"]
 image = "/posts/2017-03-07-apartment/berlin-graffiti.jpg"
 id = "cDjSY"
 url = "cDjSY/apartment-hunting-in-berlin"

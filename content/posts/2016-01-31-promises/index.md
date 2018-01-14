@@ -2,7 +2,7 @@
 title = "Asynchronous conditionals"
 subtitle = "The idea behind JS promises"
 date = "2016-01-31"
-tags = ["javascript", "coding"]
+tags = ["coding"]
 image = "/posts/2016-01-31-promises/love-locks.jpg"
 id = "R9naP"
 url = "R9naP/javascript-promises"

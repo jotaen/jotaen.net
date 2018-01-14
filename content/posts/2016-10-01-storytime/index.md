@@ -2,7 +2,7 @@
 title = "Storytime"
 subtitle = "Learning from challenges"
 date = "2016-10-01"
-tags = ["meta", "thoughts"]
+tags = ["thoughts", "worklife"]
 image = "/posts/2016-10-01-storytime/bookshelf.jpg"
 id = "V4ZPG"
 url = "V4ZPG/storytime"

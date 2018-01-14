@@ -2,7 +2,7 @@
 title = "Run Monitor"
 subtitle = "How I keep track of my run training"
 date = "2016-09-07"
-tags = ["project", "information design"]
+tags = ["project", "design", "frontend"]
 image = "/posts/2016-09-07-run/run-monitor.jpg"
 id = "oBPhB"
 url = "oBPhB/run-monitor"

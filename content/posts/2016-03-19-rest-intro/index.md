@@ -2,7 +2,7 @@
 title = "What is a REST service?"
 subtitle = "From the series “Let’s build a REST service”"
 date = "2016-03-19"
-tags = ["rest", "microservice", "api", "project"]
+tags = ["project", "practice"]
 image = "/posts/2016-03-19-rest-intro/hammock.jpg"
 id = "fXts2"
 url = "fXts2/what-is-a-rest-service"

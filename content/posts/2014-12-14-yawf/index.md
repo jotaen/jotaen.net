@@ -2,7 +2,7 @@
 title = "Yet another website framework"
 subtitle = "Trading upon constraints in small projects"
 date = "2014-12-14"
-tags = ["php", "web", "framework", "project"]
+tags = ["project", "backend"]
 image = "/posts/2014-12-14-yawf/yawf-sketches.jpg"
 id = "xZVFm"
 url = "xZVFm/yet-another-website-framework"

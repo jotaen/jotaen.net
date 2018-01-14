@@ -2,7 +2,7 @@
 title = "Make 404s fun!"
 subtitle = "Suddenly find yourself on the shell of a crashed web server"
 date = "2016-08-20"
-tags = ["project", "meta", "404", "webshell"]
+tags = ["project", "frontend", "blogging"]
 image = "/posts/2016-08-20-errorpage/errorpage-webshell.jpg"
 id = "jBZuH"
 url = "jBZuH/errorpage-with-webshelljs"

@@ -2,7 +2,7 @@
 title = "The beauty of C++"
 subtitle = "A tribute to the best programming language"
 date = "2014-02-21"
-tags = ["c++", "misc"]
+tags = ["project", "coding"]
 image = "/posts/2014-02-21-beauty-cpp/beauty-of-cpp.jpg"
 id = "wgCB2"
 url = "wgCB2/the-beauty-of-cplusplus"

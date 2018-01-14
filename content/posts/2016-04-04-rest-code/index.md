@@ -2,7 +2,7 @@
 title = "Coding J4N.IO with NodeJS"
 subtitle = "From the series “Let’s build a REST service”"
 date = "2016-04-04"
-tags = ["rest", "microservice", "nodejs", "project"]
+tags = ["project", "coding", "backend", "database"]
 image = "/posts/2016-04-04-rest-code/strandkorbs-at-beach.jpg"
 id = "Q6eUW"
 url = "Q6eUW/coding-j4nio-with-nodejs"

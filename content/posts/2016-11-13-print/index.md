@@ -2,7 +2,7 @@
 title = "Optimizing for print"
 subtitle = "The champions league of responsive webdesign"
 date = "2016-11-13"
-tags = ["layout", "meta", "typography"]
+tags = ["desing", "frontend"]
 image = "/posts/2016-11-13-print/printing-press.jpg"
 id = "L9yVd"
 url = "L9yVd/optimizing-for-print"

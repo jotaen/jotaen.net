@@ -2,7 +2,7 @@
 title = "Spread your configuration"
 subtitle = "Syncing dotfiles with git"
 date = "2016-02-07"
-tags = ["mac", "dotfiles"]
+tags = ["tooling"]
 image = "/posts/2016-02-07-dotfiles/mac-with-stickers.jpg"
 id = "2uNLp"
 url = "2uNLp/syncing-dotfiles-with-git"

@@ -2,7 +2,7 @@
 title = "JavaScript city tour (1/2)"
 subtitle = "First day of the JSConf Budapest, May 2016"
 date = "2016-05-12"
-tags = ["conference", "javascript"]
+tags = ["conference"]
 image = "/posts/2016-05-12-jsconfbp-1/budapest.jpg"
 id = "AyHtk"
 url = "AyHtk/jsconf-budapest-2016-part1"

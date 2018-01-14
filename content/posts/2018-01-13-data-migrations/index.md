@@ -2,7 +2,7 @@
 title = "Open heart surgery"
 subtitle = "Successful data migrations during full operation"
 date = "2018-01-13"
-tags = ["database", "operations", "strategy"]
+tags = ["database", "operation", "practice"]
 image = "/posts/2018-01-13-data-migrations/engine.jpg"
 id = "c5PaA"
 url = "c5PaA/successful-data-migration"
