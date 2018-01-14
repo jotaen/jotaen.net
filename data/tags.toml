@@ -11,17 +11,17 @@ domain = [
 stack = [
   "backend",
   "database",
-  "deployment",
-  "design",
   "devops",
   "frontend",
-  "operation",
-  "tooling"
+  "operation"
 ]
 
 topics = [
   "coding",
+  "design",
+  "deployment",
   "fp",
   "security",
-  "testing"
+  "testing",
+  "tooling"
 ]
