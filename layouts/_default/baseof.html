@@ -17,7 +17,7 @@
   <body>
 
     {{ block "navigation" . }}
-      <nav class="navibar">
+      <nav class="navibar" id="navibar">
         <a href="/">
           <img src="/jotaen.png" alt="jotaen" class="navibar__logo">
         </a>
@@ -61,6 +61,27 @@
             icon.addEventListener("mouseout",  hide_label);
           });
         }(document));
+
+        (function showHideTopNaviWhileScroll() {
+          let lastScrollTop = 0;
+          let lastDirection = 0;
+          window.addEventListener("scroll", function() {
+             let st = window.pageYOffset || document.documentElement.scrollTop;
+             if (st > lastScrollTop && lastDirection >= 0) {
+                const navi = document.getElementById("navibar");
+                if (window.getComputedStyle(navi).getPropertyValue('z-index') === "1000") return;
+                lastDirection = -1;
+                navi.className = "navibar navibar--hide";
+             }
+             if (st < lastScrollTop && lastDirection <= 0) {
+                const navi = document.getElementById("navibar");
+                if (window.getComputedStyle(navi).getPropertyValue('z-index') === "1000") return;
+                lastDirection = 1;
+                navi.className = "navibar navibar--show";
+             }
+             lastScrollTop = st;
+          }, false);
+        })();
       </script>
     {{ end }}
 
