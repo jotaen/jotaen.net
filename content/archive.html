@@ -1,57 +1,8 @@
 +++
-title = "Archive"
+type = "archive"
 +++
 
-<style>
-  .filter {
-    max-width: 550px;
-    position: relative;
-    text-align: right;
-    font-size: 13px;
-    color: #777;
-    padding-bottom: 7px;
-  }
-</style>
-
-<script>
-  function appendHashtag(tag) {
-    window.location.hash = tag === "_all" ? "" : tag;
-  }
-
-  function filterList(tag) {
-    const currentTag = window.location.hash.substr(1);
-    const elements = document.querySelectorAll('[data-tags]');
-    Array.prototype.forEach.call(elements, function(e) {
-      const tags = e.getAttribute("data-tags").split(" ");
-      const isShown = tags.includes(currentTag) || currentTag === "";
-      e.style.display = isShown ? "block" : "none";
-    });
-    document.getElementById('all-tags').value = currentTag || "_all";
-  }
-
-  window.addEventListener("hashchange", filterList, false);
-
-  (function hideTeaserWhileLoading() {
-    const style = document.createElement('style');
-    style.type = 'text/css';
-    style.innerHTML = '.teaser { display: none; }';
-    document.getElementsByTagName('head')[0].appendChild(style);
-  })();
-</script>
-
-<main class="content">
-
-  <h1 class="pagetitle">– Archive –</h1>
-  <div class="filter">
-    Filter by tag: 
-    {{% tag-list %}}
-  </div>
-  
-  {{% post-list %}}
-
-  <script>
-    // Call this _after_ the teasers have been loaded
-    filterList();
-  </script>
-
-</main>
+<!--
+  This is only a placeholder file to make Hugo generate a
+  respective URL. Content rendering happens in the template (layout).
+-->

@@ -1,7 +1,0 @@
-<select id="all-tags" onchange="appendHashtag(this.value)">
-  <option value="_all">Show all</option>
-  <option disabled>────────────</option>
-  {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-    <option value="{{ $name | urlize }}">{{ $name }}</option>
-  {{ end }}
-</select>

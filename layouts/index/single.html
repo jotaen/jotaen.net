@@ -1,0 +1,38 @@
+{{ define "title" }}Home{{ end }}
+
+{{ define "main" }}
+
+<main class="content">
+
+  <h1 class="pagetitle">– Home –</h1>
+
+  {{ range $i, $teaser := first 5 (where .Page.Site.RegularPages.ByPublishDate.Reverse "Type" "posts") }}
+    {{ if eq $i 1 }}
+      <div class="teaser teaser--flat">
+        <div class="follow">
+          <h3 class="follow__heading">Get updates on new articles!</h3>
+
+          Subscribe to my mailing list:
+              <div id="mc_embed_signup">
+                <form action="//jotaen.us14.list-manage.com/subscribe/post?u=d8230f6036c64ebabb7edfc13&amp;id=d03223eec2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                  <div id="mc_embed_signup_scroll">
+                    <input type="email" value="" name="EMAIL" placeholder="Your email address" class="follow__email" id="mce-EMAIL">
+                    <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn follow__button">
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_d8230f6036c64ebabb7edfc13_d03223eec2" tabindex="-1" value=""></div>
+                  </div>
+                </form>
+              </div>
+        </div>
+      </div>
+    {{ end }}
+    {{ partial "teaser.html" . }}
+  {{ end }}
+
+
+  <p class="teaser teaser__footer">
+    <a href="/impressum">Impressum &amp; Datenschutz</a>
+  </p>
+
+</main>
+
+{{ end }}
