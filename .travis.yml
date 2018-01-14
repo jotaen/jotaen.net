@@ -16,6 +16,7 @@ script:
   - make css-install
   - make css
   - make hugo
+  - ls -lR public
 
 after_success:
   - aws s3 sync public/ s3://www.jotaen.net/ --delete
