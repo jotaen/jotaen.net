@@ -35,10 +35,10 @@ The font face has a technical look goes nicely with this blog, whose topics cove
 <p style="background-color:#5a3e35;text-align:center;color:#fff;">brown: #5a3e35</p>
 <p style="background-color:#8d1699;text-align:center;color:#fff;">purple: #8d1699</p>
 <p style="background-color:#0d668d;text-align:center;color:#fff;">blue: #0d668d</p>
+<p style="background-color:#1394cc;text-align:center;color:#fff;">lightblue: #1394cc</p>
 <p style="background-color:#c0253e;text-align:center;color:#fff;">red: #c0253e</p>
 <p style="background-color:#f34c17;text-align:center;color:#fff;">orange: #f34c17</p>
 <p style="background-color:#65c858;text-align:center;color:#000;">green: #65c858</p>
-<p style="background-color:#cac43b;text-align:center;color:#000;">yellow: #cac43b</p>
 
 # Block elements
 

@@ -2,14 +2,20 @@
 
 .tag {
   display: inline-block;
-  border: 1px solid $color-green;
+  border: 1px solid $color-lightblue;
   padding: 0.1em 0.4em 0 0.4em;
   font-size: 0.85em;
-  color: $color-green !important;
+  color: $color-lightblue !important;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   white-space: nowrap;
   margin-bottom: 0.6em;
+
+  &:hover {
+    background-color: $color-blue;
+    border-color: $color-blue;
+    color: $color-white !important;
+  }
 
   &:before {
     content: "#";
