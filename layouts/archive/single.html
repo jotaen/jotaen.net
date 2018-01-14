@@ -2,17 +2,6 @@
 
 {{ define "main" }}
 
-  <style>
-    .filter {
-      max-width: 550px;
-      position: relative;
-      text-align: right;
-      font-size: 13px;
-      color: #777;
-      padding-bottom: 7px;
-    }
-  </style>
-
   <script>
     function appendHashtag(tag) {
       window.location.hash = tag === "_all" ? "" : tag;
@@ -42,7 +31,7 @@
   <main class="content">
 
     <h1 class="pagetitle">– Archive –</h1>
-    <div class="filter">
+    <div class="archive__filter">
       Filter by tag: 
       <select id="all-tags" onchange="appendHashtag(this.value)">
         <option value="_all">Show all</option>
