@@ -13,11 +13,11 @@
     {{ partial "teaser.html" . }}
   {{ end }}
 
-  <div class="teaser teaser--flat" style="text-align: center">
-    <div>
-      Browse all {{ len (where .Page.Site.RegularPages "Type" "posts") }} posts <a href="/archive">in the archive</a>.
-    </div>
+  <div class="teaser teaser--flat teaser--centered">
+    <h3 class="teaser__banner">Browse all {{ len (where .Page.Site.RegularPages "Type" "posts") }} posts <a href="/archive">in the archive</a>…</h3>
+  </div>
 
+  <div class="teaser teaser--flat">
     <div>
       {{ range $category, $tags := .Site.Data.tags }}
         {{ $category }}:
@@ -29,7 +29,7 @@
   </div>
 
   <div class="teaser teaser__footer">
-    <a href="/impressum">Impressum &amp; Datenschutz</a>
+    <a href="/impressum" class="a--reset">Legal: Impressum &amp; Datenschutz</a>
   </div>
 
 </main>
