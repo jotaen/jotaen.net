@@ -16,7 +16,7 @@
   <div class="teaser teaser--flat teaser--centered">
     <h3 class="teaser__banner">Browse all {{ len (where .Page.Site.RegularPages "Type" "posts") }} posts <a href="/archive">in the archive</a>…</h3>
 
-    <p>Or jump right into a specific topic:</p>
+    <p>Or jump right into a specific tag:</p>
   
     <div class="tagbrowser">
       {{ range $category, $tags := .Site.Data.tags }}
