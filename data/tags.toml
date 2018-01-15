@@ -1,20 +1,20 @@
 blog-topic = [
-  "blogging",
-  "conference",
-  "off-topic",
   "coding",
   "project",
+  "conference",
   "thoughts",
-  "worklife"
+  "worklife",
+  "blogging",
+  "off-topic"
 ]
 
 tech-stack = [
   "design",
-  "tooling",
+  "frontend",
   "backend",
   "database",
   "devops",
-  "frontend",
   "operation",
   "testing",
+  "tooling"
 ]
