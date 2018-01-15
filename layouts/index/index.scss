@@ -19,5 +19,6 @@
   &__heading {
     @include font-regular;
     text-transform: capitalize;
+    padding-right: 1.5em;
   }
 }

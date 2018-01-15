@@ -1,4 +1,4 @@
-domain = [
+matter = [
   "blogging",
   "conference",
   "off-topic",
@@ -16,7 +16,7 @@ stack = [
   "operation"
 ]
 
-topics = [
+detail = [
   "coding",
   "design",
   "deployment",
