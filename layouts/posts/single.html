@@ -68,9 +68,9 @@
               window.getSelection().selectAllChildren(element);
             }
           </script>
-          ▸ On <a href="https://twitter.com/intent/tweet?source={{ .Permalink | safeURL }}&text={{ print "“" .Title " – " .Params.Subtitle "” " "http://j4n.io/" .Params.Id | safeURL }}&via=jot4en" target="_blank">Twitter</a><br>
-          ▸ Via <a href="mailto:?subject={{ print "Blogpost: " .Title " – " .Params.Subtitle | safeURL }}&body={{ print "Read this blogpost: " .Permalink | safeURL }}">E-Mail</a><br>
-          ▸ Link <span style="text-decoration: underline;" onclick="selectText(this)">j4n.io/{{ .Params.Id }}</span>
+          ☞ On <a href="https://twitter.com/intent/tweet?source={{ .Permalink | safeURL }}&text={{ print "“" .Title " – " .Params.Subtitle "” " "http://j4n.io/" .Params.Id | safeURL }}&via=jot4en" target="_blank">Twitter</a><br>
+          ☞ Via <a href="mailto:?subject={{ print "Blogpost: " .Title " – " .Params.Subtitle | safeURL }}&body={{ print "Read this blogpost: " .Permalink | safeURL }}">E-Mail</a><br>
+          ☞ Link <span style="text-decoration: underline;" onclick="selectText(this)">j4n.io/{{ .Params.Id }}</span>
         </dd>
 
         <dt class="post-info__label">
