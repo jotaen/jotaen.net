@@ -2,7 +2,7 @@
 title = "J4N.IO – Deployment and operating"
 subtitle = "From the series “Let’s build a REST service”"
 date = "2016-04-24"
-tags = ["project", "deployment", "operation"]
+tags = ["project", "operation"]
 image = "/posts/2016-04-24-rest-deploy/beachchair-ocean.jpg"
 id = "Tt7Yh"
 url = "Tt7Yh/deployment-and-operating"

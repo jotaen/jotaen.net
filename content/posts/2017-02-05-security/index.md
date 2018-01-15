@@ -2,7 +2,7 @@
 title = "Protect yourself"
 subtitle = "A basic guideline to computer security"
 date = "2017-02-05"
-tags = ["security", "tooling"]
+tags = ["tooling"]
 image = "/posts/2017-02-05-security/abus-lock.jpg"
 id = "dSXhh"
 url = "dSXhh/protect-yourself"

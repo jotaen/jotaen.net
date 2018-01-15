@@ -2,7 +2,7 @@
 title = "What are JSON Web Tokens?"
 subtitle = "A QnA style blogpost"
 date = "2016-06-19"
-tags = ["practice", "backend"]
+tags = ["backend"]
 image = "/posts/2016-06-19-jwt/notebook.jpg"
 id = "C3K4N"
 url = "C3K4N/jwt-json-web-tokens"

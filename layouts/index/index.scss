@@ -1,9 +1,16 @@
 .tagbrowser {
   &__list {
     @include medium-view {
-      width: 33%;
+      width: 50%;
       float: left;
-      text-align: center
+      text-align: center;
+      box-sizing: border-box;
+      &:first-child {
+        padding-left: 10%;
+      }
+      &:last-child {
+        padding-right: 10%;
+      }
     }
   }
 
@@ -19,6 +26,7 @@
   &__heading {
     @include font-regular;
     text-transform: capitalize;
-    padding-right: 1.5em;
+    padding-right: 1em;
+    text-decoration: underline;
   }
 }

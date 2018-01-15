@@ -2,7 +2,7 @@
 title = "Testing and QA of J4N.IO"
 subtitle = "From the series “Let’s build a REST service”"
 date = "2016-04-12"
-tags = ["project", "testing", "practice"]
+tags = ["project", "testing"]
 image = "/posts/2016-04-12-rest-test/swing-in-dawn.jpg"
 id = "v24iU"
 url = "v24iU/testing-and-qa-of-j4nio"

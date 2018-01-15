@@ -2,7 +2,7 @@
 title = "Fast, cheap and automated"
 subtitle = "Deploying static websites to AWS"
 date = "2017-02-26"
-tags = ["deployment", "devops"]
+tags = ["devops"]
 image = "/posts/2017-02-26-hugo/cloud-dashboards.jpg"
 id = "e7ywT"
 url = "e7ywT/deploying-static-website-to-aws"

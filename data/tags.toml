@@ -1,27 +1,20 @@
-matter = [
+blog-topic = [
   "blogging",
   "conference",
   "off-topic",
-  "practice",
+  "coding",
   "project",
   "thoughts",
   "worklife"
 ]
 
-stack = [
+tech-stack = [
+  "design",
+  "tooling",
   "backend",
   "database",
   "devops",
   "frontend",
-  "operation"
-]
-
-detail = [
-  "coding",
-  "design",
-  "deployment",
-  "fp",
-  "security",
+  "operation",
   "testing",
-  "tooling"
 ]

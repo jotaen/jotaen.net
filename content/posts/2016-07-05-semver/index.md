@@ -2,7 +2,7 @@
 title = "Semantic versioning"
 subtitle = "Communicate compatibility to API consumers"
 date = "2016-07-05"
-tags = ["practice", "tooling"]
+tags = ["tooling"]
 image = "/posts/2016-07-05-semver/banksy-girl-with-balloon.jpg"
 id = "s0SRs"
 url = "s0SRs/semantic-versioning"

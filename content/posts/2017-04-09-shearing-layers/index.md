@@ -2,7 +2,7 @@
 title = "Shearing layers"
 subtitle = "About change, persistence and making decisions"
 date = "2017-04-09"
-tags = ["thoughts", "practice"]
+tags = ["thoughts"]
 image = "/posts/2017-04-09-shearing-layers/village-spain.jpg"
 id = "VZ3NI"
 url = "VZ3NI/shearing-layers"
