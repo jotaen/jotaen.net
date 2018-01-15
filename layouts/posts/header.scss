@@ -26,17 +26,23 @@
   }
 }
 
-.post-header__headline {
-  position: absolute;
-  bottom: 5%;
-  left: 0;
-  max-width: 450px;
+.post-header__container {
+  max-width: $width-content-column;
   text-align: center;
-  line-height: 1;
-  width: 90%;
+}
+
+.post-header__headline {
+  display: inline-block;
+  width: 95%;
+  max-width: 450px;
+  margin-bottom: 1em;
+  text-align: center;
+  background-color: $color-red;
+
   @include medium-view {
-    padding-left: 1.2em;
+    margin-left: -20px;
   }
+  
   @media print {
     position: relative;
     text-align: left;
@@ -48,9 +54,8 @@
 .post-header__title,
 .post-header__subtitle {
   text-transform: capitalize;
-  display: inline;
-  background-color: $color-red;
-  padding: 0.3em;
+  display: inline-block;
+  padding: 0.5em;
   color: #fff;
   font-style: italic;
   @media print {
@@ -64,18 +69,17 @@ $sw: 0.6em;
 $sh: 0.2em;
 
 .post-header__title {
-  line-height: 1.5;
-  font-size: 1.9rem;
-  box-shadow: $sw $sh 0 $color-red, $sw -#{$sh} 0 $color-red, -#{$sw} #{$sh} 0 $color-red, -#{$sw} -#{$sh} 0 $color-red;
+  line-height: 1.2;
+  font-size: 2rem;
+  padding-bottom: 0;
   @media print {
     box-shadow: none;
   }
 }
 
 .post-header__subtitle {
+  line-height: 1.4;
   font-size: 1.2rem;
-  line-height: 1.5;
-  box-shadow: $sw $sh 0 $color-red, -#{$sw} #{$sh} 0 $color-red, $sw 0 0 $color-red, -#{$sw} 0 0 $color-red;
   @media print {
     color: $color-grey;
     box-shadow: none;

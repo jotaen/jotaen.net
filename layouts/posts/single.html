@@ -14,10 +14,16 @@
   <article>
 
     <header class="post-header" style="background-image:url({{ .Params.Image }})" alt="{{ .Title }}">
-      <h1 class="post-header__headline content">
-        <span class="post-header__title">{{ .Title }}</span><br>
-        <span class="post-header__subtitle">{{ .Params.Subtitle }}</span>
-      </h1>
+      <div class="align--bottom">
+        <div class="content">
+          <div class="post-header__container">
+            <h1 class="post-header__headline">
+              <span class="post-header__title">{{ .Title }}</span><br>
+              <span class="post-header__subtitle">{{ .Params.Subtitle }}</span>
+            </h1>
+          </div>
+        </div>
+      </div>
       {{ if .Params.Image_info }}
         <div class="post-header__image-info">
           &#8505;
