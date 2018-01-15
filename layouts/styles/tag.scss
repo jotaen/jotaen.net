@@ -2,14 +2,12 @@
 
 .tag {
   display: inline-block;
-  border: 1px solid $color-lightblue;
-  padding: 0.1em 0.4em 0 0.4em;
   font-size: 0.85em;
   color: $color-lightblue !important;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   white-space: nowrap;
-  margin-bottom: 0.6em;
+  margin: 0 0.5em 0.6em 0;
 
   &:hover {
     background-color: $color-blue;
@@ -19,7 +17,7 @@
 
   &:before {
     content: "#";
-    margin-right: 0.3em;
+    margin-right: 0.1em;
   }
 
   @media print {

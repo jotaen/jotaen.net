@@ -25,8 +25,8 @@
           <ul class="ul--reset">
             {{ range $name := $tags }}
               <li class="li--reset tagbrowser__item">
-                <a href="/archive/#{{ $name | urlize }}" class="a--reset tag">{{ $name }}</a>
-                <span class="teaser--light">({{ $.Site.Taxonomies.tags.Count $name }})</span>
+                <a href="/archive/#{{ $name | urlize }}" class="a--reset tag">{{ $name }}</a><!--
+                --><span class="teaser--light">({{ $.Site.Taxonomies.tags.Count $name }})</span>
               </li>
             {{ end }}
           </ul>

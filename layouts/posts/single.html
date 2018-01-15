@@ -79,7 +79,7 @@
         <dd class="post-info__data">
           <ul class="ul--reset">
             {{ range $name := .Params.Tags }}
-              <li class="li--inline" title="Tag: {{ $name }}">
+              <li title="Tag: {{ $name }}">
                 <a href="/archive/#{{ $name | urlize }}" class="a--reset tag">{{ $name }}</a>
               </li>
             {{ end }}
