@@ -1,36 +1,13 @@
-{{ define "title" }}Archive{{ end }}
+{{ define "title" }}/*
+  Beware, the title is also updated dynamically with JS below!
+*/Archive{{ end }}
+
 
 {{ define "main" }}
 
-  <script>
-    function appendHashtag(tag) {
-      window.location.hash = tag === "_all" ? "" : tag;
-    }
-
-    function filterList(tag) {
-      const currentTag = window.location.hash.substr(1);
-      const elements = document.querySelectorAll('[data-tags]');
-      Array.prototype.forEach.call(elements, function(e) {
-        const tags = e.getAttribute("data-tags").split(" ");
-        const isShown = tags.includes(currentTag) || currentTag === "";
-        e.style.display = isShown ? "block" : "none";
-      });
-      document.getElementById('all-tags').value = currentTag || "_all";
-    }
-
-    window.addEventListener("hashchange", filterList, false);
-
-    (function hideTeaserWhileLoading() {
-      const style = document.createElement('style');
-      style.type = 'text/css';
-      style.innerHTML = '.teaser { display: none; }';
-      document.getElementsByTagName('head')[0].appendChild(style);
-    })();
-  </script>
-
   <main class="content">
 
-    <h1 class="pagetitle">– Archive –</h1>
+    <h1 class="pagetitle">– Archive<span id="tag-in-title"></span> –</h1>
     <div class="archive__filter">
       Filter by tag: 
       <select id="all-tags" onchange="appendHashtag(this.value)">
@@ -50,6 +27,34 @@
     {{ end }}
 
     <script>
+      function appendHashtag(tag) {
+        window.location.hash = tag === "_all" ? "" : tag;
+      }
+
+      function filterList(tag) {
+        const currentTag = window.location.hash.substr(1);
+        const elements = document.querySelectorAll('[data-tags]');
+        Array.prototype.forEach.call(elements, function(e) {
+          const tags = e.getAttribute("data-tags").split(" ");
+          const isShown = tags.includes(currentTag) || currentTag === "";
+          e.style.display = isShown ? "block" : "none";
+        });
+        document.getElementById('all-tags').value = currentTag || "_all";
+
+        const titleSuffix = currentTag ? (": #" + currentTag) : "";
+        document.getElementById('tag-in-title').innerHTML = titleSuffix;
+        document.title = "Archive" + titleSuffix;
+      }
+
+      window.addEventListener("hashchange", filterList, false);
+
+      (function hideTeaserWhileLoading() {
+        const style = document.createElement('style');
+        style.type = 'text/css';
+        style.innerHTML = '.teaser { display: none; }';
+        document.getElementsByTagName('head')[0].appendChild(style);
+      })();
+
       // Call this _after_ the teasers have been loaded
       filterList();
     </script>
