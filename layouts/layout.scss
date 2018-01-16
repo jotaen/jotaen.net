@@ -95,3 +95,15 @@ body {
   filter: blur(2px);
   letter-spacing: -3px;
 }
+
+.cta__label {
+  &:before {
+    content: "☞";
+    font-size: 1.2em;
+    margin-right: 0.5em;
+  }
+  
+  &--narrow:before {
+    margin-right: 0;
+  }
+}

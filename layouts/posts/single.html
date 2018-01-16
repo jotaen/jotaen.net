@@ -75,14 +75,14 @@
             }
           </script>
           <ul class="ul--reset">
-            <li>
-              ☞ On <a href="https://twitter.com/intent/tweet?source={{ .Permalink | safeURL }}&text={{ print "“" .Title " – " .Params.Subtitle "” " "http://j4n.io/" .Params.Id | safeURL }}&via=jot4en" target="_blank">Twitter</a>
+            <li class="cta__label cta__label--narrow">
+              On <a href="https://twitter.com/intent/tweet?source={{ .Permalink | safeURL }}&text={{ print "“" .Title " – " .Params.Subtitle "” " "http://j4n.io/" .Params.Id | safeURL }}&via=jot4en" target="_blank">Twitter</a>
             </li>
-            <li>
-              ☞ Via <a href="mailto:?subject={{ print "Blogpost: " .Title " – " .Params.Subtitle | safeURL }}&body={{ print "Read this blogpost: " .Permalink | safeURL }}">E-Mail</a>
+            <li class="cta__label cta__label--narrow">
+              Via <a href="mailto:?subject={{ print "Blogpost: " .Title " – " .Params.Subtitle | safeURL }}&body={{ print "Read this blogpost: " .Permalink | safeURL }}">E-Mail</a>
             </li>
-            <li>
-              ☞ Link <span style="text-decoration: underline;" onclick="selectText(this)">j4n.io/{{ .Params.Id }}</span>
+            <li class="cta__label cta__label--narrow">
+              Link <span style="text-decoration: underline;" onclick="selectText(this)">j4n.io/{{ .Params.Id }}</span>
             </li>
           </ul>
         </dd>

@@ -50,6 +50,7 @@
   margin-bottom: 0;
   li {
     display: inline-block;
+    margin-right: 0.5em;
   }
   @include broad-view {
     margin-bottom: 0.5em;

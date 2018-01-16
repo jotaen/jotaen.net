@@ -1,15 +1,6 @@
 .subscribe {
   text-align: center;
 
-  &__heading {
-    margin-top: 0;
-    &:before {
-      content: "☞";
-      font-size: 1.2em;
-      margin-right: 0.5em;
-    }
-  }
-
   &__disclaimer {
     display: block;
     color: $color-grey;
