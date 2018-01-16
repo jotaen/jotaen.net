@@ -48,7 +48,13 @@
 .post-info__data {
   margin-left: 0;
   margin-bottom: 0;
+  li {
+    display: inline-block;
+  }
   @include broad-view {
     margin-bottom: 0.5em;
+    li {
+      display: block;
+    }
   }
 }
