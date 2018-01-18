@@ -13,9 +13,7 @@ install:
   - pip install --user awscli
 
 script:
-  - make css-install
-  - make css
-  - make hugo
+  - make all
   - ls -lR public
 
 after_success:

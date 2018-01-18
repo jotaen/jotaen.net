@@ -33,3 +33,5 @@ css-install:
 		-w /app \
 		node:9.3.0-alpine \
 		npm install
+
+all: css-install css hugo
