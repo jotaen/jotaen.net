@@ -15,8 +15,11 @@
 }
 
 .icon__image {
-  width: 60%;
-  padding: 20%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  stroke: #fff;
+  fill: #fff;
 }
 
 .icon__label {
