@@ -25,10 +25,8 @@ title = "About"
         <a href="https://github.com/jotaen" class="social__link">github.com/jotaen</a>
       </li>
       <li class="social">
-        <a href="mailto:j...@jotaen.net" class="a--reset">
-          <img src="/icon-email.png" "E-mail" class="social__icon">
-        </a>
-        <a href="mailto:………@jotaen.net" class="social__link prepend-blurred" title="Please activate javascript to reveal this link">@jotaen.net</a>
+        <img src="/icon-email.png" alt="E-mail" class="social__icon">
+        <span class="social__link m41lm3" title="Please activate javascript to reveal this link"></a>
       </li>
     </ul>
 
@@ -62,15 +60,24 @@ title = "About"
 
 <script>
   (function reveal_email(document, window) {
-    var links = document.getElementsByClassName('prepend-blurred');
-    var popup = function() {
-      window.open("http://www.google.com/recaptcha/mailhide/d?k=01AxKftslD25l2Xrd7GQrq3A==&c=yzyOzUPufidKpnaMgGVxAw==", "", "toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300");
-      return false;
-    };
+    var links = document.getElementsByClassName("m41lm3");
+    var part1 = "/m41";
+    var part2 = "lm3.h";
+    var part3 = "tml";
     [].forEach.call(links, function(link) {
-      link.setAttribute("href", "http://www.google.com/recaptcha/mailhide/d?k=01AxKftslD25l2Xrd7GQrq3A==&c=yzyOzUPufidKpnaMgGVxAw==");
-      link.setAttribute("title", "I’m so sorry for that captcha hassle, but you know how it is :(");
-      link.onclick = popup;
+      link.setAttribute("title", "Click to unmask");
+      link.onclick = function() {
+        fetch(part1.concat(part2).concat(part3))
+        .then(function(res) {
+          if (res.ok) return res.text();
+        })
+        .then(function(txt) {
+          link.setAttribute("title", "");
+          link.classList.remove("m41lm3");
+          link.onclick = null;
+          link.innerHTML = txt.replace(/(--\*--)/, "@").replace(/(--:--)/, ".");
+        });
+      };
     });
   }(document, window));
 </script>

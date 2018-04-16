@@ -90,10 +90,19 @@ body {
   }
 }
 
-.prepend-blurred:before {
-  content: "&ß#üø$";
-  filter: blur(2px);
-  letter-spacing: -3px;
+.m41lm3 {
+  cursor: pointer;
+  &:before {
+    content: "&ß#üø$";
+    filter: blur(2px);
+    letter-spacing: -3px;
+  }
+  &:after {
+    content: "@jotaen.net";
+  }
+  &--n {
+    display: none;
+  }
 }
 
 .cta__label {
