@@ -33,13 +33,28 @@ Furthermore, I enhanced the accessibility of the menu by simply increasing the i
 
 Recently I had a short outage in production after a deployment: the reason for this was a breaking change in the blog engine I use[^2] that I didn’t notice since my local binary version differed from the one on the build server. Hence, I decided to reimplement my build setup with Docker in order to have platform independent and reproducible builds.
 
-I setup a Makefile to hold my Docker commands and organise the build steps. Interestingly, it’s not the first time that I ended up introducing Makefiles in smaller web projects. Even though they aren’t precisely suitable for that purpose, their simplicity and ease-of-use convince me again and again. I probably will dedicate an entire blog post to that topic someday in the future.
+I setup [a Makefile](https://github.com/jotaen/www.jotaen.net/blob/master/Makefile) to hold my Docker commands and organise the build steps. Interestingly, it’s not the first time that I ended up introducing Makefiles in smaller web projects. Even though they aren’t precisely suitable for that purpose, their simplicity and ease-of-use convince me again and again. I probably will dedicate an entire blog post to that topic someday in the future.
 
 ## #4 – Performance
 
-Even though I’m already using a static CDN I was able to boost the performance of my website even more. On cable network, the first meaningful paint happens in little more than a second (uncached); DOM-ready follows a few hundred milliseconds thereafter. I achieved this mainly by exchanging png graphics with svgs and embeddeing them in the HTML directly. The same applies for my javascript assets, which are fairly small anyway. All in all this saves unnecessary network requests.
+All my content is statically served via a CDN, which is why the performance of my blog is fairly good already: the server latency is usually only a few milliseconds, so the almost sole decisive factor for performance is network speed. I could boost the loading time here a bit by optimising asset management:
 
-The biggest asset by far are my fonts by the way, which sum up to an impressive 250 KB alone. Since typography is my strongest visual stylistic device, I am fairly hesitant to make optimisations here – my options are limited anyway, since the fonts are served by a 3rd party provider.
+- I converted the menu icons and logo from PNGs to SVGs and embedded them directly into the markup to save unnecessary HTTP requests. (They also look a bit more crisp now.)
+- All JavaScript is now embedded in the source code as well. I have only a few dozen lines of it anyway.
+- The thumbnails on the homepage are optimised, so that they only weigh 5–10 KB each.
+
+The transfer size for a (non-cached) request to the homepage is about 350 KB. The biggest asset by far are the fonts that I use, which sum up to an impressive 250 KB alone. Since typography is my strongest visual stylistic device, I don’t want to make optimisations here, though. (My options would be limited anyway, since the fonts are served by a 3rd party provider.) The fonts have a fairly generous cache header, so they are only reloaded once a week. After all, I consider them to be bearable luxury.
+
+An average blog post comes at about 150 KB response size, where the biggest chunk is the header image, which usually ranges between 80–100 KB.
+
+The tools that I mainly use to assess performance are [Webpagetest.org](https://www.webpagetest.org/), [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) and of course the [Google Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/network-performance/).
+
+## The remainder
+
+There are still things left on my todo list, most importantly:
+
+- Configuring and optimising my **RSS Feed**
+- Improving **screen reader accessibility**
 
 
 [^1]: Charisse also advised on many other details. Go check her amazing illustration work at [__LINK__](https://).
