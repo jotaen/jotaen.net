@@ -77,15 +77,15 @@
 
 .navibar__logo {
   display: block;
-  height: floor($width-navibar * 0.8);
-  padding: 7px;
+  height: floor($width-navibar * 0.9);
+  padding: 5px;
   @include narrow-view {
     margin: -4px 10px 0 12px;
     float: right;
   }
   @include medium-view {
     background-color: rgba(250, 250, 250, 0.7);
-    margin: -87px 0 52px -37px;
+    margin: -87px 0 52px -35px;
     -webkit-transform: rotate(270deg);
     -moz-transform: rotate(270deg);
     -o-transform: rotate(270deg);
