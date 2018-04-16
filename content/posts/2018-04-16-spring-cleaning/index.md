@@ -1,9 +1,9 @@
 +++
 title = "Swing the brush"
 subtitle = "Spring cleaning of my blog"
-date = "2018-04-15"
+date = "2018-04-16"
 tags = ["blogging"]
-image = "/posts/2018-04-15-spring-cleaning/painting.jpg"
+image = "/posts/2018-04-16-spring-cleaning/painting.jpg"
 image_info = "Photo by Khara Woods (unsplash.com/@kharaoke)"
 id = "IgXy1"
 url = "IgXy1/spring-cleaning"
