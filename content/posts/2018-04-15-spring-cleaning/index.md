@@ -1,14 +1,13 @@
 +++
-draft = true
 title = "Swing the brush"
 subtitle = "Spring cleaning of my blog"
 date = "2018-04-15"
 tags = ["blogging"]
 image = "/posts/2018-04-15-spring-cleaning/painting.jpg"
 image_info = "Photo by Khara Woods (unsplash.com/@kharaoke)"
-id = "98d7d"
-url = "98d7d/spring-cleaning"
-aliases = ["98d7d"]
+id = "IgXy1"
+url = "IgXy1/spring-cleaning"
+aliases = ["IgXy1"]
 +++
 
 This post is a entry into the virtual changelog of my blog. Over the past couple of weeks I set out to do a little spring cleaning and improved some smaller things that kept bothering me since quite a while. Allow me to share the four most interesting improvements here.
