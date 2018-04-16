@@ -13,7 +13,7 @@ install:
   - pip install --user awscli
 
 script:
-  - make all
+  - make
   - ls -lR public
 
 after_success:
