@@ -29,7 +29,7 @@ static/style.css: node_modules
 			compressed \
 			./layouts/index.scss > ./static/style.css
 
-node_modules:
+node_modules: package.json package-lock.json
 	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
