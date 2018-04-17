@@ -1,6 +1,7 @@
-.PHONY: serve clean
+.PHONY: public serve static/style.css
 
 public: static/style.css
+	rm -rf public/
 	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
@@ -15,10 +16,6 @@ serve: static/style.css
 		jojomi/hugo:0.30 \
 		hugo server --bind=0.0.0.0 --buildDrafts
 
-clean:
-	rm -rf public/
-	rm -f ./static/style.css
-
 static/style.css: node_modules
 	docker run --rm \
 		-v $$(pwd):/app \
@@ -30,8 +27,10 @@ static/style.css: node_modules
 			./layouts/index.scss > ./static/style.css
 
 node_modules: package.json package-lock.json
+	mkdir -p node_modules
 	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
 		node:9.3.0-alpine \
 		npm install
+	touch -m node_modules
