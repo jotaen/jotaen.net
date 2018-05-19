@@ -7,10 +7,6 @@
     clear: both;
   }
 
-  &__preambel {
-    font-style: italic;
-  }
-
   &__contact {
     @include font-mono;
     display: inline;
