@@ -1,5 +1,4 @@
 +++
-draft = true
 title = "Web guards"
 subtitle = "Strategies to check and validate HTTP requests"
 date = "2018-06-03"
