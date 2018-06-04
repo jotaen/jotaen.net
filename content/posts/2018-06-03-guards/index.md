@@ -1,13 +1,13 @@
 +++
 draft = true
-title = "Guards"
-subtitle = ""
+title = "Web guards"
+subtitle = "Strategies to check and validate HTTP requests"
 date = "2018-06-03"
 tags = ["coding", "backend"]
 image = "/posts/2018-06-03-guards/tokyo-palace.jpg"
-id = "yxcv3"
-url = "yxcv3/guarding"
-aliases = ["yxcv3"]
+id = "13ozc"
+url = "13ozc/checking-validating-http-requests"
+aliases = ["13ozc"]
 +++
 
 
