@@ -104,7 +104,7 @@ function isAuthorisedForCreation(principal, product) {
 
 ### Integrity check
 
-The data integrity check needs to happen in a way that prevents any potential  concurrent write request to interfer in the meantime. (Here: by means of a database transaction.)[^3]
+The data integrity check needs to happen in a way that prevents any potential  concurrent write request to interfere in the meantime. (Here: by means of a database transaction.)[^3]
 
 ```php
 function createOrThrow(product) {
