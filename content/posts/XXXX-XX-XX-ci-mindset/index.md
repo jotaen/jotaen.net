@@ -12,12 +12,15 @@ aliases = ["asdf5"]
 +++
 
 ## Keep everyone in the loop
+Today’s times of agile software development are all about continuity: continuous integration, continuous deployment, continuous releases. While these are slightly different categories, they all aim at the same goal – being able to respond to changes fast.
 
 - Inform about risks proactively
 
 ## Verify that your changes are successful
+The concept of building and shipping right away sounds simple and intriguing, but getting there actually deserves a lot of effort to be put into tooling and processes. When every commit that gets pushed to the master code branch will automatically be deployed and released to production, a rock-solid test suite is as needful as thorough real-time monitoring. Reliability is what makes the difference.
 
 - Keep an eye on logs and monitoring
+While books can be filled about technical setups and concepts, this blog post touches a less obvious aspect that, however, is equally important: the human factor. Practicing successful continuous delivery is not just a matter of having the right tools in place, it’s a mindset question in great part. This must especially not be neglected if the intent is to introduce continuous delivery to a team that is used to scheduled releases.
 
 ## Baby steps, not seven-league boots
 
