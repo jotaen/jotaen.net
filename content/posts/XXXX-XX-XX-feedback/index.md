@@ -2,9 +2,9 @@
 draft = true
 title = "The art of good feedback"
 subtitle = ""
-date = "2017-09-09"
+date = "2020-09-09"
 tags = ["thoughts", "worklife"]
-image = "/posts/2017-09-09-feedback/forest.jpg"
+image = "/posts/XXXX-XX-XX-feedback/forest.jpg"
 id = "asdf1"
 url = "asdf1/the-art-of-good-feedback"
 aliases = ["asdf1"]

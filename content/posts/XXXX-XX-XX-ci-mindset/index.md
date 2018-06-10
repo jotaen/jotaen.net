@@ -2,9 +2,9 @@
 draft = true
 title = "The CI mindset"
 subtitle = "Living up to continuous integration"
-date = "2018-01-01"
+date = "2020-01-01"
 tags = ["devops"]
-image = "/posts/2018-01-01-ci-mindset/assembly-line.jpg"
+image = "/posts/XXXX-XX-XX-ci-mindset/assembly-line.jpg"
 image_info = "Image by Land Rover MENA [CC BY 2.0](http://creativecommons.org/licenses/by/2.0) with slight colour modifications"
 id = "asdf5"
 url = "asdf5/continuous-integration-mindset"
