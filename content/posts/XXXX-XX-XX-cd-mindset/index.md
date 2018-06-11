@@ -1,13 +1,13 @@
 +++
 draft = true
-title = "The CI mindset"
-subtitle = "Living up to continuous integration"
-date = "2020-01-01"
-tags = ["devops"]
-image = "/posts/XXXX-XX-XX-ci-mindset/assembly-line.jpg"
+title = "The CD mindset"
+subtitle = "Living up to continuous delivery"
+date = "2018-06-07"
+tags = ["thoughts", "devops"]
+image = "/posts/XXXX-XX-XX-cd-mindset/assembly-line.jpg"
 image_info = "Image by Land Rover MENA [CC BY 2.0](http://creativecommons.org/licenses/by/2.0) with slight colour modifications"
 id = "asdf5"
-url = "asdf5/continuous-integration-mindset"
+url = "asdf5/continuous-delivery-mindset"
 aliases = ["asdf5"]
 +++
 
