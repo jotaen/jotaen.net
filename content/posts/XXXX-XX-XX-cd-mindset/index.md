@@ -17,15 +17,19 @@ The concept of building and shipping right away sounds simple and intriguing, bu
 
 While books[^1] can be filled about technical setups and concepts, this blog post touches a less obvious aspect that, however, is no less important: the human factor. Practicing successful continuous delivery is not just a matter of having the right tools in place, it’s a mindset question in great part. This especially should not be underestimated if the endeavour is to introduce continuous delivery to a team that is used to scheduled, dedicated releases.
 
-## Plan in increments
+## Work incrementally
 
-This aspect alone could easily make one blog post – it’s probably the most crucial one, not just for a development team but also on the organisational level.
+Continuously integrating and delivering small chunks of work has several benefits as opposed to big releases. Most of all, the risks of changes are reduced by making them more manageable. Changes are split into smaller chunks, which can thus be gradually discussed, reviewed, tested, integrated, verified and re-evaluated as they are merged back into the main branch.
+
+Generally, this aspect is the most crucial one and could easily make one blog post alone. Working both incrementally and iteratively is not just beneficial when it comes to continuous delivery, it also brings immense value to the product development process. However, in order to be effective this virtue must be exercised on an organisational level and not just in the development department.
 
 - Baby steps; small increments that are continuously released
 - Feature/dev flags
 - Requires certain level of seniority
 
 ## Take responsibility
+
+
 
 - Verify that your changes are successful
 - Keep an eye on logs and monitoring
