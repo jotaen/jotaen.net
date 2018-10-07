@@ -2,12 +2,12 @@
 draft = true
 title = "The art of receiving feedback"
 subtitle = ""
-date = "2018-10-07"
+date = "2018-10-08"
 tags = ["thoughts", "worklife"]
-image = "/posts/2018-10-07-feedback/mountain.jpg"
-id = "asdf1"
-url = "asdf1/the-art-of-receiving-feedback"
-aliases = ["asdf1"]
+image = "/posts/2018-10-08-feedback/mountain.jpg"
+id = "8VFKa"
+url = "8VFKa/the-art-of-receiving-feedback"
+aliases = ["8VFKa"]
 +++
 
 In school, at work or in our private lifes – almost everywhere we are reliant on getting feedback from our peers, colleagues and friends in order to learn how to get better at what we do. But despite its importance, we often shy away from giving good feedback ourselves. We either do it much too little or we wrap it up in cotton to be sure no feelings will possibly be scratched. The reason for our reluctance is certainly not lack of opinions or utter apathy. Apart from the effort that it needs to come up with good feedback, delivering it also entails risks that require courage and confidence to overcome: Will I manage to bring my point across? Am I even right with what I’m saying? How will the other person react when they hear it? Will they be upset and start an argument? Or will they think of me as an arrogant smartypants? These and a hundred of other concerns are usually bothering us when we consider to approach someone with feedback.
