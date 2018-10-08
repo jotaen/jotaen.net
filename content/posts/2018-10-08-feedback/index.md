@@ -1,5 +1,4 @@
 +++
-draft = true
 title = "The art of receiving feedback"
 subtitle = "Learning to listen to what others feel"
 date = "2018-10-08"
