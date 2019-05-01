@@ -107,22 +107,19 @@
       {{ .Content }}
 
       <script>
-        (function create_sidebar_glosses_from_footnotes(document) {
-          var container = document.getElementsByClassName("footnotes")[0];
-          if (!container) return;
-          var footnotes = container.getElementsByTagName("li");
-          [].forEach.call(footnotes, function(_, i) {
-            var nr = i+1;
+        (function createSidebarGlossesFromFootnotes(document) {
+          var footnoteContainer = document.getElementsByClassName("footnotes")[0];
+          if (!footnoteContainer) return;
+          Array.from(footnoteContainer.getElementsByTagName("li"))
+            .forEach(function(footnote, i) {
+              var sidenote = document.createElement("div");
+              sidenote.classList.add("post-gloss__in-sidebar");
+              sidenote.innerHTML = footnote.innerHTML;
+              sidenote.removeChild(sidenote.lastElementChild); // remove "return" link
 
-            var content = document.getElementById("fn:" + nr);    
-            var sidenote = document.createElement("div");
-            sidenote.classList.add("post-gloss__in-sidebar");
-            sidenote.innerHTML = content.innerHTML;
-            sidenote.removeChild(sidenote.lastElementChild); // remove "return" link
-
-            var ref = document.getElementById("fnref:" + nr);
-            ref.parentElement.insertBefore(sidenote, ref);
-          });
+              var ref = document.getElementById("fnref:" + (i + 1));
+              ref.parentElement.insertBefore(sidenote, ref);
+            });
         }(document));
       </script>
     </main>
