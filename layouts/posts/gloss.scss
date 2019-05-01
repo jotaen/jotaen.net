@@ -37,6 +37,12 @@ a.reversefootnote {
   font-size: 0.85rem;
 }
 
+img + .post-gloss__in-sidebar,
+blockquote .post-gloss__in-sidebar {
+  top: 0;
+  margin-top: 0;
+}
+
 div.footnotes {
   @include broad-view {
     display: none;
