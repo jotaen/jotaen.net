@@ -2,38 +2,40 @@
 draft = true
 title = "A faint white dot that is Pluto"
 subtitle = "The story of its discovery and exploration"
-date = "2019-05-01"
-tags = ["thoughts"]
-image = "/posts/2015-05-01-pluto/pluto-new-horizons-flyby.jpg"
+date = "2019-05-02"
+tags = ["off-topic"]
+image = "/posts/2019-05-02-pluto/new-horizons-pluto-artwork.jpg"
 image_info = "Johns Hopkins University Archives"
-id = "qwyt8"
-url = "qwyt8/the-dot-that-is-pluto"
-aliases = ["qwyt8"]
+id = "xG6Re"
+url = "xG6Re/discovery-and-exploration-of-pluto"
+aliases = ["xG6Re"]
 +++
 
-The story of the discovery and exploration of Pluto is an utterly fascinating piece of modern seafaring in space. That not only for the magnificent engineering achievements, which were carried out all along the way, but also because it made us vividly realise how much there is yet to be learned about our own Solar System.
+The story of the discovery and exploration of Pluto is an utterly fascinating piece of modern seafaring in space. That not only for the magnificent engineering achievements, which were carried out all along the way, but also because it made us vividly realise how much there is yet to be learned about our own Solar System. The image below shows a photography of Pluto as it was made by the New Horizons space probe in 2015. This picture with its level of detail is an extraordinary revelation whose historic significance can only be fully understood in the context of a string of research efforts that reach back into the 19th century.
 
-The image below shows a photo composition of the New Horizons space probe performing its flyby maneuver of Pluto and one of its moons Charon. It consist of actual photographs as they were made by New Horizons in 2015. These pictures with their level of detail are an extraordinary revelation whose historic significance can only be fully understood in the context of a string of research efforts that reach back into the 19th century.
-
-![An artistic photo composition of the New Horizons space probe flying by Pluto; Johns Hopkins University Archives]()
+![The dwarf planet Pluto](/posts/2019-05-02-pluto/pluto.jpg)
+[^1]
 
 The extend of a blog post is of course not nearly enough to comprehensively summarise this long lasting and entangled history of how Pluto was discovered and explored. Hence, my article can only give a coarse-grained overview and illuminate some arbitrary spots.
 
 ## The hunt for “Planet X”
 
-Pluto was discovered by Clyde Tombaugh in January 1930. This wasn’t by mere chance alone, it rather was the result of a long series of preceding endeavours from numerous people. The existence of a trans-Neptunian planet had been speculated about for decades already, since the observed positions of Neptune and Uranus didn’t exactly match up with their mathematically predicted ones. That led to the anticipation of another, more outward planet whose gravitational influence was assumed to account for their deviated trajectories. The configuration of such an object was not just uncertain though, but the theory as a whole was debated controversially – and, in fact, eventually proven false about a century later. (We’ll come back to that later.) Nevertheless, at that time it was the main driving force for a man named Percival Lowell to start an extensive research project.
+Pluto was discovered by Clyde Tombaugh in February 1930. This wasn’t by mere chance alone, it rather was the result of a long series of preceding endeavours from numerous people. The existence of a trans-Neptunian planet had been speculated about for decades already, since the observed positions of Neptune and Uranus didn’t exactly match up with their mathematically predicted ones. That led to the anticipation of another, more outward planet whose gravitational influence was assumed to account for their deviated trajectories. The configuration of such an object was not just uncertain though, but the theory as a whole was debated controversially – and, in fact, eventually proven false about a century later. (We’ll come back to that later.) Nevertheless, at that time it was the main driving force for a man named Percival Lowell to start an extensive research project.
 
-![Percival Lowell sitting in his own observatory; Wikipedia/PD]()
+![Portrait of Percival Lowell](/posts/2019-05-02-pluto/percival-lowell.jpg)
+[^2]
 
 Lowell was descendant of a wealthy business family from Boston and had an educational background in mathematics. After years of travelling the Far East in the late 19th century he fully dedicated himself to astronomy and founded his own observatory in Flagstiff, Arizona in 1894. One of his primary areas of interest were the surface structures of Mars, mainly canals and craters, which he believed were created by intelligent forms of life as some kind of sophisticated water supplies. Lowell published three books on that matter, and while his works fueled the public excitement about the possibility of life on Mars, scepticism in the scientific community continued to grow to a degree that damaged his reputation.
 
 Convinced by the hypothesis of a trans-Neptunian object, Lowell initiated a systematic search in 1906 for what he would call “Planet X” – the inferred but still unknown planet. His own efforts yielded no success though and he died in 1916 without having accomplished his mission. As an ironic twist of fate it would turn out later that Pluto was actually captured on Lowell’s photographs, however, he didn’t recognise it: based on his calculations he was looking out for a brighter object of much bigger size. In hindsight it would be easy to belittle Lowell’s beliefs and achievements, but considering the state of knowledge and technology at that time his tenacity and pioneering spirit was nothing short of admirable.
 
-![Clyde Tombaugh; Johns Hopkins University Archives]()
+![Portrait of Clyde Tombaugh](/posts/2019-05-02-pluto/clyde-tombaugh.jpg)
+[^3]
 
 Lowell’s death was followed by turbulent times at the observatory, which put the search for “Planet X” to a halt. It was resumed a decade later with the construction of a new photographic telescope and 23-year-old Clyde Tombaugh was hired in 1929 to operate it. Tombaugh was a self-started astronomer, who grew up as the son of farmers in the Midwestern United States. Without having received advanced scientific training up to that point, he managed to build his own telescope at his parents house, which allowed him to draw remarkably detailed pictures of Mars and Jupiter. He sent those to the Lowell Observatory in Flagstiff, who – impressed by their accuracy – invited Tombaugh to work there. “An opportunity of a lifetime”, as he would recall later on, that indeed marked the beginning of a lifelong scientific career.
 
-![The two original photographic plates proving the existence of Pluto; Lowell Observatory Archives/The Planetary Society]()
+![Two photographic plates](/posts/2019-05-02-pluto/pluto-discovery-plates.jpg)
+[^4]
 
 In the following months Tombaugh systematically photographed the night sky through the observatory’s telescope and analysed the pictures by means of a so-called blink comparator. This device would project two images on a screen and flip back and forth between them in rapid succession. By carefully superimposing pairs of photographs that were taken a few days apart from each other, Tombaugh eventually was able to spot a faint white dot that appeared in different positions over time – he had discovered Pluto! Its name was proposed shortly thereafter by an 11-year-old girl from England and then taken on unanimously by the observatory’s staff: Pluto, the God of the Underworld in Greek mythology, seemed not just to be a fitting metaphor, but its first two letters also happened to match Percival Lowell’s initials.
 
@@ -43,7 +45,8 @@ With a diameter of 2374 kilometers, Pluto is slightly smaller than Earth’s Moo
 
 The probably most groundbreaking news in a long time came about in 1978 with the discovery of Pluto’s satellite Charon. Subsequent investigations would show that it is of such substantial proportions that the barycenter of both objects (i.e. the common center point that they both orbit around) is located between them, outside either body, thus making the two of them a so-called binary system. This effect is faintly reminiscent of a pair spin in ice skating, where both partners hold onto each other while they rotate around the same axis. As for the name, Charon was the boatman in the Greek mythology, who ferried the deads over to the Underworld.
 
-![Pluto and Charon as captured by the Hubble Space Telescope (NASA) in 1994]()
+![Pluto and Charon at distance](/posts/2019-05-02-pluto/pluto-charon-hubble.jpg)
+[^5]
 
 Another pivotal realisation was the disproof of the “Planet X” theory, which over time became more and more evident. For one, as a relatively small and remote object, Pluto does not have enough gravitational impact on Neptune and Uranus to tug them off course. Apart from that, the physical properties of Neptune had to be revised due to the measurements conducted by the Voyager 2 space probe in the late 1980s, which ultimately rendered the hypothesis of a compensatory mass obsolete. While this implicates that the discovery of Pluto was virtually a coincidence, it also opened the door to a whole new world, a massive circumstellar disc beyond Neptune: the Kuiper belt.
 
@@ -51,14 +54,28 @@ The idea of an outer asteroid belt had already been hypothesised since the 1930s
 
 ## Setting off to new horizons
 
-Slightly ahead of the Kuiper belt exploration proceeding in the 1990s, scientists and engineers outlined and discussed various scenarios of a space mission to Pluto. Voices lobbying for such an undertaking started to raise in the late 1980s, at about the same time when the Voyager mission was in its final stages. Back in the day, the option for Voyager 1 to perform a Pluto flyby had been decided against in favour of a close flyby of Saturn’s complex and atmosphere-laden moon Titan. But the desire to probe into the pristine world of Pluto remained unabated and the rapidly expanding interest in the Kuiper belt propelled the efforts further along.
+Slightly ahead of the Kuiper belt exploration proceeding in the 1990s, scientists and engineers outlined and discussed various scenarios of a space mission to Pluto. Voices lobbying for such an undertaking started to raise in the late 1980s, at about the same time when the Voyager mission was in its final stages. Back in the day, the option for Voyager 1 to perform a Pluto flyby had been decided against in favour of a close flyby of Saturn’s complex and atmosphere-laden moon Titan. But the desire to probe into the pristine world of Pluto remained unabated and the rapidly expanding interest in the Kuiper belt propelled the efforts further along.
 
 Starting in 2001, after years of intense scientific and political battle, NASA finally started to work on a space probe that got named “New Horizons”. The team was led by Alan Stern, an experienced NASA investigator who had already been spearheading an informal group in 1989 that called themselves the “Pluto Underground”. All in all, over 2500 individuals worked on the spacecraft, payload, ground system and launch vehicle, and the total cost of the mission was north of half a billion US-dollars. Nine years to the week since Clyde Tombaugh’s death, New Horizons was deployed into space on an Atlas V rocket that launched from Cape Canaveral in January 2006. Pacing at roughly around 50,000 km/h for almost a decade before encountering Pluto, it didn’t just carry an array of scientific instruments – the payload also contained a small amount of Tombaugh’s ash.
 
-![Animation of New Horizons performing the flyby of Pluto; Johns Hopkins University Archives]()
+![Animation of New Horizons flyby of Pluto system](/posts/2019-05-02-pluto/new-horizons-pluto-flyby.gif)
+[^6]
 
-The journey itself was mostly smooth, apart from one severe software incident that occurred – of all times – some ten days before the closest approach. But despite the signal transmission time of 4½ hours (one-way), the engineers were able to fix the issue within 2 days. On July 14th 2015, 5 billion kilometres outbound from Earth, New Horizons crossed paths with Pluto. The transfer of recorded data and photographs started almost immediately, but due to a downlink rate of around 1 kbit/sec it took more than a year to complete the retrieval.
+The journey itself was mostly smooth, apart from one severe software incident that occurred – terrifyingly – some ten days before the closest approach. But despite the signal transmission time of 4½ hours (one-way), the engineers were able to fix the issue within 2 days. On July 14th 2015, 5 billion kilometres outbound from Earth, New Horizons crossed paths with Pluto. The transfer of recorded data and photographs started almost immediately and already allowed for a glimpse behind the curtain that exceeded all expectations. Due to the downlink rate of around 1 kbits/sec, however, full data retrieval took more than a year to be completed.
 
 - Ultima Thule encounter early 2019, NH is operable into the 2030s; all in all, it was a wildly successful mission
 
 ![Ultimate Thule (MU69)]()
+
+
+[^1]: A true colour image of the dwarf planet Pluto. [Click here](https://solarsystem.nasa.gov/resources/933/true-colors-of-pluto/) to view in full resolution, it’s thrilling! (Image: Johns Hopkins University Archives/NASA)
+
+[^2]: Percival Lowell in front of the telescope in his own observatory (Image: Wikipedia/PD)
+
+[^3]: Clyde Tombaugh (Image: Johns Hopkins University Archives)
+
+[^4]: The two original photographic plates proving the existence of Pluto (marked with cursor) (Image: Lowell Observatory Archives/Planetary Society)
+
+[^5]: Pluto and Charon as captured by the Hubble Space Telescope in 1994 (Image: NASA/Hubble)
+
+[^6]: Time-lapsed animation of New Horizons performing the flyby of Pluto (Image: Johns Hopkins University Archives)
