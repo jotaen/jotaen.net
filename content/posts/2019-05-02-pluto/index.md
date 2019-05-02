@@ -1,5 +1,4 @@
 +++
-draft = true
 title = "A faint little dot that was Pluto"
 subtitle = "The story of its discovery and exploration"
 date = "2019-05-02"
