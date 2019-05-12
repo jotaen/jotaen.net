@@ -70,44 +70,55 @@
       </nav>
 
       <script>
-        (function add_event_listeners_to_menu_icons(document) {
-          var show_label = function() {
-            var label = this.getElementsByClassName("icon__label")[0];
+        (function addEventListenersToNaviIcons(document) {
+          const showLabel = function() {
+            const label = this.getElementsByClassName("icon__label")[0];
             label.style.display = "block";
           };
-
-          var hide_label = function() {
-            var label = this.getElementsByClassName("icon__label")[0];
+          const hideLabel = function() {
+            const label = this.getElementsByClassName("icon__label")[0];
             label.style.display = "none";
           };
-
-          var icons = document.getElementsByClassName("icon--navi");
-          [].forEach.call(icons, function(icon, i) {
-            icon.addEventListener("mouseover", show_label);
-            icon.addEventListener("mouseout",  hide_label);
+          const icons = Array.from(document.getElementsByClassName("icon--navi"));
+          icons.forEach(function(icon, i) {
+            icon.addEventListener("mouseover", showLabel);
+            icon.addEventListener("mouseout",  hideLabel);
           });
         }(document));
 
-        (function showHideTopNaviWhileScroll() {
-          let lastScrollTop = 0;
-          let lastDirection = 0;
+        (function toggleTopNaviWhileScroll(window, document) {
+          const navi = document.getElementById("navibar");
+          const DEBOUNCE_Y = 30;
+          let lastScrollY = 0;
+          let lastScrollMinY = 0;
+          let lastScrollMaxY = 0;
+          let wasScrollingDown = false;
           window.addEventListener("scroll", function() {
-             let st = window.pageYOffset || document.documentElement.scrollTop;
-             if (st > lastScrollTop && lastDirection >= 0) {
-                const navi = document.getElementById("navibar");
-                if (window.getComputedStyle(navi).getPropertyValue('z-index') === "1000") return;
-                lastDirection = -1;
+            if (window.getComputedStyle(navi).getPropertyValue('z-index') === "1000") {
+              // Hack to communicate view-port size via CSS’s z-index
+              return;
+            }
+            const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+            const isScrollingDown = currentScrollY > lastScrollY;
+            if (isScrollingDown) {
+              lastScrollMaxY = currentScrollY;
+            } else {
+              lastScrollMinY = currentScrollY;
+            }
+            const hasDirectionChanged = isScrollingDown !== wasScrollingDown;
+            const hasPassedDebounceThreshold = lastScrollMaxY - lastScrollMinY > DEBOUNCE_Y;
+            if (hasDirectionChanged && hasPassedDebounceThreshold) {
+              if (isScrollingDown) {
+                wasScrollingDown = true;
                 navi.className = "navibar navibar--hide";
-             }
-             if (st < lastScrollTop && lastDirection <= 0) {
-                const navi = document.getElementById("navibar");
-                if (window.getComputedStyle(navi).getPropertyValue('z-index') === "1000") return;
-                lastDirection = 1;
+              } else {
+                wasScrollingDown = false;
                 navi.className = "navibar navibar--show";
-             }
-             lastScrollTop = st;
+              }
+            }
+            lastScrollY = currentScrollY;
           }, false);
-        })();
+        })(window, document);
       </script>
     {{ end }}
 
