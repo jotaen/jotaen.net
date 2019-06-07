@@ -1,7 +1,5 @@
-{{ define "title" }}/*
-  Beware, the title is also updated dynamically with JS below!
-*/Archive{{ end }}
-
+{{/* Beware, the title is also updated dynamically with JS below! */}}
+{{ define "title" }}Archive{{ end }}
 
 {{ define "main" }}
 
@@ -43,7 +41,7 @@
 
         const titleSuffix = currentTag ? (": #" + currentTag) : "";
         document.getElementById('tag-in-title').innerHTML = titleSuffix;
-        document.title = "Archive" + titleSuffix;
+        document.title = document.title.replace(/^.+?(?= •)/, "Archive" + titleSuffix);
       }
 
       window.addEventListener("hashchange", filterList, false);
