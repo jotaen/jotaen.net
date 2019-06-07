@@ -1,53 +1,66 @@
 +++
 draft = true
-title = "The CD mindset"
-subtitle = "The human factor in continuous delivery"
-date = "2019-06-07"
-tags = ["devops"]
+title = "The continuous delivery mindset"
+subtitle = "What software developers can contribute to successful CD"
+date = "2019-06-11"
+tags = ["worklife", "devops"]
 image = "/drafts/XXXX-XX-XX-cd-mindset/assembly-line.jpg"
-image_info = "Image by Land Rover MENA [CC BY 2.0](http://creativecommons.org/licenses/by/2.0) with slight colour modifications"
-id = "asdf5"
-url = "asdf5/continuous-delivery-mindset"
-aliases = ["asdf5"]
+image_info = "Image by Land Rover MENA [CC BY 2.0](http://creativecommons.org/licenses/by/2.0) with colour modifications"
+id = "uhb19"
+url = "uhb19/continuous-delivery-mindset"
+aliases = ["uhb19"]
 +++
 
-“Continuity” is a central keyword in the software industry, especially in modern web development. Continuous integration, continuous deployment, continuous releases: while these are slightly different categories, they all aim at the same goals – to shorten the feedback loop in feature development, to be able to respond to changing requirements faster and to minimise the exposure time of bugs. Continuous delivery is not just a technical niceness though, it has become a crucial business factor that ultimately enables agile product development.
+“Continuous delivery” (CD) is the practice of applying changes to software on an ongoing basis and delivering value to customers frequently. The underlying goals are to shorten the feedback loop in product development, to be able to respond to changing requirements quickly and to minimise the exposure time of defects. That being said, continuous delivery is primarily a business incentive and it makes for a central pillar of customer-centric, agile product development.
 
-The concept of building and shipping right away sounds simple and intriguing, but getting there actually deserves a lot of effort to be put into tooling and processes. Ideally, every code contribution will automatically be deployed and released to production. But even if releases are driven manually, for them to be happening frequently a rock-solid test suite is as needful as thorough real-time monitoring. Reliability is what makes the difference here.
+Effective continuous delivery has to be excercised at the organizational level, rather than just in one department or even a single team. Every collaborator – be it in product, design, marketing or development – needs to adopt the right mindset, understand the specific work processes and be willing to align to them.
 
-While books[^1] can be filled about technical setups and concepts, this blog post touches a less obvious aspect that, however, is not less important: the human factor. Practicing successful continuous delivery is not just a matter of having the right tools in place, it’s a mindset question in great part. (This especially should not be underestimated if the endeavour is to introduce continuous delivery to a team that is used to scheduled, dedicated releases.)
+In this blog post I want to focus on five specific behavioural qualities that I consider important for the role of an individual software developer, who is part of a CD setup. I neither go into detail about the ups and downs of CD in contrast to traditional software lifecycle approaches, nor how to establish it comprehensively in an organisation. Instead – when outlining the individual aspects – I assume that there already is a functioning CD culture present.
 
-## Work incrementally
+## Embracing incremental work
 
-Continuously integrating and delivering small chunks of work has several benefits as opposed to big releases. Most of all, the risks of changes are reduced by making them more manageable. Changes are split into smaller chunks, which can thus be gradually discussed, reviewed, tested, integrated, verified and re-evaluated as they are merged back into the main branch.
+Continuously integrating and delivering small chunks of software has several technical benefits as opposed to big releases. Most of all, the risk of changes is reduced by making them more manageable. Changes are split into smaller chunks, which can be gradually discussed, reviewed, tested, integrated, verified and re-evaluated as they are integrated back into the main code base. Besides those technical aspects, however, the biggest advantage of developing software incrementally is actually a business one: it ultimately is the enabler for iterative product development.
 
-Generally, this aspect is the most crucial one and could easily make one blog post alone. Working both incrementally and iteratively is not just beneficial when it comes to continuous delivery, it also brings immense value to the product development process. However, in order to be effective this virtue must be exercised on an organisational level and not just in the development department.
+Developers are involved into projects from the very beginning, once initial ideas are concrete or user stories are set up. The common goal is to deliver working pieces of software regularly, be it either only for internal evaluation or actually to end-users, once it reaches a meaningful state. That of course requires that developers mind the reliability of their work at all times and are able to take responsibility for integrating it into an established product, even if the work is still “unfinished”. During the planning phases they also actively help to find opportunities (win-win-situations) and e.g. suggest a modification of a design idea that would lead to a drastic reduction of implementation cost.
 
-- Baby steps; small increments that are continuously released
-- Feature/dev flags
-- Requires certain level of seniority
+When it comes to software architecture, working iteratively has some challenges that require a certain level of seniority to deal with. Ideally, feature design and software design evolve side by side, where high-level user feedback is taken into account with same weight as low-leveled technical considerations – with the end result being a well-rounded consent of all the different perspectives (stakes). Product designers wouldn’t come around with elaborated specifications to kick off a project, but software developers also wouldn’t ask for them upfront in order to get started. Even though the final requirements are yet unknown, they know the paths that eventually lead to a solid and sustainable software architecture.
 
-## Take responsibility
+## Taking ownership and responsibility
 
+“You build it, you run it”[^1] – this quote is from an interview with Werner Vogels, CTO at Amazon. The point is that the people who create software are also responsible for running it in production. In the old days, a developer’s job was done when their changes passed QA and were integrated into the main code base. Chances were that they didn’t really know what the infrastructure looked like. With continuous delivery, however, every developer has profound knowledge about the environments, is routinely involved in system and capacity planning, and proactively responds to operational problems.
 
+That is easier said than done, though. It is not just a matter of making some monitoring tools available to everyone or rotating the on-call duty in the teams. Instead, developers are supposed to habitually take on the responsibility for their work throughout the entire lifecycle. That includes to chaperon changes when they go live or to actively watch out for defects. But it also means to share relevant details with other teams or to proactively inform the right people about potential risks.
 
-- Verify that your changes are successful
-- Keep an eye on logs and monitoring
+## Communicating proactively
 
-## Communicate proactively
+With multiple releases happening throughout a week (or even throughout a day), a product can feel very volatile, even for the people who directly work on it. On top of that, software is rarely self-contained in regards to changes: customer documentation needs to be kept up to date, social media campaigns want to be rolled out in time, and shifting data analysis can’t wait to be followed. All those schedules need to be aligned, which often requires a tricky balance to be found between the desire of a low time-to-market and the avoidance of sheer chaos.
+
+Since software developers are ultimately applying most of the changes and also controlling the release mechanism, they are usually well aware of the latest state that each feature is in.
 
 - Keep everyone in the loop
-- Inform about risks proactively
+- Dedicated QA stages or formal approval processes are often more of a hindrance than a help
 
-## Know the tools
+## Being disciplined
 
-- Always think forward, but mind the retreat
-- Two-pronged data migrations
+As pointed out earlier, the implementation is often evolving in the same agile and iterative way than the feature itself. During that time, code of different maturity levels coexists in the main code base. Refactorings rock up undesiredly – and need to be carried out spontaneously or painfully postponed. API or database migrations must be planned and executed during full operation.
 
-## Invest into the foundations
-
-- Constantly invest in tests, etc.
+- Constantly invest in tests, automation, configuration, etc.
 - Continuously dedicate time for refactorings
+- Keep an eye on software quality
+
+## Adopting specific techniques
+
+Not every developer feels immediately comfortable knowing that all their code contributions will automatically be deployed and released into production. This degree of automatism is not mandatory of course, but it serves as one good example for the technical environment that is common for continuous delivery. Even if releases are driven manually, for them to be happening reliably a rock-solid test suite is as needful as thorough real-time monitoring.
+
+Continuous deliverly is often associated to (and sometimes confused with) the “DevOps” movement. (“DevOps” is a portmanteau word made of the two parts “development” and “operations”.) While there is no distinct definition of DevOps as a whole, I understand it to be a set of tools and techniques that facilitate modern, agile software development. As far as the mindset is concerned, there certainly is a significant intersection between DevOps and CD. Apart from that, DevOps toolchains[^2] happen to contain a lot of applicable technology that support continuous delivery from the practical point of view.
+
+# Summary
+
+Continuous delivery cannot work when individual contributors do not understand its philosophy and thus are not aware what role they are expected to play. Both a strong leadership and a mature work culture are pivotal for taking full advantage of CD. New hires must be trained, so that they can familiarise themselves with the general concept (in case they aren’t already) and learn about company-specific best practices that manifested over time.
+
+Phases of uncertainty and friction can cause an (undesired) return to traditional waterfall approaches. These must be identified by leadership and addressed together with the participating teams. The development department might be particularly prone to this effect, since people in it tend to be used to tackling problems in an analytic or systematic way. It might then seem obvious to formalise processes rather than to let oneself in for a more dynamic setup that requires constant negotiation to sustain.
 
 
-[^1]: For technical aspects, “[Continuous Delivery](https://www.amazon.com/dp/0321601912)” by Humble/Farley provides a comprehensive overview.
+[^1]: See [ACM, 2006](https://queue.acm.org/detail.cfm?id=1142065) for the full interview
+
+[^2]: For the technical side, “[Continuous Delivery (Addison Wesley)](https://www.amazon.com/dp/0321601912)” provides a comprehensive overview.
