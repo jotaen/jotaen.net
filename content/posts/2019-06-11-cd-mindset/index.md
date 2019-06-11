@@ -4,7 +4,7 @@ title = "The continuous delivery mindset"
 subtitle = "What software developers can contribute to successful CD"
 date = "2019-06-11"
 tags = ["worklife", "devops"]
-image = "/drafts/XXXX-XX-XX-cd-mindset/assembly-line.jpg"
+image = "/posts/2019-06-11-cd-mindset/assembly-line.jpg"
 image_info = "Image by Land Rover MENA [CC BY 2.0](http://creativecommons.org/licenses/by/2.0) with colour modifications"
 id = "uhb19"
 url = "uhb19/continuous-delivery-mindset"
@@ -15,13 +15,13 @@ aliases = ["uhb19"]
 
 Effective continuous delivery has to be excercised at the organizational level, rather than just in one department or even a single team. Every collaborator – be it in product, design, marketing or development – needs to adopt the right mindset, understand the specific work processes and be willing to align to them.
 
-In this blog post I want to focus on five specific behavioural qualities that I consider important for the role of an individual software developer, who is part of a CD setup. I neither go into detail about the ups and downs of CD in contrast to traditional software lifecycle approaches, nor how to establish it comprehensively in an organisation. Instead – when outlining the individual aspects – I assume that there already is a functioning CD culture present.
+In this blog post I want to focus on five specific behavioural qualities that I consider important for the role of an individual software developer who is part of such a setup. I assume that there already is a functioning CD culture present and don’t go into detail about the surrounding requirements that lead to it. (That would go way beyond scope here.) In any event, the key take-away is that effective CD is carried out by the people who are involved into it, so every team member has to understand what they can contribute to make it successful.
 
 ## Embracing incremental work
 
-Continuously integrating and delivering small chunks of software has several technical benefits as opposed to big releases. Most of all, the risk of changes is reduced by making them more manageable. Changes are split into smaller chunks, which can be gradually discussed, reviewed, tested, integrated, verified and re-evaluated as they are integrated back into the main code base. Besides those technical aspects, however, the biggest advantage of developing software incrementally is actually a business one: it ultimately is the enabler for iterative product development.
+Continuously integrating and delivering small chunks of software has several benefits as opposed to big releases. The risk of changes is reduced by making them more manageable: changes are split into smaller chunks, which can be gradually discussed, reviewed, tested, integrated, verified and re-evaluated as they are integrated back into the main code base. Besides those technical aspects, however, the biggest advantage of developing software incrementally is actually a business one: it ultimately is the enabler for iterative product development.
 
-Developers are involved into projects from the very beginning, once initial ideas are concrete or user stories are set up. The common goal is to deliver working pieces of software regularly, be it either only for internal evaluation or actually to end-users, once it reaches a meaningful state. That of course requires that developers mind the reliability of their work at all times and are able to take responsibility for integrating it into an established product, even if the work is still “unfinished”. During the planning phases they also actively help to find opportunities (win-win-situations) and e.g. suggest a modification of a design idea that would lead to a drastic reduction of implementation cost.
+This requires developers to be involved into projects from the very beginning, once initial ideas are concrete or the first user stories are written down. The aim is to start simple and then regularly deliver working pieces of software, be it either only for internal evaluation or to actual end-users. For this to work properly, developers have to mind the reliability of their work at all times and be confident with integrating changes into an established product, even if those are still “unfinished”. During planning phases they actively help to find opportunities (win-win-situations), for instance by suggesting a modification to a design that leads to a drastic reduction of implementation cost.
 
 When it comes to software architecture, working iteratively has some challenges that require a certain level of seniority to deal with. Ideally, feature design and software design evolve side by side, where high-level user feedback is taken into account with same weight as low-leveled technical considerations – with the end result being a well-rounded consent of all the different perspectives (stakes). Product designers wouldn’t come around with elaborated specifications to kick off a project, but software developers also wouldn’t ask for them upfront in order to get started. Even though the final requirements are yet unknown, they know the paths that eventually lead to a solid and sustainable software architecture.
 
@@ -56,7 +56,7 @@ Continuous deliverly is often associated to (and sometimes confused with) the �
 
 # Summary
 
-Continuous delivery cannot work when individual contributors do not understand its philosophy and thus are not aware what role they are expected to play. Both a strong leadership and a mature work culture are pivotal for taking full advantage of CD. New hires must be trained, so that they can familiarise themselves with the general concept (in case they aren’t already) and learn about company-specific best practices that manifested over time.
+Coming back to what I mentioned in the introduction: continuous delivery cannot work when individual contributors do not understand its philosophy and thus are not aware what role they are expected to play. Both a strong leadership and a mature work culture are pivotal for taking full advantage of CD. New hires must be trained, so that they can familiarise themselves with the general concept (in case they aren’t already) and learn about company-specific best practices that have manifested over time.
 
 Phases of uncertainty and friction can cause an (undesired) return to traditional waterfall approaches. These must be identified by leadership and addressed together with the participating teams. The development department might be particularly prone to this effect, since people in it tend to be used to tackling problems in an analytic or systematic way. It might then seem obvious to formalise processes rather than to let oneself in for a more dynamic setup that requires constant negotiation to sustain.
 
