@@ -11,27 +11,27 @@ url = "uhb19/continuous-delivery-mindset"
 aliases = ["uhb19"]
 +++
 
-“Continuous delivery” (CD) is the practice of applying changes to software on an ongoing basis and delivering value to customers frequently. The underlying goals are to shorten the feedback loop in product development, to be able to respond to changing requirements quickly and to minimise the exposure time of defects. That being said, continuous delivery is primarily a business incentive, which makes for a central pillar of customer-centric, agile product development.
+“Continuous delivery” (CD) is the practice of applying changes to software on an ongoing basis and delivering value to customers frequently. The underlying goals are to shorten the feedback loop in product development, to be able to respond to changing requirements quickly and to minimise the exposure time of defects. It comes as no surprise that CD is particularly popular with web applications, where release processes are entirely controlled by vendors and new software versions are typically rolled out “on the fly”.
 
-Effective continuous delivery has to be excercised at the organizational level, rather than just in one department or even a single team. Every collaborator – be it in product, design, marketing or development – needs to adopt the right mindset, understand the work processes and be willing to align to them. There are common principles that apply to all participants likewise, but some are also specific to the respective roles.
+Books can be filled about technical aspects of continuous delivery (and more so about its sibling “continuous deployment”), but its success is neither a matter of tooling alone, nor is developer convenience the main driving force behind it. Instead, CD is primarily a business incentive and its direct, incremental nature is the ultimate enabler for iterative and customer-centric product development. In order to take full advantage of that, CD has to be exercised at organisational level and not just in the development department.
 
-In this blog post I focus on the behavioural qualities that I consider important for individual software developers who are part of such a setup. For the scope of this post I assume that there already is a functioning CD culture present and don’t go into detail about the surrounding requirements that lead to it.
+Apart from strong leadership and a mature team culture, effective CD depends on the human factor to a large degree. All collaborators – be they in product, design, marketing or development – need to know their place, adopt the right mindset and bring their work processes in line. That being said, this blog post focuses on the perspective of individual software developers in such a setup and outlines the behavioural qualities that I consider most important for them.
 
-# The continuous delivery maxims
+# Continuous delivery for developers
 
 ## Involve yourself
 
-Software developers should include themselves into projects right from the beginning, once initial ideas are tangible or the first user stories are written down. The aim is to start simple and gradually deliver working pieces of software, be it either for internal evaluation or to actual end-users. During planning phases, developers actively help to find opportunities (win-win-situations), for instance by suggesting a modification to a feature that leads to a drastic reduction of implementation cost.
+Software developers should include themselves into projects right from the beginning, once initial ideas are tangible or the first user stories are written down. The common goal is to start simple and gradually deliver working pieces of software, be it either for internal evaluation or to actual end-users. During planning phases, developers actively help to find opportunities (win-win-situations), for instance by suggesting a modification to a feature that leads to a drastic reduction of implementation cost.
 
-A proficient developer has various “hats on their rack” that suit different stages of a project. Being able to rapidly cobble together a fake click-prototype can be an equally valuable skill than to claw one’s way through the convoluted mess of a tricky optimisation problem. In any event, developers should mind the reliability of their work at all times and also know how to appropriately integrate changes into an established product, even if those are still “unfinished”.
+A proficient developer has various “hats on their rack” that suit different stages of a project. Being able to rapidly cobble together a fake click-prototype can be an equally valuable skill than to claw one’s way through the convoluted mess of a tricky optimisation problem. (Better yet, when the latter can be significantly alleviated by working out a clever compromise.) There are numerous ways for developers to make themselves useful early on. All pioneering spirit aside, it is important though that they are mindful about the reliability of their work and stay “on top of things” at all times.
 
 ## Embrace iterative work
 
-Continuously integrating and delivering small chunks of software has a big practical benefit as opposed to big releases: the risk of changes is reduced by making them more manageable. Changes are split into smaller chunks, which can be gradually discussed, reviewed, tested, integrated, verified and re-evaluated as they are integrated back into the main code base. Besides those technical aspects, however, the biggest advantage of developing software incrementally is actually a business one: it is the ultimate enabler for iterative product development.
+Continuously delivering small chunks of software has a practical benefit as opposed to big releases: the risk of changes is reduced by making them more manageable. Changes are split into smaller chunks, which can be gradually discussed, reviewed, tested, integrated, verified and re-evaluated as they are taken over into the main code base.
 
 When it comes to software architecture, working iteratively has some challenges that require a certain level of seniority to deal with. When working in an agile manner, product designers wouldn’t come around with elaborated specifications to kick off a project. But software developers also wouldn’t ask for them upfront in order to get started. Even though the final requirements are yet unknown, they know the paths that eventually lead to a solid and sustainable software architecture.
 
-Ideally, feature design and software design evolve side by side. That can only work out though if software architecture is considered to be an equally serious concern for the success of a project as feature design is. Only if crucial technical considerations are taken into account the same way as other high-leveled input (like user feedback), the end result can become a well-rounded symbiosis of all different stakes.
+Ideally, feature design and software design evolve side by side. That can only work out though if software architecture is considered to be an equally serious concern for the success of a project as feature design is. Only if crucial technical considerations are taken into account the same way as other high-leveled input (like user feedback), the end result can become a well-rounded symbiosis of all the different stakes.
 
 ## Take ownership and responsibility
 
@@ -43,7 +43,7 @@ That is easier said than done, though. It is not just a matter of making some mo
 
 With multiple releases happening throughout a week (or even throughout a day), a product can feel very volatile, even for the people who directly work on it. Software is rarely self-contained in regards to changes: customer documentation needs to be kept up to date, social media campaigns want to be rolled out in time, or data analytics algorithms call for change and adjustment. All those schedules need to be aligned, which often requires a tricky balance to be found between the desire of a low time-to-market and the avoidance of sheer chaos.
 
-In the end, software developers are making most of the actual changes happen and they are usually also controlling the release mechanism. They are well aware of the latest state that each task is in and therefore especially urged to keep the right people in the loop at the right times. Having a dedicated QA stage or a formal approval procedure may feel safer in that respect, however, these kind of processes tend to be protracted and disproportionally costly – they are often more of a hindrance than a help.
+In the end, software developers are making most of the actual changes happen and are usually controlling the release mechanism too. They are well aware of the latest state that each task is in and therefore especially urged to keep the right people in the loop at the right times. Having a dedicated QA stage or a formal approval procedure may feel safer in that respect, however, these kind of processes tend to be protracted and disproportionally costly – they are often more of a hindrance than a help.
 
 ## Be a disciplined professional
 
@@ -51,7 +51,7 @@ As pointed out earlier, the implementation is often evolving in the same agile a
 
 In such a vibrant setup, it is all too easy to lose sight of software quality and overall consistency. Technical debt is easily raised (“we can still refactor that later…”) and shortcuts are quickly taken (“we don’t have enough time to write tests now!”). On top of that, the feedback loop for feature delivery is fullfillingly short-termed, while the ramifications of technical carelessness are much harder to grasp. The latter ones can pile up to substantial impediments down the line though and strike back nastily.
 
-The best way to avoid fragmentation and the “rot of bad code” is two-sided: on the one hand there need to be common quality standards across the development team (or department) that members can be held accountable for. On the other hand, developers must bring enough professional discipline, so that these standards are actually lived up to. This calls for a leadership that fosters a culture where the otherwise rather abstract technical work is appropriately rewarded. That helps the team to find a healthy and balanced mentality.
+The best way to avoid fragmentation and the “rot of bad code” is two-sided: on the one hand there need to be common quality standards across the development team (or department) that members can be held accountable for. This calls for a leadership that fosters a culture where the otherwise rather abstract technical work is appropriately rewarded. That helps the team to find a healthy and balanced mentality. On the other hand, developers must bring enough professional discipline, so that these standards are actually lived up to. Writing tests, refactoring “bad code” or following common patterns shouldn’t be seen as curse, but rather welcomed as a necessity that allows the software to sustain in the long run.
 
 ## Adopt specific techniques
 
@@ -61,11 +61,11 @@ Continuous delivery is often associated to (and sometimes confused with) the Dev
 
 All those principles and tools need to be learned by every developer, at least to a level that they can routinely work with them. It doesn’t mean that everyone is expected to become a tooling and infrastructure expert, but the aim is clearly missed when most of the operational responsibilities are carried out by that “one DevOps guy” on the team.
 
-# Summary
+## Perpetuate the process
 
-Successful continuous delivery depends on the human factor to a large degree. Every collaborator must understand the philosophy and be aware of the role they are playing to make it work effectively. Both a strong leadership and a mature team culture are pivotal. New hires must be trained sufficiently, so that they can familiarise themselves with the general concept (in case they aren’t already) and learn about company-specific best practices that have manifested over time.
+When new hires come in, they must be trained sufficiently so that they can familiarise themselves with the general concept of continuous delivery (in case they aren’t already) and learn about company-specific best practices that have evolved over time. It’s also crucial to internalise that processes and work setups are not set in stone, but that they rather demand constant reflection and adjustment from all involved parties.
 
-Phases of friction can cause an (undesired) return to traditional waterfall approaches. These must be identified by the mentors and addressed together with the participating teams. The development department might be particularly prone to this effect, since people in it tend to be used to tackling problems in an analytic manner. It might then seem more obvious to formalise processes rather than to let oneself in for a dynamic environment where occasional uncertainty and constant negotiation are part of the game.
+Phases of friction can cause an (undesired) return to traditional waterfall approaches. These must be identified by the mentors and addressed together with the participating teams. The development department might be particularly prone to this effect, since people in it tend to be used to tackling problems in an analytic manner. It might then seem more obvious to formalise processes rather than to let oneself in for a dynamic environment where occasional uncertainty and constant negotiation are a natural part of the game.
 
 
 [^1]: See [ACM Queue (2006)](https://queue.acm.org/detail.cfm?id=1142065) for the full interview
