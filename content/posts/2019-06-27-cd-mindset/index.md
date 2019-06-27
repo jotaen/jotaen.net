@@ -1,5 +1,4 @@
 +++
-draft = true
 title = "The continuous delivery mindset"
 subtitle = "What software developers can contribute to making CD successful"
 date = "2019-06-27"
