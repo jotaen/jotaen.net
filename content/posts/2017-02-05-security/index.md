@@ -25,16 +25,16 @@ These are just a few examples and they are somewhat frightening. So, how can we 
 
 > **Always use long and strong passwords. Never reuse one for multiple services. Never type in a password in an untrusted environment.**
 
-Passwords are only secure as long as they are secret. Never use the same password for multiple sign ups, because if someone gets into possession of it, he would be able to login into other services as well.
+Passwords are only secure as long as they are secret. Never use the same password for multiple sign ups, because if someone gets into possession of it, they would be able to login into other services as well.
 
-Furthermore, the password must be impossible to guess. When it comes to passwords, it’s obvious that the human brain functions entirely different than a computer. A password like `a3Jfi9nC` looks complicated and therefore you might think it were secure. Infact, this password could be cracked within a mere 2 hours on average laptop hardware.[^2]
+Furthermore, the password must be impossible to guess. When it comes to passwords, it’s obvious that the human brain functions entirely different than a computer. A password like `a3Jfi9nC` looks complicated and therefore you might think of it as secure. Infact, this password could be cracked within a mere 2 hours on average laptop hardware.[^2]
 
 A good and strong password is…
 
 1.  **…long**: The strength of a password grows dramatically by its length. Every single character you add makes a crucial difference.
 2.  **…arbitrary**: Don’t underestimate the effectiveness of modern cracking algorithms. Avoid words, names, birthdates and literally any other predictable pattern.
 
-The best way of dealing with passwords is a password manager. It generates a fresh password each time you sign up somewhere and automatically handles the authentication process for you. That way, you can use passwords like `XED[b%jYlom*SVA1-#P+nGL5>Kw]$u2R&L` but you don’t have to bother about typing it.
+The best way of dealing with passwords is a password manager. It generates a fresh password each time you sign up somewhere and can handle the authentication process for you automatically. That way, you can use passwords like `XED[b%jYlom*SVA1-#P+nGL5>Kw]$u2R&L` but you don’t have to bother about typing it.
 
 Since a password manager is the single point of failure you should protect it with a strong master password. (No, there is no way around that!) Other than that, apps like [Keypass](http://keepass.info/) allow you to add an extra layer of security by using an additional keyfile.
 
@@ -74,9 +74,9 @@ A lot of malware is installed with the unknowing assistance of the user itself. 
 
 > **Encrypt all physical devices and always activate access control mechanisms.**
 
-Electronic devices like laptops or smartphones are full of personal data; email and social media software are setup and ready to go. If someone steals one your devices he should not be able to access any of this. However, just configuring a login password is not sufficient, because the thief can extract the storage drive and copy all the data, thereby bypassing the login mechanism of the operating system.
+Electronic devices like laptops or smartphones are full of personal data with email and social media software setup and ready to go. If someone steals one of your devices they should not be able to access any of this. However, just configuring a login password is not sufficient, because the thief can extract the storage drive and copy all the data, thereby bypassing the login mechanism of the operating system.
 
-Harddrive encryption is cheap and easy nowadays, and every modern operating system offers seamless support for it. Without knowing the password, the storage remains safe. Use full disc encryption for all devices, especially:
+Hard drive encryption is cheap and easy nowadays, and every modern operating system offers seamless support for it. Without knowing the password, the storage remains safe. Use full disc encryption for all devices, especially:
 
 - Computers
 - Portable devices (e.g. smartphone)
@@ -95,7 +95,7 @@ Every time you login somewhere or you send an email, data will be transmitted vi
 
 > **Backup all critical data regularly. Keep recovery keys available in a safe place.**
 
-Remember, that all the security mechanisms that you setup for protection take effect to *everyone*. The login prompt of your computer cannot know whether its you or some evil invader. In case you forget the password with which you had encrypted your hard drive, all your data remains inaccessable. There will be no backdoor, and nobody can help you to recover any of your data whatsoever. Therefore you should always keep the reverse scenario in mind. For example, many services offer you recovery keys – you can print them out and then keep them stored in a safe place.
+Remember, that all the security mechanisms that you setup for protection take effect to *everyone*. The login prompt of your computer cannot know whether its you or some evil invader. In case you forget the password with which you had encrypted your hard drive, all your data remains inaccessable. There will be no backdoor, and nobody can help you to recover any of your data. Therefore you should always keep the reverse scenario in mind. For example, many services offer you recovery keys – you can print them out and stash them away in a safe place.
 
 By the way: Making regular backups is actually no security specific thing. However, remember to encrypt your backup drives the same way like your computer, since they contain the same sensitive data.
 
