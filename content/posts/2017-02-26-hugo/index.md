@@ -108,10 +108,10 @@ Unless we don’t specify a policy, neither Travis can upload anything nor can a
       ]
     },
     {
-      "Sid": "PublicWebsiteAccess",
-        "Effect": "Allow",
+      "Sid": "PublicWebsite",
+      "Effect": "Allow",
       "Principal": "*",
-      "Action": ["s3:GetObject"],
+      "Action": "s3:GetObject",
       "Resource": ["arn:aws:s3:::BUCKET_NAME/*"]
     }
   ]
@@ -120,14 +120,14 @@ Unless we don’t specify a policy, neither Travis can upload anything nor can a
 
 What’s happening here?
 
-- With the first statement block, we grant full read and write access for the specific Travis user that we have created in IAM in the previous step. This is important, because otherwise Travis cannot upload files to our bucket.
-- With the second statement block, we grant read permissions to the entire bucket content for everyone. (Otherwise we could not serve our files to the public.)
+- With the first statement block, we grant full read and write access for the specific Travis user that we have created in the IAM in the previous step. This is important, because otherwise Travis cannot upload files to our bucket.
+- With the second statement block, we grant read permissions to the entire bucket content for everyone. This is required for the public webserver to work, otherwise it is not recommended.
 
 Of course you must replace the uppercase parts with your specific information. And again: be sure to fully understand what’s happening here and how [AWS policies work](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html).
 
 ## DNS settings
 
-Ensure that everything is setup and running by triggering a build. When the build was successfull, you can access your website content via the S3 endpoint, which looks something like this: `BUCKET_NAME.s3-website-us-east-1.amazonaws.com`. Of course, this isn’t a very nice URL, so you want to configure a CNAME record for your own domain that points to this address. (Consult your DNS provider or domain seller on how to do that.)
+Ensure that everything is setup and running by triggering a build. When the build was successfull, you can access your website content via the S3 endpoint, which looks something like this: `BUCKET_NAME.s3-website-us-east-1.amazonaws.com`. Of course, this isn’t a very nice URL, so you might want to configure a CNAME record for your own domain that points to this address. (Consult your DNS provider or domain seller on how to do that.)
 
 Sidenote: It’s not recommended to set CNAME records for root level domains, although this is technically possible. You can setup a CNAME record for `www.example.org`, but you shouldn’t do so for `example.org`.[^3] However, most DNS providers offer the option to redirect the root domain to a subdomain (like `www.example.org`).
 
@@ -136,21 +136,21 @@ Sidenote: It’s not recommended to set CNAME records for root level domains, al
 
 ## AWS CloudFront and HTTPS 
 
-CloudFront is the CDN service of AWS that can be put ahead of S3. This means that all our content isn’t delivered directly out of the bucket anymore, but it is served by CDN servers (so-called edges) all around the globe.
+CloudFront is the CDN service of AWS that can be put in front of S3. This means that all our content isn’t delivered directly out of the bucket anymore, but it is served by CDN servers (so-called edges) all around the globe.
 
-The biggest benefit for a smaller website like this blog is not performance. (S3 is usually pretty quick already.) Instead, CloudFront gives us the ability to setup a SSL certificate, which would not be possible with S3 alone. Note that even though the CloudFront default certificates are free, CloudFront itself is a bit more expensive then S3 (depending on how you use it).[^4]
+The biggest benefit for a smaller website like this blog is not performance. (S3 is usually pretty quick already.) Instead, CloudFront gives us the ability to setup an SSL certificate for you custom domain, which would not be possible with S3 alone. Note that even though the CloudFront default certificates are free, CloudFront itself introduces some additional costs (depending on how you use it).[^4]
 
-In order to setup CloudFront, create a Distribution in the AWS Console. It’s up to you whether you want to use the caching mechanism or not. Caching can be annoying sometimes, because file changes take much longer to be rolled out. If you set a custom TTL of 0, CloudFront will check the origin for modifications on each request.[^5] Don’t worry about the performance implications – they are most likely neglectable.
+In order to setup CloudFront, create a Distribution in the AWS Console. It’s up to you whether you want to use the caching mechanism or not. Caching can be annoying sometimes, because file changes take much longer to be rolled out. If you set a custom TTL of 0, CloudFront will check the origin for modifications on each request.[^5] Don’t worry too much about the performance implications – they are most likely neglectable.
 
-Here are some further tips for the configuration:
+Here are some further remarks for the CloudFront settings:
 
-- **Price class** Beware that the pricing is highly dependent on the number of edges you want to deploy to.
-- **TTL** CloudFront respects the original caching headers, but you can override the expiration times with the TTL values, even with a value of 0.
-- **Origin**: Choose the public S3 endpoint address as origin, not the internal name. This is important, because otherwise sub-path requests wouldn’t be resolved to the according `index.html` files in subdirectories.
-- **Permissions** Since our S3 bucket still acts as public webserver, we don’t change the bucket permissions. It has the additional benefit that we can switch between CloudFront and S3 by means of our CNAME DNS entries. That way, both services don’t depend on each other.
-- **HTTPS**: Activate HTTPS with a default CloudFront certificate. It’s free and AWS will take care of everything.
-- **CNAME**: You must list all the CNAMEs that you have setup, otherwise the according requests will all fail.
-- **Query String Forwarding**: It can be handy to activate this, if you would like to bypass caching for particular assets (by appending an arbitrary query value in your HTML.)
+- **Price class**: Beware that the pricing is dependent on the number of edges you want to deploy to.
+- **TTL**: CloudFront respects the original caching headers, but you can override the expiration times with the TTL values, even with a value of 0. (Which would disable the cache effect altogether.)
+- **Origin domain name**: If you want CloudFront to lookup `index.html` files everywhere, you have to connect to the endpoint of the S3 static website instead of the regular S3 endpoint (so, say, `mybucket.s3-website-us-east-1.amazonaws.com` instead of `mybucket.s3.amazonaws.com`). Since requests to the static webserver are not authenticated internally, bucket access must be public in this case.
+- **Bucket Permissions**: Basically, permissions can be restricted to the CloudFront distribution. However, if you want the index-file lookup as described above, read access must be granted to everyone (`*`).
+- **HTTPS**: Activate HTTPS with a default CloudFront certificate. It’s free and AWS will take care of managing the certificate for you.
+- **CNAME**: You must list all the CNAMEs that you have setup, otherwise the according requests via your own domain will fail.
+- **Query String Forwarding**: It can be handy to activate this, if query strings get processed via JavaScript or if you want to bypass caching for particular assets (by appending an arbitrary query value to a URL.)
 
 When you decide for CloudFront, you might consider to use [`s3cmd`](http://s3tools.org/usage) instead of the AWS CLI in the deploy step, because it provides the option to automatically trigger cache invalidation for uploaded files (with the `--cf-invalidate` option.)
 
