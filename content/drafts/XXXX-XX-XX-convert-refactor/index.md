@@ -155,7 +155,7 @@ const convert = (target, input) => {
 
 ## #4. Conditional complexity
 
-There are two conditionals in our “conversion block” that each have 3 possible branches. That makes for a total of 6 possible execution paths through the method. (Side note: this number is not fixed, it will rather grow linearly as we add conversion options to our program.) The multitude of `return` statements adds to this and is also a common origin of bugs.
+There are two conditionals in our “conversion block” that each have 3 possible branches. That makes for a total of 9 possible execution paths through the method. (Side note: this number is not fixed, it will rather grow linearly as we add conversion options to our program.) The multitude of `return` statements adds to this and is also a common origin of bugs.
 
 This complexity is inherent in our programm, so there is nothing we can do about it. But using `if`, `else` or `switch` allows for undesired flexibility, which doesn’t meet the uniform schema that our conditionals follow. For the decisions that we have to make, there is a more succinct way to express. We can group the different cases in an object (`targetConverters`) and execute a dynamic lookup based on the first two characters of `input`.
 
