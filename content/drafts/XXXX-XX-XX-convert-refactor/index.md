@@ -25,9 +25,8 @@ try {
         /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/.test(input)) {
       let decimal;
       const prefix = input.substr(0, 2);
-      const value = input.substr(2);
-      if (prefix === "0b") decimal = parseInt(value, 2);
-      else if (prefix === "0x") decimal = parseInt(value, 16);
+      if (prefix === "0b") decimal = parseInt(input.substr(2), 2);
+      else if (prefix === "0x") decimal = parseInt(input.substr(2), 16);
       else decimal = parseInt(input);
       if (target === "-bin") console.log("0b" + decimal.toString(2));
       else if (target === "-hex") console.log("0x" + decimal.toString(16));
@@ -48,24 +47,24 @@ try {
 
 ## #0. Make it work, make it right, make it fast
 
-Since we take an existing application and refactor its innards, we should better say: “Keep it working, keep it right, keep it fast”.
+We are tasked with the refactoring of the innards of an existing application, without changing any of its behaviour. Hence, we should better say: “Keep it working, keep it right, keep it fast”. In brief: we must make sure to not accidentally introduce a performance- or feature-regression.
 
-Before we touch a single line of existing code (which sometimes is rashly referred to as “legacy code”) we need to make sure that we won’t break existing functionality while overhauling the implementation. The precondition for conducting a safe refactoring is sufficient test coverage. The best option in our case is a comprehensive suite of end-to-end tests, that examine the CLI application as a whole.
+The precondition for conducting a safe refactoring is sufficient test coverage. In our case it suggest itself to setup a collection of of end-to-end tests, that examine the CLI application as a whole. The performance can be measured by spot-checking various larger input values before and after. (A comprehensive benchmark is probably overkill for our purpose.)
 
-For your convenience, I provided a test suite with the most important use cases. It is deliberately setup in a property-based manner, which makes it easy to turn the suite into unit tests later on. Each of the following refactoring steps will satisfy the tests. That premise will help us iterate bit-by-bit instead of trying to tackle everything at once.
+For your convenience, I provided a test suite with the most important use cases. It is deliberately setup in a property-based manner, which makes it easy to turn the suite into unit tests later on. While proceeding in the refactoring, we can run the test suite after every step, thus making sure that we only move tiny and safe increments as we “go further out on the limb”.
 
 ## #1. Divide and conquer
 
-From the various things that spring to mind when reading the above program code we start with the coarse-grained ones. The first step is to break down the code-monolith in bite-sized chunks that we can approach independently. Therefore, we extract some variables and functions to bring the basic structure to light:
+There are a multitude of things that spring to mind when reading the original program code. But we cannot do all at once. The first step is to break down the code-monolith in manageable pieces that we can approach independently.
+
+The initial goal is to bring the basic structure to light. That is: pulling up the innermost part into a separate function and extracting some constants. This is mostly simple copy-and-paste, without touching the statements on the functional level. The result are mainly two code sections, the “conversion block” (`convert`) and a “main block” (the `try`/`catch`). Apart from that, there are two constants (`options`, `inputShate`) floating in between and it is not clear yet where they really belong.
 
 ```js
-// core logic
 const convert = (target, input) => {
   let decimal;
   const prefix = input.substr(0, 2);
-  const value = input.substr(2);
-  if (prefix === "0b") decimal = parseInt(value, 2);
-  else if (prefix === "0x") decimal = parseInt(value, 16);
+  if (prefix === "0b") decimal = parseInt(input.substr(2), 2);
+  else if (prefix === "0x") decimal = parseInt(input.substr(2), 16);
   else decimal = parseInt(input);
   if (target === "-bin") return "0b" + decimal.toString(2);
   else if (target === "-hex") return "0x" + decimal.toString(16);
@@ -75,7 +74,6 @@ const convert = (target, input) => {
 const options = ["-bin", "-hex", "-dec"];
 const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
 
-// main
 try {
   if (process.argv.length === 4) {
     const target = process.argv[2];
@@ -95,14 +93,11 @@ try {
 }
 ```
 
-Note, that we have only done some simple copy-and-paste here without touching the statements on the functional level. (Exception: `return`.) Annotating the code sections with comments helps us to establish an overview in the beginning.
-
 ## #2. Maximise cohesion
 
-Let’s focus on the `main` code block: its readability suffers from the nested `if` statements, where corresponding code (namely `if` and `else`) is divided by multiple lines of unrelated statements. A common way of improving this is to negate the conditions and to make the code path flat and linear. This pattern is sometimes referred to as “early return”. It pushes the so-called “happy path” (the actual conversion) from somewhere in the thick of it down to the very end of the code block and exposes it prominently on first indentation level.
+Let’s focus on the “main block”: its readability suffers from the nested `if` statements, where corresponding code (namely `if` and `else`) is divided by multiple lines of unrelated statements in between. A common way of improving this is to negate the conditions and to make the code path flat and linear. This pattern is sometimes referred to as “early return”. It pushes the so-called “happy path” (the actual conversion) from somewhere in the thick of it down to the very end of the code block and exposes it prominently on first indentation level.
 
 ```js
-// main
 try {
   if (process.argv.length !== 4) {
     throw "Wrong number of arguments";
@@ -120,14 +115,28 @@ try {
 }
 ```
 
-## #3. Variable declaration is initialisation
+## #3. Schödinger variables
 
-Next, we switch to the `core logic` block: one problem is how the variables are initialised. `decimal` is declared empty and happens to be given a value later; `prefix` and `value` are initialised with a value, but in case `input` is decimal these values be arbitrary and just plain wrong. Both things don’t cause actual problems in this very case, but they increase code complexity unnecessarily, because the state of those variables is ambiguous and volatile.
-
-I adapted the term “variable declaration is initialisation” from the C++ idiom “resource acquisition is initialisation”. The latter is coined to class-internal resource management, but its idea applies to variable management in just the same way. A variable declaration should always coincide with its value definition, so that it holds a meaningful value from the very beginning over its entire lifecycle. Uninitialised or arbitrarily defined variables are an unnecessary risk that can almost always be avoided.
+Next, we look at the “conversion block”:
 
 ```js
-// core logic
+const convert = (target, input) => {
+  let decimal;
+  const prefix = input.substr(0, 2);
+  if (prefix === "0b") decimal = parseInt(input.substr(2), 2);
+  else if (prefix === "0x") decimal = parseInt(input.substr(2), 16);
+  else decimal = parseInt(input);
+  if (target === "-bin") return "0b" + decimal.toString(2);
+  else if (target === "-hex") return "0x" + decimal.toString(16);
+  else return decimal.toString();
+}
+```
+
+There is an issue with how the variables are initialised. `decimal` is declared empty and given its value only at some later point. `prefix` and is initialised with a value, but in case `input` is a decimal number this value is completely arbitrary and doesn’t mean anything. Both things are not good practice, even though they don’t cause actual problems in this very case. The problem is similar to Schrödinger’s cat: you need to open the box to see how the cat is doing. That results in implicit interdependences that are terrible to work with and often lead to a defensive programming style.
+
+We can almost always avoid that. A variable declaration should always coincide with its value definition and hold a meaningful value from the very beginning over its entire lifecycle. In this case, this can be achieved by pulling out a function, so that the assignment of `decimal` becomes an atomic operation. By using `switch` instead of `if`/`else` there is no need for an auxiliary variable anymore.
+
+```js
 const toDecimal = (input) => {
   switch(input.substr(0, 2)) {
     case "0b": return parseInt(input.substr(2), 2)
@@ -144,16 +153,13 @@ const convert = (target, input) => {
 }
 ```
 
-- IIFE vs. ternary
+## #4. Conditional complexity
 
-## #4. Minimise cyclomatic complexity
+There are two conditionals in our “conversion block” that each have 3 possible branches. That makes for a total of 6 possible execution paths through the method. (Side note: this number is not fixed, it will rather grow linearly as we add conversion options to our program.) The multitude of `return` statements adds to this and is also a common origin of bugs.
 
-There some conditionals in our code that potentially grows linearly with the number of conversion options that the program offers. The corresponding number of `return` statements worsens the problem and is also a common origin of bugs.
-
-In order to initialise `decimal`, we need to look at the shape of `input`. We group the different algorithms in an object (`toDecimalDict`) and execute a dynamic lookup based on the first two characters of `input`. This technique is called “pattern matching”. That way, there is no need for an intermediate `prefix` variable any more and we are able to initialise `decimal` right away.
+This complexity is inherent in our programm, so there is nothing we can do about it. But using `if`, `else` or `switch` allows for undesired flexibility, which doesn’t meet the uniform schema that our conditionals follow. For the decisions that we have to make, there is a more succinct way to express. We can group the different cases in an object (`targetConverters`) and execute a dynamic lookup based on the first two characters of `input`.
 
 ```js
-// core logic
 const targetConverters = {
   "-bin": d => "0b" + d.toString(2),
   "-hex": d => "0x" + d.toString(16),
@@ -173,14 +179,13 @@ const convert = (target, input) => {
 };
 ```
 
-Only decision left is `toDecimal` fallback.
+This technique is similar to the “pattern matching” that has been made popular by functional programming languages. It is often a good way to carve out the exact differences between the cases.
 
 ## #5. Don’t repeat yourself
 
-`targetConverters` and `inputConverters` now contain redundant code. The only remaining difference is the “decimal” conversion, that lack one argument in both cases. Upon closer look, however, we see that this missing argument defaults to `10`, so we are able to spell it out. This allows us to extract the redundant procedure calls and to handle their parametrisation programatically. The converter objects can thus be boiled down to plain data.
+`targetConverters` and `inputConverters` contain redundant code. The only remaining difference is the “decimal” conversion, that lack one argument in both cases. Upon closer look, however, we see that this missing argument defaults to `10` and can of course be also made explicit. This allows us to extract the redundant procedure calls and to handle their parametrisation programatically. The converter objects can thus be unified and boiled down to plain data.
 
 ```js
-// core logic
 const converters = {
   "-bin": {base: 2, prefix: "0b"},
   "-hex": {base: 16, prefix: "0x"},
@@ -199,12 +204,11 @@ const convert = (target, input) => {
 };
 ```
 
-In `main` we reuse the converters to validate the target option.
+In the “main block” we can draw on the converter object as well for the validation of `target`, thus making the `options` array obsolete.
 
 ```js
 const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
 
-// main
 try {
   if (process.argv.length !== 4) {
     throw "Wrong number of arguments";
@@ -224,15 +228,13 @@ try {
 
 ## #6. Open-closed principle
 
-The problem of redundancies is not solved yet. This is not immediately obvious anymore, but it becomes clear when you imagine we wanted to add a fourth conversion to the programm. This would still require us to touch 3 different places at the moment: `targetConverters` and `inputConverters`, plus the `inputShape` regex for input validation. Needing to keep all of them in sync is puts a big burden on future maintainers of our application. Forgetting about one of these places is a common source of defects, so this problem should be avoided by all means as far as ever possible.
+The problem of redundancies is not solved yet, which is not immediately obvious anymore though. It becomes clear when you imagine we wanted to add a fourth conversion to the programm. This would still require us to touch 2 different places at the moment: `converters` and the `inputShape` regex for input validation. Furthermore, a prefix size of `2` is hard-coded and there is a special case for `"-dec"`. Needing to keep track of all this while extending the program puts a big burden on future maintainers. It’s all too easy to forget about just one of these aspects, so we better make sure to avoid the problem by design.
 
-A good way of thinking of our specific conversion algorithms is to view them as plugins. A plugin would be the distillate of 
- The previous step already showed us that this approach basically works, it was just not particularly nice yet. These should be managed in one central place and fully self-contained in regards to their particular conversion functionality.
+A good way of thinking of our specific conversion algorithms is to perceive them as “plugins”. Every plugin embodies a specific variant of an otherwise self-contained and impartial program. (In a class-based language, the program would only depend on the plugin interface and every plugin implementation would encapsulate.)
 
-Based on these ideas, we aim to make the following data structure happen:
+The previous step already suggested that this approach can work, so let’s try to push it further. We chop up the big regular expression (`inputShape`) and allot its parts to the plugins, which also requires to adjust the respective algorithm for the validation. The latter kills two birds with one stone, because it turns out to be a better way to find the “input converter” (which is now called `inputPlugin`). As a consequence, we can eliminate the hard-coded prefix size as well as the special fallback case for `"-dec"`, leaving the implementation of `convert` as fully generic.
 
 ```js
-// core logic
 const plugins = {
   "-bin": {prefix: "0b", base: 2, shape: /^0b[01]+$/},
   "-hex": {prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
@@ -248,7 +250,6 @@ const convert = (inputPlugin, target, input) => {
   return targetPlugin.prefix + decimal.toString(targetPlugin.base);
 };
 
-// main
 try {
   if (process.argv.length !== 4) {
     throw "Wrong number of arguments";
@@ -269,12 +270,11 @@ try {
 
 ## #7. Separation of concerns
 
-As of step 6, our program already reads very clear. However, in the `main` code block we still mix side-effects (such as printing via `console.log` or accessing the runtime environment via `process.argv`) with business logic (such as finding applicable numberSystems and applying the input value to it). These are different levels of abstractions that are mingled on one level, which is not just ugly, but it also makes the code harder to navigate.
+As of step 6, our program already reads very clear. However, in the “main block” we still mix side-effects (such as printing via `console.log` or accessing the runtime environment via `process.argv`) with business logic (such as finding an applicable plugin). These are different concerns that are mingled in one scope, which is not just ugly, but it also makes the code structure harder to navigate.
 
-All side-effects have been isolated and driven into one single corner. The rest of the code is pure algorithms. The function signatures clearly indicate which layer they belong to, which makes the annotating comments from earlier superfluous.
+Not to mention that passing both `inputPlugin` and `input` to the convert function is redundant – it is possible to derive the appropriate plugin from the input value after all. It makes sense to relocate the concern of validation to `convert` entirely.
 
 ```js
-// core logic
 const plugins = {
   "-bin": {prefix: "0b", base: 2, shape: /^0b[01]+$/},
   "-hex": {prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
@@ -294,7 +294,6 @@ const convert = (target, input) => {
   return outputPlugin.prefix + decimal.toString(outputPlugin.base);
 }
 
-// main
 try {
   if (process.argv.length !== 4) {
     throw "Wrong number of arguments";
@@ -309,7 +308,13 @@ try {
 }
 ```
 
+`convert` is has gained error handling as new responsibility. That is fine, since validation is tightly coupled to finding the right plugins, so it would be more confusing than benefitial to keep both of that separate.
+
+The “main block” is now left with the dirty stuff only: reading in the runtime environment, managing the processing and printing to the CLI. The pure code has been completely migrated to the “conversion block”. Apart from one tiny adjustment, we won’t need to touch the “main block” anymore.
+
 ## #8. Keep it simple, stupid
+
+After moving around pieces of code it is worthwhile to take a step back.
 
 ```js
 const convert = (target, input) => {
@@ -326,20 +331,25 @@ const convert = (target, input) => {
 }
 ```
 
-## #9. Distill the domain model
+## #9. Make the domain model shine
 
-While the overall structure in step 8 is fine, the code in the upper block has a very technical language.
+The overall structure of our code is pretty nice now and the business part has been fully separated from the application part. However, the latter (the “conversion block”) is characterised by a unexpressive, rather technical language:
 
-- The name “plugin” only tells you what they *are*, but not what they *do*.
-- The name “decimal” is redundant – `parseInt` always returns a decimal number after all, so naming the variable that way doesn’t reveal anything new about *why* that is.
-- The plugin dictionary is keyed by the CLI options – however, the core logic shouldn’t actually know anything about this outer context.
+- The name “plugin” only tells you what it *technically is*, but not what it *is about*.
+- The name “decimal” is redundant, as in `parseInt` returns a decimal number *by definition*. Naming the variable that way doesn’t reveal anything new about *the reason* why we do this.
+- The keys in the plugin dictionary should not know how CLI options are formatted. The design of the domain should rather be agnostic about the nature of any outer context.
 
-All those statements indicate that we haven’t worked out a meaningful domain model yet. Instead of reflecting the language of the business processes, the code speaks a technical language that makes it hard to reason about. A good exercise to get clarity on the business language is to think of how:
+All those aspects indicate that we haven’t created a meaningful domain model yet that would reflect the language of “the business”. A good exercise to get clarity on that business language is to imagine how we would explain the core algorithm to a non-technical person. That could sound like this:
 
-> First we figure out what number systems we need to convert between. That way, we can normalise the input value to a universal intermediate form. From there, we can translate it to the desired target form.
+> This is how we convert a number: first we figure out what number systems we need to convert between. We normalise the input number to an intermediate form. Then, we translate the intermediate value to the desired target number system.
+
+What does that mean in regards to our three findings from above?
+
+- What we called “plugin” is actually a “number system”.
+- What we called “decimal” is an “intermediate” form. (The fact that it is decimal is an unimportant detail.)
+- Instead of dealing with CLI options in the domain, we work with “names”. (And stripping the `-` is not responsibility of the domain.)
 
 ```js
-// core logic
 const numberSystems = [
   {name: "bin", prefix: "0b", base: 2, shape: /^0b[01]+$/},
   {name: "hex", prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
@@ -359,7 +369,6 @@ const convert = (targetName, input) => {
   return targetNS.prefix + intermediate.toString(targetNS.base);
 };
 
-// main
 try {
   if (process.argv.length !== 4) {
     throw "Wrong number of arguments";
@@ -376,12 +385,11 @@ try {
 
 ## #10. Single level of abstraction
 
-There is still something off with `convert`: On the one hand, we implemented nice high-level domain terms like “number system” or “intermediate” form. On the other hand, we do low-leveled operations like converting types (`toString`) and chopping off strings (`substr`). That doesn’t play together nicely.
+There is still something off with `convert`: On the one hand, we implemented nice high-level domain terms like “number system” or “intermediate” form. On the other hand, we do low-leveled operations like converting types (`toString`) and chopping off strings (`substr`). That doesn’t play nicely together.
 
-If you have payed close attention, we missed to implement something in the last step. The business explanation used the terms “normalise” and “translate” do discern both operations, which we haven’t reflected in the code language yet. It turns out that there is the opportunity to catch two birds with one stone by extracting out two functions with that name, which happen to encapsulate our low-level operations at the same time. As a result, the abstraction level in `convert` becomes much more consistent.
+You might have noticed that we have missed to implement something in the last step. The business explanation used the terms “normalise” and “translate” do discern both operations, which we don’t see reflected in the code language. It turns out that there is the opportunity to fill two needs with one deed by extracting two functions with those names, which also happen to encapsulate our low-level computations at the same time. As a result, the abstraction level in `convert` becomes much more consistent.
 
 ```js
-// core logic
 const normalise = (ns, input) => parseInt(input.substr(ns.prefix.length), ns.base);
 const translate = (ns, intermediate) => ns.prefix + intermediate.toString(ns.base);
 const convert = (targetName, input) => {
@@ -397,7 +405,7 @@ const convert = (targetName, input) => {
 
 # The result
 
-Let’s put it all together. Is this good code now?
+Let’s see it all together:
 
 ```js
 const numberSystems = [
@@ -432,9 +440,11 @@ try {
 }
 ```
 
-Code quality is no law of nature, thus it’s hard to make absolute statements about it. Trying to define how “perfect code” looks as in it was some definite state doesn’t lead anywhere. It’s more practical to think about code quality as a process instead
+This blog post dealt almost exlusively with non-functional aspects of code, so allow me to close with some philosophical remarks on this topic.
 
-We can unarguably assess is the difference between two implementations in comparison. So, in our case, the refactored version is better than the original one for the following reasons:
+Code quality is no law of nature, thus it’s hard to make absolute statements about it. Trying to define how “good code” looks does rarely lead anywhere productive. It’s more practical to think about code quality as a process instead. The value of principles is that they can guide us through this process, help us to make decisions and make it easier to reason about our intentions.
+
+Regarding this refactoring, we are in the lucky position that we can compare the refactored version to the original one. That way, we don’t need to ponder about the question whether the refactoring result is good in itself, we can just assess its qualities in relation to what we had before. Based on that, we can make some clear statements:
 
 - It is easier to navigate: the main concerns are separated by means of a layered architecture.
 - It is easier to understand: we established consistent abstractions and meaningful naming.
