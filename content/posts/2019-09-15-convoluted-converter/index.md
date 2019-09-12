@@ -31,7 +31,7 @@ try {
     const target = process.argv[2];
     const input = process.argv[3];
     if (target === "-bin" || target === "-hex" || target === "-dec") {
-      if (/^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/.test(input)) {
+      if (/^(0b[01]+|0x[0-9a-fA-F]+|0|[1-9]\d*)$/.test(input)) {
         let decimal;
         const prefix = input.substr(0, 2);
         if (prefix === "0b") decimal = parseInt(input.substr(2), 2);
@@ -93,7 +93,7 @@ const convert = (target, input) => {
 };
 
 const options = ["-bin", "-hex", "-dec"];
-const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
+const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|0|[1-9]\d*)$/;
 
 try {
   if (process.argv.length === 4) {
@@ -264,7 +264,7 @@ The previous step already suggested that this approach can work, so let’s try 
 const converters = {
   "-bin": {prefix: "0b", base: 2, shape: /^0b[01]+$/},
   "-hex": {prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  "-dec": {prefix: "", base: 10, shape: /^[^0]\d*$/},
+  "-dec": {prefix: "", base: 10, shape: /^0|[1-9]\d*$/},
 };
 
 const convert = (inputConverter, target, input) => {
@@ -307,7 +307,7 @@ Not to mention that passing both `inputConverter` and `input` to the convert fun
 const converters = {
   "-bin": {prefix: "0b", base: 2, shape: /^0b[01]+$/},
   "-hex": {prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  "-dec": {prefix: "", base: 10, shape: /^[^0]\d*$/},
+  "-dec": {prefix: "", base: 10, shape: /^0|[1-9]\d*$/},
 };
 
 const convert = (target, input) => {
@@ -390,7 +390,7 @@ What does that mean in regards to our three findings from above?
 const numberSystems = [
   {name: "bin", prefix: "0b", base: 2, shape: /^0b[01]+$/},
   {name: "hex", prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  {name: "dec", prefix: "", base: 10, shape: /^[^0]\d*$/},
+  {name: "dec", prefix: "", base: 10, shape: /^0|[1-9]\d*$/},
 ];
 
 const convert = (targetName, input) => {
@@ -439,7 +439,7 @@ Let’s see it all together:
 const numberSystems = [
   {name: "bin", prefix: "0b", base: 2, shape: /^0b[01]+$/},
   {name: "hex", prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  {name: "dec", prefix: "", base: 10, shape: /^[^0]\d*$/},
+  {name: "dec", prefix: "", base: 10, shape: /^0|[1-9]\d*$/},
 ];
 
 const normalise = (ns, input) => parseInt(input.substr(ns.prefix.length), ns.base);
