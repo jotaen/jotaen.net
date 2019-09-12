@@ -44,7 +44,7 @@ try {
 
 # The refactoring
 
-## #0. Make it work, make it right, make it fast
+## #0. Make it work, make it right, make it fast[^0]
 
 We are tasked with the refactoring of the innards of an existing application, without changing any of its behaviour. Hence, we should better say: “Keep it working, keep it right, keep it fast”. In brief: we must make sure to not accidentally introduce a performance- or feature-regression.
 
@@ -52,7 +52,7 @@ The precondition for conducting a safe refactoring is sufficient test coverage. 
 
 For your convenience, I provided a test suite with the most important use cases. It is deliberately setup in a property-based manner, which makes it easy to turn the suite into unit tests later on. While proceeding in the refactoring, we can run the test suite after every step, thus making sure that we only move tiny and safe increments as we “go further out on the limb”.
 
-## #1. Divide and conquer
+## #1. Divide and conquer[^1]
 
 There are a multitude of things that spring to mind when reading the original program code. But we cannot do all at once. The first step is to break down the code-monolith in manageable pieces that we can approach independently.
 
@@ -92,7 +92,7 @@ try {
 }
 ```
 
-## #2. Maximise cohesion
+## #2. Maximise cohesion[^2]
 
 Let’s focus on the “main block”: its readability suffers from the nested `if` statements, where corresponding code (namely `if` and `else`) is divided by multiple lines of unrelated statements in between. A common way of improving this is to negate the conditions and to make the code path flat and linear. This pattern is sometimes referred to as “early return”. It pushes the so-called “happy path” (the actual conversion) from somewhere in the thick of it down to the very end of the code block and exposes it prominently on first indentation level.
 
@@ -114,7 +114,7 @@ try {
 }
 ```
 
-## #3. Schödinger variables
+## #3. Schödinger variables[^3]
 
 Next, we look at the “conversion block”:
 
@@ -152,7 +152,7 @@ const convert = (target, input) => {
 }
 ```
 
-## #4. Conditional complexity
+## #4. Conditional complexity[^4]
 
 There are two conditionals in our “conversion block” that each have 3 possible branches. That makes for a total of 9 possible execution paths through the method. (Side note: this number is not fixed, it will rather grow linearly as we add conversion options to our program.) The multitude of `return` statements adds to this and is also a common origin of bugs.
 
@@ -180,7 +180,7 @@ const convert = (target, input) => {
 
 This technique is similar to the “pattern matching” that has been made popular by functional programming languages. It is often a good way to carve out the exact differences between the cases.
 
-## #5. Don’t repeat yourself
+## #5. Don’t repeat yourself[^5]
 
 `targetConverters` and `inputConverters` contain redundant code. The only remaining difference is the “decimal” conversion, that lack one argument in both cases. Upon closer look, however, we see that this missing argument defaults to `10` and can of course be also made explicit. This allows us to extract the redundant procedure calls and to handle their parametrisation programatically. The converter objects can thus be unified and boiled down to plain data.
 
@@ -203,29 +203,21 @@ const convert = (target, input) => {
 };
 ```
 
-In the “main block” we can draw on the converter object as well for the validation of `target`, thus making the `options` array obsolete.
+There is also an opportunity to reduce repetition in the “main block” now. We don’t need to maintain a separate array with `options` for validating the `target` argument anymore. Instead, we can can draw upon the keys of the `converters` object. That is:
 
 ```js
-const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
+// now:
+if (!Object.keys(converters).includes(target) || !inputShape.test(input)) {
+  throw "Input arguments invalid";
+}
 
-try {
-  if (process.argv.length !== 4) {
-    throw "Wrong number of arguments";
-  }
-  const target = process.argv[2];
-  const input = process.argv[3];
-  if (!Object.keys(converters).includes(target) || !inputShape.test(input)) {
-    throw "Input arguments invalid";
-  }
-  const result = convert(target, input);
-  console.log(result);
-} catch(e) {
-  console.log("Error: " + e);
-  process.exit(1);
+// before:
+if (!options.includes(target) || !inputShape.test(input)) {
+  throw "Input arguments invalid";
 }
 ```
 
-## #6. Open-closed principle
+## #6. Open-closed principle[^6]
 
 The problem of redundancies is not solved yet, which is not immediately obvious anymore though. It becomes clear when you imagine we wanted to add a fourth conversion to the programm. This would still require us to touch 2 different places at the moment: `converters` and the `inputShape` regex for input validation. Furthermore, a prefix size of `2` is hard-coded and there is a special case for `"-dec"`. Needing to keep track of all this while extending the program puts a big burden on future maintainers. It’s all too easy to forget about just one of these aspects, so we better make sure to avoid the problem by design.
 
@@ -267,7 +259,7 @@ try {
 }
 ```
 
-## #7. Separation of concerns
+## #7. Separation of concerns[^7]
 
 As of step 6, our program already reads very clear. However, in the “main block” we still mix side-effects (such as printing via `console.log` or accessing the runtime environment via `process.argv`) with business logic (such as finding an applicable plugin). These are different concerns that are mingled in one scope, which is not just ugly, but it also makes the code structure harder to navigate.
 
@@ -307,13 +299,13 @@ try {
 }
 ```
 
-`convert` is has gained error handling as new responsibility. That is fine, since validation is tightly coupled to finding the right plugins, so it would be more confusing than benefitial to keep both of that separate.
+`convert` is has gained error handling as additional responsibility. That is fine, since validation is tightly coupled to finding the right plugins. We wouldn’t win much by keeping both strictly separate and we still have the option to break up `convert` in smaller pieces, if we find it too messy.
 
-The “main block” is now left with the dirty stuff only: reading in the runtime environment, managing the processing and printing to the CLI. The pure code has been completely migrated to the “conversion block”. Apart from one tiny adjustment, we won’t need to touch the “main block” anymore.
+The “main block” is now left with all and only the dirty stuff: reading in the runtime environment, managing the processing and printing to the CLI. The pure code has been completely migrated to the “conversion block”. (Spoiler: apart from one tiny adjustment, we won’t need to touch the “main block” anymore.)
 
-## #8. Keep it simple, stupid
+There is one cleanup that we need to do here: especially after moving around pieces of code it is worthwhile to take a step back. By reiterating over the merged code with a fresh perspective we can often find opportunities for simplification, sometimes we can even push open a door to a whole new abstraction. (The “aha”-moment, when things immediately make sense.)
 
-After moving around pieces of code it is worthwhile to take a step back.
+We can moderately improve the outcome of step 7, because we can unify the lookup and validation of `outputPlugin`: Instead of checking whether it exists and then fetching it, we can try to fetch it right away and then check on it the same way we do for `inputPlugin`.
 
 ```js
 const convert = (target, input) => {
@@ -330,7 +322,11 @@ const convert = (target, input) => {
 }
 ```
 
-## #9. Make the domain model shine
+## #8. Hello again, Schrödinger variables[^8]
+
+
+
+## #9. Make the domain model shine[^9]
 
 The overall structure of our code is pretty nice now and the business part has been fully separated from the application part. However, the latter (the “conversion block”) is characterised by a unexpressive, rather technical language:
 
@@ -382,7 +378,7 @@ try {
 }
 ```
 
-## #10. Single level of abstraction
+## #10. Single level of abstraction[^10]
 
 There is still something off with `convert`: On the one hand, we implemented nice high-level domain terms like “number system” or “intermediate” form. On the other hand, we do low-leveled operations like converting types (`toString`) and chopping off strings (`substr`). That doesn’t play nicely together.
 
@@ -463,4 +459,14 @@ If you had fun to follow me along this exercise, I’d like to encourage you to 
 
 You find the code base and instructions how to run it on Github. May the fork be with you!
 
-[^1]: See [“Response Times: The 3 Important Limits”](https://www.nngroup.com/articles/response-times-3-important-limits/) by the Nielsen Norman Group
+
+[^1]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-1) of this step
+[^2]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-2) of this step
+[^3]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-3) of this step
+[^4]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-4) of this step
+[^5]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-5) of this step
+[^6]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-6) of this step
+[^7]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-7) of this step
+[^8]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-8) of this step
+[^9]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-9) of this step
+[^10]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-0) of this step
