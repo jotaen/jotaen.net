@@ -20,18 +20,21 @@ try {
   if (process.argv.length === 4) {
     const target = process.argv[2];
     const input = process.argv[3];
-    if (["-bin", "-hex", "-dec"].includes(target) &&
-        /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/.test(input)) {
-      let decimal;
-      const prefix = input.substr(0, 2);
-      if (prefix === "0b") decimal = parseInt(input.substr(2), 2);
-      else if (prefix === "0x") decimal = parseInt(input.substr(2), 16);
-      else decimal = parseInt(input);
-      if (target === "-bin") console.log("0b" + decimal.toString(2));
-      else if (target === "-hex") console.log("0x" + decimal.toString(16));
-      else console.log(decimal.toString());
+    if (["-bin", "-hex", "-dec"].includes(target)) {
+      if (/^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/.test(input)) {
+        let decimal;
+        const prefix = input.substr(0, 2);
+        if (prefix === "0b") decimal = parseInt(input.substr(2), 2);
+        else if (prefix === "0x") decimal = parseInt(input.substr(2), 16);
+        else decimal = parseInt(input);
+        if (target === "-bin") console.log("0b" + decimal.toString(2));
+        else if (target === "-hex") console.log("0x" + decimal.toString(16));
+        else console.log(decimal.toString());
+      } else {
+        throw "Input number invalid";
+      }
     } else {
-      throw "Input arguments invalid";
+      throw "Target option invalid";
     }
   } else {
     throw "Wrong number of arguments";
@@ -56,7 +59,7 @@ For your convenience, I provided a test suite with the most important use cases.
 
 There are a multitude of things that spring to mind when reading the original program code. But we cannot do all at once. The first step is to break down the code-monolith in manageable pieces that we can approach independently.
 
-The initial goal is to bring the basic structure to light. That is: pulling up the innermost part into a separate function and extracting some constants. This is mostly simple copy-and-paste, without touching the statements on the functional level. The result are mainly two code sections, the “conversion block” (`convert`) and a “main block” (the `try`/`catch`). Apart from that, there are two constants (`options`, `inputShate`) floating in between and it is not clear yet where they really belong.
+The initial goal is to bring the basic structure to light. That is: pulling up the innermost part into a separate function and extracting some constants. This is mostly simple copy-and-paste, without touching the statements on the functional level. The result are mainly two code sections, the “conversion block” (`convert`) and a “main block” (the `try`/`catch`). Apart from that, there are two constants (`options`, `inputShape`) floating in between and it is not clear yet where they really belong.
 
 ```js
 const convert = (target, input) => {
@@ -68,7 +71,7 @@ const convert = (target, input) => {
   if (target === "-bin") return "0b" + decimal.toString(2);
   else if (target === "-hex") return "0x" + decimal.toString(16);
   else return decimal.toString();
-}
+};
 
 const options = ["-bin", "-hex", "-dec"];
 const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
@@ -77,11 +80,15 @@ try {
   if (process.argv.length === 4) {
     const target = process.argv[2];
     const input = process.argv[3];
-    if (options.includes(target) && inputShape.test(input)) {
-      const result = convert(target, input);
-      console.log(result);
+    if (options.includes(target)) {
+      if (inputShape.test(input)) {
+        const result = convert(target, input);
+        console.log(result);
+      } else {
+        throw "Input number invalid";
+      }
     } else {
-      throw "Input arguments invalid";
+      throw "Target option invalid";
     }
   } else {
     throw "Wrong number of arguments";
@@ -102,13 +109,16 @@ try {
     throw "Wrong number of arguments";
   }
   const target = process.argv[2];
+  if (!options.includes(target)) {
+    throw "Target option invalid";
+  }
   const input = process.argv[3];
-  if (!options.includes(target) || !inputShape.test(input)) {
-    throw "Input arguments invalid";
+  if (!inputShape.test(input)) {
+    throw "Input number invalid";
   }
   const result = convert(target, input);
   console.log(result);
-} catch(e) {
+} catch (e) {
   console.log("Error: " + e);
   process.exit(1);
 }
@@ -116,7 +126,7 @@ try {
 
 ## #3. Schödinger variables[^3]
 
-Next, we look at the “conversion block”:
+Next, we look at the current state of the “conversion block”:
 
 ```js
 const convert = (target, input) => {
@@ -128,7 +138,7 @@ const convert = (target, input) => {
   if (target === "-bin") return "0b" + decimal.toString(2);
   else if (target === "-hex") return "0x" + decimal.toString(16);
   else return decimal.toString();
-}
+};
 ```
 
 There is an issue with how the variables are initialised. `decimal` is declared empty and given its value only at some later point. `prefix` and is initialised with a value, but in case `input` is a decimal number this value is completely arbitrary and doesn’t mean anything. Both things are not good practice, even though they don’t cause actual problems in this very case. The problem is similar to Schrödinger’s cat: you need to open the box to see how the cat is doing. That results in implicit interdependences that are terrible to work with and often lead to a defensive programming style.
@@ -138,18 +148,18 @@ We can almost always avoid that. A variable declaration should always coincide w
 ```js
 const toDecimal = (input) => {
   switch(input.substr(0, 2)) {
-    case "0b": return parseInt(input.substr(2), 2)
-    case "0x": return parseInt(input.substr(2), 16)
+    case "0b": return parseInt(input.substr(2), 2);
+    case "0x": return parseInt(input.substr(2), 16);
   }
   return parseInt(input);
-}
+};
 
 const convert = (target, input) => {
   const decimal = toDecimal(input);
   if (target === "-bin") return "0b" + decimal.toString(2);
   else if (target === "-hex") return "0x" + decimal.toString(16);
   else return decimal.toString();
-}
+};
 ```
 
 ## #4. Conditional complexity[^4]
@@ -198,7 +208,7 @@ const convert = (target, input) => {
     input.substr(inputConverter.prefix.length),
     inputConverter.base
   );
-  const targetConverter = converters[target]
+  const targetConverter = converters[target];
   return targetConverter.prefix + decimal.toString(targetConverter.base);
 };
 ```
@@ -206,54 +216,65 @@ const convert = (target, input) => {
 There is also an opportunity to reduce repetition in the “main block” now. We don’t need to maintain a separate array with `options` for validating the `target` argument anymore. Instead, we can can draw upon the keys of the `converters` object. That is:
 
 ```js
-// now:
-if (!Object.keys(converters).includes(target) || !inputShape.test(input)) {
-  throw "Input arguments invalid";
-}
+// Now:
+  const target = process.argv[2];
+  if (!Object.keys(converters).includes(target)) {
+    throw "Target option invalid";
+  }
 
-// before:
-if (!options.includes(target) || !inputShape.test(input)) {
-  throw "Input arguments invalid";
-}
+// Before:
+  const options = ["-bin", "-hex", "-dec"];
+  /*
+    ...
+  */
+  const target = process.argv[2];
+  if (!options.includes(target)) {
+    throw "Target option invalid";
+  }
 ```
 
 ## #6. Open-closed principle[^6]
 
 The problem of redundancies is not solved yet, which is not immediately obvious anymore though. It becomes clear when you imagine we wanted to add a fourth conversion to the programm. This would still require us to touch 2 different places at the moment: `converters` and the `inputShape` regex for input validation. Furthermore, a prefix size of `2` is hard-coded and there is a special case for `"-dec"`. Needing to keep track of all this while extending the program puts a big burden on future maintainers. It’s all too easy to forget about just one of these aspects, so we better make sure to avoid the problem by design.
 
-A good way of thinking of our specific conversion algorithms is to perceive them as “plugins”. Every plugin embodies a specific variant of an otherwise self-contained and impartial program. (In a class-based language, the program would only depend on the plugin interface and every plugin implementation would encapsulate.)
+A good way of thinking of our specific conversion mechanisms is to perceive them as “plugins”. Every plugin embodies a specific variant of an otherwise self-contained and impartial program. (In a class-based language, the program would only depend on the plugin interface and every plugin implementation would encapsulate.)
 
-The previous step already suggested that this approach can work, so let’s try to push it further. We chop up the big regular expression (`inputShape`) and allot its parts to the plugins, which also requires to adjust the respective algorithm for the validation. The latter kills two birds with one stone, because it turns out to be a better way to find the “input converter” (which is now called `inputPlugin`). As a consequence, we can eliminate the hard-coded prefix size as well as the special fallback case for `"-dec"`, leaving the implementation of `convert` as fully generic.
+The previous step already suggested that this approach can work, so let’s try to push it further. We chop up the big regular expression (`inputShape`) and allot its parts to the plugins, which also requires to adjust the respective algorithm for the validation. The latter kills two birds with one stone, because it turns out to be a better way to find `inputConverter`. As a consequence, we can eliminate the hard-coded prefix size as well as the special fallback case for `"-dec"`, which turns the implementation of `convert` into a fully generic algorithm.
 
 ```js
-const plugins = {
+const converters = {
   "-bin": {prefix: "0b", base: 2, shape: /^0b[01]+$/},
   "-hex": {prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
   "-dec": {prefix: "", base: 10, shape: /^[^0]\d*$/},
 };
 
-const convert = (inputPlugin, target, input) => {
+const convert = (inputConverter, target, input) => {
   const decimal = parseInt(
-    input.substr(inputPlugin.prefix.length),
-    inputPlugin.base
+    input.substr(inputConverter.prefix.length),
+    inputConverter.base
   );
-  const targetPlugin = plugins[target]
-  return targetPlugin.prefix + decimal.toString(targetPlugin.base);
+  const targetConverter = converters[target];
+  return targetConverter.prefix + decimal.toString(targetConverter.base);
 };
+
+const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
 
 try {
   if (process.argv.length !== 4) {
     throw "Wrong number of arguments";
   }
   const target = process.argv[2];
-  const input = process.argv[3];
-  const inputPlugin = Object.values(plugins).find(p => p.shape.test(input));
-  if (!Object.keys(plugins).includes(target) || !inputPlugin) {
-    throw "Input arguments invalid";
+  if (!Object.keys(converters).includes(target)) {
+    throw "Target option invalid";
   }
-  const result = convert(inputPlugin, target, input);
+  const input = process.argv[3];
+  const inputConverter = Object.values(converters).find(p => p.shape.test(input));
+  if (!inputConverter) {
+    throw "Input number invalid";
+  }
+  const result = convert(inputConverter, target, input);
   console.log(result);
-} catch(e) {
+} catch (e) {
   console.log("Error: " + e);
   process.exit(1);
 }
@@ -261,29 +282,34 @@ try {
 
 ## #7. Separation of concerns[^7]
 
-As of step 6, our program already reads very clear. However, in the “main block” we still mix side-effects (such as printing via `console.log` or accessing the runtime environment via `process.argv`) with business logic (such as finding an applicable plugin). These are different concerns that are mingled in one scope, which is not just ugly, but it also makes the code structure harder to navigate.
+As of step 6, our program already reads very clear. However, in the “main block” we still mix side-effects (such as printing via `console.log` or accessing the runtime environment via `process.argv`) with business logic (such as finding an applicable converter plugin). These are different concerns that are mingled in one scope, which is not just ugly, but it also makes the code structure harder to navigate.
 
-Not to mention that passing both `inputPlugin` and `input` to the convert function is redundant – it is possible to derive the appropriate plugin from the input value after all. It makes sense to relocate the concern of validation to `convert` entirely.
+Not to mention that passing both `inputConverter` and `input` to the convert function is redundant – it is possible to derive the appropriate converter plugin from the input value after all. It makes sense to relocate the concern of validation to `convert` entirely.
 
 ```js
-const plugins = {
+const converters = {
   "-bin": {prefix: "0b", base: 2, shape: /^0b[01]+$/},
   "-hex": {prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  "-dec": {prefix: "" , base: 10, shape: /^[^0]\d*$/},
+  "-dec": {prefix: "", base: 10, shape: /^[^0]\d*$/},
 };
 
 const convert = (target, input) => {
-  const inputPlugin = Object.values(plugins).find(p => p.shape.test(input));
-  if (!Object.keys(plugins).includes(target) || !inputPlugin) {
-    throw "Input arguments invalid";
+  const targetConverter = converters[target];
+  if (!targetConverter) {
+    throw "Target option invalid";
+  }
+  const inputConverter = Object.values(converters).find(p => p.shape.test(input));
+  if (!inputConverter) {
+    throw "Input number invalid";
   }
   const decimal = parseInt(
-    input.substr(inputPlugin.prefix.length),
-    inputPlugin.base
+    input.substr(inputConverter.prefix.length),
+    inputConverter.base
   );
-  const outputPlugin = plugins[target];
-  return outputPlugin.prefix + decimal.toString(outputPlugin.base);
-}
+  return targetConverter.prefix + decimal.toString(targetConverter.base);
+};
+
+const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
 
 try {
   if (process.argv.length !== 4) {
@@ -292,107 +318,99 @@ try {
   const target = process.argv[2];
   const input = process.argv[3];
   const result = convert(target, input);
-  console.log(result)
+  console.log(result);
 } catch (e) {
   console.log("Error: " + e);
   process.exit(1);
 }
 ```
 
-`convert` is has gained error handling as additional responsibility. That is fine, since validation is tightly coupled to finding the right plugins. We wouldn’t win much by keeping both strictly separate and we still have the option to break up `convert` in smaller pieces, if we find it too messy.
+`convert` is has gained error handling as additional responsibility. That is fine, since validation is tightly coupled to finding the right converter plugins. We wouldn’t win much by keeping both strictly separate and we still have the option to break up `convert` in smaller pieces, if we find it too messy.
 
 The “main block” is now left with all and only the dirty stuff: reading in the runtime environment, managing the processing and printing to the CLI. The pure code has been completely migrated to the “conversion block”. (Spoiler: apart from one tiny adjustment, we won’t need to touch the “main block” anymore.)
 
-There is one cleanup that we need to do here: especially after moving around pieces of code it is worthwhile to take a step back. By reiterating over the merged code with a fresh perspective we can often find opportunities for simplification, sometimes we can even push open a door to a whole new abstraction. (The “aha”-moment, when things immediately make sense.)
+<!-- There is one cleanup that we need to do here: especially after moving around pieces of code it is worthwhile to take a step back. By reiterating over the merged code with a fresh perspective we can often find opportunities for simplification, sometimes we can even push open a door to a whole new abstraction. (The “aha”-moment, when things immediately make sense.)
 
-We can moderately improve the outcome of step 7, because we can unify the lookup and validation of `outputPlugin`: Instead of checking whether it exists and then fetching it, we can try to fetch it right away and then check on it the same way we do for `inputPlugin`.
-
-```js
-const convert = (target, input) => {
-  const inputPlugin = Object.values(plugins).find(p => p.shape.test(input));
-  const outputPlugin = plugins[target];
-  if (!outputPlugin || !inputPlugin) {
-    throw "Input arguments invalid";
-  }
-  const decimal = parseInt(
-    input.substr(inputPlugin.prefix.length),
-    inputPlugin.base
-  );
-  return outputPlugin.prefix + decimal.toString(outputPlugin.base);
-}
-```
+We can moderately improve the outcome of step 7, because we can unify the lookup and validation of `outputConverter`: Instead of checking whether it exists and then fetching it, we can try to fetch it right away and then check on it the same way we do for `inputConverter`. -->
 
 ## #8. Hello again, Schrödinger variables[^8]
 
+Some nasty Schrödinger variables have sneaked in again: `inputConverter` and `targetConverter` may or may not contain what they promise and thus need to be guarded with a subsequent check to maintain the integrity of the following procedure. Falling back to a default value is not possible here (like we did earlier with `... || converters["-dec"]`), since we want abort the operation by throwing an error message. In any event, we need to make sure that the assignment of the variables is either unconditionally successful or strictly prevented altogether.
 
+```js
+const convert = (target, input) => {
+  const targetConverter = converters[target]
+    || (() => {throw "Target option invalid"})();
+  const inputConverter = Object.values(converters).find(p => p.shape.test(input))
+    || (() => {throw "Input number invalid"})();
+  const decimal = parseInt(
+    input.substr(inputConverter.prefix.length),
+    inputConverter.base
+  );
+  return targetConverter.prefix + decimal.toString(targetConverter.base);
+};
+```
+
+Editor’s note: JavaScript doesn’t allow a naked `throw` statement in this context, so we have to wrap it into a function. What you see here is a so called “immediately invoked function expression”, that is an inlined lambda function that is invoked right away. Unfortunately we don’t have anything similar to `java.lang.Optional` in JavaScript yet, so the techniques shown in this post are somewhat good alternatives to achieve analogous effects. Of course, there are external libraries that offer these kinds of data structures.
 
 ## #9. Make the domain model shine[^9]
 
 The overall structure of our code is pretty nice now and the business part has been fully separated from the application part. However, the latter (the “conversion block”) is characterised by a unexpressive, rather technical language:
 
-- The name “plugin” only tells you what it *technically is*, but not what it *is about*.
+- The name “converter” is not quite right, because it doesn’t actually do something. Also, it only tells you what it *technically is*, but not what it *is about*.
 - The name “decimal” is redundant, as in `parseInt` returns a decimal number *by definition*. Naming the variable that way doesn’t reveal anything new about *the reason* why we do this.
-- The keys in the plugin dictionary should not know how CLI options are formatted. The design of the domain should rather be agnostic about the nature of any outer context.
+- The keys in the `converters` dictionary should not know how CLI options are formatted. The design of the domain should rather be agnostic about the nature of any outer context.
 
-All those aspects indicate that we haven’t created a meaningful domain model yet that would reflect the language of “the business”. A good exercise to get clarity on that business language is to imagine how we would explain the core algorithm to a non-technical person. That could sound like this:
+All those aspects indicate that we haven’t created a meaningful domain model yet that would reflect the language of “the business”. A good exercise to get clarity on that business language is to imagine how we would explain the core algorithm to a non-technical person. That narrative could sound like this:
 
-> This is how we convert a number: first we figure out what number systems we need to convert between. We normalise the input number to an intermediate form. Then, we translate the intermediate value to the desired target number system.
+> Here is how we convert a number: first we figure out what number systems we need to convert between. We normalise the input number to an intermediate form. Then, we translate the intermediate value to the desired target number system.
 
 What does that mean in regards to our three findings from above?
 
-- What we called “plugin” is actually a “number system”.
-- What we called “decimal” is an “intermediate” form. (The fact that it is decimal is an unimportant detail.)
-- Instead of dealing with CLI options in the domain, we work with “names”. (And stripping the `-` is not responsibility of the domain.)
+- What we called “converter” (or “converter plugin”) is actually a “number system”.
+- What we called “decimal” is actually an “intermediate” form. (The fact that it is decimal is an unimportant detail.)
+- Instead of dealing with CLI options in the domain, we give them “names” that they can identified by. For consistency, we also rename the parameter from `target` to `targetName`. (Matching CLI args with the names is not responsibility of the domain, by the way!)
 
 ```js
 const numberSystems = [
   {name: "bin", prefix: "0b", base: 2, shape: /^0b[01]+$/},
   {name: "hex", prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  {name: "dec", prefix: "", base: 10, shape: /^[0-9]+$/},
+  {name: "dec", prefix: "", base: 10, shape: /^[^0]\d*$/},
 ];
 
 const convert = (targetName, input) => {
-  const inputNS = numberSystems.find(n => n.shape.test(input));
-  const targetNS = numberSystems.find(n => n.name === targetName);
-  if (!inputNS || !targetNS) {
-    throw "Input arguments invalid";
-  }
+  const targetNS = numberSystems.find(n => n.name === targetName)
+    || (() => {throw "Target option invalid"})();
+  const inputNS = numberSystems.find(n => n.shape.test(input))
+    || (() => {throw "Input number invalid"})();
   const intermediate = parseInt(
     input.substr(inputNS.prefix.length),
     inputNS.base
   );
   return targetNS.prefix + intermediate.toString(targetNS.base);
 };
+```
 
-try {
-  if (process.argv.length !== 4) {
-    throw "Wrong number of arguments";
-  }
-  const targetName = process.argv[2].substr(1);
-  const input = process.argv[3];
-  const result = convert(targetName, input);
-  console.log(result);
-} catch(e) {
-  console.log("Error: " + e);
-  process.exit(1);
-}
+In order to get `targetName`, we can simply strip of the initial `-` character “main block”:
+
+```js
+const targetName = process.argv[2].substr(1);
 ```
 
 ## #10. Single level of abstraction[^10]
 
-There is still something off with `convert`: On the one hand, we implemented nice high-level domain terms like “number system” or “intermediate” form. On the other hand, we do low-leveled operations like converting types (`toString`) and chopping off strings (`substr`). That doesn’t play nicely together.
+There is still something off with `convert`: On the one hand, we implemented nice high-level domain terms like “number system” or “intermediate” form. On the other hand, we do low-leveled operations like converting types (`parseInt`, `toString`) and tinkering around with strings (`substr`, `+`). That doesn’t play nicely together.
 
-You might have noticed that we have missed to implement something in the last step. The business explanation used the terms “normalise” and “translate” do discern both operations, which we don’t see reflected in the code language. It turns out that there is the opportunity to fill two needs with one deed by extracting two functions with those names, which also happen to encapsulate our low-level computations at the same time. As a result, the abstraction level in `convert` becomes much more consistent.
+You might have noticed earlier that we had missed to implement something in the last step. The narrative used the terms “normalise” and “translate” do discern both operations, but we don’t see this reflected in the code language. It turns out that there is the opportunity to fill two needs with one deed by extracting two functions with those names, which also happen to encapsulate our low-level computations at the same time. As a result, the abstraction level in `convert` becomes much more consistent.
 
 ```js
 const normalise = (ns, input) => parseInt(input.substr(ns.prefix.length), ns.base);
 const translate = (ns, intermediate) => ns.prefix + intermediate.toString(ns.base);
 const convert = (targetName, input) => {
-  const inputNS = numberSystems.find(c => c.shape.test(input));
-  const targetNS = numberSystems.find(c => c.name === targetName);
-  if (!inputNS || !targetNS) {
-    throw "Input arguments invalid";
-  }
+  const targetNS = numberSystems.find(n => n.name === targetName)
+    || (() => {throw "Target option invalid"})();
+  const inputNS = numberSystems.find(n => n.shape.test(input))
+    || (() => {throw "Input number invalid"})();
   const intermediate = normalise(inputNS, input);
   return translate(targetNS, intermediate);
 };
@@ -406,20 +424,21 @@ Let’s see it all together:
 const numberSystems = [
   {name: "bin", prefix: "0b", base: 2, shape: /^0b[01]+$/},
   {name: "hex", prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  {name: "dec", prefix: "", base: 10, shape: /^[0-9]+$/},
+  {name: "dec", prefix: "", base: 10, shape: /^[^0]\d*$/},
 ];
 
 const normalise = (ns, input) => parseInt(input.substr(ns.prefix.length), ns.base);
 const translate = (ns, intermediate) => ns.prefix + intermediate.toString(ns.base);
 const convert = (targetName, input) => {
-  const inputNS = numberSystems.find(c => c.shape.test(input));
-  const targetNS = numberSystems.find(c => c.name === targetName);
-  if (!inputNS || !targetNS) {
-    throw "Input arguments invalid";
-  }
+  const targetNS = numberSystems.find(n => n.name === targetName)
+    || (() => {throw "Target option invalid"})();
+  const inputNS = numberSystems.find(n => n.shape.test(input))
+    || (() => {throw "Input number invalid"})();
   const intermediate = normalise(inputNS, input);
   return translate(targetNS, intermediate);
 };
+
+const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
 
 try {
   if (process.argv.length !== 4) {
@@ -427,8 +446,8 @@ try {
   }
   const targetName = process.argv[2].substr(1);
   const input = process.argv[3];
-  const out = convert(targetName, input);
-  console.log(out);
+  const result = convert(targetName, input);
+  console.log(result);
 } catch (e) {
   console.log("Error: " + e);
   process.exit(1);
