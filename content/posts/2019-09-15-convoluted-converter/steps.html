@@ -88,7 +88,7 @@ const convert = (target, input) => {
   if (target === "-bin") return "0b" + decimal.toString(2);
   else if (target === "-hex") return "0x" + decimal.toString(16);
   else return decimal.toString();
-}
+};
 
 const options = ["-bin", "-hex", "-dec"];
 const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
@@ -133,7 +133,7 @@ const convert = (target, input) => {
   if (target === "-bin") return "0b" + decimal.toString(2);
   else if (target === "-hex") return "0x" + decimal.toString(16);
   else return decimal.toString();
-}
+};
 
 const options = ["-bin", "-hex", "-dec"];
 const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
@@ -172,14 +172,14 @@ const toDecimal = (input) => {
     case "0x": return parseInt(input.substr(2), 16);
   }
   return parseInt(input);
-}
+};
 
 const convert = (target, input) => {
   const decimal = toDecimal(input);
   if (target === "-bin") return "0b" + decimal.toString(2);
   else if (target === "-hex") return "0x" + decimal.toString(16);
   else return decimal.toString();
-}
+};
 
 const options = ["-bin", "-hex", "-dec"];
 const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
@@ -274,7 +274,7 @@ const convert = (target, input) => {
     input.substr(inputConverter.prefix.length),
     inputConverter.base
   );
-  const targetConverter = converters[target]
+  const targetConverter = converters[target];
   return targetConverter.prefix + decimal.toString(targetConverter.base);
 };
 
@@ -319,7 +319,7 @@ const convert = (inputConverter, target, input) => {
     input.substr(inputConverter.prefix.length),
     inputConverter.base
   );
-  const targetConverter = converters[target]
+  const targetConverter = converters[target];
   return targetConverter.prefix + decimal.toString(targetConverter.base);
 };
 
@@ -361,7 +361,7 @@ const converters = {
 };
 
 const convert = (target, input) => {
-  const targetConverter = converters[target]
+  const targetConverter = converters[target];
   if (!targetConverter) {
     throw "Target option invalid";
   }
