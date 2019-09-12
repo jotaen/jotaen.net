@@ -257,8 +257,6 @@ const convert = (inputConverter, target, input) => {
   return targetConverter.prefix + decimal.toString(targetConverter.base);
 };
 
-const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
-
 try {
   if (process.argv.length !== 4) {
     throw "Wrong number of arguments";
@@ -308,8 +306,6 @@ const convert = (target, input) => {
   );
   return targetConverter.prefix + decimal.toString(targetConverter.base);
 };
-
-const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
 
 try {
   if (process.argv.length !== 4) {
@@ -437,8 +433,6 @@ const convert = (targetName, input) => {
   const intermediate = normalise(inputNS, input);
   return translate(targetNS, intermediate);
 };
-
-const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
 
 try {
   if (process.argv.length !== 4) {
