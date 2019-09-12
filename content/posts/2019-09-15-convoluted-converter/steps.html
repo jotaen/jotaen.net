@@ -46,18 +46,21 @@ try {
   if (process.argv.length === 4) {
     const target = process.argv[2];
     const input = process.argv[3];
-    if (["-bin", "-hex", "-dec"].includes(target) &&
-        /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/.test(input)) {
-      let decimal;
-      const prefix = input.substr(0, 2);
-      if (prefix === "0b") decimal = parseInt(input.substr(2), 2);
-      else if (prefix === "0x") decimal = parseInt(input.substr(2), 16);
-      else decimal = parseInt(input);
-      if (target === "-bin") console.log("0b" + decimal.toString(2));
-      else if (target === "-hex") console.log("0x" + decimal.toString(16));
-      else console.log(decimal.toString());
+    if (["-bin", "-hex", "-dec"].includes(target)) {
+      if (/^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/.test(input)) {
+        let decimal;
+        const prefix = input.substr(0, 2);
+        if (prefix === "0b") decimal = parseInt(input.substr(2), 2);
+        else if (prefix === "0x") decimal = parseInt(input.substr(2), 16);
+        else decimal = parseInt(input);
+        if (target === "-bin") console.log("0b" + decimal.toString(2));
+        else if (target === "-hex") console.log("0x" + decimal.toString(16));
+        else console.log(decimal.toString());
+      } else {
+        throw "Input number invalid";
+      }
     } else {
-      throw "Input arguments invalid";
+      throw "Target option invalid";
     }
   } else {
     throw "Wrong number of arguments";
@@ -94,11 +97,15 @@ try {
   if (process.argv.length === 4) {
     const target = process.argv[2];
     const input = process.argv[3];
-    if (options.includes(target) && inputShape.test(input)) {
-      const result = convert(target, input);
-      console.log(result);
+    if (options.includes(target)) {
+      if (inputShape.test(input)) {
+        const result = convert(target, input);
+        console.log(result);
+      } else {
+        throw "Input number invalid";
+      }
     } else {
-      throw "Input arguments invalid";
+      throw "Target option invalid";
     }
   } else {
     throw "Wrong number of arguments";
@@ -136,13 +143,16 @@ try {
     throw "Wrong number of arguments";
   }
   const target = process.argv[2];
+  if (!options.includes(target)) {
+    throw "Target option invalid";
+  }
   const input = process.argv[3];
-  if (!options.includes(target) || !inputShape.test(input)) {
-    throw "Input arguments invalid";
+  if (!inputShape.test(input)) {
+    throw "Input number invalid";
   }
   const result = convert(target, input);
   console.log(result);
-} catch(e) {
+} catch (e) {
   console.log("Error: " + e);
   process.exit(1);
 }
@@ -158,8 +168,8 @@ try {
       <pre><code class="language-js">
 const toDecimal = (input) => {
   switch(input.substr(0, 2)) {
-    case "0b": return parseInt(input.substr(2), 2)
-    case "0x": return parseInt(input.substr(2), 16)
+    case "0b": return parseInt(input.substr(2), 2);
+    case "0x": return parseInt(input.substr(2), 16);
   }
   return parseInt(input);
 }
@@ -179,13 +189,16 @@ try {
     throw "Wrong number of arguments";
   }
   const target = process.argv[2];
+  if (!options.includes(target)) {
+    throw "Target option invalid";
+  }
   const input = process.argv[3];
-  if (!options.includes(target) || !inputShape.test(input)) {
-    throw "Input arguments invalid";
+  if (!inputShape.test(input)) {
+    throw "Input number invalid";
   }
   const result = convert(target, input);
   console.log(result);
-} catch(e) {
+} catch (e) {
   console.log("Error: " + e);
   process.exit(1);
 }
@@ -225,13 +238,16 @@ try {
     throw "Wrong number of arguments";
   }
   const target = process.argv[2];
+  if (!options.includes(target)) {
+    throw "Target option invalid";
+  }
   const input = process.argv[3];
-  if (!options.includes(target) || !inputShape.test(input)) {
-    throw "Input arguments invalid";
+  if (!inputShape.test(input)) {
+    throw "Input number invalid";
   }
   const result = convert(target, input);
   console.log(result);
-} catch(e) {
+} catch (e) {
   console.log("Error: " + e);
   process.exit(1);
 }
@@ -269,13 +285,16 @@ try {
     throw "Wrong number of arguments";
   }
   const target = process.argv[2];
+  if (!Object.keys(converters).includes(target)) {
+    throw "Target option invalid";
+  }
   const input = process.argv[3];
-  if (!Object.keys(converters).includes(target) || !inputShape.test(input)) {
-    throw "Input arguments invalid";
+  if (!inputShape.test(input)) {
+    throw "Input number invalid";
   }
   const result = convert(target, input);
   console.log(result);
-} catch(e) {
+} catch (e) {
   console.log("Error: " + e);
   process.exit(1);
 }
@@ -289,34 +308,39 @@ try {
         <a class="navigator" href="#step-7">Next</a>
       </div>
       <pre><code class="language-js">
-const plugins = {
+const converters = {
   "-bin": {prefix: "0b", base: 2, shape: /^0b[01]+$/},
   "-hex": {prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
   "-dec": {prefix: "", base: 10, shape: /^[^0]\d*$/},
 };
 
-const convert = (inputPlugin, target, input) => {
+const convert = (inputConverter, target, input) => {
   const decimal = parseInt(
-    input.substr(inputPlugin.prefix.length),
-    inputPlugin.base
+    input.substr(inputConverter.prefix.length),
+    inputConverter.base
   );
-  const targetPlugin = plugins[target]
-  return targetPlugin.prefix + decimal.toString(targetPlugin.base);
+  const targetConverter = converters[target]
+  return targetConverter.prefix + decimal.toString(targetConverter.base);
 };
+
+const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
 
 try {
   if (process.argv.length !== 4) {
     throw "Wrong number of arguments";
   }
   const target = process.argv[2];
-  const input = process.argv[3];
-  const inputPlugin = Object.values(plugins).find(p => p.shape.test(input));
-  if (!Object.keys(plugins).includes(target) || !inputPlugin) {
-    throw "Input arguments invalid";
+  if (!Object.keys(converters).includes(target)) {
+    throw "Target option invalid";
   }
-  const result = convert(inputPlugin, target, input);
+  const input = process.argv[3];
+  const inputConverter = Object.values(converters).find(p => p.shape.test(input));
+  if (!inputConverter) {
+    throw "Input number invalid";
+  }
+  const result = convert(inputConverter, target, input);
   console.log(result);
-} catch(e) {
+} catch (e) {
   console.log("Error: " + e);
   process.exit(1);
 }
@@ -330,24 +354,29 @@ try {
         <a class="navigator" href="#step-8">Next</a>
       </div>
       <pre><code class="language-js">
-const plugins = {
+const converters = {
   "-bin": {prefix: "0b", base: 2, shape: /^0b[01]+$/},
   "-hex": {prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  "-dec": {prefix: "" , base: 10, shape: /^[^0]\d*$/},
+  "-dec": {prefix: "", base: 10, shape: /^[^0]\d*$/},
 };
 
 const convert = (target, input) => {
-  const inputPlugin = Object.values(plugins).find(p => p.shape.test(input));
-  if (!Object.keys(plugins).includes(target) || !inputPlugin) {
-    throw "Input arguments invalid";
+  const targetConverter = converters[target]
+  if (!targetConverter) {
+    throw "Target option invalid";
+  }
+  const inputConverter = Object.values(converters).find(p => p.shape.test(input));
+  if (!inputConverter) {
+    throw "Input number invalid";
   }
   const decimal = parseInt(
-    input.substr(inputPlugin.prefix.length),
-    inputPlugin.base
+    input.substr(inputConverter.prefix.length),
+    inputConverter.base
   );
-  const outputPlugin = plugins[target];
-  return outputPlugin.prefix + decimal.toString(outputPlugin.base);
-}
+  return targetConverter.prefix + decimal.toString(targetConverter.base);
+};
+
+const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
 
 try {
   if (process.argv.length !== 4) {
@@ -356,7 +385,7 @@ try {
   const target = process.argv[2];
   const input = process.argv[3];
   const result = convert(target, input);
-  console.log(result)
+  console.log(result);
 } catch (e) {
   console.log("Error: " + e);
   process.exit(1);
@@ -366,29 +395,30 @@ try {
 
     <div id="step-8">
       <div class="header">
-        <h1>#8. Keep it simple, stupid</h1>
+        <h1>#8. Hello again, Schrödinger variables</h1>
         <a class="navigator" href="#step-7">Previous</a>
         <a class="navigator" href="#step-9">Next</a>
       </div>
       <pre><code class="language-js">
-const plugins = {
+const converters = {
   "-bin": {prefix: "0b", base: 2, shape: /^0b[01]+$/},
   "-hex": {prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  "-dec": {prefix: "" , base: 10, shape: /^[^0]\d*$/},
+  "-dec": {prefix: "", base: 10, shape: /^[^0]\d*$/},
 };
 
 const convert = (target, input) => {
-  const inputPlugin = Object.values(plugins).find(p => p.shape.test(input));
-  const outputPlugin = plugins[target];
-  if (!outputPlugin || !inputPlugin) {
-    throw "Input arguments invalid";
-  }
+  const targetConverter = converters[target]
+    || (() => {throw "Target option invalid"})();
+  const inputConverter = Object.values(converters).find(p => p.shape.test(input))
+    || (() => {throw "Input number invalid"})();
   const decimal = parseInt(
-    input.substr(inputPlugin.prefix.length),
-    inputPlugin.base
+    input.substr(inputConverter.prefix.length),
+    inputConverter.base
   );
-  return outputPlugin.prefix + decimal.toString(outputPlugin.base);
-}
+  return targetConverter.prefix + decimal.toString(targetConverter.base);
+};
+
+const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
 
 try {
   if (process.argv.length !== 4) {
@@ -397,7 +427,7 @@ try {
   const target = process.argv[2];
   const input = process.argv[3];
   const result = convert(target, input);
-  console.log(result)
+  console.log(result);
 } catch (e) {
   console.log("Error: " + e);
   process.exit(1);
@@ -415,21 +445,22 @@ try {
 const numberSystems = [
   {name: "bin", prefix: "0b", base: 2, shape: /^0b[01]+$/},
   {name: "hex", prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  {name: "dec", prefix: "", base: 10, shape: /^[0-9]+$/},
+  {name: "dec", prefix: "", base: 10, shape: /^[^0]\d*$/},
 ];
 
 const convert = (targetName, input) => {
-  const inputNS = numberSystems.find(n => n.shape.test(input));
-  const targetNS = numberSystems.find(n => n.name === targetName);
-  if (!inputNS || !targetNS) {
-    throw "Input arguments invalid";
-  }
+  const targetNS = numberSystems.find(n => n.name === targetName)
+    || (() => {throw "Target option invalid"})();
+  const inputNS = numberSystems.find(n => n.shape.test(input))
+    || (() => {throw "Input number invalid"})();
   const intermediate = parseInt(
     input.substr(inputNS.prefix.length),
     inputNS.base
   );
   return targetNS.prefix + intermediate.toString(targetNS.base);
 };
+
+const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
 
 try {
   if (process.argv.length !== 4) {
@@ -439,7 +470,7 @@ try {
   const input = process.argv[3];
   const result = convert(targetName, input);
   console.log(result);
-} catch(e) {
+} catch (e) {
   console.log("Error: " + e);
   process.exit(1);
 }
@@ -456,20 +487,21 @@ try {
 const numberSystems = [
   {name: "bin", prefix: "0b", base: 2, shape: /^0b[01]+$/},
   {name: "hex", prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  {name: "dec", prefix: "", base: 10, shape: /^[0-9]+$/},
+  {name: "dec", prefix: "", base: 10, shape: /^[^0]\d*$/},
 ];
 
 const normalise = (ns, input) => parseInt(input.substr(ns.prefix.length), ns.base);
 const translate = (ns, intermediate) => ns.prefix + intermediate.toString(ns.base);
 const convert = (targetName, input) => {
-  const inputNS = numberSystems.find(c => c.shape.test(input));
-  const targetNS = numberSystems.find(c => c.name === targetName);
-  if (!inputNS || !targetNS) {
-    throw "Input arguments invalid";
-  }
+  const targetNS = numberSystems.find(n => n.name === targetName)
+    || (() => {throw "Target option invalid"})();
+  const inputNS = numberSystems.find(n => n.shape.test(input))
+    || (() => {throw "Input number invalid"})();
   const intermediate = normalise(inputNS, input);
   return translate(targetNS, intermediate);
 };
+
+const inputShape = /^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/;
 
 try {
   if (process.argv.length !== 4) {
@@ -479,7 +511,7 @@ try {
   const input = process.argv[3];
   const result = convert(targetName, input);
   console.log(result);
-} catch(e) {
+} catch (e) {
   console.log("Error: " + e);
   process.exit(1);
 }
