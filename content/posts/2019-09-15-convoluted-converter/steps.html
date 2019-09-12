@@ -359,13 +359,13 @@ const converters = {
 };
 
 const convert = (target, input) => {
-  const targetConverter = converters[target];
-  if (!targetConverter) {
-    throw "Target option invalid";
-  }
   const inputConverter = Object.values(converters).find(p => p.shape.test(input));
   if (!inputConverter) {
     throw "Input number invalid";
+  }
+  const targetConverter = converters[target];
+  if (!targetConverter) {
+    throw "Target option invalid";
   }
   const decimal = parseInt(
     input.substr(inputConverter.prefix.length),
@@ -403,10 +403,10 @@ const converters = {
 };
 
 const convert = (target, input) => {
-  const targetConverter = converters[target]
-    || (() => {throw "Target option invalid"})();
   const inputConverter = Object.values(converters).find(p => p.shape.test(input))
     || (() => {throw "Input number invalid"})();
+  const targetConverter = converters[target]
+    || (() => {throw "Target option invalid"})();
   const decimal = parseInt(
     input.substr(inputConverter.prefix.length),
     inputConverter.base
@@ -443,10 +443,10 @@ const numberSystems = [
 ];
 
 const convert = (targetName, input) => {
-  const targetNS = numberSystems.find(n => n.name === targetName)
-    || (() => {throw "Target option invalid"})();
   const inputNS = numberSystems.find(n => n.shape.test(input))
     || (() => {throw "Input number invalid"})();
+  const targetNS = numberSystems.find(n => n.name === targetName)
+    || (() => {throw "Target option invalid"})();
   const intermediate = parseInt(
     input.substr(inputNS.prefix.length),
     inputNS.base
@@ -485,10 +485,10 @@ const numberSystems = [
 const normalise = (ns, input) => parseInt(input.substr(ns.prefix.length), ns.base);
 const translate = (ns, intermediate) => ns.prefix + intermediate.toString(ns.base);
 const convert = (targetName, input) => {
-  const targetNS = numberSystems.find(n => n.name === targetName)
-    || (() => {throw "Target option invalid"})();
   const inputNS = numberSystems.find(n => n.shape.test(input))
     || (() => {throw "Input number invalid"})();
+  const targetNS = numberSystems.find(n => n.name === targetName)
+    || (() => {throw "Target option invalid"})();
   const intermediate = normalise(inputNS, input);
   return translate(targetNS, intermediate);
 };
