@@ -277,7 +277,7 @@ The previous step already suggested that this approach can work, so let’s try 
 const converters = {
   "-bin": {prefix: "0b", base: 2, shape: /^0b[01]+$/},
   "-hex": {prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  "-dec": {prefix: "", base: 10, shape: /^0|[1-9]\d*$/},
+  "-dec": {prefix: "", base: 10, shape: /(^0|[1-9]\d*)$/},
 };
 
 const convert = (inputConverter, target, input) => {
@@ -320,7 +320,7 @@ Not to mention that passing both `inputConverter` and `input` to the convert fun
 const converters = {
   "-bin": {prefix: "0b", base: 2, shape: /^0b[01]+$/},
   "-hex": {prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  "-dec": {prefix: "", base: 10, shape: /^0|[1-9]\d*$/},
+  "-dec": {prefix: "", base: 10, shape: /(^0|[1-9]\d*)$/},
 };
 
 const convert = (target, input) => {
@@ -403,7 +403,7 @@ What does that mean in regards to our three findings from above?
 const numberSystems = [
   {name: "bin", prefix: "0b", base: 2, shape: /^0b[01]+$/},
   {name: "hex", prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  {name: "dec", prefix: "", base: 10, shape: /^0|[1-9]\d*$/},
+  {name: "dec", prefix: "", base: 10, shape: /(^0|[1-9]\d*)$/},
 ];
 
 const convert = (targetName, input) => {
@@ -452,7 +452,7 @@ Let’s see it all together:
 const numberSystems = [
   {name: "bin", prefix: "0b", base: 2, shape: /^0b[01]+$/},
   {name: "hex", prefix: "0x", base: 16, shape: /^0x[0-9a-fA-F]+$/},
-  {name: "dec", prefix: "", base: 10, shape: /^0|[1-9]\d*$/},
+  {name: "dec", prefix: "", base: 10, shape: /(^0|[1-9]\d*)$/},
 ];
 
 const normalise = (ns, input) => parseInt(input.substr(ns.prefix.length), ns.base);
