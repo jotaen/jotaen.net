@@ -1,9 +1,8 @@
 +++
 draft = true
-expiryDate = "2017-01-01"
 title = "“The convoluted converter”"
 subtitle = "A refactoring in 10 steps, guided by principles"
-date = "2019-09-11"
+date = "2019-09-15"
 tags = ["coding"]
 image = "/drafts/2018-10-21-testing/puzzle.jpg"
 image_info = ""
