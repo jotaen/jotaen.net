@@ -1,7 +1,7 @@
 +++
 draft = true
 title = "“The convoluted converter”"
-subtitle = "A refactoring in 10 steps, guided by principles"
+subtitle = "A refactoring in 10 steps, guided by coding principles"
 date = "2019-09-15"
 tags = ["coding"]
 image = "/drafts/2018-10-21-testing/puzzle.jpg"
@@ -13,15 +13,28 @@ aliases = ["0K2pE"]
 
 押忍 – welcome to my coding dojo! In this blog post we will go through a refactoring code-kata together, in which we take a piece of nasty “legacy” code and turn it into something nice. I will gradually walk you through this process in 10 steps, where every step is guided by a coding principle that we apply in order to transform the implementation as we go along.
 
-The subject matter is a CLI application called `convr.js`. It is written in JavaScript (NodeJS) and helps you to convert numbers from one base to the other. This is how you would use it:
+The subject matter is a CLI application called `convr.js`. It is written in JavaScript (NodeJS) and helps you to convert numbers from one base to another. Here is how you could use it:
 
-- `node convr.js -hex 32335` will convert the decimal number `32335` into a hexadecimal number, which would return `0x7e4f` (where `0x` is the prefix indicating that `7e4f` is a hexadecimal value).
-- `node convr.js -bin 0x8c` will convert the hexadecimal number `0x8c` into a binary number, which would return `0b10001100` (where `0b` is the prefix indicating that `10001100` is a binary value).
-- `node convr.js -dec 0b1100` will convert the binary number `0b1100` into a decimal number, which would return `12`. As opposed to the other number formats, decimal numbers are not prefixed with anything. (I.e. they don’t start with `0`.)
+```shell
+$ node convr.js -hex 32335
+> 0x7e4f
 
-The first argument is always the target format (one of `-dec`, `-bin`, `-hex`) and the second argument is the input value (whose format is detected automatically by means of the prefix). The app also gracefully handles error cases, e.g. invalid target options, invalid number formats or a wrong argument count.
+$ node convr.js -bin 0x8c
+> 0b10001100
+
+$ node convr.js -dec 0b1100
+> 12
+```
+
+- The first call converts the decimal number `32335` into a hexadecimal number, which returns `0x7e4f`. The prefix `0x` says that `7e4f` is hexadecimal.
+- The second call converts the hexadecimal number `0x8c` into a binary number, which returns `0b10001100`. The prefix `0b` says that `10001100` is binary.
+- The third call converts the binary number `0b1100` into a decimal number, which returns `12`. As opposed to the other number formats, decimal numbers are not prefixed with anything. (I.e. they don’t start with `0`.)
+
+The app takes to arguments: the first one specifies the target format (one of `-dec`, `-bin`, `-hex`) and the second one represents the input value (whose format is detected automatically by means of the prefix). The app also gracefully handles error cases, e.g. invalid target options, invalid number formats or a wrong argument count.
 
 Our task is to take the current implementation of this app and perform a non-functional refactoring with the goal to improve code quality without changing behaviour or functionality. If you want to fiddle around with the app yourself, you find the sources [on Github](https://github.com/jotaen/coding-dojo/tree/master/convoluted-converter) along with some instructions how to run it. I also provided a [code browser](/posts/2019-09-15-convoluted-converter/steps/#original) that every refactoring step is linked to, which lets you conveniently skip back and fourth between the coding stages to get the full picture.
+
+# The app
 
 Buckle up, here comes our enemy:
 
@@ -59,7 +72,7 @@ The algorithm in prose:
 
 1. Check the process arguments: 2 of them are always given by NodeJS and we expect 2 from the user, which makes for a total of 4.
 2. Check the first argument (`target`), to see whether it’s one of the three valid options.
-3. Check the second argument (`input`) against a regular expression, to see whether it’s one of the three recognised formats. (They are divided by `|` characters, where `0b[01]+` is binary, `0x[0-9a-fA-F]+` is hexadecimal, `[^0]\d*` is decimal.)
+3. Check the second argument (`input`) against a regular expression, to see whether it’s one of the three recognised formats. (They are divided by `|` characters, where `0b[01]+` is binary, `0x[0-9a-fA-F]+` is hexadecimal, `0|[1-9]\d*` is decimal.)
 4. Extract the prefix and compute the decimal representation of the input number.
 5. Translate the decimal representation into the desired target form and print it.
 6. In all other cases, print appropriate error messages and exit the program with status code `1`.
@@ -68,9 +81,9 @@ The algorithm in prose:
 
 ## #0. Make it work, make it right, make it fast
 
-We are tasked with the refactoring of the innards of an existing application, without changing any of its behaviour. Hence, we should better say: “Keep it working, keep it right, keep it fast”. In brief: we must make sure to not accidentally introduce a performance- or feature-regression.
+We are tasked with the refactoring of the innards of an existing application, without changing any of its behaviour. Hence, we should better say: “Keep it working, keep it right, keep it fast”. In brief: we must make sure to not accidentally introduce a performance- or feature-regression. This principle is numbered with “0” because it is the premise of our whole endeavour. There is no point in pondering about code style when we can’t be sure that it’s functioning correctly.
 
-The precondition for conducting a safe refactoring is sufficient test coverage. In our case it suggest itself to setup a collection of of end-to-end tests, that examine the CLI application as a whole. The performance can be measured by spot-checking various larger input values before and after. (A comprehensive benchmark is probably overkill for our purpose.)
+The precondition for conducting a safe refactoring is sufficient test coverage. In our case it suggest itself to setup a collection of of end-to-end tests, that examine the CLI application as a whole. The performance can be measured by spot-checking various larger input values before and after. (A comprehensive benchmark is probably overkill here.)
 
 For your convenience, I provided a [suite of tests](https://github.com/jotaen/coding-dojo/blob/master/convoluted-converter/test.js) with the most important use cases. It is deliberately setup in a property-based manner, which makes it easy to turn the suite into unit tests later on. While proceeding in the refactoring, we can run the test suite after every step, thus making sure that we only move tiny and safe increments as we “go further out on the limb”. (All stages that you see in the [code browser](/posts/2019-09-15-convoluted-converter/steps/#original) are satisfying those tests, by the way.)
 
