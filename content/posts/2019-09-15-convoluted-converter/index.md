@@ -11,9 +11,17 @@ url = "0K2pE/clean-code-refactoring-kata"
 aliases = ["0K2pE"]
 +++
 
-- Intro
-- Refactoring goals
-- Description of program (and sample usage)
+押忍 – welcome to my coding dojo! In this blog post we will go through a refactoring code-kata together, in which we take a piece of nasty “legacy” code and turn it into something nice. I will gradually walk you through this process in 10 steps, where every step is guided by a coding principle that we apply in order to transform the implementation as we go along.
+
+The subject matter is a CLI application called `convr.js`. It is written in JavaScript (NodeJS) and helps you to convert numbers from one base to the other. This is how you would use it:
+
+- `node convr.js -hex 32335` will convert the decimal number `32335` into a hexadecimal number, which would return `0x7e4f` (where `0x` is the prefix indicating that `7e4f` is a hexadecimal value).
+- `node convr.js -bin 0x8c` will convert the hexadecimal number `0x8c` into a binary number, which would return `0b10001100` (where `0b` is the prefix indicating that `10001100` is a binary value).
+- `node convr.js -dec 0b1100` will convert the binary number `0b1100` into a decimal number, which would return `12`. As opposed to the other number formats, decimal numbers are not prefixed with anything. (I.e. they don’t start with `0`.)
+
+The first argument is always the target format (one of `-dec`, `-bin`, `-hex`) and the second argument is the input value (whose format is determined automatically by the prefix). The app also gracefully handles error cases, e.g. invalid target options, invalid number formats or a wrong number of arguments.
+
+Our task is to take the current implementation of this app and perform a non-functional refactoring with the goal to improve code quality without changing behaviour or functionality. If you want to fiddle around with the app yourself, you find the sources [on Github](https://github.com/jotaen/coding-dojo/tree/master/convoluted-converter) along with some instructions how to run it. Buckle up, here comes the enemy:
 
 ```js
 try {
@@ -44,6 +52,15 @@ try {
   process.exit(1);
 }
 ```
+
+The algorithm in prose:
+
+1. Check the input arguments: 2 are always given by NodeJS and we expect 2 from the user, which makes a total of 4.
+2. Check the first argument, whether it’s one of the valid options.
+3. Check the second argument, whether it’s a valid input number (`0b[01]+` for binary, `0x[0-9a-fA-F]+` for hexadecimal, or `[^0]\d*` for decimal).
+4. Guess a prefix and compute the decimal representation of the input number.
+5. Translate and print the decimal representation into the desired target form.
+6. In all other cases, print appropriate error messages and exit the program with status code `1`.
 
 # The refactoring
 
@@ -353,19 +370,19 @@ Editor’s note: JavaScript doesn’t allow a naked `throw` statement in this co
 
 The overall structure of our code is pretty nice now and the business part has been fully separated from the application part. However, the latter (the “conversion block”) is characterised by a unexpressive, rather technical language:
 
-- The name “converter” is not quite right, because it doesn’t actually do something. Also, it only tells you what it *technically is*, but not what it *is about*.
-- The name “decimal” is redundant, as in `parseInt` returns a decimal number *by definition*. Naming the variable that way doesn’t reveal anything new about *the reason* why we do this.
+- The name “converter” is not quite right, because a converter doesn’t actually do anything. Also, it only tells you what it *technically is*, but not what it *is about*. (Calling it “plugin” would be even worse.)
+- The name “decimal” is redundant, as in `parseInt` returns a decimal number *by definition*. Also, this name doesn’t reveal anything new about *the reason* why we use it.
 - The keys in the `converters` dictionary should not know how CLI options are formatted. The design of the domain should rather be agnostic about the nature of any outer context.
 
-All those aspects indicate that we haven’t created a meaningful domain model yet that would reflect the language of “the business”. A good exercise to get clarity on that business language is to imagine how we would explain the core algorithm to a non-technical person. That narrative could sound like this:
+All those aspects indicate that we haven’t created a meaningful domain model yet that would reflect the language of the business. A good exercise to get clarity on that business language is to imagine how we would explain the core algorithm to a non-technical person. That narrative could sound like this:
 
 > Here is how we convert a number: first we figure out what number systems we need to convert between. We normalise the input number to an intermediate form. Then, we translate the intermediate value to the desired target number system.
 
 What does that mean in regards to our three findings from above?
 
-- What we called “converter” (or “converter plugin”) is actually a “number system”.
-- What we called “decimal” is actually an “intermediate” form. (The fact that it is decimal is an unimportant detail.)
-- Instead of dealing with CLI options in the domain, we give them “names” that they can identified by. For consistency, we also rename the parameter from `target` to `targetName`. (Matching CLI args with the names is not responsibility of the domain, by the way!)
+- What we called “converter” (or “converter plugin”) is actually a “number system”. That also reflects better that it is only a passive container that holds information.
+- What we called “decimal” is actually an “intermediate” form. The fact that it is decimal is an unimportant detail.
+- Instead of dealing with CLI options in the domain, we give them “names” that they can be identified by. For consistency, we also rename the parameter from `target` to `targetName`. (Matching up CLI args with the names is not responsibility of the domain, by the way.)
 
 ```js
 const numberSystems = [
@@ -395,9 +412,9 @@ const targetName = process.argv[2].substr(1);
 
 ## #10. Single level of abstraction[^10]
 
-There is still something off with `convert`: On the one hand, we implemented nice high-level domain terms like “number system” or “intermediate” form. On the other hand, we do low-leveled operations like converting types (`parseInt`, `toString`) and tinkering around with strings (`substr`, `+`). That doesn’t play nicely together.
+There is still something off with `convert`: On the one hand, we established expressive high-level domain terms like “number system” or “intermediate” form. On the other hand, we do low-leveled operations like converting types (`parseInt`, `toString`) and tinkering around with strings (`substr`, `+`). That doesn’t play nicely together.
 
-You might have noticed earlier that we had missed to implement something in the last step. The narrative used the terms “normalise” and “translate” do discern both operations, but we don’t see this reflected in the code language. It turns out that there is the opportunity to fill two needs with one deed by extracting two functions with those names, which also happen to encapsulate our low-level computations at the same time. As a result, the abstraction level in `convert` becomes much more consistent.
+You might have noticed earlier that we had missed to implement something in the last step. The narrative used the terms “normalise” and “translate” do discern both operations, but we don’t see this reflected in the code language. It turns out that there is the opportunity to fill two needs with one deed by extracting two functions with those names, which also happen to encapsulate our low-level computations at the same time. As a result, the exposed abstraction level in `convert` becomes much more consistent.
 
 ```js
 const normalise = (ns, input) => parseInt(input.substr(ns.prefix.length), ns.base);
@@ -448,11 +465,7 @@ try {
 }
 ```
 
-This blog post dealt almost exlusively with non-functional aspects of code, so allow me to close with some philosophical remarks on this topic.
-
-Code quality is no law of nature, thus it’s hard to make absolute statements about it. Trying to define how “good code” looks does rarely lead anywhere productive. It’s more practical to think about code quality as a process instead. The value of principles is that they can guide us through this process, help us to make decisions and make it easier to reason about our intentions.
-
-Regarding this refactoring, we are in the lucky position that we can compare the refactored version to the original one. That way, we don’t need to ponder about the question whether the refactoring result is good in itself, we can just assess its qualities in relation to what we had before. Based on that, we can make some clear statements:
+In order to assess the success of this refactoring, we can compare the refactored version to the original one. Here are five reasons why the new version is better:
 
 - It is easier to navigate: the main concerns are separated by means of a layered architecture.
 - It is easier to understand: we established consistent abstractions and meaningful naming.
@@ -460,17 +473,19 @@ Regarding this refactoring, we are in the lucky position that we can compare the
 - It is easier to extend: the variants of the 
 - And, for the sake of completeness, it works just as before: we haven’t introduced a feature or performance regression. (This is proven through our tests and a benchmark.)
 
+This blog post dealt almost exlusively with non-functional aspects of code, so allow me to close with some philosophical remarks on this topic. Code quality is no law of nature, thus it’s hard to make absolute statements about it. It’s more feasible to think about code quality as a living process instead: the question is not “what is good?” but “how can we improve it?”. Common principles can guide us through this process, help us to make decisions and make it easier to reason about our intentions. Personal preferences are also important, but they become arbitrary without a solid foundation underneath.
+
 # It’s your turn!
 
-If you had fun to follow me along this exercise, I’d like to encourage you to continue coding. Here are some follow up ideas that could help to make our program more powerful and user-friendly:
+If you had fun to follow me throughout this exercise, I’d like to encourage you to continue coding. Here are some follow up ideas that could help to make our program more powerful and user-friendly:
 
 1. Add support for octal conversion, i.e. numbers prefixed with `0`, e.g. `04615`. The corresponding target option would be `-oct`.
 2. Introduce aliasing for options: e.g. `-h`, `-x` and `-16` for hexadecimal (and equivalent for the other converters)
-3. Complement the programm’s output so that it echos the input parameters for confirmation.
+3. Make the program’s output more user-friendly: you could make it echo the input parameters for confirmation or you could syntax-highlight the output to make it easier to tell the prefix apart from the numerical value.
 4. Introduce aliasing for the prefixes that determine the number format, like the `2r` prefix for binary numbers as it is common in Clojure (e.g. `2r10011101`)
-5. Make the output easier to read, such as by “syntax-highlighting” the numbers in order to make it easier to tell the prefix apart from the value.
+5. Experiment with alternative data structures, such as an `java.lang.Optional`-equivalent (for initialising variables) or monads (instead of throwing exceptions).
 
-You find the code base and instructions how to run it on Github. May the fork be with you!
+You find the code base and instructions how to run it [on Github](https://github.com/jotaen/coding-dojo/tree/master/convoluted-converter). May the fork be with you!
 
 
 [^1]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-1) of this step
