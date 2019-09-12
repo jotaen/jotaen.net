@@ -19,16 +19,18 @@ The subject matter is a CLI application called `convr.js`. It is written in Java
 - `node convr.js -bin 0x8c` will convert the hexadecimal number `0x8c` into a binary number, which would return `0b10001100` (where `0b` is the prefix indicating that `10001100` is a binary value).
 - `node convr.js -dec 0b1100` will convert the binary number `0b1100` into a decimal number, which would return `12`. As opposed to the other number formats, decimal numbers are not prefixed with anything. (I.e. they don’t start with `0`.)
 
-The first argument is always the target format (one of `-dec`, `-bin`, `-hex`) and the second argument is the input value (whose format is determined automatically by the prefix). The app also gracefully handles error cases, e.g. invalid target options, invalid number formats or a wrong number of arguments.
+The first argument is always the target format (one of `-dec`, `-bin`, `-hex`) and the second argument is the input value (whose format is detected automatically by means of the prefix). The app also gracefully handles error cases, e.g. invalid target options, invalid number formats or a wrong argument count.
 
-Our task is to take the current implementation of this app and perform a non-functional refactoring with the goal to improve code quality without changing behaviour or functionality. If you want to fiddle around with the app yourself, you find the sources [on Github](https://github.com/jotaen/coding-dojo/tree/master/convoluted-converter) along with some instructions how to run it. Buckle up, here comes the enemy:
+Our task is to take the current implementation of this app and perform a non-functional refactoring with the goal to improve code quality without changing behaviour or functionality. If you want to fiddle around with the app yourself, you find the sources [on Github](https://github.com/jotaen/coding-dojo/tree/master/convoluted-converter) along with some instructions how to run it. I also provided a [code browser](/posts/2019-09-15-convoluted-converter/steps/#original) that every refactoring step is linked to, which lets you conveniently skip back and fourth between the coding stages to get the full picture.
+
+Buckle up, here comes our enemy:
 
 ```js
 try {
   if (process.argv.length === 4) {
     const target = process.argv[2];
     const input = process.argv[3];
-    if (["-bin", "-hex", "-dec"].includes(target)) {
+    if (target === "-bin" || target === "-hex" || target === "-dec") {
       if (/^(0b[01]+|0x[0-9a-fA-F]+|[^0]\d*)$/.test(input)) {
         let decimal;
         const prefix = input.substr(0, 2);
@@ -55,28 +57,28 @@ try {
 
 The algorithm in prose:
 
-1. Check the input arguments: 2 are always given by NodeJS and we expect 2 from the user, which makes a total of 4.
-2. Check the first argument, whether it’s one of the valid options.
-3. Check the second argument, whether it’s a valid input number (`0b[01]+` for binary, `0x[0-9a-fA-F]+` for hexadecimal, or `[^0]\d*` for decimal).
-4. Guess a prefix and compute the decimal representation of the input number.
-5. Translate and print the decimal representation into the desired target form.
+1. Check the process arguments: 2 of them are always given by NodeJS and we expect 2 from the user, which makes for a total of 4.
+2. Check the first argument (`target`), to see whether it’s one of the three valid options.
+3. Check the second argument (`input`) against a regular expression, to see whether it’s one of the three recognised formats. (They are divided by `|` characters, where `0b[01]+` is binary, `0x[0-9a-fA-F]+` is hexadecimal, `[^0]\d*` is decimal.)
+4. Extract the prefix and compute the decimal representation of the input number.
+5. Translate the decimal representation into the desired target form and print it.
 6. In all other cases, print appropriate error messages and exit the program with status code `1`.
 
 # The refactoring
 
-## #0. Make it work, make it right, make it fast[^0]
+## #0. Make it work, make it right, make it fast
 
 We are tasked with the refactoring of the innards of an existing application, without changing any of its behaviour. Hence, we should better say: “Keep it working, keep it right, keep it fast”. In brief: we must make sure to not accidentally introduce a performance- or feature-regression.
 
 The precondition for conducting a safe refactoring is sufficient test coverage. In our case it suggest itself to setup a collection of of end-to-end tests, that examine the CLI application as a whole. The performance can be measured by spot-checking various larger input values before and after. (A comprehensive benchmark is probably overkill for our purpose.)
 
-For your convenience, I provided a test suite with the most important use cases. It is deliberately setup in a property-based manner, which makes it easy to turn the suite into unit tests later on. While proceeding in the refactoring, we can run the test suite after every step, thus making sure that we only move tiny and safe increments as we “go further out on the limb”.
+For your convenience, I provided a [suite of tests](https://github.com/jotaen/coding-dojo/blob/master/convoluted-converter/test.js) with the most important use cases. It is deliberately setup in a property-based manner, which makes it easy to turn the suite into unit tests later on. While proceeding in the refactoring, we can run the test suite after every step, thus making sure that we only move tiny and safe increments as we “go further out on the limb”. (All stages that you see in the [code browser](/posts/2019-09-15-convoluted-converter/steps/#original) are satisfying those tests, by the way.)
 
 ## #1. Divide and conquer[^1]
 
 There are a multitude of things that spring to mind when reading the original program code. But we cannot do all at once. The first step is to break down the code-monolith in manageable pieces that we can approach independently.
 
-The initial goal is to bring the basic structure to light. That is: pulling up the innermost part into a separate function and extracting some constants. This is mostly simple copy-and-paste, without touching the statements on the functional level. The result are mainly two code sections, the “conversion block” (`convert`) and a “main block” (the `try`/`catch`). Apart from that, there are two constants (`options`, `inputShape`) floating in between and it is not clear yet where they really belong.
+The initial goal is to bring the basic structure to light. That is: pulling up the innermost part into a separate function and extracting some constants. This is simple copy-and-paste for the most part, without touching the statements on the functional level. The result are mainly two code sections, the “conversion block” (`convert`) and a “main block” (the `try`/`catch`). Apart from that, there are two constants (`options`, `inputShape`) floating in between and it is not clear yet where they really belong.
 
 ```js
 const convert = (target, input) => {
@@ -488,13 +490,13 @@ If you had fun to follow me throughout this exercise, I’d like to encourage yo
 You find the code base and instructions how to run it [on Github](https://github.com/jotaen/coding-dojo/tree/master/convoluted-converter). May the fork be with you!
 
 
-[^1]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-1) of this step
-[^2]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-2) of this step
-[^3]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-3) of this step
-[^4]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-4) of this step
-[^5]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-5) of this step
-[^6]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-6) of this step
-[^7]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-7) of this step
-[^8]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-8) of this step
-[^9]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-9) of this step
-[^10]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-0) of this step
+[^1]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-1) of this step in the code browser
+[^2]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-2) of this step in the code browser
+[^3]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-3) of this step in the code browser
+[^4]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-4) of this step in the code browser
+[^5]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-5) of this step in the code browser
+[^6]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-6) of this step in the code browser
+[^7]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-7) of this step in the code browser
+[^8]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-8) of this step in the code browser
+[^9]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-9) of this step in the code browser
+[^10]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-0) of this step in the code browser
