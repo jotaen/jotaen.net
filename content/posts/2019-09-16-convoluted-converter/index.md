@@ -1,5 +1,4 @@
 +++
-draft = true
 title = "“The convoluted converter”"
 subtitle = "A refactoring in 10 steps, guided by coding principles"
 date = "2019-09-16"
