@@ -11,7 +11,7 @@ url = "0K2pE/clean-code-refactoring-kata"
 aliases = ["0K2pE"]
 +++
 
-押忍 – welcome to my coding dojo! I hope you are well warmed up. Today we will go through a refactoring code-kata together, in which we take a piece of nasty “legacy” code and turn it into something nice. We gradually walk through the refactoring process in 10 steps, where every step is guided by a coding principle that we apply in order to transform the implementation as we go along.
+押忍 – welcome to my coding dojo, fellow software ninja! I hope you are well warmed up. Today we will go through a refactoring code-kata together, in which we take a piece of nasty “legacy” code and turn it into something nice. We gradually walk through the refactoring process in 10 steps, where every step is guided by a coding principle that we apply in order to transform the implementation as we go along.
 
 Before we dive into code though, here is some context: The subject matter is a CLI application that goes by the catchy name `convr.js`. (As you can guess it is written in JavaScript and runs on NodeJS, but there is no in-depth knowledge required.) The purpose of the CLI tool is to convert different number formats from one base to another. Here is how you can use it:
 
@@ -28,7 +28,7 @@ $ node convr.js -dec 0b1100
 
 As you can see, the app takes two arguments: the first one specifies the desired target format and the second one represents the input value. The target format must be one of `-dec`, `-bin`, `-hex` and the format of the input value is detected automatically by means of the prefix. `0x` means hexadecimal, `0b` means binary and no prefix means decimal. The returned output adheres to this notation likewise. Furthermore, the app gracefully handles error cases, e.g. unknown target options, invalid input number formats or a wrong argument count.
 
-Our task is to take the current implementation of this app and perform a non-functional refactoring. The goal is to improve code quality without changing behaviour or functionality. If you want to fiddle around with the app yourself, you find the sources [on Github](https://github.com/jotaen/coding-dojo/tree/master/convoluted-converter) along with some instructions how to run it. I also provided a [code browser](/posts/2019-09-15-convoluted-converter/steps/#original) that every refactoring step is linked to, which lets you conveniently skip back and fourth between the coding stages to get the full picture.
+Our task is to take the current implementation of this app and perform a non-functional refactoring, i.e. improving code quality without changing behaviour or functionality. If you want to fiddle around with the app yourself, you find the sources [on Github](https://github.com/jotaen/coding-dojo/tree/master/convoluted-converter) along with some instructions how to run it. I also provided a [code browser](/posts/2019-09-16-convoluted-converter/steps/#original) that every refactoring step is linked to, which lets you conveniently skip back and fourth between the subsequent stages to get the full picture.
 
 # The app
 
@@ -66,9 +66,9 @@ try {
 
 The algorithm in prose:
 
-1. Check the process arguments: 2 of them are always given by NodeJS and we expect 2 from the user, which makes for a total of 4.
-2. Check the first argument (`target`), to see whether it’s one of the three valid options.
-3. Check the second argument (`input`) against a regular expression, to see whether it’s one of the three recognised formats. (They are divided by `|` characters, where `0b[01]+` is binary, `0x[0-9a-fA-F]+` is hexadecimal, `0|[1-9]\d*` is decimal.)
+1. Check the process arguments (`process.argv`): the first 2 arguments are given by NodeJS per default and then we expect 2 args from the user, which makes for a total of 4.
+2. Check the first argument (`target`), to see whether it’s one of the three known options.
+3. Check the second argument (`input`) against a regular expression, to see whether it’s one of the three recognised formats. The three cases are divided by `|` characters in the regex, where `0b[01]+` matches binary, `0x[0-9a-fA-F]+` matches hexadecimal and `0|[1-9]\d*` matches decimal.
 4. Extract the prefix and compute the decimal representation of the input number.
 5. Translate the decimal representation into the desired target form and print it.
 6. In all other cases, print appropriate error messages and exit the program with status code `1`.
@@ -77,17 +77,17 @@ The algorithm in prose:
 
 ## #0. Make it work, make it right, make it fast
 
-We are tasked with the refactoring of the innards of an existing application, without changing any of its behaviour. Hence, we should better say: “Keep it working, keep it right, keep it fast”. Or in other words: we must make sure to not accidentally introduce a performance- or feature-regression. This principle is numbered with “0” because it is a premise of our whole endeavour. There is no point in pondering about the style of code when we can’t be sure it’s functioning correctly.
+This principle is numbered with “0” because it is the premise of our whole endeavour. Actually we should better say: “Keep it working, keep it right, keep it fast”. Point being is that we must make sure to not accidentally introduce a performance- or feature-regression. After all, there is no point in pondering about the style of code when we can’t be sure it’s functioning correctly.
 
-For conducting a safe and stress-free refactoring we need sufficient test coverage. In our case it suggests itself to setup a collection of of end-to-end tests, that examine the CLI application as a whole. The performance can be measured by spot-checking various larger input values before and after. (A comprehensive benchmark is probably overkill here.)
+For conducting a safe and stress-free refactoring we need sufficient test coverage. In our case it suggests itself to setup a collection of of end-to-end tests, that examine the CLI application as a whole. That way we are completely independent of implementation details. The performance can be measured by spot-checking various larger input values before and after. (A comprehensive benchmark is probably overkill here.)
 
-For your convenience, I provided a [suite of end-to-end tests](https://github.com/jotaen/coding-dojo/blob/master/convoluted-converter/test.js) with the most important use cases. It is deliberately setup in a property-based manner, which makes it easy to turn the suite into unit tests later on. During the refactoring, we can run the test suite after every step, thus making sure that we only move tiny and safe increments as we “go further out on the limb”. (All stages that you see in the [code browser](/posts/2019-09-15-convoluted-converter/steps/#original) are satisfying the tests, by the way.)
+For your convenience, I provided a [suite of end-to-end tests](https://github.com/jotaen/coding-dojo/blob/master/convoluted-converter/test.js) with the most important use cases. It is deliberately setup in a property-based manner, which makes it easy to turn the suite into unit tests later on. During the refactoring, we can run the test suite after every step, thus making sure that we only move tiny and safe increments as we “go further out on the limb”. (All stages that you see in the [code browser](/posts/2019-09-16-convoluted-converter/steps/#original) are satisfying the tests.)
 
 ## #1. Divide and conquer[^1]
 
 There are a multitude of things that spring to mind when reading the original program code. But we cannot do all at once. The first step is to break down the code-monolith into manageable pieces that we can approach independently.
 
-The initial goal is to bring the basic structure to light. That is: pulling up the innermost part into a separate function and extracting some constants. This is simple copy-and-paste for the most part, without touching the statements on a functional level. That results in mainly two code sections, the upper “conversion block” (`convert`) and the lower “main block” (the `try`/`catch`). Apart from that, there are two constants (`options`, `inputShape`) that seem associated with the “main block”.
+The initial goal is to bring the basic structure to light. That is: pulling out the innermost part into a separate function and extracting some constants. This is simple copy-and-paste for the most part, without touching the statements on a functional level. That results in mainly two code sections, the upper “conversion block” (`convert`) and the lower “main block” (the `try`/`catch`). Apart from that, there are two constants (`options`, `inputShape`) that seem to be associated with the “main block”.
 
 ```js
 const convert = (target, input) => {
@@ -171,9 +171,9 @@ const convert = (target, input) => {
 
 There is an issue with how the variables are initialised. `decimal` is declared empty and given a value only at some later point. `prefix` is initialised with a value, but in case `input` is a decimal number this value is completely arbitrary and doesn’t mean anything. Both these things are not good practice, even if they don’t cause actual problems in this very case.
 
-The situation is similar to Schrödinger’s cat: you need to open the box to see whether the cat is dead or alive. For us, the possibilities are worse though, because we can’t even be sure that we will find a cat at all. Maybe the box is empty. Or it contains a dog instead. Or a cad. Anyway. Imagine variables to be labelled boxes that contain something. If a variable is called “cat” then it should invariably reference a cat and nothing else. If a variable is called “cat” and references either a cat or nothing, then you are facing a “Schrödinger variable”.
+The situation is similar to Schrödinger’s cat: you need to open the box to see whether the cat is dead or alive. The possibilities could even be worse, because we can’t be sure that we will find a cat at all. Maybe the box is empty. Or it contains a dog instead. Or a cad. Anyway. Transferred to variables, you can imagine them to be labelled boxes that contain something. If a variable is called “cat” then it should invariably reference a cat and nothing else. If a variable is called “cat” and references either a cat or nothing, then you are facing a “Schrödinger variable”.
 
-It is pivotal to be uncompromisingly pedantic about variable management, especially in a dynamically typed language like JavaScript. Being sloppy can produce a remarkable amount of complexity and results in implicit interdependences that are terrible to work with. That often leads to brittle code and a defensive programming style. A variable declaration should always coincide with its value definition and hold a meaningful value from the very beginning over its entire lifecycle.
+It is pivotal to be uncompromisingly pedantic about variable management, especially in a dynamically typed language like JavaScript. This is not just a matter of naming, but also of initialisation and resource lifecycle. Being sloppy can produce a remarkable amount of complexity and results in implicit interdependences that are terrible to work with. That often leads to brittle code and a defensive programming style. A variable declaration should always coincide with its value definition and hold a meaningful value from the very beginning over its entire lifecycle.
 
 In our code, this can be achieved by pulling out a function, so that the assignment of `decimal` becomes an atomic operation. By using `switch` instead of `if`/`else` there is no need for an auxiliary variable anymore.
 
@@ -198,7 +198,7 @@ const convert = (target, input) => {
 
 There are two conditionals in our “conversion block” that each have 3 possible branches. That makes for a total of 9 possible execution paths through the method. (Side note: this number is not fixed, but it will grow linearly as we add conversion options to our program.) The multitude of `return` statements adds to this and is also a common origin of bugs. (Just imagine you accidentally drop one.)
 
-This complexity is inherent in our application, so we cannot make it go away. We can alleviate working with it though, because using `if`, `else` or `switch` allows for more flexibility than we need. On the contrary: our conditionals follow a very uniform schema and can be expressed in a very succinct way instead. We can group the different cases in an object (`targetConverters`) and execute a dynamic lookup based on the first two characters of `input`.
+The complexity is inherent in our application, so we cannot make it go away. We can alleviate working with it though, because using `if`, `else` or `switch` allows for more flexibility than we need. On the contrary: our conditionals follow a very uniform schema and can be expressed in a very succinct way instead. We can group the different cases in an object (`targetConverters`) and execute a dynamic lookup based on the first two characters of `input`.
 
 ```js
 const targetConverters = {
@@ -220,11 +220,11 @@ const convert = (target, input) => {
 };
 ```
 
-This is similar to “pattern matching”, a technique that has been made popular by functional programming languages. It often is a good way to delineate the exact differences and similarities between various branches that can then be leveraged further.
+This is similar to “pattern matching”, a technique that has been made popular by functional programming languages. It often is a good way to delineate the exact differences and similarities between various branches that can then be improved further.
 
 ## #5. Don’t repeat yourself[^5]
 
-`targetConverters` and `inputConverters` contain redundant code. Their procedures are almost the same, apart from the “decimal” conversion that lack one argument in both cases. Upon closer look, however, we see that this missing argument defaults to `10` and can of course be also made explicit. This allows us to extract the redundant procedure calls and to handle their parametrisation programatically. The converter objects can thus be unified and boiled down to plain data. The retrieval of `inputConverters` must be adjusted to the new structure, of course.
+`targetConverters` and `inputConverters` contain redundant code. Their procedures are almost the same, apart from the “decimal” conversion that lacks one argument in both cases. Upon closer look, however, we see that this missing argument defaults to `10` and can be also made explicit. This allows us to extract the redundant procedure calls and to handle their parametrisation programatically. The converter objects can thereby be unified and boiled down to plain data. (The retrieval of `inputConverters` must be adjusted to the new structure, of course.)
 
 ```js
 const converters = {
@@ -266,9 +266,9 @@ There is also an opportunity to reduce repetition in the “main block” now. W
 
 ## #6. Open-closed principle[^6]
 
-The problem of redundancies is not solved yet – it is not immediately obvious anymore though. It becomes clear when you imagine we wanted to add a fourth conversion to the programm. This would still require us to touch 2 different places at the moment: `converters` and the `inputShape` regex for input validation. Furthermore, the prefix length is hard-coded and there is a special case for `"-dec"`. Needing to keep track of all this while extending the program puts a big burden on future maintainers. It’s all too easy to forget about just one of these aspects, so we better make sure to avoid the problem by design.
+The problem of redundancies is not solved yet – it is, however, not immediately obvious anymore. This becomes clear when you imagine we wanted to add a fourth conversion to the programm. This would still require us to touch 2 different places at the moment: `converters` and the `inputShape` regex for input validation. Furthermore, the prefix length is hard-coded and there is a special case for `"-dec"`. Needing to keep track of all this while extending the program puts a big burden on future maintainers. It’s all too easy to forget about just one of those aspects, so we better make sure to avoid the problem by design.
 
-A good way of thinking of our specific conversion mechanisms is to perceive them as “plugins”. Every plugin embodies a specific variant of an otherwise self-reliant and impartial program. The program only depends on the plugin interface and every plugin implementation fully encapsulates its specific idiosyncracy. (In a class-based language we could express that more concisely by using interfaces.)
+A good way of thinking of our specific conversion mechanisms is to perceive them as “plugins”. Every plugin embodies a specific variant of an otherwise self-reliant and impartial program. The program only depends on the plugin interface and every plugin implementation fully encapsulates its specific idiosyncracy. (In a class-based language we could express that more concisely, but the idea is the same.)
 
 The previous step already indicated that this approach basically works, so we can try to push it further now. We chop up the big regular expression (`inputShape`) and allot its parts to the converter plugins. That also requires to adjust the respective algorithm for the validation, which happens to kill two birds with one stone: validation now coincides with finding the right input converter. We can pass it to `convert` and thereby eliminate the hard-coded prefix size as well as the special fallback case for `"-dec"`.
 
@@ -356,11 +356,11 @@ try {
 
 `convert` has gained error handling as additional responsibility. That is fine, since validation is tightly coupled to finding the right converter plugins obviously. We wouldn’t win much by keeping both strictly separate – and we still have the option to break up `convert` into smaller pieces, if we find it too messy.
 
-The “main block” is now left with all and only the dirty stuff: reading in the runtime environment, managing the processing and printing to the CLI. The pure code has been completely migrated to the “conversion block”. Having isolated the side-effects is a big win. (Spoiler: apart from one tiny adjustment, we won’t need to touch the “main block” anymore.)
+The “main block” is now left with all and only the dirty stuff: reading the runtime environment, doing process management and printing to the CLI. The pure code has been completely migrated to the “conversion block”. Having isolated the side-effects is a big win. (Spoiler: apart from one tiny adjustment, we won’t need to touch the “main block” anymore.)
 
 ## #8. Hello again, Schrödinger variables[^8]
 
-Some nasty Schrödinger variables have sneaked in again: `inputConverter` and `targetConverter` may or may not contain what they promise and are thus guarded with a subsequent check to guarantee the integrity of the following code. Falling back to a default value is not possible here (like we did earlier with `... || converters["-dec"]`) – we want abort the operation by throwing an error message. In any event, we need to make sure that the assignment of the variables is either unconditionally successful or strictly prevented altogether.
+Some nasty Schrödinger variables have sneaked in again: `inputConverter` and `targetConverter` may or may not contain what they promise and are thus guarded with a subsequent check to guarantee the integrity of the following code. Falling back to a default value is not possible here (like we did earlier with `... || converters["-dec"]`), we rather want abort the operation by throwing an error message. In any event, we need to make sure that the assignment of our variables is either unconditionally successful or strictly prevented altogether.
 
 ```js
 const convert = (target, input) => {
@@ -376,7 +376,7 @@ const convert = (target, input) => {
 };
 ```
 
-Editor’s note: JavaScript wouldn’t allow a naked `throw` statement here, so we have to wrap it into a function. What you see is a so called “immediately invoked function expression”, that is an inlined lambda function, which is called right away. Unfortunately we don’t have anything similar to `java.lang.Optional` in JavaScript yet, so the techniques shown in this post are somewhat good alternatives to achieve analogous effects. (There are third-party libraries available of course.)
+Editor’s note: JavaScript wouldn’t allow a naked `throw` statement after the `||` operator, so we have to wrap it into a function. What you see here is a so called “immediately invoked function expression”, which is an inlined lambda function that is called right away. Unfortunately we don’t have anything similar to `java.lang.Optional` in JavaScript yet, so the techniques shown in this post are somewhat good alternatives to achieving analogous effects. (There are third-party libraries available of course, but we don’t want to use them in this exercise.)
 
 ## #9. Make the domain model shine[^9]
 
@@ -393,8 +393,8 @@ All those aspects indicate that we haven’t created a meaningful domain model y
 What does that mean in regards to our three findings above?
 
 - What we called “converter” (or “converter plugin”) is actually a “number system”. This also appropriately reflects that it is a passive container, which only holds information.
-- What we called “decimal” is actually an “intermediate” form. The fact that it is decimal is an unimportant detail.
-- Instead of dealing with CLI options in the domain, we give them names that they can be identified by. For consistency, we also rename `target` to `targetName`.
+- What we used to call “decimal” is actually an “intermediate” form. The fact that it is decimal is an unimportant detail and is better off to be left implicit.
+- We don’t want to deal with CLI options in the domain, so we give the number systems names instead that they can be identified by. For consistency, we also rename `target` to `targetName`.
 
 ```js
 const numberSystems = [
@@ -424,9 +424,9 @@ const targetName = process.argv[2].substr(1);
 
 ## #10. Single level of abstraction[^10]
 
-There is still something off with `convert`: On the one hand, we established expressive high-level domain terms like “number system” and “intermediate” form. On the other hand, we perform low-levelled operations like converting types (`parseInt`, `toString`) and tinkering around with strings (`substr`, `+`). That doesn’t play nicely together.
+There is still something off with `convert`: On the one hand, we established expressive high-level domain terms like “number system” and “intermediate” form. On the other hand, we perform low-levelled operations like converting types (`parseInt`, `toString`) and tinkering around with strings (`substr`, `+`). That doesn’t play together nicely.
 
-You might have noticed earlier that our business narrative used the terms “normalise” and “translate” do discern both operations, but we don’t see this reflected in the code language yet. It turns out that there is the opportunity to fill two needs with one deed by extracting two functions with those names, which also happen to encapsulate our low-levelled computations at the same time. As a result, the exposed abstraction level in `convert` becomes much more consistent.
+You might have noticed earlier that our business narrative used the terms “normalise” and “translate” to discern both operations, but we don’t see this reflected in the code language yet. It turns out that there is the opportunity to fill two needs with one deed by extracting two functions with those names, which also happens to encapsulate our low-levelled computations at the same time. As a result, the exposed abstraction level in `convert` becomes much more consistent.
 
 ```js
 const normalise = (ns, input) => parseInt(input.substr(ns.prefix.length), ns.base);
@@ -492,13 +492,13 @@ This blog post almost exlusively dealt with non-functional aspects of code, so a
 If you had fun to follow me throughout this exercise, I’d like to encourage you to continue coding. You find the repository with some bonus tasks [on Github](https://github.com/jotaen/coding-dojo/tree/master/convoluted-converter). May the fork be with you!
 
 
-[^1]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-1) of this step in the code browser
-[^2]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-2) of this step in the code browser
-[^3]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-3) of this step in the code browser
-[^4]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-4) of this step in the code browser
-[^5]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-5) of this step in the code browser
-[^6]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-6) of this step in the code browser
-[^7]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-7) of this step in the code browser
-[^8]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-8) of this step in the code browser
-[^9]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-9) of this step in the code browser
-[^10]: [View full code](/posts/2019-09-15-convoluted-converter/steps/#step-0) of this step in the code browser
+[^1]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-1) of this step in the code browser
+[^2]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-2) of this step in the code browser
+[^3]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-3) of this step in the code browser
+[^4]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-4) of this step in the code browser
+[^5]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-5) of this step in the code browser
+[^6]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-6) of this step in the code browser
+[^7]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-7) of this step in the code browser
+[^8]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-8) of this step in the code browser
+[^9]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-9) of this step in the code browser
+[^10]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-0) of this step in the code browser
