@@ -28,7 +28,7 @@ $ node convr.js -dec 0b1100
 
 As you can see, the app takes two arguments: the first one specifies the desired target format and the second one represents the input value. The target format must be one of `-dec`, `-bin`, `-hex` and the format of the input value is detected automatically by means of the prefix. `0x` means hexadecimal, `0b` means binary and no prefix means decimal. The returned output adheres to this notation likewise. Furthermore, the app gracefully handles error cases, e.g. unknown target options, invalid input number formats or a wrong argument count.
 
-Our task is to take the current implementation of this app and perform a non-functional refactoring, i.e. improving code quality without changing behaviour or functionality. If you want to fiddle around with the app yourself, you find the sources [on Github](https://github.com/jotaen/coding-dojo/tree/master/convoluted-converter) along with some instructions how to run it. I also provided a [code browser](/posts/2019-09-16-convoluted-converter/steps/#original) that every refactoring step is linked to, which lets you conveniently skip back and fourth between the subsequent stages to get the full picture.
+Our task is to take the current implementation of this app and perform a non-functional refactoring, i.e. improving code quality without changing behaviour or functionality. If you want to fiddle around with the app yourself, you find the sources [on Github](https://github.com/jotaen/coding-dojo/tree/master/convoluted-converter/) along with some instructions how to run it. I also provided a [code browser](/posts/2019-09-16-convoluted-converter/steps/#original) that every refactoring step is linked to, which lets you conveniently skip back and fourth between the subsequent stages to get the full picture.
 
 # The app
 
@@ -81,7 +81,7 @@ This principle is numbered with “0” because it is the premise of our whole e
 
 For conducting a safe and stress-free refactoring we need sufficient test coverage. In our case it suggests itself to setup a collection of of end-to-end tests, that examine the CLI application as a whole. That way we are completely independent of implementation details. The performance can be measured by spot-checking various larger input values before and after. (A comprehensive benchmark is probably overkill here.)
 
-For your convenience, I provided a [suite of end-to-end tests](https://github.com/jotaen/coding-dojo/blob/master/convoluted-converter/test.js) with the most important use cases. It is deliberately setup in a property-based manner, which makes it easy to turn the suite into unit tests later on. During the refactoring, we can run the test suite after every step, thus making sure that we only move tiny and safe increments as we “go further out on the limb”. (All stages that you see in the [code browser](/posts/2019-09-16-convoluted-converter/steps/#original) are satisfying the tests.)
+For your convenience, I provided a [suite of end-to-end tests](https://github.com/jotaen/coding-dojo/blob/master/convoluted-converter/_solution/test.js) with the most important use cases. It is deliberately setup in a property-based manner, which makes it easy to turn the suite into unit tests later on. During the refactoring, we can run the test suite after every step, thus making sure that we only move tiny and safe increments as we “go further out on the limb”. (All stages that you see in the [code browser](/posts/2019-09-16-convoluted-converter/steps/#original) are satisfying the tests.)
 
 ## #1. Divide and conquer[^1]
 
@@ -489,7 +489,7 @@ This blog post almost exlusively dealt with non-functional aspects of code, so a
 
 # It’s your turn!
 
-If you had fun to follow me throughout this exercise, I’d like to encourage you to continue coding. You find the repository with some bonus tasks [on Github](https://github.com/jotaen/coding-dojo/tree/master/convoluted-converter). May the fork be with you!
+If you had fun to follow me throughout this exercise, I’d like to encourage you to continue coding. You find the repository with some bonus tasks [on Github](https://github.com/jotaen/coding-dojo/tree/master/convoluted-converter/). May the fork be with you!
 
 
 [^1]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-1) of this step in the code browser
@@ -501,4 +501,4 @@ If you had fun to follow me throughout this exercise, I’d like to encourage yo
 [^7]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-7) of this step in the code browser
 [^8]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-8) of this step in the code browser
 [^9]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-9) of this step in the code browser
-[^10]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-0) of this step in the code browser
+[^10]: [View full code](/posts/2019-09-16-convoluted-converter/steps/#step-10) of this step in the code browser
