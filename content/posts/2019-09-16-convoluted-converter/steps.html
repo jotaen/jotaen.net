@@ -22,11 +22,24 @@
       #step-6:target, #step-7:target, #step-8:target, #step-9:target, #step-10:target {
         display: block;
       }
-      .navigator {
-        color: black;
+      .navigator, .navigator:visited, .navigator:hover, .navigator:active {
+        color: black !important;
+        background-color: transparent;
+        border: 1px solid #999;
+        padding: 3px 5px;
+        text-decoration: none;
+      }
+      .navigator:nth-child(2)::before {
+        content: "< "
+      }
+      .navigator:nth-child(3)::after {
+        content: " >"
       }
       .header {
         padding: 0em 2em;
+      }
+      .disabled, .disabled:hover, .disabled:hover {
+        color: #999 !important;
       }
       code {
         padding-left: 2em !important;
@@ -38,7 +51,7 @@
     <div id="original">
       <div class="header">
         <h1>“The convoluted converter”</h1>
-        <a class="navigator">Previous</a>
+        <span class="navigator disabled">Previous</span>
         <a class="navigator" href="#step-1">Next</a>
       </div>
       <pre><code class="language-js">
@@ -473,7 +486,7 @@ try {
       <div class="header">
         <h1>#10. Single level of abstraction</h1>
         <a class="navigator" href="#step-9">Previous</a>
-        <a class="navigator">Next</a>
+        <span class="navigator disabled">Next</span>
       </div>
       <pre><code class="language-js">
 const numberSystems = [
