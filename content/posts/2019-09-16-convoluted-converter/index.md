@@ -2,9 +2,9 @@
 draft = true
 title = "“The convoluted converter”"
 subtitle = "A refactoring in 10 steps, guided by coding principles"
-date = "2019-09-15"
+date = "2019-09-16"
 tags = ["coding"]
-image = "/drafts/2018-10-21-testing/puzzle.jpg"
+image = "/posts/2019-09-16-convoluted-converter/calculator.jpg"
 image_info = ""
 id = "0K2pE"
 url = "0K2pE/clean-code-refactoring-kata"
