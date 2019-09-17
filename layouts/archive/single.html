@@ -20,7 +20,7 @@
         {{ end }}
       </select>
     </div>
-    {{ range (where .Page.Site.RegularPages.ByPublishDate.Reverse "Type" "posts") }}
+    {{ range (where (where .Page.Site.RegularPages.ByPublishDate.Reverse ".Params.listed" "!=" false) "Type" "posts") }}
       {{ partial "teaser.html" . }}
     {{ end }}
 
