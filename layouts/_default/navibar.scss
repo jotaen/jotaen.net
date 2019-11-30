@@ -10,7 +10,7 @@
     top: 10px;
     width: 100%;
     padding-top: 3px;
-    background-color: rgba($color-lightgrey1, 0.8);
+    background-color: rgba($color-white, 0.8);
 
     &--show {
       top: 10px;
@@ -84,7 +84,7 @@
     float: right;
   }
   @include medium-view {
-    background-color: rgba(250, 250, 250, 0.7);
+    background-color: rgba(255, 255, 255, 0.7);
     margin: -87px 0 52px -35px;
     -webkit-transform: rotate(270deg);
     -moz-transform: rotate(270deg);
