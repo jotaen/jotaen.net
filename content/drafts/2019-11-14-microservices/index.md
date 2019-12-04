@@ -1,15 +1,19 @@
 +++
 draft = true
 title = "What are microservices anyway?"
-subtitle = "And why we should rather think in generic terms"
+subtitle = "Why we are better off to think in generic terms"
 date = "2019-11-14"
 tags = ["thoughts"]
-image = "/posts/2019-11-14-monolith-microservices/"
+image = "/posts/2019-11-14-microservices/"
 image_info = ""
 id = "B77xQ"
-url = "B77xQ/monolith-vs-microservices"
+url = "B77xQ/microservices-monolith-architecture"
 aliases = ["B77xQ"]
 +++
+
+Software architecture – be it microservices, a monolith, or something in between – is never an end in itself.
+
+Good architecture always serves a purpose: it is specific to the problems of the business domain and balances the countless external factors. It enables agile product development and allows a business to sustain.
 
 # Aspects
 
@@ -34,3 +38,4 @@ aliases = ["B77xQ"]
 # The path to going distributed
 
 - 12 factor
+- DevOps
