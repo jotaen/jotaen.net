@@ -58,4 +58,4 @@ While 2019 is almost over, my sabbatical isn’t. First off, there are still thi
 
 Keeping myself focused though, I’m confident to make good progress in reaching my goals throughout the next months. In any event, I look back on 2019 with satisfaction and am curious what the next year will bring. I sincerely hope that it’s going to be the same for you, whatever your plans are going to be.
 
-[^1]: I live in Germany, so “secondary school” is the “Gymnasium”, which qualifies for university after a total of 13 years of schooling.
+[^1]: I live in Germany, so “secondary school” is the “Gymnasium” in my case, which qualifies for university after a total of 13 years of schooling.
