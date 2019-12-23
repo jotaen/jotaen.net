@@ -4,7 +4,6 @@
   @extend .print-hide;
 
   position: fixed;
-  max-width: 2000px; // todo
   top: 0;
   z-index: 99999;
   width: 100%;
@@ -14,19 +13,25 @@
   line-height: 3rem;
   font-size: 1.1rem;
 
-  a { @extend .a-reset; }
+  @include view-beyond-max {
+    max-width: $layout-max-width;
+  }
 
+  a { @extend .a-reset; }
+  a {
+    padding: 0 0.75rem;
+  }
+
+  &-container {
+    @extend .central-column;
+  }
   &-logo {
     position: absolute;
-    height: 35px;
-    top: 6px;
-    left: -8px;
+    height: 2.2rem;
+    top: 0.45rem;
+    left: 0.5rem;
   }
-  &-home {
-    margin-left: 40px;
-  }
-  &-pagelink {
-    float: right;
-    margin-left: 1.5rem;
+  &-name {
+    padding-left: 2.3rem;
   }
 }

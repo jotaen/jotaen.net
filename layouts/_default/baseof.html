@@ -18,22 +18,25 @@
 
     {{ block "navigation" . }}
       <header class="header" id="header">
-        <a href="/" class="header-home">
-          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="header-logo">
-            <circle cx="40" cy="20" r="10" fill="none" stroke="#ffffff" stroke-width="7" />
-            <path d="M 30 70
-                     V 50
-                     a 10 10, 0, 0, 1, 20 0
-                     V 60
-                     " fill="none" stroke="#ffffff" stroke-width="7" />
-            <g transform="translate(13.5 50) scale(1.075) translate(0 -5.3) rotate(45)">
-              <rect x="0" y="0" width="7.5" height="7.5" />
-            </g>
-          </svg>
-          <span class="header-name">Jan Heuermann</span>
-        </a>
-        <a href="/archive" class="header-pagelink">Blog</a>
-        <a href="/about" class="header-pagelink">About</a>
+        <div class="header-container" style="display:flex;">
+          <a href="/">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="header-logo">
+              <circle cx="40" cy="20" r="10" fill="none" stroke="#ffffff" stroke-width="7" />
+              <path d="M 30 70
+                       V 50
+                       a 10 10, 0, 0, 1, 20 0
+                       V 60
+                       " fill="none" stroke="#ffffff" stroke-width="7" />
+              <g transform="translate(13.5 50) scale(1.075) translate(0 -5.3) rotate(45)">
+                <rect x="0" y="0" width="7.5" height="7.5" fill="#ffffff" />
+              </g>
+            </svg>
+            <span class="header-name">Jan Heuermann</span>
+          </a>
+          <span style="flex:content"></span>
+          <a href="/archive">Blog</a>
+          <a href="/about">About</a>
+        </div>
       </header>
     {{ end }}
 

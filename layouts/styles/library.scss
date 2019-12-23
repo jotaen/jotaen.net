@@ -31,8 +31,10 @@
  *  MEDIA QUERIES
  */
 
-@mixin view-narrow {
-  @media (max-width: 600px) {
+$layout-max-width: 2000px;
+
+@mixin view-beyond-max {
+  @media (min-width: $layout-max-width) {
     @content;
   }
 }
