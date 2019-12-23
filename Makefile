@@ -20,7 +20,7 @@ static/style.css: node_modules
 	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
-		node:9.3.0-alpine \
+		node:12.14.0-alpine \
 		./node_modules/.bin/node-sass \
 			--output-style \
 			compressed \
@@ -31,6 +31,6 @@ node_modules: package.json package-lock.json
 	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
-		node:9.3.0-alpine \
+		node:12.14.0-alpine \
 		npm install
 	touch -m node_modules
