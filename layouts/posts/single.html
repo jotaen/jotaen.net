@@ -6,131 +6,36 @@
   <meta name="twitter:title" content="{{ .Title }}">
   <meta name="twitter:description" content="{{ .Params.Subtitle }}">
   <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ .Params.Image }}">
-
-  <script defer="true" src="/highlight.js" onload="hljs.initHighlightingOnLoad()"></script>
 {{ end }}
 
 {{ define "main" }}
-  <article>
-
-    <header class="post-header" style="background-image:url({{ .Params.Image }})" alt="{{ .Title }}">
-      <div class="align--bottom">
-        <div class="content">
-          <div class="post-header__container">
-            <h1 class="post-header__headline">
-              <span class="post-header__title">{{ .Title }}</span><br>
-              <span class="post-header__subtitle">{{ .Params.Subtitle }}</span>
-            </h1>
-          </div>
-        </div>
+  <header class="siteimage" style="background-image:url({{ .Params.Image }})" alt="{{ .Title }}">
+    {{ if .Params.Image_info }}
+      <div class="siteimage-info">
+        &#8505;
+        <p>{{ .Params.Image_info }}</p>
       </div>
-      {{ if .Params.Image_info }}
-        <div class="post-header__image-info">
-          &#8505;
-          <p>{{ .Params.Image_info }}</p>
-        </div>
-      {{ end }}
+    {{ end }}
+  </header>
 
-    </header>
+  <article class="post">
+    {{ .Content }}
 
-    <aside>
-      <dl class="post-info">
-        <dt class="post-info__label">
-          Published:
-        </dt>
-        <dd class="post-info__data">
-          <time datetime="{{ .Date }}">
-            {{ .Date.Format "2" }}<sup>{{ if in (slice 1 21 31) .Date.Day}}st{{ else if in (slice 2 22) .Date.Day}}nd{{ else if in (slice 3 23) .Date.Day}}rd{{ else }}th{{ end }}</sup>
-            {{ .Date.Format "Jan. 2006" }}
-          </time>
-        </dd>
+    <script>
+      (function createSidebarGlossesFromFootnotes(document) {
+        var footnoteContainer = document.getElementsByClassName("footnotes")[0];
+        if (!footnoteContainer) return;
+        Array.from(footnoteContainer.getElementsByTagName("li"))
+          .forEach(function(footnote, i) {
+            var sidenote = document.createElement("div");
+            sidenote.classList.add("post-gloss__in-sidebar");
+            sidenote.innerHTML = footnote.innerHTML;
+            sidenote.removeChild(sidenote.lastElementChild); // remove "return" link
 
-        <dt class="post-info__label screen-hide">
-          Retrieved as from:
-        </dt>
-        <dd class="post-info__data screen-hide">
-          <script>document.write(new Date().toLocaleString());</script>
-        </dd>
-
-        <dt class="post-info__label">
-          Written by:
-        </dt>
-        <dd class="post-info__data">
-          Jan Heuermann
-        </dd>        
-
-        <dt class="post-info__label">
-          Reading time:
-        </dt>
-        <dd class="post-info__data">
-          {{ .ReadingTime }}&nbsp;min.
-        </dd>
-
-        <dt class="post-info__label print-hide">
-          Share:
-        </dt>
-        <dd class="post-info__data print-hide">
-          <script>
-            function selectText(element) {
-              window.getSelection().selectAllChildren(element);
-            }
-          </script>
-          <ul class="ul--reset">
-            <li class="cta__label cta__label--narrow">
-              On <a href="https://twitter.com/intent/tweet?source={{ .Permalink | safeURL }}&text={{ print "“" .Title " – " .Params.Subtitle "” " "https://jotaen.net/" .Params.Id | safeURL }}&via=jot4en" target="_blank">Twitter</a>
-            </li>
-            <li class="cta__label cta__label--narrow">
-              Via <a href="mailto:?subject={{ print "“" .Title " – " .Params.Subtitle "”" | safeURL }}&body={{ print "I recommend you reading this blog post:\n" .Permalink | safeURL }}">E-Mail</a>
-            </li>
-            <li class="cta__label cta__label--narrow">
-              Link <span style="text-decoration: underline;" onclick="selectText(this)">jotaen.net/{{ .Params.Id }}</span>
-            </li>
-          </ul>
-        </dd>
-
-        <dt class="post-info__label">
-          Tags:
-        </dt>
-        <dd class="post-info__data">
-          <ul class="ul--reset">
-            {{ range $name := .Params.Tags }}
-              <li title="Tag: {{ $name }}">
-                <a href="/archive/#{{ $name | urlize }}" class="a--reset tag">{{ $name }}</a>
-              </li>
-            {{ end }}
-          </ul>
-        </dd>
-      </dl>
-    </aside>
-
-    <main class="content post-body">
-      {{ .Content }}
-
-      <script>
-        (function createSidebarGlossesFromFootnotes(document) {
-          var footnoteContainer = document.getElementsByClassName("footnotes")[0];
-          if (!footnoteContainer) return;
-          Array.from(footnoteContainer.getElementsByTagName("li"))
-            .forEach(function(footnote, i) {
-              var sidenote = document.createElement("div");
-              sidenote.classList.add("post-gloss__in-sidebar");
-              sidenote.innerHTML = footnote.innerHTML;
-              sidenote.removeChild(sidenote.lastElementChild); // remove "return" link
-
-              var ref = document.getElementById("fnref:" + (i + 1));
-              ref.parentElement.insertBefore(sidenote, ref);
-            });
-        }(document));
-      </script>
-    </main>
-
+            var ref = document.getElementById("fnref:" + (i + 1));
+            ref.parentElement.insertBefore(sidenote, ref);
+          });
+      }(document));
+    </script>
   </article>
-
-  <footer class="content post-footer">
-    <p>
-      My name is Jan. I live in Berlin and work as software developer. <a href="/about">Learn more about me or just say hello.</a>
-    </p>
-
-    {{ partial "subscribe.html" }}
-  </footer>
 {{ end }}

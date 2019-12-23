@@ -19,6 +19,7 @@ html {
 
 body {
   margin: 0 auto;
+  padding-top: $header-thickness;
   background-color: #fff;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -29,10 +30,8 @@ body {
   }
 }
 
-.central-column {
+.siteimage {
   position: relative;
-  max-width: 46rem;
-  margin: 0 auto;
 }
 
 @media print {

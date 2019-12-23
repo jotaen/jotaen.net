@@ -1,4 +1,13 @@
 /*
+ *  VARIABLES
+ */
+
+$header-thickness: 3rem;
+
+$color-grey: #ddd;
+$color-lightgrey: #eee;
+
+/*
  *  TYPOGRAPHY
  */
 
@@ -33,6 +42,18 @@
 
 $layout-max-width: 2000px;
 
+@mixin view-beyond-min {
+  @media (min-width: 360px) {
+    @content;
+  }
+}
+
+@mixin view-beyond-broad {
+  @media (min-width: 800px) {
+    @content;
+  }
+}
+
 @mixin view-beyond-max {
   @media (min-width: $layout-max-width) {
     @content;
@@ -40,8 +61,15 @@ $layout-max-width: 2000px;
 }
 
 /*
- *  UTILITY CSS CLASSES
+ *  CSS CLASSES
  */
+
+.central-column {
+  position: relative;
+  max-width: 45rem;
+  padding: 0 0.5rem;
+  margin: 0 auto;
+}
 
 .a-reset { &, &:hover, &:active, &:visited, &:visited:hover {
   color: inherit;

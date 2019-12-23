@@ -1,20 +1,23 @@
 @import "../styles/library";
 
-.post-body {
+$line-length-width: 38rem;
+
+.post {
+  @extend .central-column;
   position: relative;
 }
 
-.post-body ol {
+.post ol {
   position: relative;
   padding-left: 1.5em;
 }
 
-.post-body ul {
+.post ul {
   position: relative;
   padding-left: 1em;
 }
 
-.post-body ul li {
+.post ul li {
   list-style-type: none;
   &:before {
     position: absolute;
@@ -24,8 +27,8 @@
 }
 
 @media print {
-  .post-body a {
-    color: $color-black;
+  .post a {
+    color: #000;
     text-decoration: none;
     &:after{
       content: " [➚ " attr(href) "]";
@@ -33,76 +36,72 @@
   }
 }
 
-.post-body > p,
-.post-body > ul,
-.post-body > ol,
-.post-body > blockquote,
-.post-body > figure,
-.post-body > div,
-.post-body > img,
-.post-body > h1,
-.post-body > h2,
-.post-body > h3,
-.post-body > h4,
-.post-body > h5,
-.post-body > h6 {
+.post > p,
+.post > ul,
+.post > ol,
+.post > blockquote,
+.post > figure,
+.post > div,
+.post > img,
+.post > h1,
+.post > h2,
+.post > h3,
+.post > h4,
+.post > h5,
+.post > h6 {
   position: relative;
   margin-left: 0;
-  max-width: $width-content-column;
+  max-width: $line-length-width;
 }
 
-.post-body > pre {
-  max-width: $width-content-column * 1.3;
-}
-
-.post-body > figure {
+.post > figure {
   margin-right: 0;
 }
 
-.post-body img {
+.post img {
   width: 100%;
 }
 
-.post-body pre {
+.post pre {
   padding: 0.7em 0.5em;
-  background-color: $color-lightgrey3;
+  background-color: $color-lightgrey;
   overflow: scroll;
 }
 
-.post-body code {
+.post code {
   white-space: pre;
 }
 
-.post-body th {
+.post th {
   @include font-bold;
   padding: 0.3em;
   border-bottom: 1px solid $color-grey;
-  background-color: $color-lightgrey2;
+  background-color: $color-lightgrey;
   text-align: left;
 }
 
-.post-body td {
+.post td {
   max-width: 25em;
 }
 
-.post-body tr:nth-child(2n) {
-  background-color: $color-lightgrey2;
+.post tr:nth-child(2n) {
+  background-color: $color-lightgrey;
 }
 
-.post-body td {
+.post td {
   vertical-align: top;
   padding: 0.3em;
 }
 
-.post-body > blockquote {
+.post > blockquote {
   color: $color-grey;
   margin-left: 0.5em;
   padding-left: 1em;
   border-left: 1px solid $color-grey;
 }
 
-.post-body sup[id^="fnref"] {
-  @include broad-view {
+.post sup[id^="fnref"] {
+  @include view-beyond-broad {
     display: none;
   }
 }

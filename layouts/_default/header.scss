@@ -9,8 +9,8 @@
   width: 100%;
   background-color: hsl(var(--colour-theme), 15%, 20%);
   color: white;
-  height: 3rem;
-  line-height: 3rem;
+  height: $header-thickness;
+  line-height: $header-thickness;
   font-size: 1.1rem;
 
   @include view-beyond-max {
@@ -19,7 +19,10 @@
 
   a { @extend .a-reset; }
   a {
-    padding: 0 0.75rem;
+    padding: 0 0.5rem;
+    @include view-beyond-min {
+      padding: 0 0.75rem;
+    }
   }
 
   &-container {
@@ -32,6 +35,6 @@
     left: 0.5rem;
   }
   &-name {
-    padding-left: 2.3rem;
+    padding-left: 2rem;
   }
 }
