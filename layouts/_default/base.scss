@@ -30,10 +30,6 @@ body {
   }
 }
 
-.siteimage {
-  position: relative;
-}
-
 @media print {
   @page { 
       margin: 20mm 25mm 15mm 20mm;
@@ -48,3 +44,88 @@ body {
 :root {
   --colour-theme: 192;
 }
+
+.header {
+  @extend .print-hide;
+
+  position: fixed;
+  top: 0;
+  z-index: 99999;
+  width: 100%;
+  background-color: hsl(var(--colour-theme), 15%, 20%);
+  color: white;
+  height: $header-thickness;
+  line-height: $header-thickness;
+  font-size: 1.1rem;
+
+  @include view-beyond-max {
+    max-width: $layout-max-width;
+  }
+
+  a { @extend .a-reset; }
+  a {
+    padding: 0 0.5rem;
+    @include view-beyond-min {
+      padding: 0 0.75rem;
+    }
+  }
+
+  &-container {
+    @extend .central-column;
+  }
+  &-logo {
+    position: absolute;
+    height: 2.2rem;
+    top: 0.45rem;
+    left: 0.5rem;
+  }
+  &-name {
+    padding-left: 2rem;
+  }
+}
+
+.siteimage {
+  position: relative;
+}
+
+.siteimage-info {
+  position: absolute;
+  overflow: hidden;
+  width: 0.4em;
+  height: 1.4em;
+  bottom: 0;
+  right: 0;
+  padding:  0.3em 0.9em;
+  opacity: 0.7;
+  text-align: right;
+  color: #fff;
+  background-color: #000;
+
+  &:hover,
+  &:active {
+    width: 50%;
+    height: 100%;
+    opacity: 1;
+    overflow: scroll;
+  }
+}
+
+// .imprint {
+//   &__contact {
+//     @include font-mono;
+//     display: inline;
+//     float: left;
+//     padding: 0;
+//     margin-bottom: 2em;
+
+//     &--noise {
+//       display: none;
+//     }
+//   }
+
+//   &__footnote {
+//     color: #999;
+//     font-size: 13px;
+//     font-style: italic;
+//   }
+// }

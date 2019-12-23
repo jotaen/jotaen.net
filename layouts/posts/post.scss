@@ -48,7 +48,8 @@ $line-length-width: 38rem;
 .post > h3,
 .post > h4,
 .post > h5,
-.post > h6 {
+.post > h6,
+.post > .footnotes {
   position: relative;
   margin-left: 0;
   max-width: $line-length-width;
@@ -103,5 +104,66 @@ $line-length-width: 38rem;
 .post sup[id^="fnref"] {
   @include view-beyond-broad {
     display: none;
+  }
+}
+
+a.footnote {
+  text-decoration: none;
+  @include view-beyond-broad {
+    display: none;
+  }
+
+  &:before {
+    content: "[";
+  }
+
+  &:after {
+    content: "]";
+  }
+}
+
+a.reversefootnote {
+  @include view-beyond-broad {
+    display: none;
+  }
+}
+
+.post-gloss__in-sidebar {
+  display: none;
+  @include view-beyond-broad {
+    display: block;
+  }
+  @include font-thin-italic;
+  position: absolute;
+  left: -135px;
+  margin-top: -1.3rem;
+  width: 120px;
+  text-align: right;
+  color: #555;
+  line-height: 1.2;
+  font-size: 0.85rem;
+}
+
+img + .post-gloss__in-sidebar,
+blockquote .post-gloss__in-sidebar {
+  top: 0;
+  margin-top: 0;
+}
+
+.footnotes {
+  @include view-beyond-broad {
+    display: none;
+  }
+  @include font-thin-italic;
+  margin-top: 3em;
+  color: #555;
+
+  &:before {
+    display: block;
+    content: "Footnotes:";
+    padding-top: 1em;
+    text-transform: uppercase;
+    border-top: 1px dotted $color-grey;
+    width: 100%;
   }
 }
