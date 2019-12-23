@@ -1,0 +1,32 @@
+@import "../styles/library";
+
+.header {
+  @extend .print-hide;
+
+  position: fixed;
+  max-width: 2000px; // todo
+  top: 0;
+  z-index: 99999;
+  width: 100%;
+  background-color: hsl(var(--colour-theme), 15%, 20%);
+  color: white;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.1rem;
+
+  a { @extend .a-reset; }
+
+  &-logo {
+    position: absolute;
+    height: 35px;
+    top: 6px;
+    left: -8px;
+  }
+  &-home {
+    margin-left: 40px;
+  }
+  &-pagelink {
+    float: right;
+    margin-left: 1.5rem;
+  }
+}

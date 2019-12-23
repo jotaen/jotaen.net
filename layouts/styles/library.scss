@@ -1,44 +1,21 @@
 /*
- *  COLORS
- */
-
-$color-blue:          #0d668d;
-$color-lightblue:     #1394cc;
-$color-purple:        #8d1699;
-$color-brown:         #5a3e35;
-$color-green:         #65c858;
-$color-orange:        #f34c17;
-$color-red:           #c0253e;
-
-$color-white:         #ffffff;
-$color-lightgrey1:    #fafafa;
-$color-lightgrey2:    #efefef;
-$color-lightgrey3:    #e6e6e6;
-$color-grey:          #888888;
-$color-darkgrey1:     #999999;
-$color-darkgrey2:     #9a9a9a;
-$color-black:         #000000;
-
-$color-black-shaded:  rgba(0,0,0,0.8);
-
-/*
  *  TYPOGRAPHY
  */
 
 @mixin font-regular {
-  font-family: input-sans-condensed, Monaco, Courier, monospace;
+  font-family: input-sans-condensed, sans-serif;
   font-weight: 300;
   letter-spacing: -0.03em;
 }
 
 @mixin font-bold {
-  font-family: input-serif-compressed, Monaco, Courier, monospace;
+  font-family: input-serif-compressed, sans-serif;
   font-weight: 700;
   letter-spacing: -0.07em;
 }
 
 @mixin font-thin-italic {
-  font-family: input-sans-compressed, Monaco, Courier, monospace;
+  font-family: input-sans-compressed, sans-serif;
   font-style: italic;
   font-weight: 300;
   letter-spacing: -0.03em;
@@ -51,53 +28,43 @@ $color-black-shaded:  rgba(0,0,0,0.8);
 }
 
 /*
- *  LAYOUT SIZES, BREAKPOINTS
- */
-
-$width-content-column:  550px;
-$width-layout-medium:   569px;
-$width-layout-broad:    1100px;
-$width-layout-max:      1200px;
-$width-navibar:         37px;
-$height-header:         45vh;
-$height-header-max:     400px;
-$height-header-min:     280px;
-
-/*
  *  MEDIA QUERIES
  */
 
-@mixin narrow-view {
-  // Smallest view size
-  // E.g. a smartphone in portrait orientation
-  // or a shrunken browser window on a desktop
-  @media (max-width: #{$width-layout-medium - 1px}) {
+@mixin view-narrow {
+  @media (max-width: 600px) {
     @content;
   }
 }
 
-@mixin medium-view {
-  // Medium view size
-  // E.g. on a big smartphone in landscape orientation
-  // or a small tablet
-  @media (min-width: #{$width-layout-medium}) {
-    @content;
+/*
+ *  UTILITY CSS CLASSES
+ */
+
+.a-reset { &, &:hover, &:active, &:visited, &:visited:hover {
+  color: inherit;
+  background-color: inherit;
+  text-decoration: inherit;
+}}
+
+// .ul-reset {
+//   list-style-type: none;
+//   padding: 0;
+//   margin: 0;
+// }
+
+// .li-inline {
+//   display: inline-block;
+// }
+
+.screen-hide {
+  @media screen {
+    display: none;
   }
 }
 
-@mixin broad-view {
-  // Large view size
-  // E.g. on a big tablet in landscape orientation
-  // or on „normally“ sized browser window
-  @media (min-width: #{$width-layout-broad}) {
-    @content;
-  }
-}
-
-@mixin maximum-view {
-  // Largest view size
-  // The layout should stop growing from this point
-  @media (min-width: #{$width-layout-max}) {
-    @content;
+.print-hide {
+  @media print {
+    display: none;
   }
 }

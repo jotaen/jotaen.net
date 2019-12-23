@@ -1,7 +1,7 @@
 +++
 type = "posts"
-title = "Living styleguide"
-subtitle = "The Haute Couture of my blogposts"
+title = "Styleguide"
+subtitle = "The Haute Couture of my website"
 date = "2015-12-27"
 tags = ["blogging", "frontend", "design"]
 image = "/fashionshow.jpg"
@@ -9,7 +9,12 @@ image_info = "Foto by herlitz_pbs (https://www.flickr.com/photos/herlitzpbs/1080
 id = "styleguide"
 +++
 
-The header section above is a container which takes up ~40% vertical space. It is intended to show a full size image. The headline (and subheadline) for the blogpost is centered and the letters have one of the available colors (see below) as background.
+This is a meta post that specifies the layout and design elements of my website. It is written in the style of a blog post and therefore also serves as a visual example for one.
+
+# Layout structure
+
+The navigation is a fixed bar at the top that contains links to the home page, the blog archive and the about page.
+
 
 # Basic styling
 

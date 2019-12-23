@@ -74,16 +74,6 @@ a:visited:active,
   color: $color-white;
 }
 
-.a--reset,
-.a--reset:hover,
-.a--reset:active,
-.a--reset:visited,
-.a--reset:visited:hover, {
-  color: inherit;
-  background-color: inherit;
-  text-decoration: inherit;
-}
-
 code {
   padding: 0.25em;
 }
