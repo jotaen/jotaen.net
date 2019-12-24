@@ -2,8 +2,6 @@
  *  VARIABLES
  */
 
-$header-thickness: 3rem;
-
 $color-grey: #ddd;
 $color-lightgrey: #eee;
 
@@ -40,22 +38,29 @@ $color-lightgrey: #eee;
  *  MEDIA QUERIES
  */
 
-$layout-max-width: 2000px;
+$layout-width-narrow: 360px;
+$layout-width-superwide: 2000px;
 
-@mixin view-beyond-min {
-  @media (min-width: 360px) {
+@mixin width-below-min {
+  @media (max-width: #{$layout-width-narrow - 1}) {
     @content;
   }
 }
 
-@mixin view-beyond-broad {
+@mixin width-beyond-min {
+  @media (min-width: $layout-width-narrow) {
+    @content;
+  }
+}
+
+@mixin width-beyond-broad {
   @media (min-width: 800px) {
     @content;
   }
 }
 
-@mixin view-beyond-max {
-  @media (min-width: $layout-max-width) {
+@mixin width-beyond-max {
+  @media (min-width: $layout-width-superwide) {
     @content;
   }
 }

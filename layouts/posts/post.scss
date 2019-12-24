@@ -102,14 +102,14 @@ $line-length-width: 38rem;
 }
 
 .post sup[id^="fnref"] {
-  @include view-beyond-broad {
+  @include width-beyond-broad {
     display: none;
   }
 }
 
 a.footnote {
   text-decoration: none;
-  @include view-beyond-broad {
+  @include width-beyond-broad {
     display: none;
   }
 
@@ -123,14 +123,14 @@ a.footnote {
 }
 
 a.reversefootnote {
-  @include view-beyond-broad {
+  @include width-beyond-broad {
     display: none;
   }
 }
 
 .post-gloss__in-sidebar {
   display: none;
-  @include view-beyond-broad {
+  @include width-beyond-broad {
     display: block;
   }
   @include font-thin-italic;
@@ -151,7 +151,7 @@ blockquote .post-gloss__in-sidebar {
 }
 
 .footnotes {
-  @include view-beyond-broad {
+  @include width-beyond-broad {
     display: none;
   }
   @include font-thin-italic;

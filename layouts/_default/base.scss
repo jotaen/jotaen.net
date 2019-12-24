@@ -19,14 +19,13 @@ html {
 
 body {
   margin: 0 auto;
-  padding-top: $header-thickness;
   background-color: #fff;
   -moz-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  @include view-beyond-max {
-    max-width: $layout-max-width;
+  @include width-beyond-max {
+    max-width: $layout-width-superwide;
   }
 }
 
@@ -54,33 +53,39 @@ body {
   width: 100%;
   background-color: hsl(var(--colour-theme), 15%, 20%);
   color: white;
-  height: $header-thickness;
-  line-height: $header-thickness;
+  line-height: 100%;
   font-size: 1.1rem;
 
-  @include view-beyond-max {
-    max-width: $layout-max-width;
+  &-thickness {
+    min-height: 2.2rem;
+    height: 7vh;
+    max-height: 2.8rem;
+  }
+
+  @include width-beyond-max {
+    max-width: $layout-width-narrow;
   }
 
   a { @extend .a-reset; }
   a {
-    padding: 0 0.5rem;
-    @include view-beyond-min {
-      padding: 0 0.75rem;
-    }
+    padding: 0 2.5%;
   }
 
   &-container {
     @extend .central-column;
+    display:flex;
+    height: 100%;
+    align-items: center;
   }
   &-logo {
     position: absolute;
-    height: 2.2rem;
-    top: 0.45rem;
-    left: 0.5rem;
+    height: 90%;
+    top: 10%;
+    left: 1%;
   }
   &-name {
-    padding-left: 2rem;
+    padding-left: 17%;
+    white-space: nowrap;
   }
 }
 
