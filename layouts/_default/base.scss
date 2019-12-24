@@ -89,32 +89,6 @@ body {
   }
 }
 
-.siteimage {
-  position: relative;
-}
-
-.siteimage-info {
-  position: absolute;
-  overflow: hidden;
-  width: 0.4em;
-  height: 1.4em;
-  bottom: 0;
-  right: 0;
-  padding:  0.3em 0.9em;
-  opacity: 0.7;
-  text-align: right;
-  color: #fff;
-  background-color: #000;
-
-  &:hover,
-  &:active {
-    width: 50%;
-    height: 100%;
-    opacity: 1;
-    overflow: scroll;
-  }
-}
-
 // .imprint {
 //   &__contact {
 //     @include font-mono;

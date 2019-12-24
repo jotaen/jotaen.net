@@ -2,6 +2,53 @@
 
 $line-length-width: 38rem;
 
+.postimage {
+  position: relative;
+  height: 42vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center 50%;
+  background-size: cover;
+
+  &-info {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    text-align: right;
+    color: #fff;
+    background-color: #000;
+
+    svg {
+      width: 100%;
+    }
+    p {
+      display: none;
+    }
+
+    &:hover,
+    &:active {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      overflow: scroll;
+
+      svg {
+        display: none;
+      }
+      p {
+        display: block;
+        width: 40rem;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+    }
+  }
+}
+
 .post {
   @extend .central-column;
   position: relative;
