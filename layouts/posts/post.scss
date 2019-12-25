@@ -81,6 +81,40 @@
   max-width: $width-paragraph;
 }
 
+.post .headline {
+  text-align: center;
+  margin-top: 0.5em;
+
+  .headline-title {
+    font-size: 1.3em;
+  }
+  .headline-subtitle {
+    font-size: 0.8em;
+  }
+  .headline-meta {
+    display: flex;
+    color: #999;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+
+    &-text {
+      margin:0 1em;
+    }
+    &-spacerline {
+      &-small, &-stretch {
+        border-bottom: 1px solid #999;
+        transform: translateY(-50%);
+      }
+      &-small {
+        width: 0.5em;
+      }
+      &-stretch {
+        flex: 1;
+      }
+    }
+  }
+}
+
 .post > figure {
   margin-right: 0;
 }
@@ -90,9 +124,8 @@
 }
 
 .post p > img {
-  & {
-    max-width: 100%;
-  }
+  max-width: 100%;
+
   &[src$="#small"] {
     max-width: 50%;
   }

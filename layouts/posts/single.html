@@ -22,6 +22,21 @@
   </header>
 
   <article class="post">
+    <h1 class="headline">
+      <div class="headline-title">{{ .Params.Title }}</div>
+      <div class="headline-subtitle">{{ .Params.Subtitle }}</div>
+      <div class="headline-meta">
+        <span class="headline-meta-spacerline-stretch"><!--Spacer--></span>
+        <time class="headline-meta-text" datetime="{{ .Date }}">
+          {{ .Date.Format "2" }}<sup>{{ if in (slice 1 21 31) .Date.Day}}st{{ else if in (slice 2 22) .Date.Day}}nd{{ else if in (slice 3 23) .Date.Day}}rd{{ else }}th{{ end }}</sup>
+          {{ .Date.Format "Jan. 2006" }}
+        </time>
+        <span class="headline-meta-spacerline-small"><!--Spacer--></span>
+        <span class="headline-meta-text">{{ .ReadingTime }} min. read</span>
+        <span class="headline-meta-spacerline-stretch"><!--Spacer--></span>
+      </div>
+    </h1>
+
     {{ .Content }}
 
     <script>
