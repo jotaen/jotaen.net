@@ -14,7 +14,7 @@ serve: static/style.css
 		-p 1313:1313 \
 		-w /app \
 		jojomi/hugo:0.30 \
-		hugo server --bind=0.0.0.0 --buildDrafts
+		hugo server --bind=0.0.0.0 --buildDrafts --ignoreCache
 
 static/style.css: node_modules
 	docker run --rm \
