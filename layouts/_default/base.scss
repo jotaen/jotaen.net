@@ -32,21 +32,22 @@ body {
 }
 
 :root {
-  --colour-theme: 192;
+  --colour-theme: 0;
+  --colour-theme-mode: 0; // 0 = black/white; 1 = coloured
 }
 
 .belt {
   &-dark { 
     width: 100%;
-    background-color: hsl(var(--colour-theme), 15%, 20%);
+    background-color: hsl(var(--colour-theme), calc(var(--colour-theme-mode)*15%), 20%);
   }
   &-medium {
     width: 100%;
-    background-color: hsl(var(--colour-theme), 13%, 50%);
+    background-color: hsl(var(--colour-theme), calc(var(--colour-theme-mode)*13%), 50%);
   }
   &-light {
     width: 100%;
-    background-color: hsl(var(--colour-theme), 10%, 83%);
+    background-color: hsl(var(--colour-theme), calc(var(--colour-theme-mode)*10%), 83%);
   }
   &-coverimage {
     position: relative;

@@ -6,6 +6,7 @@ subtitle = "The Haute Couture of my website"
 date = "2015-12-27"
 tags = ["blogging", "frontend", "design"]
 image = "/fashionshow.jpg"
+image_colouring = 192
 image_info = "Foto by herlitz_pbs (https://www.flickr.com/photos/herlitzpbs/10800093004) released under CC-BY-ND 2.0 (https://creativecommons.org/licenses/by-nd/2.0/)"
 id = "styleguide"
 +++

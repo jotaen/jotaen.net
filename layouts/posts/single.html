@@ -6,6 +6,15 @@
   <meta name="twitter:title" content="{{ .Title }}">
   <meta name="twitter:description" content="{{ .Params.Subtitle }}">
   <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ .Params.Image }}">
+
+  {{ if .Params.Image_colouring }}
+    <style type="text/css">
+      :root {
+        --colour-theme: {{ .Params.Image_colouring }};
+        --colour-theme-mode: 1;
+      }
+    </style>
+  {{ end }}
 {{ end }}
 
 {{ define "main" }}
