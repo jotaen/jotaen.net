@@ -1,5 +1,6 @@
 +++
 type = "posts"
+listed = false
 title = "Styleguide"
 subtitle = "The Haute Couture of my website"
 date = "2015-12-27"
