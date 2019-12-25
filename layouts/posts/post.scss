@@ -74,8 +74,7 @@
 .post > h3,
 .post > h4,
 .post > h5,
-.post > h6,
-.post > .footnotes {
+.post > h6 {
   position: relative;
   margin-left: 0;
   max-width: $width-paragraph;
@@ -134,76 +133,4 @@
 .post > table {
   display: block;
   overflow-x: scroll;
-}
-
-.post sup[id^="fnref"] {
-  @include width-beyond-broad {
-    display: none;
-  }
-}
-
-a.footnote {
-  text-decoration: none;
-  @include width-beyond-broad {
-    display: none;
-  }
-
-  &:before {
-    content: "[";
-  }
-
-  &:after {
-    content: "]";
-  }
-}
-
-a.reversefootnote {
-  @include width-beyond-broad {
-    display: none;
-  }
-}
-
-.post-footnote-aside {
-  display: none;
-  @include width-beyond-broad {
-    display: block;
-  }
-  @include font-thin-italic;
-  position: absolute;
-  margin-top: -1.3rem;
-  box-sizing: border-box;
-  padding: 0 1rem;
-  left: #{-1 * $width-aside};
-  width: $width-aside;
-  text-align: right;
-  color: #555;
-  line-height: 1.3;
-  font-size: 0.85rem;
-}
-
-img + .post-footnote-aside,
-blockquote .post-footnote-aside {
-  bottom: 0.5rem;
-}
-
-pre + p .post-footnote-aside {
-  bottom: 1rem;
-}
-
-.footnotes { // class name given by Hugo
-  @include width-beyond-broad {
-    display: none;
-  }
-  @include font-thin-italic;
-  margin-top: 3em;
-  color: #555;
-
-  &:before {
-    display: block;
-    content: "Footnotes:";
-    padding-top: 1em;
-    text-transform: uppercase;
-    border-top: 1px dotted $color-grey;
-    width: 100%;
-  }
 }

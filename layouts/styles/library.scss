@@ -51,7 +51,7 @@ $layout-width-narrow: 360px;
 $layout-width-superwide: 2000px;
 
 $width-central-column: 740px;
-$width-paragraph: 630px; // ~80 chars
+$width-paragraph: 650px; // ~80 chars
 $width-aside: 160px; // min ~X chars
 
 @mixin width-below-min {
@@ -62,6 +62,12 @@ $width-aside: 160px; // min ~X chars
 
 @mixin width-beyond-min {
   @media (min-width: $layout-width-narrow) {
+    @content;
+  }
+}
+
+@mixin width-below-broad {
+  @media (max-width: #{$width-central-column + 2*$width-aside - 1}) {
     @content;
   }
 }

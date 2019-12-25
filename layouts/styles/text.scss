@@ -143,4 +143,5 @@ blockquote {
   margin-left: 0.5em;
   padding-left: 1em;
   border-left: 2px solid $color-grey;
+  margin-right: 0; // normalise browser default
 }
