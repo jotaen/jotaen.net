@@ -50,6 +50,7 @@
 .post {
   @extend .central-column;
   position: relative;
+  padding-bottom: 1em;
 }
 
 @media print {

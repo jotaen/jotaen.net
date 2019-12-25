@@ -106,7 +106,8 @@ $color-brown: #5a3e35;
 .central-column {
   position: relative;
   max-width: $width-central-column;
-  padding: 0 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   margin: 0 auto;
 }
 
