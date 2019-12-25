@@ -99,6 +99,26 @@ $color-orange: #f34c17;
 $color-green: #65c858;
 $color-brown: #5a3e35;
 
+:root { // make available in plain HTML
+  --color-grey: #{$color-grey};
+  --color-lightgrey: #{$color-lightgrey};
+  --color-darkgrey: #{$color-darkgrey};
+  --color-blue: #{$color-blue};
+  --color-lightblue: #{$color-lightblue};
+  --color-purple: #{$color-purple};
+  --color-red: #{$color-red};
+  --color-orange: #{$color-orange};
+  --color-green: #{$color-green};
+  --color-brown: #{$color-brown};
+}
+
+/*
+ *  CSS CLASSES
+ */
+
+$zindex-navigation: 99999;
+$zindex-overlay: #{$zindex-navigation - 1};
+
 /*
  *  CSS CLASSES
  */

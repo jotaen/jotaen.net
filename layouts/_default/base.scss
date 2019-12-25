@@ -39,15 +39,15 @@ body {
 .belt {
   &-dark { 
     width: 100%;
-    background-color: hsl(var(--colour-theme), calc(var(--colour-theme-mode)*15%), 20%);
+    background-color: hsl(var(--colour-theme), calc(var(--colour-theme-mode)*15%), 15%);
   }
   &-medium {
     width: 100%;
-    background-color: hsl(var(--colour-theme), calc(var(--colour-theme-mode)*13%), 50%);
+    background-color: hsl(var(--colour-theme), calc(var(--colour-theme-mode)*13%), 45%);
   }
   &-light {
     width: 100%;
-    background-color: hsl(var(--colour-theme), calc(var(--colour-theme-mode)*10%), 83%);
+    background-color: hsl(var(--colour-theme), calc(var(--colour-theme-mode)*10%), 85%);
   }
   &-coverimage {
     position: relative;
@@ -62,7 +62,7 @@ body {
 
     position: fixed;
     top: 0;
-    z-index: 99999;
+    z-index: $zindex-navigation;
 
     &-thickness {
       min-height: 2.2rem;

@@ -12,8 +12,8 @@ sup[id^="fnref"] {
   }
   a {
     @extend .a-reset;
-    color: $color-orange !important;
-    border: 1px solid $color-orange;
+    color: $color-lightblue !important;
+    border: 1px solid $color-lightblue;
     border-radius: 1em;
     padding: 0 0.3em;
     margin: 0 0.3em;
@@ -25,9 +25,12 @@ sup[id^="fnref"] {
 
 .footnote-inline {
   @include width-below-broad {
+    @include font-regular;
+    font-size: 1rem;
     display: none;
     text-align: center;
     position: absolute;
+    z-index: $zindex-overlay;
     left: 0;
     width: 100%;
     padding: 3em 1em;
@@ -65,7 +68,7 @@ a.fn-close {
   position: absolute;
   top: 0.5em;
   right: 0.5em;
-  background-color: $color-orange !important;
+  background-color: $color-lightblue !important;
   border-radius: 1em;
   padding: 0 0.5em;
   color: #fff !important;

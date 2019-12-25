@@ -49,27 +49,27 @@
     {{ .Content }}
 
     <script>
-      function closeOverlay(id) {
-        var fn = document.getElementById("footnote-" + id);
-        fn.classList.remove("footnote-overlayshown")
-      }
-
-      function showOverlay(id) {
-        var fn = document.getElementById("footnote-" + id);
-        fn.classList.add("footnote-overlayshown")
-      }
-
       (function createSidebarGlossesFromFootnotes() {
         var footnoteContainer = document.getElementsByClassName("footnotes")[0];
         if (!footnoteContainer) return;
         Array.from(footnoteContainer.getElementsByTagName("li"))
           .forEach(function(footnote, id) {
+            footnote.removeChild(footnote.lastElementChild); // remove "return" link
             var sidenote = document.createElement("div");
             sidenote.classList.add("footnote-inline");
             sidenote.id = "footnote-" + (id);
-            var closebutton = "<a href=\"\" onclick=\"closeOverlay(" + id + "); return false;\" class=\"fn-close\">×</a>";
-            sidenote.innerHTML = closebutton + footnote.innerHTML;
-            sidenote.removeChild(sidenote.lastElementChild); // remove "return" link
+            var closebutton = document.createElement("a");
+            closebutton.href = "";
+            closebutton.title = "Close footnote";
+            closebutton.onclick = (e) => {
+              var fn = document.getElementById("footnote-" + id);
+              fn.classList.remove("footnote-overlayshown");
+              e.preventDefault();
+            }
+            closebutton.classList.add("fn-close");
+            closebutton.innerHTML = "×";
+            sidenote.innerHTML = footnote.innerHTML;
+            sidenote.appendChild(closebutton);
 
             var ref = document.getElementById("fnref:" + (id + 1));
             ref.parentElement.insertBefore(sidenote, ref);
@@ -82,8 +82,10 @@
         Array.from(footnoteRefs)
           .forEach(function(ref, id) {
             var a = ref.getElementsByTagName("a")[0];
+            a.title = "Show footnote";
             a.onclick = function(e) {
-              showOverlay(id);
+              var fn = document.getElementById("footnote-" + id);
+              fn.classList.add("footnote-overlayshown");
               e.preventDefault();
             }
             a.href = ""; // remove `#fn:x`

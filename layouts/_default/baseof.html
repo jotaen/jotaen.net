@@ -111,7 +111,7 @@
             })
             .then(function(json) {
               const protocol = "mailto";
-              const txt = json.filter(j => j.id%secret===0).map(j => j.val).join("");
+              const txt = json.filter(j => j.key%secret===0).map(j => j.val).join("");
               const addr = txt.replace(/(\*)/, "@").replace(/(\:)/, ".");
               const target = protocol + ":" + addr;
               window.location = target;

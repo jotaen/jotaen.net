@@ -47,25 +47,28 @@ a,
 .link {
   color: $color-blue;
   border: 0;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 a:hover,
 a:active,
-.link--hover,
-.link--active {
+.link:hover,
+.link:active {
   background-color: $color-blue;
   color: #fff;
 }
 
 a:visited,
-.link--visited {
+.link-visited {
+  @extend .link;
   color: $color-purple;
 }
 
 a:visited:hover,
 a:visited:active,
-.link--visited:hover,
-.link--visited:active {
+.link-visited:hover,
+.link-visited:active {
   background-color: $color-purple;
   color: #fff;
 }
@@ -104,10 +107,6 @@ ul li {
 pre {
   padding: 0.7em 0.5em;
   background-color: $color-lightgrey;
-}
-
-code {
-  white-space: pre;
 }
 
 table {
