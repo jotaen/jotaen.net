@@ -35,38 +35,49 @@ body {
   --colour-theme: 192;
 }
 
-.header {
-  @extend .print-hide;
+.belt {
+  &-dark { 
+    width: 100%;
+    background-color: hsl(var(--colour-theme), 15%, 20%);
+  }
+  &-medium {
+    width: 100%;
+    background-color: hsl(var(--colour-theme), 13%, 50%);
+  }
+  &-light {
+    width: 100%;
+    background-color: hsl(var(--colour-theme), 10%, 83%);
+  }
+  &-topfix {
+    @extend .print-hide;
 
-  position: fixed;
-  top: 0;
-  z-index: 99999;
-  width: 100%;
-  background-color: hsl(var(--colour-theme), 15%, 20%);
+    position: fixed;
+    top: 0;
+    z-index: 99999;
+
+    &-thickness {
+      min-height: 2.2rem;
+      height: 7vh;
+      max-height: 2.8rem;
+    }
+    @include width-beyond-max {
+      max-width: $layout-width-narrow;
+    }
+  }
+}
+
+.header {
+  @extend .central-column;
   color: white;
   line-height: 100%;
   font-size: 1.1rem;
-
-  &-thickness {
-    min-height: 2.2rem;
-    height: 7vh;
-    max-height: 2.8rem;
-  }
-
-  @include width-beyond-max {
-    max-width: $layout-width-narrow;
-  }
+  display:flex;
+  height: 100%;
+  align-items: center;
 
   a { @extend .a-reset; }
   a {
     padding: 0 2.5%;
-  }
-
-  &-container {
-    @extend .central-column;
-    display:flex;
-    height: 100%;
-    align-items: center;
   }
   &-logo {
     position: absolute;
@@ -79,6 +90,74 @@ body {
     white-space: nowrap;
   }
 }
+
+.footer {
+  @extend .central-column;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+
+  &-share {
+    @extend .footer;
+    color: white;
+    text-align: center;
+
+    svg {
+      height: 1.5em;
+      vertical-align: middle;
+      margin: 0.4em 1em;
+      fill: #fff;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &-newsletter {
+    @extend .footer;
+    color: white;
+
+    h3 {
+      margin: 0;
+    }
+    input {
+      box-sizing: border-box;
+      font-size: 1em;
+      height: 2em;
+      border: none;
+      font-family: inherit;
+    }
+    input[type=email] {
+      width: 100%;
+      max-width: 22em;
+    }
+    input[type=submit] {
+      background-color: #999;
+      color: white;
+      text-transform: uppercase;
+    }
+    &-disclaimer {
+      font-size: 0.8rem;
+      color: $color-grey;
+      margin-top: 0;
+    }
+  }
+  
+  &-about {
+    @extend .footer;
+    img {
+      height: 5em;
+      margin-right: 1em;
+    }
+    &-legal {
+      margin-top: 2em;
+      text-align: center;
+      font-size: 0.8rem;
+      color: $color-darkgrey;
+    }
+  }
+}
+
+
 
 // .imprint {
 //   &__contact {
