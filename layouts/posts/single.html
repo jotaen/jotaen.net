@@ -31,7 +31,7 @@
         Array.from(footnoteContainer.getElementsByTagName("li"))
           .forEach(function(footnote, i) {
             var sidenote = document.createElement("div");
-            sidenote.classList.add("post-gloss__in-sidebar");
+            sidenote.classList.add("post-footnote-aside");
             sidenote.innerHTML = footnote.innerHTML;
             sidenote.removeChild(sidenote.lastElementChild); // remove "return" link
 

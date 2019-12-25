@@ -1,18 +1,4 @@
 /*
- *  VARIABLES
- */
-
-$color-grey: #ddd;
-$color-lightgrey: #eee;
-$color-blue: #0d668d;
-$color-lightblue: #1394cc;
-$color-purple: #8d1699;
-$color-red: #c0253e;
-$color-orange: #f34c17;
-$color-green: #65c858;
-$color-brown: #5a3e35;
-
-/*
  *  TYPOGRAPHY
  */
 
@@ -57,6 +43,10 @@ $color-brown: #5a3e35;
 $layout-width-narrow: 360px;
 $layout-width-superwide: 2000px;
 
+$width-central-column: 740px;
+$width-paragraph: 630px; // ~80 chars
+$width-aside: 160px; // min ~X chars
+
 @mixin width-below-min {
   @media (max-width: #{$layout-width-narrow - 1}) {
     @content;
@@ -70,7 +60,7 @@ $layout-width-superwide: 2000px;
 }
 
 @mixin width-beyond-broad {
-  @media (min-width: 800px) {
+  @media (min-width: #{$width-central-column + 2*$width-aside}) {
     @content;
   }
 }
@@ -82,12 +72,27 @@ $layout-width-superwide: 2000px;
 }
 
 /*
+ *  COLOURS
+ */
+
+$color-grey: #ddd;
+$color-lightgrey: #eee;
+$color-darkgrey: #999;
+$color-blue: #0d668d;
+$color-lightblue: #1394cc;
+$color-purple: #8d1699;
+$color-red: #c0253e;
+$color-orange: #f34c17;
+$color-green: #65c858;
+$color-brown: #5a3e35;
+
+/*
  *  CSS CLASSES
  */
 
 .central-column {
   position: relative;
-  max-width: 45rem;
+  max-width: $width-central-column;
   padding: 0 0.5rem;
   margin: 0 auto;
 }
