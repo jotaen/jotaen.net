@@ -98,15 +98,14 @@
           <span>
             Hey there!<br>
             My name is Jan. I live in Berlin and work as software developer.<br>
-            Learn more <a href="" onClick="return false;">about me</a> or reach out via <a href="" onClick="return false;">email</a>.
+            Learn more <a href="/about" onClick="return false;">about me</a> or reach out via <a href="mailto: [CLICK TO REVEAL]" class="m41lm3" onClick="return false;">email</a>.
           </span>
         </div>
         <div class="footer-about-legal">
           <a class="a-reset" href="/impressum">Impressum & Privacy Policy</a>
         </div>
       </div></div>
-        
-      </div></div>
+
     </footer>
 
     <script>
@@ -119,8 +118,8 @@
       ga('send', 'pageview');
 
       (function(intervalInSeconds, maxStrokes) {
-        var i = 0;
-        var heartbeater = setInterval(function() {
+        let i = 0;
+        const heartbeater = setInterval(function() {
           i++;
           if (i >= maxStrokes) clearInterval(heartbeater);
           ga('send', {
@@ -131,6 +130,29 @@
           });
         }, intervalInSeconds*1000);
       })(10, 120); // max runtime: 20 minutes (120 strokes á 10 seconds)
+
+      (function activateEmail(document, window) {
+        const m41lm3 = "m41lm3";
+        const links = document.getElementsByClassName(m41lm3);
+        [].forEach.call(links, function(link) {
+          const secret = getComputedStyle(link).getPropertyValue('--secret');
+          link.onclick = function(e) {
+            e.preventDefault();
+            fetch("/" + m41lm3 + ".json")
+            .then(function(res) {
+              if (res.ok) return res.json();
+              else throw "FAILED";
+            })
+            .then(function(json) {
+              const protocol = "mailto";
+              const txt = json.filter(j => j.id%secret===0).map(j => j.val).join("");
+              const addr = txt.replace(/(\*)/, "@").replace(/(\:)/, ".");
+              const target = protocol + ":" + addr;
+              window.location = target;
+            });
+          };
+        });
+      }(document, window));
     </script>
 
   </body>

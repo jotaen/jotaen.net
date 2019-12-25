@@ -17,27 +17,3 @@ title = "About"
     Besides work, I love climbing in the mountains, travelling around on my motorbike or playing the piano. On the background picture, you see me on top of the summit needle of Salbitschijen in Switzerland.
   </p>
 </article>
-
-<script>
-  (function reveal_email(document, window) {
-    var links = document.getElementsByClassName("m41lm3");
-    var part1 = "/m41";
-    var part2 = "lm3.h";
-    var part3 = "tml";
-    [].forEach.call(links, function(link) {
-      link.setAttribute("title", "Click to unmask");
-      link.onclick = function() {
-        fetch(part1.concat(part2).concat(part3))
-        .then(function(res) {
-          if (res.ok) return res.text();
-        })
-        .then(function(txt) {
-          link.setAttribute("title", "");
-          link.classList.remove("m41lm3");
-          link.onclick = null;
-          link.innerHTML = txt.replace(/(--\*--)/, "@").replace(/(--:--)/, ".");
-        });
-      };
-    });
-  }(document, window));
-</script>
