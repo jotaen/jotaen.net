@@ -5,12 +5,6 @@ html {
   font-size: 16.5px;
   line-height: 1.57;
   font-weight: 300;
-  letter-spacing: -0.032em;
-  text-rendering: optimizeLegibility;
-  -webkit-font-feature-settings: "kern" 1;
-  -moz-font-feature-settings:"kern" 1;
-  -ms-font-feature-settings: "kern" 1;
-  font-feature-settings: "kern" 1;
   background-color: #eee;
   @media print {
     background-color: transparent;
@@ -20,9 +14,6 @@ html {
 body {
   margin: 0 auto;
   background-color: #fff;
-  -moz-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   @include width-beyond-max {
     max-width: $layout-width-superwide;

@@ -54,25 +54,6 @@ $line-length-width: 38rem;
   position: relative;
 }
 
-.post ol {
-  position: relative;
-  padding-left: 1.5em;
-}
-
-.post ul {
-  position: relative;
-  padding-left: 1em;
-}
-
-.post ul li {
-  list-style-type: none;
-  &:before {
-    position: absolute;
-    content: "▪︎";
-    left: 0;
-  }
-}
-
 @media print {
   .post a {
     color: #000;
@@ -106,46 +87,12 @@ $line-length-width: 38rem;
   margin-right: 0;
 }
 
-.post img {
-  width: 100%;
-}
-
 .post pre {
-  padding: 0.7em 0.5em;
-  background-color: $color-lightgrey;
   overflow: scroll;
 }
 
-.post code {
-  white-space: pre;
-}
-
-.post th {
-  @include font-bold;
-  padding: 0.3em;
-  border-bottom: 1px solid $color-grey;
-  background-color: $color-lightgrey;
-  text-align: left;
-}
-
-.post td {
-  max-width: 25em;
-}
-
-.post tr:nth-child(2n) {
-  background-color: $color-lightgrey;
-}
-
-.post td {
-  vertical-align: top;
-  padding: 0.3em;
-}
-
-.post > blockquote {
-  color: $color-grey;
-  margin-left: 0.5em;
-  padding-left: 1em;
-  border-left: 1px solid $color-grey;
+.post img {
+  width: 100%;
 }
 
 .post sup[id^="fnref"] {

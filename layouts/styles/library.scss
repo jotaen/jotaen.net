@@ -4,31 +4,47 @@
 
 $color-grey: #ddd;
 $color-lightgrey: #eee;
+$color-blue: #0d668d;
+$color-lightblue: #1394cc;
+$color-purple: #8d1699;
+$color-red: #c0253e;
+$color-orange: #f34c17;
+$color-green: #65c858;
+$color-brown: #5a3e35;
 
 /*
  *  TYPOGRAPHY
  */
 
+@mixin font-settings {
+  font-feature-settings: "kern" 1;
+  text-rendering: optimizeLegibility;
+}
+
 @mixin font-regular {
-  font-family: input-sans-condensed, sans-serif;
+  @include font-settings;
+  font-family: "Input Sans Condensed", sans-serif;
   font-weight: 300;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.032em;
 }
 
 @mixin font-bold {
-  font-family: input-serif-compressed, sans-serif;
+  @include font-settings;
+  font-family: "Input Sans Condensed", sans-serif;
   font-weight: 700;
   letter-spacing: -0.07em;
 }
 
 @mixin font-thin-italic {
-  font-family: input-sans-compressed, sans-serif;
+  @include font-settings;
+  font-family: "Input Sans Condensed", sans-serif;
   font-style: italic;
   font-weight: 300;
   letter-spacing: -0.03em;
 }
 
 @mixin font-mono {
+  @include font-settings;
   font-family: input-mono-narrow, monospace;
   font-weight: 300;
   letter-spacing: -0.05em;
