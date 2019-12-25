@@ -89,8 +89,18 @@
   overflow: scroll;
 }
 
-.post img {
-  width: 100%;
+.post p > img {
+  & {
+    max-width: 100%;
+  }
+  &[src$="#small"] {
+    max-width: 50%;
+  }
+}
+
+.post > table {
+  display: block;
+  overflow-x: scroll;
 }
 
 .post sup[id^="fnref"] {

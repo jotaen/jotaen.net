@@ -1,9 +1,8 @@
 @import "../styles/library";
 
 h1 {
-  @include font-regular;
-  font-size: 2rem;
-  letter-spacing: -0.03em;
+  @include font-serif;
+  font-size: 1.9rem;
   margin-top: 1.2em;
 }
 
@@ -11,19 +10,14 @@ h2 {
   @include font-bold;
   margin-top: 1.5rem;
   margin-bottom: 0.8rem;
-  font-size: 1.3rem;
-  letter-spacing: -0.03em;
+  font-size: 1.4rem;
 }
 
-h3,
-h4,
-h5,
-h6 {
+h3, h4, h5, h6 {
   @include font-bold;
-  margin-top: 0.8rem;
-  margin-bottom: 0.4rem;
+  margin-top: 1.1rem;
+  margin-bottom: -0.9rem;
   font-size: 1.1rem;
-  letter-spacing: -0.03em;
 }
 
 sup,
@@ -76,16 +70,11 @@ a:visited:active,
   color: #fff;
 }
 
-code {
-  padding: 0.25em;
-}
-
 code,
-code *,
-.code,
-.code * {
+.code {
   @include font-mono;
   background-color: $color-lightgrey;
+  padding: 0.125em 0.25em;
 }
 
 abbr {
@@ -121,30 +110,37 @@ code {
   white-space: pre;
 }
 
-th {
-  @include font-bold;
-  padding: 0.3em;
-  border-bottom: 1px solid $color-grey;
-  background-color: $color-lightgrey;
-  text-align: left;
+table {
+  border-collapse: collapse;
 }
 
-td {
-  max-width: 25em;
+thead {
+  @include font-bold;
+  text-align: left;
+  border-bottom: 1px solid #000;
+  th {
+    padding: 0.3em;
+  }
 }
 
 tr:nth-child(2n) {
   background-color: $color-lightgrey;
 }
 
-td {
-  vertical-align: top;
-  padding: 0.3em;
+tbody {
+  td {
+    vertical-align: top;
+    padding: 0.3em;
+    border-right: 2px solid white;
+    &:last-child {
+      border-right: none;
+    }
+  }
 }
 
 blockquote {
   color: $color-darkgrey;
   margin-left: 0.5em;
   padding-left: 1em;
-  border-left: 1px solid $color-grey;
+  border-left: 2px solid $color-grey;
 }
