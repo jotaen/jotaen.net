@@ -70,11 +70,11 @@ puts greet("Mary")
 
 ## Image
 
-![A climber abseils from a very exposed summit needle](/salbit.jpg)[^3]
+![A climber abseils from a very exposed summit needle](/fashionshow.jpg)[^3]
 
 Images can also come in different proportions: small or large. (The above is regular.)
 
-![A climber abseils from a very exposed summit needle](/salbit.jpg#small)
+![A climber abseils from a very exposed summit needle](/fashionshow.jpg#small)
 
 ## Blockquote
 
@@ -82,5 +82,5 @@ Images can also come in different proportions: small or large. (The above is reg
 
 [^1]: Footnote for a piece of text within a paragraph
 [^2]: Footnote for a code block, here a piece of Ruby code
-[^3]: Footnote for an image, here a climber on top of a mountain
+[^3]: Footnote for an image, here a fashion show
 [^4]: Footnote for a blockquote, here a citation from the movie Pulp Fiction (Ezekiel 25,17)

@@ -1,13 +1,6 @@
 @import "../styles/library";
 
 .postimage {
-  position: relative;
-  height: 42vh;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-position: center 50%;
-  background-size: cover;
-
   &-info {
     position: absolute;
     width: 20px;
