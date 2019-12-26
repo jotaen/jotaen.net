@@ -97,7 +97,7 @@
         }, intervalInSeconds*1000);
       })(10, 120); // max runtime: 20 minutes (120 strokes á 10 seconds)
 
-      (function activateEmail(document, window) {
+      (function activateEmail() {
         const m41lm3 = "m41lm3";
         const links = document.getElementsByClassName(m41lm3);
         [].forEach.call(links, (link) => {
@@ -110,15 +110,14 @@
               else throw "FAILED";
             })
             .then((json) => {
-              const protocol = "mailto";
               const txt = json.filter(j => j.key%secret===0).map(j => j.val).join("");
               const addr = txt.replace(/(\*)/, "@").replace(/(\:)/, ".");
-              const target = protocol + ":" + addr;
+              const target = "mailto:" + addr;
               window.location = target;
             });
           };
         });
-      }(document, window));
+      }());
     </script>
 
   </body>
