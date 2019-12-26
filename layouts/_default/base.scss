@@ -19,8 +19,9 @@ body {
   }
 }
 
-main {
+main.central-column {
   overflow-x: hidden; // e.g. for the overlay
+  margin-bottom: 3rem;
 }
 
 @media print {
@@ -37,6 +38,11 @@ main {
 :root {
   --colour-theme: 0;
   --colour-theme-mode: 0; // 0 = black/white; 1 = coloured
+}
+
+#datadecrypt {
+  // see `datadecrypt()` JS-function
+  --secret: 5;
 }
 
 .belt {

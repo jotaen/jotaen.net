@@ -14,9 +14,19 @@
     
     <script defer="true" src="/highlight.js" onload="hljs.initHighlightingOnLoad()"></script>
 
+    <script type="text/javascript">
+      function datadecrypt(xs) {
+        const decryptor = document.getElementById("datadecrypt");
+        const secret = getComputedStyle(decryptor).getPropertyValue('--secret');
+        return xs.filter(j => j.key%secret===0).map(j => j.val).join("");
+      };
+    </script>
+
     {{ block "head" . }}{{ end }}
   </head>
   <body>
+
+    <div id="datadecrypt"><!--see corresponding JS function--></div>
 
     <header class="belt-dark belt-topfix belt-topfix-thickness">
       <div class="header">
@@ -66,7 +76,7 @@
           </span>
         </div>
         <div class="footer-about-legal">
-          <a class="a-reset" href="/impressum">Impressum & Privacy Policy</a>
+          <a class="a-reset" href="/impressum">Impressum & Datenschutz</a>
         </div>
       </div></div>
 
@@ -95,11 +105,10 @@
         }, intervalInSeconds*1000);
       })(10, 120); // max runtime: 20 minutes (120 strokes á 10 seconds)
 
-      (function activateEmail() {
+      (function decryptM41lM3() {
         const m41lm3 = "m41lm3";
         const links = document.getElementsByClassName(m41lm3);
         [].forEach.call(links, (link) => {
-          const secret = getComputedStyle(link).getPropertyValue('--secret');
           link.onclick = (e) => {
             e.preventDefault();
             fetch("/" + m41lm3 + ".json")
@@ -107,15 +116,14 @@
               if (res.ok) return res.json();
               else throw "FAILED";
             })
-            .then((json) => {
-              const txt = json.filter(j => j.key%secret===0).map(j => j.val).join("");
-              const addr = txt.replace(/(\*)/, "@").replace(/(\:)/, ".");
-              const target = "mailto:" + addr;
-              window.location = target;
+            .then(datadecrypt)
+            .then((addr) => {
+              window.location = "mailto:" + addr;
             });
           };
         });
-      }());
+      })();
+
     </script>
 
   </body>
