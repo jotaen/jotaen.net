@@ -23,8 +23,22 @@
     display: block;
   }
 
+  &-buttoncontainer {
+    margin-top: 1em;
+  }
+
   &-content {
     @extend .central-column;
+  }
+
+  &-closebutton {
+    @include width-beyond-broad {
+      display: none;
+    }
+    background-color: $color-lightblue !important;
+    border-radius: 0.1em;
+    padding: 0 0.5em;
+    color: #fff !important;
   }
 }
 
@@ -81,15 +95,4 @@ sup[id^="fnref"] {
 
 .footnote-return {
   display: none;
-}
-
-a.fn-close {
-  @include width-beyond-broad {
-    display: none;
-  }
-  @extend .a-reset;
-  background-color: $color-lightblue !important;
-  border-radius: 0.1em;
-  padding: 0 0.5em;
-  color: #fff !important;
 }

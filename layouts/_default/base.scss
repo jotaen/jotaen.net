@@ -133,21 +133,9 @@ main {
     h3 {
       margin: 0;
     }
-    input {
-      box-sizing: border-box;
-      font-size: 1em;
-      height: 2em;
-      border: none;
-      font-family: inherit;
-    }
     input[type=email] {
       width: 100%;
       max-width: 22em;
-    }
-    input[type=submit] {
-      background-color: #999;
-      color: white;
-      text-transform: uppercase;
     }
     &-disclaimer {
       font-size: 0.8rem;

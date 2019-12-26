@@ -153,22 +153,26 @@ blockquote {
   margin-right: 0; // normalise browser default
 }
 
-input, .input {
+.interactivecontrol {
   @include font-regular;
+  @include text-regular;
   font-style: normal;
+  border: none;
 }
 
-button, .button {
+button, input, .input {
+  @extend .interactivecontrol;
+}
+
+button, input[type=submit] {
   /* normalize begin */
   -webkit-appearance: button;
   background: none;
   border: none;
   /* normalize end */
 
-  &:hover, &:active {
-    border-width: 3px;
-    margin: -2px;
-  }
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 .tag {
