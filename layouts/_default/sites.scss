@@ -9,6 +9,10 @@
   margin-bottom: 2rem;
 }
 
+.error-page {
+  @extend .central-column;
+}
+
 .impressum {
   @extend .central-column;
   &-contact {

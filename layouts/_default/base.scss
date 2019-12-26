@@ -21,7 +21,7 @@ body {
 
 main.central-column {
   overflow-x: hidden; // e.g. for the overlay
-  margin-bottom: 3rem;
+  padding-bottom: 3rem;
 }
 
 @media print {
@@ -46,6 +46,10 @@ main.central-column {
 }
 
 .belt {
+  &-black {
+    width: 100%;
+    background-color: #000;
+  }
   &-dark { 
     width: 100%;
     background-color: hsl(var(--colour-theme), calc(var(--colour-theme-mode)*15%), 15%);

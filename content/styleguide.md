@@ -19,7 +19,7 @@ The [“input“ font face](http://input.fontbureau.com) has a technical look go
 
 # Logo
 
-While I don’t want to appear as a brand, I still want to create a visual identity that is supposed to be somewhat unique and recognisable. Therefore I use a logo along with my name, however, without a custom font. The logo is reminiscent of an icon for a person or user without looking generic though.
+Even though I want to appear as person and not as a brand, I still want to create a visual identity that is supposed to be somewhat unique and recognisable. Therefore I use a logo along with my name, however, without a custom font. The logo is reminiscent of an icon for a person or user without looking generic.
 
 <svg style="float:left" viewBox="0 0 80 80" width="250" height="250" xmlns="http://www.w3.org/2000/svg">
   <circle cx="40" cy="20" r="10" fill="none" stroke="#000000" stroke-width="7.5" />
@@ -57,9 +57,9 @@ While I don’t want to appear as a brand, I still want to create a visual ident
   <circle cx="40" cy="80" r="40" fill="none" stroke="#f00" stroke-width="0.2" />
 </svg>
 
-Its backstory of the logo is that I used my nickname “jotaen” as logo back in the day, set in the [“Jan LT” typeface](https://www.linotype.com/60646/jan-regular-product.html):
+The evolution of the logo is that I used my nickname “jotaen” as word mark back in the day, set in the [“Jan LT” typeface](https://www.linotype.com/60646/jan-regular-product.html):
 
-<svg version="1.1" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 247.876 83.784">
+<p style="text-align:center"><svg version="1.1" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 247.876 83.784">
     <g>
       <g>
         <path d="M45.276,41.628c3.597,3.502,5.395,7.761,5.395,12.777v3.407c0,5.016-1.798,9.275-5.395,12.777
@@ -85,13 +85,13 @@ Its backstory of the logo is that I used my nickname “jotaen” as logo back i
           c3.218-2.461,6.91-3.692,10.98-3.692C228.246,23.207,232.505,25.005,236.006,28.602z"/>
       </g>
     </g>
-</svg>
+</svg></p>
 
-The first two letters “jo” rotated by 90° yield my logo. (Credits go to my former coworker [Charisse](https://dribbble.com/charisseysabel) for that idea!)
+Take the first two letters “jo”, rotate them by 90° and – with some further tweaks – you have my logo. (Credits for that idea go to my former coworker [Charisse](https://dribbble.com/charisseysabel).)
 
 # Colours
 
-There are a few predefined colours that can be used to give semantic meaning to certain elements like links, tags or buttons.
+A small variation of predefined colours can be used to give semantic meaning to certain elements like links, tags or buttons. They shouldn’t be used for mere stylistic purposes.
 
 <style type="text/css">
     .colortile { display: inline-block; width: 5em; height: 3em; margin: 0.25em; }
