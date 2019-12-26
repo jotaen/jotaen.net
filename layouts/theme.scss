@@ -1,4 +1,4 @@
-@import "../styles/library";
+@import "library";
 
 p {
   @include text-regular;
@@ -151,4 +151,51 @@ blockquote {
   padding-left: 1em;
   border-left: 2px solid $color-grey;
   margin-right: 0; // normalise browser default
+}
+
+input, .input {
+  @include font-regular;
+  font-style: normal;
+}
+
+button, .button {
+  /* normalize begin */
+  -webkit-appearance: button;
+  background: none;
+  border: none;
+  /* normalize end */
+
+  &:hover, &:active {
+    border-width: 3px;
+    margin: -2px;
+  }
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: $color-lightblue !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  margin: 0.25em 0.4em 0.25em 0;
+
+  &:hover {
+    background-color: $color-blue;
+    border-color: $color-blue;
+    color: #fff !important;
+  }
+
+  &:before {
+    content: "#";
+    margin-right: 0.1em;
+  }
+
+  @media print {
+    border: none;
+    padding: 0;
+    margin-right: 0.3em;
+    line-height: inherit;
+    color: $color-grey;
+  }
 }
