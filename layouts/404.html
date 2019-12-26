@@ -5,8 +5,25 @@
 {{ end }}
 
 {{ define "head" }}
-  <link rel="stylesheet" property="stylesheet" href="/webshell-dark.css">
-  <script src="//static.jotaen.net/webshell.js/dist/webshell.js"></script>
+  <script src="https://static.jotaen.net/webshell.js/dist/webshell.js"></script>
+  <link rel="stylesheet" href="https://static.jotaen.net/webshell.js/dist/webshell.css">
+  <style type="text/css">
+    .webshell {
+      background-color: #000;
+      color: #fff;
+      font-size: 18px;
+      line-height: 1.2;
+      font-family: monospace;
+      padding: 0.5em;
+    }
+    .webshell-prompt-user { color: #65c858 }
+    .webshell-prompt-at { color: #cac43b }
+    .webshell-prompt-path { color: #999 }
+    .webshell-prompt-delimiter { color: #c0253e; }
+    .webshell a {
+      color: inherit;
+    }
+  </style>
 {{ end }}
 
 {{ define "main" }}
