@@ -1,5 +1,7 @@
 .PHONY: public serve static/style.css
 
+node_image = node:12.14.0-alpine
+
 public: static/style.css
 	rm -rf public/
 	docker run --rm \
@@ -20,7 +22,7 @@ static/style.css: node_modules
 	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
-		node:12.14.0-alpine \
+		$(node_image) \
 		./node_modules/.bin/node-sass \
 			--output-style \
 			compressed \
@@ -31,6 +33,6 @@ node_modules: package.json package-lock.json
 	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
-		node:12.14.0-alpine \
+		$(node_image) \
 		npm install
 	touch -m node_modules
