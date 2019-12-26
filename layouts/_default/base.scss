@@ -2,9 +2,8 @@
 
 html {
   @include font-regular;
-  font-size: 16.5px;
-  line-height: 1.57;
-  font-weight: 300;
+  @include text-regular;
+  color: #000;
   background-color: #eee;
   @media print {
     background-color: transparent;
@@ -18,6 +17,10 @@ body {
   @include width-beyond-max {
     max-width: $layout-width-superwide;
   }
+}
+
+main {
+  overflow-x: hidden; // e.g. for the overlay
 }
 
 @media print {
@@ -63,6 +66,7 @@ body {
     position: fixed;
     top: 0;
     z-index: $zindex-navigation;
+    box-shadow: 0 0 0.8rem rgba(0,0,0,0.4);
 
     &-thickness {
       min-height: 2.2rem;

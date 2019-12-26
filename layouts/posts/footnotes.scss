@@ -1,5 +1,60 @@
 @import "../styles/library";
 
+.overlay {
+  display: none;
+  @include width-below-broad {
+    @include font-regular;
+    @include text-regular;
+    text-align: center;
+    position: absolute;
+    z-index: $zindex-overlay;
+    left: 0;
+    width: 100%;
+    padding: 2em 100%;
+    margin-left: -100%;
+    color: #000;
+    background-color: rgba(240, 240, 240, 0.95);
+    box-shadow: 0 0 3em rgba(0, 0, 0, 0.5);
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+  }
+
+  &-shown {
+    display: block;
+  }
+
+  &-content {
+    @extend .central-column;
+  }
+}
+
+.footnote-aside {
+  @include width-beyond-broad {
+    display: block;
+    @include font-thin-italic;
+    position: absolute;
+    margin-top: -1.3rem;
+    box-sizing: border-box;
+    padding: 0 0.5rem;
+    left: #{-1 * $width-aside};
+    width: $width-aside;
+    text-align: right;
+    color: #555;
+    line-height: 1.3;
+    font-size: 0.85rem;
+  }
+
+  img + &, blockquote & {
+    bottom: 0.5rem;
+  }
+
+  pre + p & {
+    bottom: 1.5rem;
+  }
+
+  h1 > &, h2 > &, h3 > & { margin-top: -1.5rem; }
+}
+
 sup[id^="fnref"] {
   @include width-beyond-broad {
     display: none;
@@ -12,6 +67,7 @@ sup[id^="fnref"] {
   }
   a {
     @extend .a-reset;
+    @include font-regular;
     color: $color-lightblue !important;
     border: 1px solid $color-lightblue;
     border-radius: 1em;
@@ -23,41 +79,8 @@ sup[id^="fnref"] {
   }
 }
 
-.footnote-inline {
-  @include width-below-broad {
-    @include font-regular;
-    font-size: 1rem;
-    display: none;
-    text-align: center;
-    position: absolute;
-    z-index: $zindex-overlay;
-    left: 0;
-    width: 100%;
-    padding: 3em 1em;
-    background-color: rgba(0,0,0,0.9);
-    color: #fff;
-    box-sizing: border-box;
-    border-radius: 0.4em;
-    box-shadow: 0 0 4em rgba(0,0,0,0.5);
-  }
-  @include width-beyond-broad {
-    @include font-thin-italic;
-    display: block;
-    position: absolute;
-    margin-top: -1.3rem;
-    box-sizing: border-box;
-    padding: 0 1rem;
-    left: #{-1 * $width-aside};
-    width: $width-aside;
-    text-align: right;
-    color: #555;
-    line-height: 1.3;
-    font-size: 0.85rem;
-  }
-}
-
-.footnote-overlayshown {
-  display: block;
+.footnote-return {
+  display: none;
 }
 
 a.fn-close {
@@ -65,20 +88,8 @@ a.fn-close {
     display: none;
   }
   @extend .a-reset;
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
   background-color: $color-lightblue !important;
-  border-radius: 1em;
+  border-radius: 0.1em;
   padding: 0 0.5em;
   color: #fff !important;
-}
-
-img + .footnote-inline,
-blockquote .footnote-inline {
-  bottom: 0.5rem;
-}
-
-pre + p .footnote-inline {
-  bottom: 1rem;
 }

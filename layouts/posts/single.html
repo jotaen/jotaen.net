@@ -48,46 +48,61 @@
 
     {{ .Content }}
 
+    <template id="overlay">
+      <div class="overlay">
+        <div class="overlay-content"></div>
+        <div class="overlay-buttoncontainer"></div>
+      </div>
+    </template>
+
     <script>
       (function createSidebarGlossesFromFootnotes() {
-        var footnoteContainer = document.getElementsByClassName("footnotes")[0];
+        const footnoteContainer = document.getElementsByClassName("footnotes")[0];
         if (!footnoteContainer) return;
         Array.from(footnoteContainer.getElementsByTagName("li"))
-          .forEach(function(footnote, id) {
-            footnote.removeChild(footnote.lastElementChild); // remove "return" link
-            var sidenote = document.createElement("div");
-            sidenote.classList.add("footnote-inline");
-            sidenote.id = "footnote-" + (id);
-            var closebutton = document.createElement("a");
-            closebutton.href = "";
-            closebutton.title = "Close footnote";
-            closebutton.onclick = (e) => {
-              var fn = document.getElementById("footnote-" + id);
-              fn.classList.remove("footnote-overlayshown");
-              e.preventDefault();
-            }
-            closebutton.classList.add("fn-close");
-            closebutton.innerHTML = "×";
-            sidenote.innerHTML = footnote.innerHTML;
-            sidenote.appendChild(closebutton);
+          .forEach((footnote, id) => {
+            const overlay = document
+              .importNode(document.getElementById("overlay").content, true)
+              .firstElementChild;
+            overlay.id = "footnote-" + (id);
+            overlay.classList.add("footnote-aside");
+            const closebutton = (() => {
+              const c = document.createElement("a");
+              c.href = "";
+              c.title = "Close footnote";
+              c.onclick = (e) => {
+                const fn = document.getElementById("footnote-" + id);
+                fn.classList.remove("overlay-shown");
+                e.preventDefault();
+              }
+              c.classList.add("fn-close");
+              c.innerHTML = "Close";
+              return c;
+            })();
+            overlay
+              .getElementsByClassName("overlay-content")[0]
+              .innerHTML = footnote.innerHTML;
+            overlay
+              .getElementsByClassName("overlay-buttoncontainer")[0]
+              .appendChild(closebutton);
 
-            var ref = document.getElementById("fnref:" + (id + 1));
-            ref.parentElement.insertBefore(sidenote, ref);
+            const ref = document.getElementById("fnref:" + (id + 1));
+            ref.parentElement.insertBefore(overlay, ref);
           });
         footnoteContainer.parentElement.removeChild(footnoteContainer);
       }());
 
       (function modifyFootnoteRefLinks() {
-        var footnoteRefs = document.getElementsByClassName("footnote-ref");
+        const footnoteRefs = document.getElementsByClassName("footnote-ref");
         Array.from(footnoteRefs)
-          .forEach(function(ref, id) {
-            var a = ref.getElementsByTagName("a")[0];
+          .forEach((ref, id) => {
+            const a = ref.getElementsByTagName("a")[0];
             a.title = "Show footnote";
-            a.onclick = function(e) {
-              var fn = document.getElementById("footnote-" + id);
-              fn.classList.add("footnote-overlayshown");
+            a.onclick = (e) => {
+              const fn = document.getElementById("footnote-" + id);
+              fn.classList.add("overlay-shown");
               e.preventDefault();
-            }
+            };
             a.href = ""; // remove `#fn:x`
           });
       }());

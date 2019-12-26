@@ -85,7 +85,7 @@
 
       (function(intervalInSeconds, maxStrokes) {
         let i = 0;
-        const heartbeater = setInterval(function() {
+        const heartbeater = setInterval(() => {
           i++;
           if (i >= maxStrokes) clearInterval(heartbeater);
           ga('send', {
@@ -100,16 +100,16 @@
       (function activateEmail(document, window) {
         const m41lm3 = "m41lm3";
         const links = document.getElementsByClassName(m41lm3);
-        [].forEach.call(links, function(link) {
+        [].forEach.call(links, (link) => {
           const secret = getComputedStyle(link).getPropertyValue('--secret');
-          link.onclick = function(e) {
+          link.onclick = (e) => {
             e.preventDefault();
             fetch("/" + m41lm3 + ".json")
-            .then(function(res) {
+            .then((res) => {
               if (res.ok) return res.json();
               else throw "FAILED";
             })
-            .then(function(json) {
+            .then((json) => {
               const protocol = "mailto";
               const txt = json.filter(j => j.key%secret===0).map(j => j.val).join("");
               const addr = txt.replace(/(\*)/, "@").replace(/(\:)/, ".");

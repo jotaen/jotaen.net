@@ -132,7 +132,7 @@ And here is yet another item. It’s the last one, however.
 
 These are block elements, which are supported by markdown.
 
-## Table
+## Table[^2]
 
 |Rank|First Sentence|Book Title|Author|
 |--:|--------------|----|------|
@@ -141,8 +141,6 @@ These are block elements, which are supported by markdown.
 |  3|In principio era il Verbo e il Verbo era presso Dio, e il Verbo era Dio.|Il Nome Della Rosa|Umberto Eco|
 |  4|It was a bright, cold day in April, and the clocks were striking thirteen.|1984|George Orwell|
 |  5|In der Mottengasse elf, oben unter dem Dach hinter dem siebten Balken in dem Haus, wo der alte Eisenbahnsignalvorsteher Herr Gleisenagel wohnt, steht eine sehr geheimnisvolle Kiste.|Lari Fari Mogelzahn|Janosch|
-
-Side note: due to technical limitations, there can’t be footnotes in tables.
 
 ## Code
 
@@ -154,7 +152,7 @@ end
 
 puts greet("Mary")
 ```
-[^2]
+[^3]
 
 ## List
 
@@ -168,7 +166,7 @@ puts greet("Mary")
 
 ## Image
 
-![A climber abseils from a very exposed summit needle](/fashionshow.jpg)[^3]
+![A climber abseils from a very exposed summit needle](/fashionshow.jpg)[^4]
 
 Images can also come in different proportions: small or large. (The above is regular.)
 
@@ -176,9 +174,10 @@ Images can also come in different proportions: small or large. (The above is reg
 
 ## Blockquote
 
-> The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother’s keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know my name is the Lord when I lay my vengeance upon thee.[^4]
+> The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men. Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother’s keeper and the finder of lost children. And I will strike down upon thee with great vengeance and furious anger those who attempt to poison and destroy my brothers. And you will know my name is the Lord when I lay my vengeance upon thee.[^5]
 
 [^1]: Footnote for a piece of text within a paragraph
-[^2]: Footnote for a code block, here a piece of Ruby code
-[^3]: Footnote for an image, here a fashion show
-[^4]: Footnote for a blockquote, here a citation from the movie Pulp Fiction (Ezekiel 25,17)
+[^2]: Footnote for a headline. Remember that due to technical limitations, there can’t be footnotes within tables.
+[^3]: Footnote for a code block, here a piece of Ruby code
+[^4]: Footnote for an image, here a fashion show
+[^5]: Footnote for a blockquote, here a citation from the movie Pulp Fiction (Ezekiel 25,17)

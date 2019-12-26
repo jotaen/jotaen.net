@@ -43,6 +43,11 @@
   letter-spacing: -0.05em;
 }
 
+@mixin text-regular {
+  font-size: 16.5px;
+  line-height: 1.57;
+}
+
 /*
  *  MEDIA QUERIES
  */
