@@ -91,6 +91,11 @@ sup[id^="fnref"] {
       content: "^";
     }
   }
+
+  a:hover, a:active {
+    background-color: $color-lightblue !important;
+    color: #fff !important;
+  }
 }
 
 .footnote-return {

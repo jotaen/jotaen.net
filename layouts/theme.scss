@@ -167,6 +167,8 @@ button, input[type=submit] {
 }
 
 .tag {
+  @extend .a-reset;
+
   display: inline-block;
   font-size: 0.85rem;
   color: $color-lightblue !important;
@@ -174,10 +176,10 @@ button, input[type=submit] {
   letter-spacing: 0.05em;
   white-space: nowrap;
   margin: 0.25em 0.4em 0.25em 0;
+  padding: 0 0.25em;
 
-  &:hover {
-    background-color: $color-blue;
-    border-color: $color-blue;
+  &:hover, &:active {
+    background-color: $color-lightblue !important;
     color: #fff !important;
   }
 
