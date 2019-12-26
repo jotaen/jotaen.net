@@ -106,19 +106,31 @@ There are a few predefined colours that can be used to give semantic meaning to 
 
 # Text
 
-## Inline styles
-
-In order to highlight a passage, text can be **bold to indicate strong emphasis** or it can be *italic (or: obligue) for light emphasis*. The italic style has a slightly thiner font-weight to stick out a bit more. <span class="link">Weblinks</span> come in blue and underlined; <span class="link-visited">visited websites</span> are colored purple. (Unfortunately, the latter has come a bit out of fashion, but I consider it to be a very important feature – isn’t the web all about links?) `There is inline code`, which is `monospaced` on a `light grey background`. There is enough spacing so that two code pieces in subsequent lines don’t collide. All text selection is in the same colour as the header bar. Try it out!
-
-## Paragraph (and headlines)
+## Running text
 
 A Paragraph is a block of running text. It is supposed to be between a couple and around a dozen of lines of text. The line-length is up to 80 characters at most, for optimal legibility. The space between two subsequent paragraphs is around 1½ times the line height.
 
-The two preceding headlines serve as example for H1 and H2 headlines, a H3 headline is shown before the next “lorem ipsum” paragraph. H1 is a break to divide the text into multiple chapters: it is rather thin in font weight, but it is generously surrounded by whitespace to make it sufficiently prominent. H2 is a sub-division within a chapter (with some extra whitespace), wheres H3 is associated with its subsequent paragraph (with no extra whitespace). Other headline levels are not in use.
+In order to highlight a passage, text can be **bold to indicate strong emphasis** or it can be *italic (or: obligue) for light emphasis*. The italic style has a slightly thiner font-weight to stick out a bit more. <span class="link">Weblinks</span> come in blue and underlined; <span class="link-visited">visited websites</span> are colored purple. (Unfortunately, the latter has come a bit out of fashion, but I consider it to be a very important feature – isn’t the web all about links?) `There is inline code`, which is `monospaced` on a `light grey background`. There is enough spacing so that two code pieces in subsequent lines don’t collide. All text selection is in the same colour as the header bar. Try it out!
+
+## Headlines
+
+H1 is a break to divide the text into multiple chapters: it is rather thin in font weight, but it is generously surrounded by whitespace to make it sufficiently prominent. H2 is a sub-division within a chapter (with some extra whitespace), wheres H3 is associated with its subsequent paragraph (with no extra whitespace). Other headline levels are not in use.
 
 ### H3 headline
-
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt[^1] ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Definitory lists
+
+#### Some term:
+This is a definition of “some term”.
+#### Another term:
+This is another definition. As you can see, the explanation text can also be longer, which means that the text floats around the definition
+#### One last item:
+And here is yet another item. It’s the last one, however.
+
+# Block elements
+
+These are block elements, which are supported by markdown.
 
 ## Table
 

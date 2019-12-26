@@ -83,6 +83,7 @@ body {
   display:flex;
   height: 100%;
   align-items: center;
+  padding-top: 0.05em;
 
   a { @extend .a-reset; }
   a {
@@ -91,7 +92,7 @@ body {
   &-logo {
     position: absolute;
     height: 90%;
-    top: 10%;
+    top: 6%;
     left: 1%;
   }
   &-name {
