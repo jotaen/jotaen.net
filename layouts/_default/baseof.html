@@ -28,7 +28,7 @@
 
     <div id="datadecrypt"><!--see corresponding JS function--></div>
 
-    <header class="belt-dark belt-topfix belt-topfix-thickness">
+    <nav class="belt-dark belt-topfix belt-topfix-thickness">
       <div class="header">
         <a href="/">
           <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="header-logo">
@@ -45,10 +45,10 @@
           <span class="header-name">Jan Heuermann</span>
         </a>
         <span style="flex:content"><!--Spacer--></span>
-        <a href="/archive">Blog</a>
-        <a href="/about">About</a>
+        <a class="header-navitem" href="/archive">Blog</a>
+        <a class="header-navitem" href="/about">About</a>
       </div>
-    </header>
+    </nav>
     <div class="belt-topfix-thickness"><!--Spacer--></div>
 
     {{ block "main" . }}{{ end }}
