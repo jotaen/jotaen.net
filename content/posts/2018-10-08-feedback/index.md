@@ -4,6 +4,7 @@ subtitle = "Learning to listen to what others feel"
 date = "2018-10-08"
 tags = ["thoughts", "worklife"]
 image = "/posts/2018-10-08-feedback/mountain.jpg"
+image_colouring = 110
 id = "8VFKa"
 url = "8VFKa/the-art-of-receiving-feedback"
 aliases = ["8VFKa"]

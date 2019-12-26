@@ -4,6 +4,7 @@ subtitle = "An explanation of the Arduino Uno hardware components"
 date = "2019-11-30"
 tags = ["hardware"]
 image = "/posts/2019-11-30-arduino-hardware/arduino.jpg"
+image_colouring = 40
 image_info = ""
 id = "iJ6fF"
 url = "iJ6fF/arduino-hardware-components-explained"
