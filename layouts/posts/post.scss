@@ -41,6 +41,12 @@
   }
 }
 
+.footer-share {
+  a {
+    @extend .a-reset;
+  }
+}
+
 .post {
   @extend .central-column;
   position: relative;
