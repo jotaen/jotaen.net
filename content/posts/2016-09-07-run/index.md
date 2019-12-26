@@ -15,7 +15,7 @@ Since I never did regular run training before, I had to obtain a feeling for pac
 
 Not for nothing am I a software developer, so the answer to these questions is quite predictable: I built an app. It’s basically a dashboard that spits out the data and renders charts, which help us to understand and keep track of our training progress. The idea is to put the data into relation to an actual half marathon and get a good feel for where we currently are. The data itself (mainly distance and time, and also a few meta information) is held in [Contentful](https://www.contentful.com/) and has to be entered by hand after each run.
 
-Enough of the words: make mincemeat out of my run performance and see the dashboard at [run.jotaen.net](http://run.jotaen.net).[^1]
+Enough of the words: make mincemeat out of my run performance and [go visit the dashboard yourself](/posts/2016-09-07-run/app.html).[^1]
 
 ## Information design
 
