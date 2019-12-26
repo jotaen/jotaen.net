@@ -4,17 +4,9 @@
 
 @import "../library";
 
-.about-page {
-  @extend .central-column;
-  margin-bottom: 2rem;
-}
-
-.error-page {
-  @extend .central-column;
-}
-
 .impressum {
   @extend .central-column;
+  @extend .main-row;
   &-contact {
     @include font-mono;
     display: inline;
