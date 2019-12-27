@@ -156,6 +156,7 @@ body {
     @extend .footer;
     color: white;
 
+    input { @include outline(white); }
     h3 {
       margin: 0;
     }

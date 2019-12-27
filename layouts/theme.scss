@@ -144,26 +144,43 @@ blockquote {
   margin-right: 0; // normalise browser default
 }
 
-.interactivecontrol {
+@mixin outline($outline-color) {
+  &:focus {
+    outline: 1.5px dotted $outline-color;
+    &::-moz-focus-inner {
+      border: 0;
+      border-bottom: 1px solid $outline-color;
+    }
+  }
+}
+
+button, input {
+  /** Normalise form/input elements **/
   @include font-regular;
   @include text-regular;
   font-style: normal;
   border: none;
-}
+  padding: 0.2em 0.3em; // basic padding, can be overriden
 
-button, input, .input {
-  @extend .interactivecontrol;
+  @include outline(black);
 }
 
 button, input[type=submit] {
-  /* normalize begin */
-  -webkit-appearance: button;
-  background: none;
-  border: none;
-  /* normalize end */
+  -webkit-appearance: button; // normalise
+  background: none; // normalise
 
   text-transform: uppercase;
   cursor: pointer;
+
+  background-color: $color-lightblue;
+  color: white;
+
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+
+  &:hover {
+    background-color: $color-blue;
+  }
 }
 
 .tag {

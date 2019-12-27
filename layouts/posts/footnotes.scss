@@ -35,10 +35,6 @@
     @include width-beyond-broad {
       display: none;
     }
-    background-color: $color-lightblue !important;
-    border-radius: 0.1em;
-    padding: 0 0.5em;
-    color: #fff !important;
   }
 }
 
