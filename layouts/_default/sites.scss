@@ -6,7 +6,7 @@
 
 .impressum {
   @extend .central-column;
-  @extend .main-row;
+  @extend .belt-main;
   &-contact {
     @include font-mono;
     display: inline;

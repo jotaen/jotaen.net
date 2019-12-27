@@ -48,7 +48,7 @@ b, strong, .strong {
 }
 
 i, em, .em {
-  @include font-thin-italic;
+  @include font-italic;
 }
 
 a,

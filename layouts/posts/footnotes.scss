@@ -45,7 +45,7 @@
 .footnote-aside {
   @include width-beyond-broad {
     display: block;
-    @include font-thin-italic;
+    @include font-italic;
     position: absolute;
     margin-top: -1.3rem;
     box-sizing: border-box;
