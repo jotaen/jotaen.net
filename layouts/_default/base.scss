@@ -192,3 +192,6 @@ body {
     }
   }
 }
+
+.impr-ctc { @include font-mono; float: left; }
+.impr-ctc-ns { float:left; display: none; }
