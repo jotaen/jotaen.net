@@ -102,8 +102,8 @@ body {
   @include width-below-broad {
     max-width: $width-paragraph + $width-aside;
   }
-  & > p, & > ul, & > ol, & > blockquote, & > figure, & > div,
-  & > img, & > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
+  & > p, & > ul, & > ol, & > blockquote, & > figure, & > img,
+  & > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
     position: relative;
     margin-left: 0;
     max-width: $width-paragraph;

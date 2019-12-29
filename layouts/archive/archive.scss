@@ -1,12 +1,18 @@
 @import "../library";
 
 .archive {
-  &__filter {
-    max-width: 550px;
-    position: relative;
-    text-align: right;
-    font-size: 13px;
-    color: #777;
-    padding-bottom: 7px;
+  &-header {
+    display: flex;
+    margin-top: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid $color-darkgrey;
+  }
+  &-title {
+    @include font-bold;
+    text-transform: uppercase;
+  }
+  &-filter {
+    float: right;
+    color: $color-darkgrey;
   }
 }

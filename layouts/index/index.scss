@@ -1,34 +1,7 @@
 @import "../library";
 
-.tagbrowser {
-  &__list {
-    @include medium-view {
-      width: 50%;
-      float: left;
-      text-align: center;
-      box-sizing: border-box;
-      &:first-child {
-        padding-left: 10%;
-      }
-      &:last-child {
-        padding-right: 10%;
-      }
-    }
-  }
-
-  &__item {
-    display: inline-block;
-    margin-right: 1em;
-    @include medium-view {
-      margin-right: 0;
-      display: block;
-    }
-  }
-
-  &__heading {
-    @include font-regular;
-    text-transform: capitalize;
-    padding-right: 1em;
-    text-decoration: underline;
+.index {
+  &-tagbrowser {
+    
   }
 }
