@@ -52,33 +52,20 @@
  *  MEDIA QUERIES
  */
 
-$layout-width-narrow: 360px;
 $layout-width-superwide: 2000px;
 
-$width-central-column: 740px;
 $width-paragraph: 650px; // ~80 chars
-$width-aside: 160px; // min ~X chars
-
-@mixin width-below-min {
-  @media (max-width: #{$layout-width-narrow - 1}) {
-    @content;
-  }
-}
-
-@mixin width-beyond-min {
-  @media (min-width: $layout-width-narrow) {
-    @content;
-  }
-}
+$width-aside: 160px;
+$width-central-column: $width-paragraph + 2*$width-aside;
 
 @mixin width-below-broad {
-  @media (max-width: #{$width-central-column + 2*$width-aside - 1}) {
+  @media (max-width: #{$width-central-column - 1}) {
     @content;
   }
 }
 
 @mixin width-beyond-broad {
-  @media (min-width: #{$width-central-column + 2*$width-aside}) {
+  @media (min-width: #{$width-central-column}) {
     @content;
   }
 }

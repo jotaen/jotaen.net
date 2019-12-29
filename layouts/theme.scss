@@ -57,6 +57,14 @@ a,
   border: 0;
   cursor: pointer;
   text-decoration: underline;
+
+  @media print {
+    color: #000;
+    text-decoration: none;
+    &:after{
+      content: " [➚ " attr(href) "]";
+    }
+  }
 }
 
 a:hover,
@@ -160,6 +168,7 @@ button, input {
   @include text-regular;
   font-style: normal;
   border: none;
+  box-sizing: border-box;
   padding: 0.2em 0.3em; // basic padding, can be overriden
 
   @include outline(black);

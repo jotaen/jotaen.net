@@ -87,7 +87,7 @@ body {
       max-height: 2.8rem;
     }
     @include width-beyond-max {
-      max-width: $layout-width-narrow;
+      max-width: $layout-width-superwide;
     }
   }
 }
@@ -97,7 +97,14 @@ body {
   max-width: $width-central-column;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+  box-sizing: border-box;
   margin: 0 auto;
+  @include width-below-broad {
+    max-width: $width-paragraph + $width-aside;
+  }
+  @include width-beyond-broad {
+    padding-left: $width-aside;
+  }
 }
 
 .header {
@@ -111,23 +118,20 @@ body {
   padding-top: 0.05em;
 
   a { @extend .a-reset; }
-  a {
-    padding: 0 2.5%;
-  }
   &-logo {
     position: absolute;
     height: 90%;
     top: 6%;
-    left: 1%;
   }
   &-name {
-    padding-left: 17%;
-    white-space: nowrap;
+    padding-left: 3rem;
+    white-space: nowrap; // necessary for small viewport sizes
   }
   &-navitem {
     text-transform: uppercase;
     font-size: 0.95em;
     letter-spacing: 0.01em;
+    padding: 0 2.5%;
   }
 }
 

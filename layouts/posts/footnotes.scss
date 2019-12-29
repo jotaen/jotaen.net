@@ -27,10 +27,6 @@
     margin-top: 1em;
   }
 
-  &-content {
-    @extend .central-column;
-  }
-
   &-closebutton {
     @include width-beyond-broad {
       display: none;
@@ -45,7 +41,8 @@
     position: absolute;
     margin-top: -1.3rem;
     box-sizing: border-box;
-    padding: 0 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 1rem;
     left: #{-1 * $width-aside};
     width: $width-aside;
     text-align: right;
@@ -54,14 +51,9 @@
     font-size: 0.85rem;
   }
 
-  img + &, blockquote & {
-    bottom: 0.5rem;
-  }
-
-  pre + p & {
-    bottom: 1.5rem;
-  }
-
+  img + & { bottom: 0; }
+  blockquote & { bottom: -0.6rem; }
+  pre + p & { bottom: 0.6rem; }
   h1 > &, h2 > &, h3 > & { margin-top: -1.5rem; }
 }
 
