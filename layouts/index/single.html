@@ -2,7 +2,7 @@
 
 {{ define "main" }}
 
-<div class="belt-main"><main class="site">
+<div class="belt-main"><main class="central-column">
 
   {{ range $i, $teaser := first 7 (where (where .Page.Site.RegularPages.ByPublishDate.Reverse ".Params.listed" "!=" false) "Type" "posts") }}
     {{ partial "teaser.html" . }}
