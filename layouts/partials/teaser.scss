@@ -5,15 +5,20 @@
   @include width-beyond-medium {
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid $color-darkgrey;
-    &:last-child {
-      border-bottom: none;
-    }
   }
   padding-bottom: 1rem;
   padding-top: 1rem;
 
   a { @extend .a-reset; }
+
+  &-listitem {
+    @include width-beyond-medium {
+      border-bottom: 1px solid $color-darkgrey;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
 
   &-image {
     position: relative;
@@ -39,7 +44,7 @@
     bottom: 0.6em;
     left: 0;
     padding: 0.25em 0.8em;
-    background-color: hsl(0, 0, 15%);
+    background-color: hsl(0, 0, 20%);
     @include width-beyond-medium {
       bottom: unset;
       left: unset;

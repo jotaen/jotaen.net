@@ -108,6 +108,9 @@ body {
     margin-left: 0;
     max-width: $width-paragraph;
   }
+  .full-width {
+    max-width: inherit;
+  }
 }
 
 .header {

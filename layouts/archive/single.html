@@ -25,9 +25,11 @@
     </div>
   </div>
 
-  {{ range (where (where .Page.Site.RegularPages.ByPublishDate.Reverse ".Params.listed" "!=" false) "Type" "posts") }}
-    {{ partial "teaser.html" . }}
-  {{ end }}
+  <ul class="ul-reset full-width">
+    {{ range (where (where .Page.Site.RegularPages.ByPublishDate.Reverse ".Params.listed" "!=" false) "Type" "posts") }}
+      <li class="teaser-listitem">{{ partial "teaser.html" . }}</li>
+    {{ end }}
+  </ul>
 </main></div>
 
 <script>

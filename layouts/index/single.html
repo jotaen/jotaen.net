@@ -4,30 +4,30 @@
 
 <div class="belt-main"><main class="central-column">
 
-  {{ range $i, $teaser := first 7 (where (where .Page.Site.RegularPages.ByPublishDate.Reverse ".Params.listed" "!=" false) "Type" "posts") }}
-    {{ partial "teaser.html" . }}
-  {{ end }}
+  <ul class="ul-reset full-width">
+    {{ range $i, $teaser := first 7 (where (where .Page.Site.RegularPages.ByPublishDate.Reverse ".Params.listed" "!=" false) "Type" "posts") }}
+      <li class="teaser-listitem">{{ partial "teaser.html" . }}</li>
+    {{ end }}
+  </ul>
 
-  <div class="teaser teaser--flat teaser--centered">
-    <h3 class="teaser__banner cta__label">Browse all {{ len (where (where .Page.Site.RegularPages ".Params.listed" "!=" "false") "Type" "posts") }} posts <a href="/archive">in the archive</a>…</h3>
+  <div class="archiveportal">
+    <div class="archiveportal-title">Browse all {{ len (where (where .Page.Site.RegularPages ".Params.listed" "!=" "false") "Type" "posts") }} posts in the <a href="/archive"><button>archive</button></a></div>
+  </div>
 
-    <p>Or jump right into a specific tag:</p>
-  
-    <div class="tagbrowser">
-      {{ range $category, $tags := .Site.Data.tags }}
-        <div class="tagbrowser__list">
-          <h4 class="tagbrowser__heading">{{ $category }}</h4>
-          <ul class="ul--reset">
-            {{ range $name := $tags }}
-              <li class="li--reset tagbrowser__item">
-                <a href="/archive/#{{ $name | urlize }}" class="a--reset tag">{{ $name }}</a><!--
-                --><span class="teaser--light">({{ $.Site.Taxonomies.tags.Count $name }})</span>
-              </li>
-            {{ end }}
-          </ul>
-        </div>
-      {{ end }}
-    </div>
+  <div class="tagbrowser">
+    {{ range $category, $tags := .Site.Data.tags }}
+      <div class="tagbrowser-category">
+        <strong class="tagbrowser-heading">{{ $category }}</strong>
+        <ul>
+          {{ range $name := $tags }}
+            <li class="tagbrowser-tag">
+              <a href="/archive/#{{ $name | urlize }}" class="tag">{{ $name }}</a><!--
+              --><span class="tagbrowser-count">({{ $.Site.Taxonomies.tags.Count $name }})</span>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}
   </div>
 
 </main></div>
