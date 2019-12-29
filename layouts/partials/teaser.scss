@@ -6,14 +6,16 @@
     display: flex;
     flex-direction: row;
   }
-  padding-bottom: 1rem;
-  padding-top: 1rem;
 
   a { @extend .a-reset; }
 
   &-listitem {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     @include width-beyond-medium {
       border-bottom: 1px solid $color-darkgrey;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
     }
   }
 
@@ -45,7 +47,7 @@
     @include width-beyond-medium {
       bottom: unset;
       left: unset;
-      top: 0.5rem;
+      top: 0.6rem;
       right: 0;
     }
   }

@@ -125,12 +125,10 @@ body {
 
   a { @extend .a-reset; }
   &-logo {
-    position: absolute;
-    height: 90%;
-    top: 6%;
+    height: 100%;
+    svg { height: 100%; }
   }
   &-name {
-    padding-left: 3rem;
     white-space: nowrap; // necessary for small viewport sizes
   }
   &-navitem {
