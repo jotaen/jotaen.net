@@ -192,6 +192,11 @@ button, input[type=submit] {
   }
 }
 
+.section-title {
+  @include font-bold;
+  text-transform: uppercase;
+}
+
 .tag {
   @include font-regular;
   @extend .a-reset;
@@ -221,5 +226,14 @@ button, input[type=submit] {
     margin-right: 0.3em;
     line-height: inherit;
     color: $color-grey;
+  }
+
+  &-light {
+    @extend .tag;
+    color: $color-superlightblue !important;
+    &:hover, &:active {
+      background-color: $color-superlightblue !important;
+      color: #000 !important;
+    }
   }
 }

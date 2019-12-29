@@ -7,10 +7,6 @@
     padding-bottom: 0.5rem;
     border-bottom: 1px solid $color-darkgrey;
   }
-  &-title {
-    @include font-bold;
-    text-transform: uppercase;
-  }
   &-filter {
     float: right;
     color: $color-darkgrey;

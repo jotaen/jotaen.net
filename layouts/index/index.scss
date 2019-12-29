@@ -3,21 +3,8 @@
 .archiveportal {
   border-top: 1px solid $color-darkgrey;
   padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
 
   &-title {
     text-align: center;
-  }
-}
-
-.tagbrowser {
-  display: flex;
-  text-align: center;
-  ul { @extend .ul-reset; }
-  &-category {
-    flex: 1;
-  }
-  &-count {
-    color: $color-darkgrey;
   }
 }

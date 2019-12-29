@@ -165,11 +165,8 @@ body {
   &-newsletter {
     @extend .footer;
     color: white;
-
+    padding-top: 1.2rem;
     input { @include outline(white); }
-    h3 {
-      margin: 0;
-    }
     input[type=email] {
       width: 100%;
       max-width: 22em;

@@ -5,7 +5,7 @@
 
 <div class="belt-main"><main class="central-column">
   <div class="archive-header">
-    <div class="archive-title">
+    <div class="section-title">
       Blog Index
     </div>
     <div style="flex:content"><!--SPACER--></div>
@@ -60,4 +60,8 @@
   filterList();
 </script>
 
+{{ end }}
+
+{{ define "context-belt" }}
+  {{ partial "tagbrowser.html" . }}
 {{ end }}
