@@ -105,6 +105,6 @@
 
 .footer-share {
   a {
-    @extend .a-reset;
+    @include a-reset;
   }
 }

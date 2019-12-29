@@ -68,9 +68,14 @@ sup[id^="fnref"] {
     display: none;
   }
   a {
-    @extend .a-reset;
     @include font-regular;
-    color: $color-lightblue !important;
+    @include a-reset {
+      color: $color-lightblue;
+      &:hover, &:active {
+        background-color: $color-lightblue;
+        color: #fff;
+      }
+    }
     border: 1px solid $color-lightblue;
     border-radius: 1em;
     padding: 0 0.3em;
@@ -78,11 +83,6 @@ sup[id^="fnref"] {
     &:before {
       content: "^";
     }
-  }
-
-  a:hover, a:active {
-    background-color: $color-lightblue !important;
-    color: #fff !important;
   }
 }
 

@@ -57,6 +57,12 @@ $width-aside: 160px;
 
 $layout-width-superwide: 2000px;
 
+@mixin width-beyond-narrow {
+  @media (min-width: 400px) {
+    @content;
+  }
+}
+
 @mixin width-beyond-medium {
   @media (min-width: #{$width-paragraph}) {
     @content;
@@ -118,14 +124,17 @@ $zindex-navigation: 99999;
 $zindex-overlay: #{$zindex-navigation - 1};
 
 /*
- *  CSS CLASSES
+ *  MISC. MIXINS AND CLASSES
  */
 
-.a-reset { &, &:hover, &:active, &:visited, &:visited:hover {
-  color: inherit;
-  background-color: inherit;
-  text-decoration: inherit;
-}}
+@mixin a-reset {
+  &, &:hover, &:active, &:visited, &:visited:hover {
+    color: inherit;
+    background-color: inherit;
+    text-decoration: inherit;
+    @content;
+  }
+}
 
 .ul-reset {
   padding-left: 0;

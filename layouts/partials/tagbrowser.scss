@@ -12,11 +12,15 @@
 
   ul { @extend .ul-reset; }
   &-categories {
-    display: flex;
+    @include width-beyond-narrow { display: flex; }
     text-align: center;
   }
   &-category {
-    flex: 1;
+    margin-bottom: 1rem;
+    @include width-beyond-narrow {
+      flex: 1;
+      margin-bottom: initial;
+    }
   }
   &-count {
     font-size: 0.9rem;

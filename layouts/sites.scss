@@ -1,0 +1,22 @@
+.sociallinks {
+  display: flex;
+  text-align: center;
+  li {
+    flex: auto;
+  }
+  a {
+    @include a-reset;
+    svg {
+      width: 2.5rem;
+    }
+  }
+}
+
+.impr-ctc {
+  @include font-mono;
+  float: left;
+  &-ns {
+    float:left;
+    display: none;
+  }
+}

@@ -51,8 +51,7 @@ i, em, .em {
   @include font-italic;
 }
 
-a,
-.link {
+a, .link {
   color: $color-blue;
   border: 0;
   cursor: pointer;
@@ -61,32 +60,26 @@ a,
   @media print {
     color: #000;
     text-decoration: none;
-    &:after{
+    &:after {
       content: " [➚ " attr(href) "]";
     }
   }
-}
 
-a:hover,
-a:active,
-.link:hover,
-.link:active {
-  background-color: $color-blue;
-  color: #fff;
-}
+  &:hover, &:active {
+    background-color: $color-blue;
+    color: #fff;
+  }
 
-a:visited,
-.link-visited {
-  @extend .link;
-  color: $color-purple;
-}
+  &:visited, &-visited {
+    @extend .link;
+    color: $color-purple;
+  }
 
-a:visited:hover,
-a:visited:active,
-.link-visited:hover,
-.link-visited:active {
-  background-color: $color-purple;
-  color: #fff;
+  &:visited:hover, &:visited:active,
+  &-visited:hover, &-visited:active {
+    background-color: $color-purple;
+    color: #fff;
+  }
 }
 
 code,
@@ -199,21 +192,21 @@ button, input[type=submit] {
 
 .tag {
   @include font-regular;
-  @extend .a-reset;
+  @include a-reset {
+    color: $color-lightblue;
+    &:hover, &:active {
+      background-color: $color-lightblue;
+      color: #fff;
+    }
+  };
 
   display: inline-block;
   font-size: 0.9rem;
-  color: $color-lightblue !important;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   white-space: nowrap;
   margin: 0.25em 0.4em 0.25em 0;
   padding: 0 0.25em;
-
-  &:hover, &:active {
-    background-color: $color-lightblue !important;
-    color: #fff !important;
-  }
 
   &:before {
     content: "#";
@@ -230,10 +223,12 @@ button, input[type=submit] {
 
   &-light {
     @extend .tag;
-    color: $color-superlightblue !important;
-    &:hover, &:active {
-      background-color: $color-superlightblue !important;
-      color: #000 !important;
+    @include a-reset {
+      color: $color-superlightblue;
+      &:hover, &:active {
+        background-color: $color-superlightblue;
+        color: #000;
+      }
     }
   }
 }

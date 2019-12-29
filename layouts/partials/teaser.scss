@@ -7,8 +7,6 @@
     flex-direction: row;
   }
 
-  a { @extend .a-reset; }
-
   &-listitem {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -20,6 +18,7 @@
   }
 
   &-image {
+    @include a-reset;
     position: relative;
     display: block;
     flex: 0 0 100%;
@@ -40,14 +39,14 @@
     position: absolute;
     font-size: 0.90rem;
     color: #fff;
-    bottom: 0.6em;
+    bottom: 0em;
     left: 0;
     padding: 0.25em 0.8em;
     background-color: hsl(0, 0, 20%);
     @include width-beyond-medium {
       bottom: unset;
       left: unset;
-      top: 0.6rem;
+      top: 0rem;
       right: 0;
     }
   }
@@ -56,6 +55,7 @@
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
   }
+  &-headline { @include a-reset; }
   &-title {
     font-size: 1.5rem;
   }
