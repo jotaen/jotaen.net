@@ -1,6 +1,4 @@
-<article class="teaser"
-  data-tags="{{ range .Params.Tags }}{{ . | urlize }} {{ end }}
-">
+<article class="teaser">
   <a href="/{{ trim .RelPermalink "/" }}" class="teaser-image">
     {{ $img := (split .Params.Image ".") }}
     <div style="background-image:url({{ index $img 0 }}.small.{{ index $img 1 }})"></div>

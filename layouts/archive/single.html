@@ -27,7 +27,7 @@
 
   <ul class="ul-reset full-width">
     {{ range (where (where .Page.Site.RegularPages.ByPublishDate.Reverse ".Params.listed" "!=" false) "Type" "posts") }}
-      <li class="teaser-listitem">{{ partial "teaser.html" . }}</li>
+      <li class="teaser-listitem" data-tags="{{ range .Params.Tags }}{{ . | urlize }} {{ end }}">{{ partial "teaser.html" . }}</li>
     {{ end }}
   </ul>
 </main></div>
