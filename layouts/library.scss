@@ -57,6 +57,12 @@ $width-aside: 160px;
 
 $layout-width-superwide: 2000px;
 
+@mixin width-beyond-medium {
+  @media (min-width: #{$width-paragraph}) {
+    @content;
+  }
+}
+
 @mixin width-below-broad {
   @media (max-width: #{$width-paragraph + 3*$width-aside - 1}) {
     @content;
@@ -119,6 +125,11 @@ $zindex-overlay: #{$zindex-navigation - 1};
   background-color: inherit;
   text-decoration: inherit;
 }}
+
+.ul-reset {
+  padding-left: 0;
+  list-style-type: none;
+}
 
 .screen-hide {
   @media screen {

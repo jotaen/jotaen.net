@@ -6,9 +6,6 @@
 
 .site {
   @extend .central-column;
-  & > p {
-    max-width: $width-paragraph;
-  }
 }
 
 .impressum {

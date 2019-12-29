@@ -6,13 +6,6 @@
   padding-right: 0; // override central-column to allow items to break out
   padding-bottom: 1em;
 
-  & > p, & > ul, & > ol, & > blockquote, & > figure, & > div,
-  & > img, & > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
-    position: relative;
-    margin-left: 0;
-    max-width: $width-paragraph;
-  }
-
   & > figure {
     margin-right: 0;
   }

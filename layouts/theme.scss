@@ -193,6 +193,7 @@ button, input[type=submit] {
 }
 
 .tag {
+  @include font-regular;
   @extend .a-reset;
 
   display: inline-block;

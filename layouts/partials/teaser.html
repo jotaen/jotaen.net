@@ -1,19 +1,30 @@
 <article class="teaser"
   data-tags="{{ range .Params.Tags }}{{ . | urlize }} {{ end }}
 ">
-  <a href="/{{ trim .RelPermalink "/" }}">
+  <a href="/{{ trim .RelPermalink "/" }}" class="teaser-image">
     {{ $img := (split .Params.Image ".") }}
-    <div style="background-image:url({{ index $img 0 }}.small.{{ index $img 1 }})" class="teaser-image"></div>
+    <div style="background-image:url({{ index $img 0 }}.small.{{ index $img 1 }})"></div>
+    <time class="teaser-date" datetime="{{ .Date }}" style="background-color: hsl({{ .Params.Image_colouring }}, 15%, 15%)">
+      {{ .Date.Format "2" }}<sup>{{ if in (slice 1 21 31) .Date.Day}}st{{ else if in (slice 2 22) .Date.Day}}nd{{ else if in (slice 3 23) .Date.Day}}rd{{ else }}th{{ end }}</sup>
+      {{ .Date.Format "Jan. 2006" }}
+    </time>
   </a>
 
-  {{ .Date.Format "2" }}<sup>{{ if in (slice 1 21 31) .Date.Day}}st{{ else if in (slice 2 22) .Date.Day}}nd{{ else if in (slice 3 23) .Date.Day}}rd{{ else }}th{{ end }}</sup>
-    {{ .Date.Format "Jan. 2006" }}
+  <div>
+    <a href="/{{ trim .RelPermalink "/" }}">
+      <h1>
+        <div class="teaser-title">{{ .Title }}</div>
+        <div class="teaser-subtitle">{{ .Params.Subtitle }}</div>
+      </h1>
+    </a>
 
-      {{ .Title }}
-      {{ .Params.Subtitle }}
-
+    <ul class="teaser-taglist">
       {{ range .Params.Tags }}
-        <a href="/archive/#{{ . }}" class="a--reset tag">{{ . }}</a>
-    {{ end }}
+        <li class="teaser-tag">
+          <a href="/archive/#{{ . }}" class="tag">{{ . }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
 
 </article>

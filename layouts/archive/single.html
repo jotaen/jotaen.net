@@ -3,60 +3,52 @@
 
 {{ define "main" }}
 
-<div class="belt-main">
-  <main class="site">
-    <div class="archive__filter">
-      Filter by tag: 
-      <select id="all-tags" onchange="appendHashtag(this.value)">
-        <option value="_all">Show all</option>
-        <option disabled>────────────</option>
-        {{ range $category, $tags := .Site.Data.tags }}
-          <optgroup label="{{ $category }}">
-            {{ range $name := $tags }}
-            <option value="{{ $name | urlize }}">{{ $name }} ({{ $.Site.Taxonomies.tags.Count $name }})</option>
-            {{ end }}
-          </optgroup>
-        {{ end }}
-      </select>
-    </div>
-    {{ range (where (where .Page.Site.RegularPages.ByPublishDate.Reverse ".Params.listed" "!=" false) "Type" "posts") }}
-      {{ partial "teaser.html" . }}
-    {{ end }}
+<div class="belt-main"><main class="site">
+  <div class="archive__filter">
+    Filter by tag: 
+    <select id="all-tags" onchange="appendHashtag(this.value)">
+      <option value="_all">Show all</option>
+      <option disabled>────────────</option>
+      {{ range $category, $tags := .Site.Data.tags }}
+        <optgroup label="{{ $category }}">
+          {{ range $name := $tags }}
+          <option value="{{ $name | urlize }}">{{ $name }} ({{ $.Site.Taxonomies.tags.Count $name }})</option>
+          {{ end }}
+        </optgroup>
+      {{ end }}
+    </select>
+  </div>
+  {{ range (where (where .Page.Site.RegularPages.ByPublishDate.Reverse ".Params.listed" "!=" false) "Type" "posts") }}
+    {{ partial "teaser.html" . }}
+  {{ end }}
+</main></div>
 
-    <script>
-      function appendHashtag(tag) {
-        window.location.hash = tag === "_all" ? "" : tag;
+<script>
+  function appendHashtag(tag) {
+    window.location.hash = tag === "_all" ? "" : tag;
+  }
+
+  function filterList(tag) {
+    const currentTag = window.location.hash.substr(1);
+    const elements = document.querySelectorAll('[data-tags]');
+    Array.prototype.forEach.call(elements, function(e) {
+      if (!e.dataset.initialVisibility) {
+        e.dataset.initialVisibility = getComputedStyle(e).display;
       }
+      const tags = e.getAttribute("data-tags").split(" ");
+      const isShown = tags.includes(currentTag) || currentTag === "";
+      e.style.display = isShown ? e.dataset.initialVisibility : "none";
+    });
+    document.getElementById('all-tags').value = currentTag || "_all";
 
-      function filterList(tag) {
-        const currentTag = window.location.hash.substr(1);
-        const elements = document.querySelectorAll('[data-tags]');
-        Array.prototype.forEach.call(elements, function(e) {
-          const tags = e.getAttribute("data-tags").split(" ");
-          const isShown = tags.includes(currentTag) || currentTag === "";
-          e.style.display = isShown ? "block" : "none";
-        });
-        document.getElementById('all-tags').value = currentTag || "_all";
+    const titleSuffix = currentTag ? (": #" + currentTag) : "";
+    // document.getElementById('tag-in-title').innerHTML = titleSuffix;
+    document.title = document.title.replace(/^.+?(?= •)/, "Archive" + titleSuffix);
+  }
 
-        const titleSuffix = currentTag ? (": #" + currentTag) : "";
-        document.getElementById('tag-in-title').innerHTML = titleSuffix;
-        document.title = document.title.replace(/^.+?(?= •)/, "Archive" + titleSuffix);
-      }
+  window.addEventListener("hashchange", filterList, false);
 
-      window.addEventListener("hashchange", filterList, false);
-
-      (function hideTeaserWhileLoading() {
-        const style = document.createElement('style');
-        style.type = 'text/css';
-        style.innerHTML = '.teaser { display: none; }';
-        document.getElementsByTagName('head')[0].appendChild(style);
-      })();
-
-      // Call this _after_ the teasers have been loaded
-      filterList();
-    </script>
-
-  </main>
-</div>
+  filterList();
+</script>
 
 {{ end }}
