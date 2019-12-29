@@ -3,6 +3,7 @@
 .post {
   @extend .central-column;
   position: relative;
+  padding-right: 0; // override central-column to allow items to break out
   padding-bottom: 1em;
 
   & > p, & > ul, & > ol, & > blockquote, & > figure, & > div,

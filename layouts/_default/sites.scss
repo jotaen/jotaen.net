@@ -4,9 +4,14 @@
 
 @import "../library";
 
-.impressum {
+.site {
   @extend .central-column;
-  @extend .belt-main;
+  & > p {
+    max-width: $width-paragraph;
+  }
+}
+
+.impressum {
   &-contact {
     @include font-mono;
     display: inline;

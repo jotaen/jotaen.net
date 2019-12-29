@@ -94,16 +94,13 @@ body {
 
 .central-column {
   position: relative;
-  max-width: $width-central-column;
+  max-width: $width-paragraph + $width-aside;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   box-sizing: border-box;
   margin: 0 auto;
   @include width-below-broad {
     max-width: $width-paragraph + $width-aside;
-  }
-  @include width-beyond-broad {
-    padding-left: $width-aside;
   }
 }
 

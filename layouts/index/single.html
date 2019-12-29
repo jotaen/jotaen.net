@@ -2,9 +2,7 @@
 
 {{ define "main" }}
 
-<main class="content">
-
-  <h1 class="pagetitle">– Home –</h1>
+<div class="belt-main"><main class="site">
 
   {{ range $i, $teaser := first 7 (where (where .Page.Site.RegularPages.ByPublishDate.Reverse ".Params.listed" "!=" false) "Type" "posts") }}
     {{ partial "teaser.html" . }}
@@ -36,6 +34,6 @@
     <a href="/impressum" class="a--reset">Legal: Impressum &amp; Datenschutz</a>
   </div>
 
-</main>
+</main></div>
 
 {{ end }}

@@ -18,20 +18,20 @@
 {{ end }}
 
 {{ define "main" }}
-  <main class="belt-main">
-    <header class="belt-coverimage postimage" style="background-image:url({{ .Params.Image }})" alt="{{ .Title }}">
-      {{ if .Params.Image_info }}
-        <div class="postimage-info">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path id="circle" d="m12 2.085c-5.477 0-9.915 4.438-9.915 9.916 0 5.48 4.438 9.92 9.916 9.92 5.48 0 9.92-4.44 9.92-9.913 0-5.477-4.44-9.915-9.913-9.915zm.002 18a8.084 8.084 0 1 1 0 -16.17 8.084 8.084 0 0 1 0 16.17z" fill="#fff" />
-            <path id="info" d="m11 6.16v2.01h2.02v-2.01zm-1.61 3.22v2.01h1.61v4.43h-1.61v2.01h5.23v-2.01h-1.61v-6.44z" fill="#fff" />
-          </svg>
-          <p>{{ .Params.Image_info }}</p>
-        </div>
-      {{ end }}
-    </header>
+  <header class="belt-coverimage postimage" style="background-image:url({{ .Params.Image }})" alt="{{ .Title }}">
+    {{ if .Params.Image_info }}
+      <div class="postimage-info">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path id="circle" d="m12 2.085c-5.477 0-9.915 4.438-9.915 9.916 0 5.48 4.438 9.92 9.916 9.92 5.48 0 9.92-4.44 9.92-9.913 0-5.477-4.44-9.915-9.913-9.915zm.002 18a8.084 8.084 0 1 1 0 -16.17 8.084 8.084 0 0 1 0 16.17z" fill="#fff" />
+          <path id="info" d="m11 6.16v2.01h2.02v-2.01zm-1.61 3.22v2.01h1.61v4.43h-1.61v2.01h5.23v-2.01h-1.61v-6.44z" fill="#fff" />
+        </svg>
+        <p>{{ .Params.Image_info }}</p>
+      </div>
+    {{ end }}
+  </header>
 
-    <article class="post">
+  <div class="belt-main">
+    <main class="post">
       <h1 class="headline">
         <div class="headline-title">{{ .Params.Title }}</div>
         <div class="headline-subtitle">{{ .Params.Subtitle }}</div>
@@ -48,66 +48,66 @@
       </h1>
 
       {{ .Content }}
-    </article>
+    </main>
+  </div>
 
-    <template id="overlay">
-      <div class="overlay">
-        <div class="overlay-content"></div>
-        <div class="overlay-buttoncontainer"></div>
-      </div>
-      </template>
+  <template id="overlay">
+    <div class="overlay">
+      <div class="overlay-content"></div>
+      <div class="overlay-buttoncontainer"></div>
+    </div>
+    </template>
 
-    <script>
-      (function createSidebarGlossesFromFootnotes() {
-        const footnoteContainer = document.getElementsByClassName("footnotes")[0];
-        if (!footnoteContainer) return;
-        [].forEach.call(footnoteContainer.getElementsByTagName("li"), (footnote, id) => {
-          const overlay = document
-            .importNode(document.getElementById("overlay").content, true)
-            .firstElementChild;
-          overlay.id = "footnote-" + (id);
-          overlay.classList.add("footnote-aside");
-          const closebutton = (() => {
-            const c = document.createElement("button");
-            c.title = "Close overlay";
-            c.onclick = (e) => {
-              const fn = document.getElementById("footnote-" + id);
-              fn.classList.remove("overlay-shown");
-              e.preventDefault();
-            }
-            c.classList.add("overlay-closebutton");
-            c.innerHTML = "Close";
-            return c;
-          })();
-          overlay
-            .getElementsByClassName("overlay-content")[0]
-            .innerHTML = footnote.innerHTML;
-          overlay
-            .getElementsByClassName("overlay-buttoncontainer")[0]
-            .appendChild(closebutton);
-
-          const ref = document.getElementById("fnref:" + (id + 1));
-          ref.parentElement.insertBefore(overlay, ref);
-        });
-        footnoteContainer.parentElement.removeChild(footnoteContainer);
-      }());
-
-      (function modifyFootnoteRefLinks() {
-        const footnoteRefs = document.getElementsByClassName("footnote-ref");
-        if (!footnoteRefs) return;
-        [].forEach.call(footnoteRefs, (ref, id) => {
-          const a = ref.getElementsByTagName("a")[0];
-          a.title = "Show footnote";
-          a.onclick = (e) => {
+  <script>
+    (function createSidebarGlossesFromFootnotes() {
+      const footnoteContainer = document.getElementsByClassName("footnotes")[0];
+      if (!footnoteContainer) return;
+      [].forEach.call(footnoteContainer.getElementsByTagName("li"), (footnote, id) => {
+        const overlay = document
+          .importNode(document.getElementById("overlay").content, true)
+          .firstElementChild;
+        overlay.id = "footnote-" + (id);
+        overlay.classList.add("footnote-aside");
+        const closebutton = (() => {
+          const c = document.createElement("button");
+          c.title = "Close overlay";
+          c.onclick = (e) => {
             const fn = document.getElementById("footnote-" + id);
-            fn.classList.add("overlay-shown");
+            fn.classList.remove("overlay-shown");
             e.preventDefault();
-          };
-          a.href = ""; // remove `#fn:x`
-        });
-      }());
-    </script>
-  </main>
+          }
+          c.classList.add("overlay-closebutton");
+          c.innerHTML = "Close";
+          return c;
+        })();
+        overlay
+          .getElementsByClassName("overlay-content")[0]
+          .innerHTML = footnote.innerHTML;
+        overlay
+          .getElementsByClassName("overlay-buttoncontainer")[0]
+          .appendChild(closebutton);
+
+        const ref = document.getElementById("fnref:" + (id + 1));
+        ref.parentElement.insertBefore(overlay, ref);
+      });
+      footnoteContainer.parentElement.removeChild(footnoteContainer);
+    }());
+
+    (function modifyFootnoteRefLinks() {
+      const footnoteRefs = document.getElementsByClassName("footnote-ref");
+      if (!footnoteRefs) return;
+      [].forEach.call(footnoteRefs, (ref, id) => {
+        const a = ref.getElementsByTagName("a")[0];
+        a.title = "Show footnote";
+        a.onclick = (e) => {
+          const fn = document.getElementById("footnote-" + id);
+          fn.classList.add("overlay-shown");
+          e.preventDefault();
+        };
+        a.href = ""; // remove `#fn:x`
+      });
+    }());
+  </script>
 {{ end }}
 
 {{ define "context-belt" }}

@@ -1,84 +1,15 @@
 @import "../library";
 
 .teaser {
-  position: relative;
-  max-width: $width-content-column;
-  overflow: hidden;
-  clear: both;
-  padding: 2em 0;
-  border-top: 1px solid $color-grey;
-  @include narrow-view {
-    text-align: center;
-  }
+  max-width: $width-paragraph;
 
-  &--flat {
-    padding: 1.3em 0;
-  }
+  a { @extend .a-reset; }
 
-  &--centered {
-    text-align: center;
-  }
-
-  &__image {
-    width: 200px;
-    height: 150px;
-    @include medium-view {
-      float: left;
-      margin-right: 15px;
-    }
-  }
-
-  &__publish-date {
-    display: block;
-    margin: 0;
-    @include medium-view {
-      margin-left: 215px;
-    }
-  }
-
-  &__title {
-    @include font-bold;
-    font-style: italic;
-    font-size: 1.4rem;
-    color: #222;
-    margin: 0;
-    line-height: 1.4;
-    @include medium-view {
-      margin-left: 215px;
-    }
-  }
-
-  &__subtitle {
-    @include font-regular;
-    font-style: italic;
-    font-size: 1.2rem;
-    color: #222;
-    margin: 0 0 0.5em 0;
-    line-height: 1.4;
-    @include medium-view {
-      margin-left: 215px;
-    }
-  }
-
-  &__tags {
-    margin: 0;
-    @include medium-view {
-      margin-left: 215px !important;
-    }
-  }
-
-  &__banner {
-    margin-top: 0;
-  }
-
-  &__footer {
-    text-align: center;
-    min-height: 1px;
-    opacity: 0.7;
-  }
-
-  &--light {
-    color: $color-grey;
-    font-size: 0.9em;
+  &-image {
+    height: 10vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center 50%;
+    background-size: cover;
   }
 }
