@@ -9,37 +9,46 @@
 
 @mixin font-regular {
   @include font-settings;
-  font-family: "Input Sans Condensed", sans-serif;
-  font-weight: 300;
+  font-family: "Input Sans Cond Lt", sans-serif;
+  font-display: swap;
+  font-style: normal;
+  font-weight: normal;
   letter-spacing: -0.032em;
 }
 
 @mixin font-bold {
   @include font-settings;
-  font-family: "Input Sans Condensed", sans-serif;
-  font-weight: 500;
+  font-family: "Input Sans Cond Med", sans-serif;
+  font-display: swap;
+  font-style: normal;
+  font-weight: normal;
   letter-spacing: -0.04em;
 }
 
 @mixin font-italic {
   @include font-settings;
-  font-family: "Input Sans Condensed", sans-serif;
+  font-family: "Input Sans Cond Ex Lt It", sans-serif;
+  font-display: swap;
   font-style: italic;
-  font-weight: 300;
+  font-weight: normal;
   letter-spacing: -0.03em;
 }
 
 @mixin font-serif {
   @include font-settings;
-  font-family: "Input Serif Condensed", sans-serif;
-  font-weight: 300;
+  font-family: "Input Serif Cond Lt", serif;
+  font-display: swap;
+  font-style: normal;
+  font-weight: normal;
   letter-spacing: -0.032em;
 }
 
 @mixin font-mono {
   @include font-settings;
-  font-family: input-mono-narrow, monospace;
-  font-weight: 300;
+  font-family: "Input Mono Nar Lt", monospace;
+  font-display: swap;
+  font-style: normal;
+  font-weight: normal;
   letter-spacing: -0.05em;
 }
 
