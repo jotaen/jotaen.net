@@ -1,0 +1,210 @@
+@import "../library";
+
+html {
+  @include font-regular;
+  @include text-regular;
+  color: #000;
+  background-color: #eee;
+  @media print {
+    background-color: transparent;
+  }
+}
+
+body {
+  margin: 0 auto;
+  background-color: #fff;
+  text-size-adjust: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  @include width-beyond-max {
+    max-width: $layout-width-superwide;
+  }
+}
+
+@media print {
+  @page { 
+      margin: 20mm 25mm 15mm 20mm;
+  } 
+}
+
+::selection {
+  color: #fff;
+  background-color: hsl(var(--colour-theme), 15%, 20%);
+}
+
+:root {
+  --colour-theme: 0;
+  --colour-theme-mode: 0; // 0 = black/white; 1 = coloured
+}
+
+#datadecrypt {
+  // see `datadecrypt()` JS-function
+  --secret: 5;
+}
+
+.belt {
+  &-main { // Main section, stretches all the way to the footer
+    flex: 1;
+    overflow-x: hidden; // e.g. for the overlay
+    padding-bottom: 3rem;
+  }
+  &-black {
+    width: 100%;
+    background-color: #000;
+  }
+  &-dark { 
+    width: 100%;
+    background-color: hsl(var(--colour-theme), calc(var(--colour-theme-mode)*15%), 15%);
+  }
+  &-medium {
+    width: 100%;
+    background-color: hsl(var(--colour-theme), calc(var(--colour-theme-mode)*13%), 45%);
+  }
+  &-light {
+    width: 100%;
+    background-color: hsl(var(--colour-theme), calc(var(--colour-theme-mode)*10%), 85%);
+  }
+  &-coverimage {
+    position: relative;
+    width: 100%;
+    height: 42vh;
+    background-repeat: no-repeat;
+    background-position: center 50%;
+    background-size: cover;
+  }
+  &-topfix {
+    @extend .print-hide;
+
+    position: fixed;
+    top: 0;
+    z-index: $zindex-navigation;
+    box-shadow: 0 0 0.8rem rgba(0,0,0,0.4);
+
+    &-thickness {
+      min-height: 2.2rem;
+      height: 7vh;
+      max-height: 2.8rem;
+    }
+    @include width-beyond-max {
+      max-width: $layout-width-superwide;
+    }
+  }
+}
+
+.central-column {
+  position: relative;
+  max-width: $width-paragraph + $width-aside;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  box-sizing: border-box;
+  margin: 0 auto;
+  @include width-below-broad {
+    max-width: $width-paragraph + $width-aside;
+  }
+  & > p, & > ul, & > ol, & > blockquote, & > figure, & > img,
+  & > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
+    position: relative;
+    margin-left: 0;
+    max-width: $width-paragraph;
+  }
+  .full-width {
+    max-width: inherit;
+  }
+}
+
+.header {
+  @extend .central-column;
+  color: white;
+  line-height: 100%;
+  font-size: 1.1rem;
+  display:flex;
+  height: 100%;
+  align-items: center;
+  padding-top: 0.05em;
+
+  a { @include a-reset; }
+  &-logo {
+    height: 100%;
+    svg { height: 100%; }
+  }
+  &-name {
+    white-space: nowrap; // necessary for small viewport sizes
+  }
+  &-navitem {
+    text-transform: uppercase;
+    font-size: 0.95em;
+    letter-spacing: 0.01em;
+    padding: 0 2.5%;
+  }
+}
+
+.footer {
+  @extend .central-column;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+
+  &-share {
+    @extend .footer;
+    color: white;
+    text-align: center;
+
+    svg {
+      height: 1.5em;
+      vertical-align: middle;
+      margin: 0.4em 1em;
+      fill: #fff;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &-newsletter {
+    @extend .footer;
+    color: white;
+    padding-top: 1.2rem;
+    input { @include outline(white); }
+    input[type=email] {
+      width: 100%;
+      max-width: 22em;
+    }
+    &-disclaimer {
+      font-size: 0.8rem;
+      color: $color-grey;
+      margin-top: 0;
+    }
+  }
+  
+  &-about {
+    @extend .footer;
+    img {
+      height: 5em;
+      margin-right: 1em;
+    }
+    &-legal {
+      margin-top: 2em;
+      text-align: center;
+      font-size: 0.8rem;
+      a {
+        @include a-reset {
+          color: $color-darkgrey;
+        }
+      }
+    }
+    .shortbio {
+      @include width-beyond-narrow {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      img {
+        display: block;
+        margin: 0 auto;
+        @include width-beyond-narrow { margin: 0 1rem 0 0; }
+        height: 6rem;
+        border-radius: 50%;
+      }
+    }
+  }
+}

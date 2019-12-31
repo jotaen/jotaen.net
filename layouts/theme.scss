@@ -1,0 +1,234 @@
+@import "library";
+
+p {
+  @include text-regular;
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+h1 {
+  @include font-serif;
+  font-size: 1.8rem;
+  margin-top: 1.2em;
+}
+
+h2 {
+  @include font-bold;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+}
+
+h3 {
+  @include font-bold;
+  margin-top: 1.1rem;
+  margin-bottom: -0.7rem;
+  font-size: 1.1rem;
+}
+
+h4, h5, h6 {
+  @include font-bold;
+  @extend p;
+  margin: 0 0.5em 0 0;
+  float: left;
+}
+
+sup,
+sub {
+  line-height: 0;
+}
+
+sup,
+sub {
+  font-size: 0.8rem;
+}
+
+b, strong, .strong {
+  @include font-bold;
+}
+
+i, em, .em {
+  @include font-italic;
+}
+
+a, .link {
+  color: $color-blue;
+  border: 0;
+  cursor: pointer;
+  text-decoration: underline;
+
+  @media print {
+    color: #000;
+    text-decoration: none;
+    &:after {
+      content: " [➚ " attr(href) "]";
+    }
+  }
+
+  &:hover, &:active {
+    background-color: $color-blue;
+    color: #fff;
+  }
+
+  &:visited, &-visited {
+    @extend .link;
+    color: $color-purple;
+  }
+
+  &:visited:hover, &:visited:active,
+  &-visited:hover, &-visited:active {
+    background-color: $color-purple;
+    color: #fff;
+  }
+}
+
+code,
+.code {
+  @include font-mono;
+  background-color: $color-lightgrey;
+  padding: 0.125em 0.25em;
+}
+
+abbr {
+  border-bottom: 1px dotted $color-grey;
+  cursor: help;
+}
+
+ol {
+  position: relative;
+  padding-left: 1.5em;
+}
+
+ul {
+  position: relative;
+  padding-left: 1em;
+}
+
+pre {
+  padding: 0.7em 0.5em;
+  background-color: $color-lightgrey;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  @include font-bold;
+  text-align: left;
+  border-bottom: 1px solid #000;
+  th {
+    padding: 0.3em;
+  }
+}
+
+tr:nth-child(2n) {
+  background-color: $color-lightgrey;
+}
+
+tbody {
+  td {
+    vertical-align: top;
+    padding: 0.3em;
+    border-right: 2px solid white;
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
+
+blockquote {
+  color: $color-darkgrey;
+  margin-left: 0.5em;
+  padding-left: 1em;
+  border-left: 2px solid $color-grey;
+  margin-right: 0; // normalise browser default
+}
+
+@mixin outline($outline-color) {
+  &:focus {
+    outline: 1.5px dotted $outline-color;
+    &::-moz-focus-inner {
+      border: 0;
+      border-bottom: 1px solid $outline-color;
+    }
+  }
+}
+
+button, input {
+  /** Normalise form/input elements **/
+  @include font-regular;
+  @include text-regular;
+  font-style: normal;
+  border: none;
+  box-sizing: border-box;
+  padding: 0.2em 0.3em; // basic padding, can be overriden
+
+  @include outline(black);
+}
+
+button, input[type=submit] {
+  -webkit-appearance: button; // normalise
+  background: none; // normalise
+
+  text-transform: uppercase;
+  cursor: pointer;
+
+  background-color: $color-lightblue;
+  color: white;
+
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+
+  &:hover {
+    background-color: $color-blue;
+  }
+}
+
+.section-title {
+  @include font-bold;
+  text-transform: uppercase;
+}
+
+.tag {
+  @include font-regular;
+  @include a-reset {
+    color: $color-lightblue;
+    &:hover, &:active {
+      background-color: $color-lightblue;
+      color: #fff;
+    }
+  };
+
+  display: inline-block;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  margin: 0.25em 0.4em 0.25em 0;
+  padding: 0 0.25em;
+
+  &:before {
+    content: "#";
+    margin-right: 0.1em;
+  }
+
+  @media print {
+    border: none;
+    padding: 0;
+    margin-right: 0.3em;
+    line-height: inherit;
+    color: $color-grey;
+  }
+
+  &-light {
+    @extend .tag;
+    @include a-reset {
+      color: $color-superlightblue;
+      &:hover, &:active {
+        background-color: $color-superlightblue;
+        color: #000;
+      }
+    }
+  }
+}

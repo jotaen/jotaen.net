@@ -1,34 +1,28 @@
-<article
-  class="teaser"
-  data-tags="{{ range .Params.Tags }}{{ . | urlize }} {{ end }}
-">
-  <a href="/{{ trim .RelPermalink "/" }}" class="a--reset">
+<article class="teaser">
+  <a href="/{{ trim .RelPermalink "/" }}" class="teaser-image">
     {{ $img := (split .Params.Image ".") }}
-    <img src="{{ index $img 0 }}.small.{{ index $img 1 }}" class="teaser__image">
+    <div style="background-image:url({{ index $img 0 }}.small.{{ index $img 1 }})"></div>
+    <time class="teaser-date" datetime="{{ .Date }}" style="background-color: hsl({{ .Params.Image_colouring }}, 14%, 25%)">
+      {{ .Date.Format "2" }}<sup>{{ if in (slice 1 21 31) .Date.Day}}st{{ else if in (slice 2 22) .Date.Day}}nd{{ else if in (slice 3 23) .Date.Day}}rd{{ else }}th{{ end }}</sup>
+      {{ .Date.Format "Jan. 2006" }}
+    </time>
   </a>
 
-  <span class="teaser__publish-date teaser--light">
-    {{ .Date.Format "2" }}<sup>{{ if in (slice 1 21 31) .Date.Day}}st{{ else if in (slice 2 22) .Date.Day}}nd{{ else if in (slice 3 23) .Date.Day}}rd{{ else }}th{{ end }}</sup>
-    {{ .Date.Format "Jan. 2006" }}
-  </span>
-
-  <h1 class="teaser__title">
-    <a href="/{{ trim .RelPermalink "/" }}" class="a--reset">
-      {{ .Title }}
+  <div>
+    <a href="/{{ trim .RelPermalink "/" }}" class="teaser-headline">
+      <h1>
+        <div class="teaser-title">{{ .Title }}</div>
+        <div class="teaser-subtitle">{{ .Params.Subtitle }}</div>
+      </h1>
     </a>
-  </h1>
 
-  <h2 class="teaser__subtitle">
-    <a href="/{{ trim .RelPermalink "/" }}" class="a--reset">
-      {{ .Params.Subtitle }}
-    </a>
-  </h2>
+    <ul class="teaser-taglist">
+      {{ range .Params.Tags }}
+        <li class="teaser-tag">
+          <a href="/archive/#{{ . }}" class="tag">{{ . }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
 
-  <ul class="ul--reset teaser__tags">
-    {{ range .Params.Tags }}
-      <li class="li--inline" title="Tag: {{ . }}">
-        <a href="/archive/#{{ . }}" class="a--reset tag">{{ . }}</a>
-      </li>
-    {{ end }}
-  </ul>
 </article>

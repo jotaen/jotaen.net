@@ -1,11 +1,14 @@
 .PHONY: public serve static/style.css
 
+node_image = node:12.14.0-alpine
+hugo_image = jojomi/hugo:0.30.2
+
 public: static/style.css
 	rm -rf public/
 	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
-		jojomi/hugo:0.30 \
+		$(hugo_image) \
 		hugo
 
 serve: static/style.css
@@ -13,14 +16,15 @@ serve: static/style.css
 		-v $$(pwd):/app \
 		-p 1313:1313 \
 		-w /app \
-		jojomi/hugo:0.30 \
-		hugo server --bind=0.0.0.0 --buildDrafts
+		$(hugo_image) \
+		hugo server --bind=0.0.0.0 \
+			--buildDrafts --ignoreCache --verbose
 
 static/style.css: node_modules
 	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
-		node:9.3.0-alpine \
+		$(node_image) \
 		./node_modules/.bin/node-sass \
 			--output-style \
 			compressed \
@@ -31,6 +35,6 @@ node_modules: package.json package-lock.json
 	docker run --rm \
 		-v $$(pwd):/app \
 		-w /app \
-		node:9.3.0-alpine \
+		$(node_image) \
 		npm install
 	touch -m node_modules

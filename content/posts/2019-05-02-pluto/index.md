@@ -4,6 +4,7 @@ subtitle = "The story of its discovery and exploration"
 date = "2019-05-02"
 tags = ["off-topic"]
 image = "/posts/2019-05-02-pluto/pluto-surface.jpg"
+image_colouring = 160
 image_info = "Just 15 minutes after its closest approach to Pluto on July 14, 2015, NASA’s New Horizons spacecraft looked back toward the sun and captured this near-sunset view of the rugged, icy mountains and flat ice plains extending to Pluto’s horizon. (Image: NASA/JHUAPL/SwRI)"
 id = "xG6Re"
 url = "xG6Re/discovery-and-exploration-of-pluto"

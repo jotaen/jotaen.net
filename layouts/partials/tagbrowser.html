@@ -1,0 +1,17 @@
+<div class="tagbrowser">
+  <div class="tagbrowser-categories">
+    {{ range $category, $tags := .Site.Data.tags }}
+      <div class="tagbrowser-category">
+        <div class="section-title">{{ $category }}</div>
+        <ul>
+          {{ range $name := $tags }}
+            <li class="tagbrowser-tag">
+              <a href="/archive/#{{ $name | urlize }}" class="tag-light">{{ $name }}</a><!--
+              --><span class="tagbrowser-count">({{ $.Site.Taxonomies.tags.Count $name }})</span>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}
+  </div>
+</div>

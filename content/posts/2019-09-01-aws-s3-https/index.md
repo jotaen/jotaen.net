@@ -4,6 +4,7 @@ subtitle = "How I spent half a day fixing something that was perfectly fine"
 date = "2019-09-01"
 tags = ["devops"]
 image = "/posts/2019-09-01-aws-s3-https/running-track.jpg"
+image_colouring = 310
 image_info = "Photo by chuttersnap on Unsplash"
 id = "iCb10"
 url = "iCb10/running-in-circles"

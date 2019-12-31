@@ -2,43 +2,22 @@
 
 {{ define "main" }}
 
-<main class="content">
+<div class="belt-main"><main class="central-column">
 
-  <h1 class="pagetitle">– Home –</h1>
-
-  {{ range $i, $teaser := first 7 (where (where .Page.Site.RegularPages.ByPublishDate.Reverse ".Params.listed" "!=" false) "Type" "posts") }}
-    {{ if eq $i 2 }}
-      {{ partial "subscribe.html" }}
+  <ul class="ul-reset full-width">
+    {{ range $i, $teaser := first 7 (where (where .Page.Site.RegularPages.ByPublishDate.Reverse ".Params.listed" "!=" false) "Type" "posts") }}
+      <li class="teaser-listitem">{{ partial "teaser.html" . }}</li>
     {{ end }}
-    {{ partial "teaser.html" . }}
-  {{ end }}
+  </ul>
 
-  <div class="teaser teaser--flat teaser--centered">
-    <h3 class="teaser__banner cta__label">Browse all {{ len (where (where .Page.Site.RegularPages ".Params.listed" "!=" "false") "Type" "posts") }} posts <a href="/archive">in the archive</a>…</h3>
-
-    <p>Or jump right into a specific tag:</p>
-  
-    <div class="tagbrowser">
-      {{ range $category, $tags := .Site.Data.tags }}
-        <div class="tagbrowser__list">
-          <h4 class="tagbrowser__heading">{{ $category }}</h4>
-          <ul class="ul--reset">
-            {{ range $name := $tags }}
-              <li class="li--reset tagbrowser__item">
-                <a href="/archive/#{{ $name | urlize }}" class="a--reset tag">{{ $name }}</a><!--
-                --><span class="teaser--light">({{ $.Site.Taxonomies.tags.Count $name }})</span>
-              </li>
-            {{ end }}
-          </ul>
-        </div>
-      {{ end }}
-    </div>
+  <div class="archiveportal">
+    <div class="archiveportal-title">Browse all {{ len (where (where .Page.Site.RegularPages ".Params.listed" "!=" "false") "Type" "posts") }} posts in the <a href="/archive"><button>archive</button></a></div>
   </div>
 
-  <div class="teaser teaser__footer teaser--light">
-    <a href="/impressum" class="a--reset">Legal: Impressum &amp; Datenschutz</a>
-  </div>
+</main></div>
 
-</main>
+{{ end }}
 
+{{ define "context-belt" }}
+  {{ partial "tagbrowser.html" . }}
 {{ end }}

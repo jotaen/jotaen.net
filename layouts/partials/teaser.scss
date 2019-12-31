@@ -1,84 +1,71 @@
-@import "../styles/library";
+@import "../library";
 
 .teaser {
-  position: relative;
-  max-width: $width-content-column;
-  overflow: hidden;
-  clear: both;
-  padding: 2em 0;
-  border-top: 1px solid $color-grey;
-  @include narrow-view {
-    text-align: center;
+  @include font-serif;
+  @include width-beyond-medium {
+    display: flex;
+    flex-direction: row;
   }
 
-  &--flat {
-    padding: 1.3em 0;
-  }
-
-  &--centered {
-    text-align: center;
-  }
-
-  &__image {
-    width: 200px;
-    height: 150px;
-    @include medium-view {
-      float: left;
-      margin-right: 15px;
+  &-listitem {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    @include width-beyond-medium {
+      border-bottom: 1px solid $color-darkgrey;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
     }
   }
 
-  &__publish-date {
+  &-image {
+    @include a-reset;
+    position: relative;
     display: block;
+    flex: 0 0 100%;
+    height: 12rem;
+    @include width-beyond-medium {
+      flex: 0 0 45%;
+      margin-right: 1rem;
+    }
+    div {
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center 50%;
+      background-size: cover;
+    }
+  }
+  &-date {
+    position: absolute;
+    font-size: 0.90rem;
+    color: #fff;
+    bottom: 0em;
+    left: 0;
+    padding: 0.25em 0.8em;
+    background-color: hsl(0, 0, 20%);
+    @include width-beyond-medium {
+      bottom: unset;
+      left: unset;
+      top: 0rem;
+      right: 0;
+    }
+  }
+
+  h1 {
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+  }
+  &-headline { @include a-reset; }
+  &-title {
+    font-size: 1.5rem;
+  }
+  &-subtitle {
+    font-size: 1.15rem;
+  }
+
+  &-taglist {
+    @extend .ul-reset;
     margin: 0;
-    @include medium-view {
-      margin-left: 215px;
-    }
   }
-
-  &__title {
-    @include font-bold;
-    font-style: italic;
-    font-size: 1.4rem;
-    color: #222;
-    margin: 0;
-    line-height: 1.4;
-    @include medium-view {
-      margin-left: 215px;
-    }
-  }
-
-  &__subtitle {
-    @include font-regular;
-    font-style: italic;
-    font-size: 1.2rem;
-    color: #222;
-    margin: 0 0 0.5em 0;
-    line-height: 1.4;
-    @include medium-view {
-      margin-left: 215px;
-    }
-  }
-
-  &__tags {
-    margin: 0;
-    @include medium-view {
-      margin-left: 215px !important;
-    }
-  }
-
-  &__banner {
-    margin-top: 0;
-  }
-
-  &__footer {
-    text-align: center;
-    min-height: 1px;
-    opacity: 0.7;
-  }
-
-  &--light {
-    color: $color-grey;
-    font-size: 0.9em;
-  }
+  &-tag { display: inline; }
 }

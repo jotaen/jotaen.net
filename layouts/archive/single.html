@@ -3,10 +3,13 @@
 
 {{ define "main" }}
 
-  <main class="content">
-
-    <h1 class="pagetitle">– Archive<span id="tag-in-title"></span> –</h1>
-    <div class="archive__filter">
+<div class="belt-main"><main class="central-column">
+  <div class="archive-header">
+    <div class="section-title">
+      Blog Index
+    </div>
+    <div style="flex:auto"><!--SPACER--></div>
+    <div class="archive-filter">
       Filter by tag: 
       <select id="all-tags" onchange="appendHashtag(this.value)">
         <option value="_all">Show all</option>
@@ -20,43 +23,45 @@
         {{ end }}
       </select>
     </div>
+  </div>
+
+  <ul class="ul-reset full-width">
     {{ range (where (where .Page.Site.RegularPages.ByPublishDate.Reverse ".Params.listed" "!=" false) "Type" "posts") }}
-      {{ partial "teaser.html" . }}
+      <li class="teaser-listitem" data-tags="{{ range .Params.Tags }}{{ . | urlize }} {{ end }}">{{ partial "teaser.html" . }}</li>
     {{ end }}
+  </ul>
+</main></div>
 
-    <script>
-      function appendHashtag(tag) {
-        window.location.hash = tag === "_all" ? "" : tag;
+<script>
+  function appendHashtag(tag) {
+    window.location.hash = tag === "_all" ? "" : tag;
+  }
+
+  function filterList(tag) {
+    const currentTag = window.location.hash.substr(1);
+    const elements = document.querySelectorAll('[data-tags]');
+    Array.prototype.forEach.call(elements, function(e) {
+      if (!e.dataset.initialVisibility) {
+        e.dataset.initialVisibility = getComputedStyle(e).display;
       }
+      const tags = e.getAttribute("data-tags").split(" ");
+      const isShown = tags.includes(currentTag) || currentTag === "";
+      e.style.display = isShown ? e.dataset.initialVisibility : "none";
+    });
+    document.getElementById('all-tags').value = currentTag || "_all";
 
-      function filterList(tag) {
-        const currentTag = window.location.hash.substr(1);
-        const elements = document.querySelectorAll('[data-tags]');
-        Array.prototype.forEach.call(elements, function(e) {
-          const tags = e.getAttribute("data-tags").split(" ");
-          const isShown = tags.includes(currentTag) || currentTag === "";
-          e.style.display = isShown ? "block" : "none";
-        });
-        document.getElementById('all-tags').value = currentTag || "_all";
+    const titleSuffix = currentTag ? (": #" + currentTag) : "";
+    // document.getElementById('tag-in-title').innerHTML = titleSuffix;
+    document.title = document.title.replace(/^.+?(?= •)/, "Archive" + titleSuffix);
+  }
 
-        const titleSuffix = currentTag ? (": #" + currentTag) : "";
-        document.getElementById('tag-in-title').innerHTML = titleSuffix;
-        document.title = document.title.replace(/^.+?(?= •)/, "Archive" + titleSuffix);
-      }
+  window.addEventListener("hashchange", filterList, false);
 
-      window.addEventListener("hashchange", filterList, false);
+  filterList();
+</script>
 
-      (function hideTeaserWhileLoading() {
-        const style = document.createElement('style');
-        style.type = 'text/css';
-        style.innerHTML = '.teaser { display: none; }';
-        document.getElementsByTagName('head')[0].appendChild(style);
-      })();
+{{ end }}
 
-      // Call this _after_ the teasers have been loaded
-      filterList();
-    </script>
-
-  </main>
-
+{{ define "context-belt" }}
+  {{ partial "tagbrowser.html" . }}
 {{ end }}

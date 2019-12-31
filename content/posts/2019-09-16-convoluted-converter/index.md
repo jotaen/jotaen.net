@@ -4,6 +4,7 @@ subtitle = "A refactoring in 10 steps, guided by coding principles"
 date = "2019-09-16"
 tags = ["coding"]
 image = "/posts/2019-09-16-convoluted-converter/calculator.jpg"
+image_colouring = 30
 image_info = ""
 id = "0K2pE"
 url = "0K2pE/clean-code-refactoring-kata"

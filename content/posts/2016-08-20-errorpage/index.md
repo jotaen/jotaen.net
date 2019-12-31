@@ -19,13 +19,6 @@ The first use case of this webshell is the 404 page of this blog: When you hit a
 
 To visit my new error page, you must enter a non existing URL on my domain. (Or click on this link for your convenience: [jotaen.net/error-404](/error-404).) If you don’t know what to do, just type `help` to see all the commands or `help "command"` to see, what one particular command does.
 
-You can also fiddle around in this box:
-
-<script src="//static.jotaen.net/webshell.js/dist/webshell.js"></script>
-<link rel="stylesheet" property="stylesheet" href="/webshell-dark.css">
-<div id="tryItOut" class="webshell" style="height: 20em"></div>
-<script>createWebshell('tryItOut')</script>
-
 The name of the project is webshell.js and the [sources reside on GitHub](https://github.com/jotaen/webshell.js). The project bids you and your contributions welcome! So feel free to open an issue or to implement your favorite shell command by yourself. There are still many todos left and also a few bugs to fix. When the project has moved along, I probably will write a dedicated blog post about it. Meanwhile, here is just a brief overview:
 
 - There is a basic set of commands available yet. My design approach is to make the implementation of commands as easy as possible, since the amount of available commands is what makes the webshell rich and fun eventually.

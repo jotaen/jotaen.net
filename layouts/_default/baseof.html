@@ -9,120 +9,83 @@
     <title>{{ block "title" . }}{{ end }} • jotaen.net</title>
 
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="stylesheet" href="https://use.typekit.net/yqg5mad.css">
+    <link href="//cloud.typenetwork.com/projects/3434/fontface.css/" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/style.css?{{ now.Unix }}">
+    
+    <script defer="true" src="/highlight.js" onload="hljs.initHighlightingOnLoad()"></script>
+
+    <script type="text/javascript">
+      function datadecrypt(xs) {
+        const decryptor = document.getElementById("datadecrypt");
+        const secret = getComputedStyle(decryptor).getPropertyValue('--secret');
+        return xs.filter(j => j.key%secret===0).map(j => j.val).join("");
+      };
+    </script>
 
     {{ block "head" . }}{{ end }}
   </head>
   <body>
 
-    {{ block "navigation" . }}
-      <nav class="navibar" id="navibar">
-        <a href="/">
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 247.876 83.784" enable-background="new 0 0 247.876 83.784" xml:space="preserve" class="navibar__logo">
-            <g>
-              <g>
-                <path d="M45.276,41.628c3.597,3.502,5.395,7.761,5.395,12.777v3.407c0,5.016-1.798,9.275-5.395,12.777
-                  c-3.502,3.597-7.761,5.395-12.777,5.395H20.195V65.1h12.304c4.07,0,7.288-3.218,7.288-7.288v-3.407
-                  c0-4.07-3.218-7.288-7.288-7.288H7.702V36.233h24.797C37.515,36.233,41.774,38.032,45.276,41.628z M34.865,15.969l-7.288,7.383
-                  l-7.382-7.383l7.382-7.288L34.865,15.969z"/>
-                <path d="M80.944,26.898c3.218,2.461,5.394,5.584,6.53,9.37h7.462v10.883H87.19c-2.366,7.193-9.274,12.398-17.225,12.398
-                  c-3.88,0-7.477-1.136-10.6-3.502c-3.124-2.366-5.301-5.3-6.531-8.896c0,0-1.088-3.129-1.088-5.774s0.804-5.11,0.804-5.11
-                  c1.136-3.787,3.312-6.909,6.53-9.37c3.218-2.461,6.815-3.692,10.884-3.692C74.035,23.207,77.726,24.438,80.944,26.898z
-                   M77.348,41.378c0-4.069-3.218-7.382-7.382-7.382c-4.07,0-7.287,3.313-7.287,7.382c0,4.07,3.218,7.288,7.287,7.288
-                  C74.13,48.666,77.348,45.448,77.348,41.378z"/>
-                <path d="M108.157,36.267h15.735v10.885h-15.735V57.94c0,4.07,3.218,7.383,7.288,7.383v10.788c-5.016,0-9.275-1.798-12.872-5.3
-                  c-3.502-3.502-5.3-7.855-5.3-12.872V47.152h-5.878V36.267h5.878V7.306h10.883V36.267z"/>
-                <path d="M155.871,36.362h6.425v10.79h-7.371c-2.366,7.287-9.275,12.398-17.226,12.398c-5.016,0-9.274-1.798-12.871-5.3
-                  c-3.502-3.597-5.3-7.855-5.3-12.872s1.798-9.275,5.3-12.777c3.597-3.597,7.855-5.395,12.871-5.395v10.79
-                  c-4.069,0-7.382,3.312-7.382,7.382s3.313,7.382,7.382,7.382c4.07,0,7.383-3.312,7.383-7.382V23.112h10.788V36.362z"/>
-                <path d="M192.604,26.898c3.218,2.461,5.395,5.584,6.53,9.464h8.249v10.79h-30.301c1.42,1.041,2.934,1.61,4.544,1.61V59.55
-                  c-3.882,0-7.477-1.136-10.601-3.407c-3.123-2.367-5.3-5.3-6.53-8.991h-9.188v-10.79h8.903c2.272-7.666,9.37-13.155,17.416-13.155
-                  C185.695,23.207,189.386,24.438,192.604,26.898z M176.325,36.362h10.695c-1.42-1.608-3.218-2.366-5.394-2.366
-                  C179.543,33.996,177.744,34.754,176.325,36.362z"/>
-                <path d="M236.006,28.602c3.597,3.502,5.395,7.762,5.395,12.777V59.55h-10.79V41.378c0-4.069-3.313-7.287-7.382-7.287
-                  c-4.07,0-7.383,3.218-7.383,7.287v18.267h-10.788V47.152h-5.934V36.363h6.691c1.041-3.882,3.218-7.004,6.435-9.465
-                  c3.218-2.461,6.91-3.692,10.98-3.692C228.246,23.207,232.505,25.005,236.006,28.602z"/>
-              </g>
+    <div id="datadecrypt"><!--see corresponding JS function--></div>
+
+    <div class="belt-dark belt-topfix belt-topfix-thickness">
+      <nav class="header">
+        <a href="/" class="header-logo">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="20" r="10" fill="none" stroke="#ffffff" stroke-width="7" />
+            <path d="M 30 70
+                     V 50
+                     a 10 10, 0, 0, 1, 20 0
+                     V 60
+                     " fill="none" stroke="#ffffff" stroke-width="7" />
+            <g transform="translate(13.5 50) scale(1.075) translate(0 -5.3) rotate(45)">
+              <rect x="0" y="0" width="7.5" height="7.5" fill="#ffffff" />
             </g>
           </svg>
         </a>
-        <ul class="navibar__icons ul--reset">
-          <li class="icon icon--navi">
-            <a href="/">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" class="icon__image"><title>Home</title><path d="M5.17,86.52A5.17,5.17,0,0,1,1.61,77.6L73.16,9.5a5.17,5.17,0,0,1,7.22.09l68.1,68.1A5.17,5.17,0,1,1,141.17,85L76.64,20.47,8.74,85.1A5.16,5.16,0,0,1,5.17,86.52Z"/><path d="M126.64,134.35H24.84a5.17,5.17,0,0,1-5.17-5.17V66.24a5.17,5.17,0,0,1,10.34,0V124h91.4l-.6-57.7a5.17,5.17,0,0,1,5.12-5.23,5.29,5.29,0,0,1,5.23,5.12l.66,62.93a5.17,5.17,0,0,1-5.17,5.23Z"/><rect x="67.03" y="90.81" width="20.37" height="38.36"/><path d="M87.39,130.47H67a1.29,1.29,0,0,1-1.29-1.29V90.81A1.29,1.29,0,0,1,67,89.52H87.39a1.29,1.29,0,0,1,1.29,1.29v38.36A1.29,1.29,0,0,1,87.39,130.47Zm-19.07-2.59H86.1V92.11H68.32Z"/><polygon points="124.03 60.55 111.39 47.91 111.39 23.21 124.03 23.21 124.03 60.55"/><path d="M124,61.85a1.29,1.29,0,0,1-.91-.38L110.47,48.82a1.29,1.29,0,0,1-.38-.91V23.21a1.29,1.29,0,0,1,1.29-1.29H124a1.29,1.29,0,0,1,1.29,1.29V60.55A1.29,1.29,0,0,1,124,61.85ZM112.68,47.37l10.06,10.06V24.5H112.68Z"/></svg>
-            </a>
-            <span class="icon__label icon__label--navi">Home</span>
-          </li>
-          <li class="icon icon--navi">
-            <a href="/archive">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" class="icon__image"><title>Archive</title><path d="M38.51,129.64H8a4.57,4.57,0,0,1-4.57-4.57V33.28A4.57,4.57,0,0,1,8,28.71H38.51a4.57,4.57,0,0,1,4.57,4.57v91.79A4.57,4.57,0,0,1,38.51,129.64ZM12.59,120.5H33.94V37.85H12.59Z"/><rect x="18.7" y="93.72" width="9.14" height="9.14" transform="translate(76.32 12.34) rotate(45)"/><path d="M23.27,105.33a.57.57,0,0,1-.4-.17L16.4,98.7a.57.57,0,0,1,0-.81l6.46-6.46a.57.57,0,0,1,.81,0l6.46,6.46a.57.57,0,0,1,0,.81l-6.46,6.46A.57.57,0,0,1,23.27,105.33Zm-5.66-7,5.66,5.66,5.66-5.66-5.66-5.66Z"/><path d="M86,129.64H55.52A4.57,4.57,0,0,1,51,125.07V33.28a4.57,4.57,0,0,1,4.57-4.57H86a4.57,4.57,0,0,1,4.57,4.57v91.79A4.57,4.57,0,0,1,86,129.64ZM60.09,120.5H81.45V37.85H60.09Z"/><rect x="66.2" y="93.72" width="9.14" height="9.14" transform="translate(90.23 -21.25) rotate(45)"/><path d="M70.77,105.33a.57.57,0,0,1-.4-.17L63.9,98.7a.57.57,0,0,1,0-.81l6.46-6.46a.57.57,0,0,1,.81,0l6.46,6.46a.57.57,0,0,1,0,.81l-6.46,6.46A.57.57,0,0,1,70.77,105.33Zm-5.66-7,5.66,5.66,5.66-5.66-5.66-5.66Z"/><path d="M113.68,131.37a4.57,4.57,0,0,1-4.52-3.91L95.81,36.65a4.57,4.57,0,0,1,3.86-5.19L129.83,27A4.56,4.56,0,0,1,135,30.89l13.35,90.81a4.57,4.57,0,0,1-3.86,5.19l-30.17,4.44A4.46,4.46,0,0,1,113.68,131.37Zm-8.17-91.53,12,81.77,21.13-3.11-12-81.77Z"/><rect x="120.3" y="93.52" width="9.14" height="9.14" transform="translate(83.2 -55.14) rotate(36.64)"/><path d="M125.81,105.05a.56.56,0,0,1-.34-.11l-7.34-5.45a.57.57,0,0,1-.12-.8l5.46-7.34a.57.57,0,0,1,.8-.12l7.33,5.46a.57.57,0,0,1,.12.8l-5.45,7.33A.57.57,0,0,1,125.81,105.05Zm-6.54-6.14,6.42,4.77,4.77-6.42L124,92.49Z"/></svg>
-            </a>
-            <span class="icon__label icon__label--navi">Archive</span>
-          </li>
-          <li class="icon icon--navi">
-            <a href="/about">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" class="icon__image"><title>About</title><path d="M66.2,148.81a5.48,5.48,0,0,1-5.47-5.47v-52A27.41,27.41,0,0,1,68,72.67c5.81-6.11,14.4-9.21,25.56-9.21,10.58,0,18.81,2.88,24.45,8.57a24.93,24.93,0,0,1,7.2,16.71l.83,24.68a5.47,5.47,0,1,1-10.94.38l-.83-24.92c0-1.62-.81-14.49-20.71-14.49-8,0-14,1.94-17.61,5.81A16.33,16.33,0,0,0,71.68,91v52.31A5.48,5.48,0,0,1,66.2,148.81Z"/><path d="M91.1,53.33a26.07,26.07,0,1,1,26.07-26.07A26.11,26.11,0,0,1,91.1,53.33Zm0-41.2a15.13,15.13,0,1,0,15.13,15.13A15.16,15.16,0,0,0,91.1,12.13Z"/><rect x="17.87" y="100.56" width="17.88" height="17.88" transform="translate(85.28 13.12) rotate(45)"/></svg>
-            </a>
-            <span class="icon__label icon__label--navi">About</span>
-          </li>
-        </ul>
+        <a href="/">
+          <span class="header-name">Jan Heuermann</span>
+        </a>
+        <span style="flex:auto"><!--Spacer--></span>
+        <a class="header-navitem" href="/archive">Blog</a>
+        <a class="header-navitem" href="/about">About</a>
       </nav>
+    </div>
 
-      <script>
-        (function addEventListenersToNaviIcons(document) {
-          const showLabel = function() {
-            const label = this.getElementsByClassName("icon__label")[0];
-            label.style.display = "block";
-          };
-          const hideLabel = function() {
-            const label = this.getElementsByClassName("icon__label")[0];
-            label.style.display = "none";
-          };
-          const icons = Array.from(document.getElementsByClassName("icon--navi"));
-          icons.forEach(function(icon, i) {
-            icon.addEventListener("mouseover", showLabel);
-            icon.addEventListener("mouseout",  hideLabel);
-          });
-        }(document));
-
-        (function toggleTopNaviWhileScroll(window, document) {
-          const navi = document.getElementById("navibar");
-          const DEBOUNCE_Y = 30;
-          let lastScrollY = 0;
-          let lastScrollMinY = 0;
-          let lastScrollMaxY = 0;
-          let wasScrollingDown = false;
-          window.addEventListener("scroll", function() {
-            if (window.getComputedStyle(navi).getPropertyValue('z-index') === "1000") {
-              // Hack to communicate view-port size via CSS’s z-index
-              return;
-            }
-            const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
-            const isScrollingDown = currentScrollY > lastScrollY;
-            if (isScrollingDown) {
-              lastScrollMaxY = currentScrollY;
-            } else {
-              lastScrollMinY = currentScrollY;
-            }
-            const hasDirectionChanged = isScrollingDown !== wasScrollingDown;
-            const hasPassedDebounceThreshold = lastScrollMaxY - lastScrollMinY > DEBOUNCE_Y;
-            if (hasDirectionChanged && hasPassedDebounceThreshold) {
-              if (isScrollingDown) {
-                wasScrollingDown = true;
-                navi.className = "navibar navibar--hide";
-              } else {
-                wasScrollingDown = false;
-                navi.className = "navibar navibar--show";
-              }
-            }
-            lastScrollY = currentScrollY;
-          }, false);
-        })(window, document);
-      </script>
-    {{ end }}
+    <div class="belt-topfix-thickness"><!--Spacer--></div>
 
     {{ block "main" . }}{{ end }}
+
+    <footer>
+      <div class="belt-medium">{{ block "context-belt" . }}{{ end }}</div>
+
+      <div class="belt-dark"><div class="footer-newsletter">
+        <div class="section-title">Newsletter</div>
+        <p>Get notified via email when I publish a new blog post!</p>
+        <p>
+          <form action="https://jotaen.us14.list-manage.com/subscribe/post?u=d8230f6036c64ebabb7edfc13&amp;id=d03223eec2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_d8230f6036c64ebabb7edfc13_d03223eec2" tabindex="-1" value=""></div>
+            <input type="email" value="" name="EMAIL" placeholder="Your email address">
+            <input type="submit" value="Subscribe" name="subscribe">
+          </form>
+        </p>
+        <p class="footer-newsletter-disclaimer">No spam. 1-click-unsubscribe anytime.</p>
+      </div></div>
+
+      <div class="belt-light"><div class="footer-about">
+        <p class="shortbio">
+          <img src="/portrait-jan.small.jpg">
+          <span>
+            My name is Jan, I am a freelance software developer and consultant based in Berlin, Germany.<br>
+            Learn more <a href="/about">about me</a> or reach out via <a href="mailto: [CLICK TO REVEAL]" class="m41lm3" onClick="return false;">email</a>.
+          </span>
+        </p>
+        <div class="footer-about-legal">
+          <a href="/impressum">Impressum & Datenschutz</a>
+        </div>
+      </div></div>
+
+    </footer>
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -134,8 +97,8 @@
       ga('send', 'pageview');
 
       (function(intervalInSeconds, maxStrokes) {
-        var i = 0;
-        var heartbeater = setInterval(function() {
+        let i = 0;
+        const heartbeater = setInterval(() => {
           i++;
           if (i >= maxStrokes) clearInterval(heartbeater);
           ga('send', {
@@ -146,6 +109,26 @@
           });
         }, intervalInSeconds*1000);
       })(10, 120); // max runtime: 20 minutes (120 strokes á 10 seconds)
+
+      (function decryptM41lM3() {
+        const m41lm3 = "m41lm3";
+        const links = document.getElementsByClassName(m41lm3);
+        [].forEach.call(links, (link) => {
+          link.onclick = (e) => {
+            e.preventDefault();
+            fetch("/" + m41lm3 + ".json")
+            .then((res) => {
+              if (res.ok) return res.json();
+              else throw "FAILED";
+            })
+            .then(datadecrypt)
+            .then((addr) => {
+              window.location = "mailto:" + addr;
+            });
+          };
+        });
+      })();
+
     </script>
 
   </body>

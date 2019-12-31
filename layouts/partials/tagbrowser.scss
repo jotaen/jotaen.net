@@ -1,0 +1,35 @@
+@import "../library";
+
+.tagbrowser {
+  @extend .print-hide;
+  @extend .central-column;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  .section-title {
+    color: #fff;
+    text-align: center;
+  }
+
+  ul { @extend .ul-reset; }
+  &-categories {
+    @include width-beyond-narrow { display: flex; }
+    text-align: center;
+  }
+  &-category {
+    margin-bottom: 1rem;
+    @include width-beyond-narrow {
+      flex: 1;
+      margin-bottom: initial;
+    }
+  }
+  &-count {
+    font-size: 0.9rem;
+    color: $color-lightgrey;
+  }
+  &-tag {
+    display: inline;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    white-space: nowrap;
+  }
+}

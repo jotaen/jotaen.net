@@ -1,0 +1,165 @@
+/*
+ *  TYPOGRAPHY
+ */
+
+@mixin font-settings {
+  font-feature-settings: "kern" 1;
+  text-rendering: optimizeLegibility;
+}
+
+@mixin font-regular {
+  @include font-settings;
+  font-family: "Input Sans Cond Lt", sans-serif;
+  font-display: swap;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: -0.032em;
+}
+
+@mixin font-bold {
+  @include font-settings;
+  font-family: "Input Sans Cond Med", sans-serif;
+  font-display: swap;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: -0.04em;
+}
+
+@mixin font-italic {
+  @include font-settings;
+  font-family: "Input Sans Cond Ex Lt It", sans-serif;
+  font-display: swap;
+  font-style: italic;
+  font-weight: normal;
+  letter-spacing: -0.03em;
+}
+
+@mixin font-serif {
+  @include font-settings;
+  font-family: "Input Serif Cond Lt", serif;
+  font-display: swap;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: -0.032em;
+}
+
+@mixin font-mono {
+  @include font-settings;
+  font-family: "Input Mono Nar Lt", monospace;
+  font-display: swap;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: -0.05em;
+}
+
+@mixin text-regular {
+  font-size: 16.5px;
+  line-height: 1.57;
+}
+
+/*
+ *  MEDIA QUERIES
+ */
+
+$width-paragraph: 650px; // ~80 chars
+$width-aside: 160px;
+
+$layout-width-superwide: 2000px;
+
+@mixin width-beyond-narrow {
+  @media (min-width: 400px) {
+    @content;
+  }
+}
+
+@mixin width-beyond-medium {
+  @media (min-width: #{$width-paragraph}) {
+    @content;
+  }
+}
+
+@mixin width-below-broad {
+  @media (max-width: #{$width-paragraph + 3*$width-aside - 1}) {
+    @content;
+  }
+}
+
+@mixin width-beyond-broad {
+  @media (min-width: #{$width-paragraph + 3*$width-aside}) {
+    @content;
+  }
+}
+
+@mixin width-beyond-max {
+  @media (min-width: $layout-width-superwide) {
+    @content;
+  }
+}
+
+/*
+ *  COLOURS
+ */
+
+$color-grey: #ddd;
+$color-lightgrey: #eee;
+$color-darkgrey: #777;
+$color-blue: #0d668d;
+$color-lightblue: #1394cc;
+$color-superlightblue: #b4e8ff;
+$color-purple: #8d1699;
+$color-red: #c0253e;
+$color-orange: #f34c17;
+$color-green: #65c858;
+$color-brown: #5a3e35;
+
+:root { // make available in plain HTML
+  --color-grey: #{$color-grey};
+  --color-lightgrey: #{$color-lightgrey};
+  --color-darkgrey: #{$color-darkgrey};
+  --color-blue: #{$color-blue};
+  --color-lightblue: #{$color-lightblue};
+  --color-purple: #{$color-purple};
+  --color-red: #{$color-red};
+  --color-orange: #{$color-orange};
+  --color-green: #{$color-green};
+  --color-brown: #{$color-brown};
+}
+
+/*
+ *  CSS CLASSES
+ */
+
+$zindex-navigation: 99999;
+$zindex-overlay: #{$zindex-navigation - 1};
+
+/*
+ *  MISC. MIXINS AND CLASSES
+ */
+
+@mixin a-reset {
+  &, &:hover, &:active, &:visited, &:visited:hover {
+    color: inherit;
+    background-color: inherit;
+    text-decoration: inherit;
+    @content;
+  }
+}
+
+.ul-reset {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.screen-hide {
+  @media screen {
+    display: none;
+  }
+}
+
+.print-hide {
+  @media print {
+    display: none;
+  }
+}
