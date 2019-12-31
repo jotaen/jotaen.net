@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /portrait-jan.jpg
+Disallow: /portrait-jan.small.jpg
