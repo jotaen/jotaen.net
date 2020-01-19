@@ -97,6 +97,14 @@ You might wonder about this technique to completely start over evaluating a root
 
 Since the AI is composed from deterministic algorithms, it would theoretically always make the exact same decision for one particular game situation (or: transposition). A human could easily figure out the weak spot of the AI and then always reproduce the same choreography in order to win the game. To prevent this from happening, the AI will slightly distort the results in a random way under certain conditions. You will most likely notice that behaviour in the beginning of the game.
 
+# Conclusion
+
+Speaking of the “human touch”: I’m quite happy with the outcome of my side project. Since I’m not particularly strong at Connect Four myself, the current shortcomings of the AI make for a good balance. Sometimes I manage to defeat the computer, but often times the AI is already too strong for me. Unrelated to all things algorithms, two vital factors for making the game fun to play for me are 1) the fact that the difficulty can be adjusted and 2) the pleasant user interface.
+
+If I were to improve the project further, I probably would implement more heuristics. A big weakness of the AI right now is that it doesn’t reliably recognise the opponent building up catch-22 (or: Zugzwang) situations, when those are too far away and thus beyond the prediction depth.
+
+In case your are interested in learning more about AI fundamentals and the related algorithms, I highly recommend the [2010 MIT course on artificial intelligence](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-034-artificial-intelligence-fall-2010/) held by Patrick Winston.
+
 
 [^1]: The precise number of 4 531 985 219 092 can be found in the [On-Line Encyclopedia of Integer Sequences](https://oeis.org/A212693)
 [^2]: “Minimax” is sometimes also called “Negamax” for that reason.
