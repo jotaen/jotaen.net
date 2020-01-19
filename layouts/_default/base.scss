@@ -182,6 +182,9 @@ body {
       height: 5em;
       margin-right: 1em;
     }
+    &-profilepic {
+      @include a-reset;
+    }
     &-legal {
       margin-top: 2em;
       text-align: center;
@@ -201,6 +204,7 @@ body {
       img {
         display: block;
         margin: 0 auto;
+        margin-bottom: 1rem;
         @include width-beyond-narrow { margin: 0 1rem 0 0; }
         height: 6rem;
         border-radius: 50%;
