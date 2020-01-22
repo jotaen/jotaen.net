@@ -1,5 +1,4 @@
 +++
-draft = true
 title = "What are microservices anyway?"
 subtitle = "Sane ways to reason about application architecture"
 date = "2020-01-22"
