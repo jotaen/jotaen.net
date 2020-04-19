@@ -14,7 +14,7 @@ The first ever recorded match of correspondence chess took place in 1804 in the 
 
 The world of remote gaming has obviously changed, especially in the last two decades. Although peer-to-peer implementations exist (even within the action genre) the majority of today’s multiplayer games are carried out via dedicated, central servers. This approach makes a lot of things simpler, because the game provider has full control over the course of the match: orchestrating the players is less complex and no participant is able to manipulate the game to their own advantage.
 
-However, the idea of playing peer-to-peer like in the old days can live on and be applied to modern communication infrastructure. That is especially true for turn-based parlour games like chess or Yahtzee. My most recent toy project was the implementation of a transactionally robust and cryptographically secure mechanism to play the dice game Yahtzee without needing an authoritative server. I describe this concept in the following post and you also find a playable reference implementation on Github. (Be warned about the latter, though, it’s a bit geeky.)
+However, the idea of playing peer-to-peer like in the old days can live on and be applied to modern communication infrastructure. That is especially true for turn-based parlour games like chess or Yahtzee. My most recent toy project was the implementation of a transactionally robust and cryptographically secure mechanism to play the dice game Yahtzee without needing an authoritative server. I describe this concept in the following post and you also find a playable [reference implementation](https://github.com/jotaen/crypto-yahtzee) on Github. (Be warned about the latter, though, it’s a bit geeky and certainly has rough edges…)
 
 ![Command line interface of my Crypto Yahtzee reference implementation](/posts/2020-04-19-crypto-yahtzee/game-screenshot.jpg)
 [^1]
@@ -34,8 +34,6 @@ Before a match starts, the participants generate a [asymmetric key pairs](https:
 
 #### Hash chains:
 Each player keeps track of all received transactions by appending them to a hash chain. Every transaction contains a checksum (hash) of the preceding transaction, which guarantees definite order within the chain. If just a single bit of data was incompatible, then all subsequent hashes would compute differently. Unique affiliation to a particular chain can be ensured by adding a unique identifier to the root block of the chain.
-
-![Illustration of a hash chain with signed transactions]()
 
 # Rolling dices
 
