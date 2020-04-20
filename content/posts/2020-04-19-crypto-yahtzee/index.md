@@ -1,6 +1,6 @@
 +++
 title = "Crypto Yahtzee"
-subtitle = "Rolling the dices, peer to peer"
+subtitle = "Rolling the dice, peer to peer"
 date = "2020-04-19"
 tags = ["project"]
 image = "/posts/2020-04-19-crypto-yahtzee/dices.jpg"
@@ -21,9 +21,9 @@ However, the idea of playing peer-to-peer like in the old days still lives on an
 
 # Game Protocol
 
-A quick reminder of the rules: [Yahtzee](https://en.wikipedia.org/wiki/Yahtzee) is played with usually a handful of players who take turns one after the other. Every player has three attempts per turn to roll up to five dices, which they need to achieve certain combinations with. (E.g., four in a row, equivalent to a straight in Poker.) The scores are recorded on a scorecard and the game is finished once all 13 categories have been accomplished (or dismissed) by all players.
+A quick reminder of the rules: [Yahtzee](https://en.wikipedia.org/wiki/Yahtzee) is played with usually a handful of players who take turns one after the other. Every player has three attempts per turn to roll up to five dice, which they need to achieve certain combinations with. (E.g., four in a row, equivalent to a straight in Poker.) The scores are recorded on a scorecard and the game is finished once all 13 categories have been accomplished (or dismissed) by all players.
 
-In a peer-to-peer version there is no game server that could hold and manage the state. Therefore, every player maintains their own copy of the game state and updates it by exchanging transactions with their opponents. In prose, that would read like “I keep the two fours and roll the other dices again” or “I record the current cast with a score of 4 in the ‘aces’ category”. Every player of course has to check for themselves that a received transaction is inline with the game rules and applicable at the respective moment. That should usually be the case, unless there is a malfunctioning client, network problems or an attacker.
+In a peer-to-peer version there is no game server that could hold and manage the state. Therefore, every player maintains their own copy of the game state and updates it by exchanging transactions with their opponents. In prose, that would read like “I keep the two fours and roll the other dice again” or “I record the current cast with a score of 4 in the ‘aces’ category”. Every player of course has to check for themselves that a received transaction is inline with the game rules and applicable at the respective moment. That should usually be the case, unless there is a malfunctioning client, network problems or an attacker.
 
 # Security
 
@@ -51,9 +51,9 @@ signature: "JbY9KlpYmCMAV2I+PRWz9HlKHO3P+QE/WDyTSNXw=="
 transaction: { action: "record-on-scorecard", category: "threeOfAKind" }
 ```
 
-# Rolling dices
+# Rolling dice
 
-Checking that someone doesn’t cheat when rolling dices is a no-brainer in real life: you just watch them doing it. That’s obviously not an option in a distributed peer-to-peer setup. Hence, generating a trustably random dice roll that cannot be manipulated requires a multi-step procedure:
+Checking that someone doesn’t cheat when rolling dice is a no-brainer in real life: you just watch them doing it. That’s obviously not an option in a distributed peer-to-peer setup. Hence, generating a trustably random dice roll that cannot be manipulated requires a multi-step procedure:
 
 1. Every player generates a random bit sequence (value) on their own computer. In the first round, only the hashes of those values are shared between all players.
 2. Once all players have published their hash, the original values are revealed. Everyone can verify that all values match up with the previously published hashes and that nothing had been altered after the fact.
