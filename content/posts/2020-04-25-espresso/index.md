@@ -1,7 +1,7 @@
 +++
 title = "Espresso"
 subtitle = "Object-oriented framework for Arduino"
-date = "2020-04-25"
+date = "2020-05-03"
 tags = ["project", "coding"]
 image = "/posts/2020-04-25-espresso/coffee-beans.jpg"
 image_colouring = "10"
@@ -10,24 +10,44 @@ url = "e7ewR/espresso-arduino-library"
 aliases = ["e7ewR"]
 +++
 
-Every once in a while I dig out my Arduino board to tinker around with small electric projects. Even though (or especially because?) I’m not an expert in circuitry and microcontrollers, I enjoy the Arduino as it is easily approachable.
-
 In case you haven’t created an Arduino project yourself so far, let me quickly fill you in on some basics: Arduino provides a C library with APIs to access all board functions, like reading electric inputs, setting electric outputs or writing data to the serial port. An Arduino program – called “sketch“ – must implement two predefined functions, `setup` and `loop`. The setup function gets called a single time once the board is turned on; the loop function gets called over and over again until someone pulls the power plug.
 
+Here is a demo sketch. It expects an LED to be wired to pin 13 and a button to pin 7. When the button is pushed the LED is supposed to light up for 3 seconds.
+
 ```cpp
-// TODO procedural implementation of led sketch
+#include <Arduino.h>
+
+const unsigned long INTERVAL_MS = 3000;
+const int PIN_LED = 13;
+const int PIN_BUTTON = 7;
+bool wasButtonPressed = false;
+unsigned long turnLedOffAt;
+
+void setup() {
+  pinMode(PIN_LED, OUTPUT);
+  pinMode(PIN_BUTTON, INPUT);
+}
+
+void loop() {
+  if (digitalRead(PIN_BUTTON) == HIGH) {
+    wasButtonPressed = true;
+    turnLedOffAt = millis() + INTERVAL_MS;
+  }
+  if (wasButtonPressed && millis() > turnLedOffAt) {
+    wasButtonPressed = false;
+    digitalWrite(PIN_LED, LOW);
+  }
+}
 ```
 
-The code above expects an LED to be wired to pin 13 and a button to pin 7. When the button is pushed the LED is supposed to light up for 3 seconds.
-
-This is a fairly simple demo sketch, but you can easily imagine how the complexity of the `loop` grows the more logic gets added to the program. [[TODO Motivation etc.]]
+This is a fairly simple example, but you might be able to anticipate how the `loop` function will ever grow and become more complex, even when sub procedures are extracted.
 
 # Object-orientation
 
 The key idea behind Espresso is to represent the features of the Arduino board as objects and to fully encapsulate their corresponding functionality. All state is kept up to date by an internal event loop that takes care of triggering the right user-provided callbacks. This approach fundamentally changes the notion of sketches: the loop mechanism is hidden away completely and the code rather turns into a declarative expression of objects and their relationship with each other.
 
 ```cpp
-// File: "my-led-sketch.ino"
+// Filename: "my-led-sketch.ino"
 #include <Espresso.h>
 
 const unsigned long DURATION = 3000;
@@ -74,18 +94,18 @@ An important clue is that not only the electric signalling is mocked, but that t
 
 # Performance
 
-I cannot give an overall comparison of the performance. On the one hand I was able to make some worthwhile optimisations under the hood, on the other hand the event loop abstraction comes at a certain cost, despite the implementation being very lightweight.
+Performance is not a primary concern of the framework. Nevertheless, the object-oriented and event-driven architecture allowed for some worthwhile optimisations, which I was more than happy to take advantage of. On the other hand, the event loop abstraction comes at a certain cost, despite its implementation being as lightweight as possible.
 
-In terms of performance, the Arduino library has some shortcoming that are due to its procedural nature. For most pin operations, Arduino needs to perform pre-checks on every call – think of what happened if you call `analogWrite` on a pin that isn’t associated with a pulse-width modulator? In Espresso, these checks are performed just a single time on object construction, so the actual i/o operations can then be performed without further ado and consequently are about twice as fast.
+In terms of performance, the Arduino library has some shortcoming that are due to its procedural nature. For most pin operations, Arduino needs to perform some pre-checks on every call. For example, if you you call `analogWrite()` it verifies that the respective pin is associated with a pulse-width modulator. In Espresso, these checks are performed just a single time during the initialisation phase, so the actual i/o operations can then be carried out without further ado and consequently are about twice as fast.
 
-There is one major (positive) exception for the analog input, however: the Arduino Uno only offers one analog-digital converter that is shared across all pins. In the procedural Arduino library, the call to `analogRead` must wait out the entire conversion process before it can yield a value. This takes around 10 ms on every call. With Espresso, the a/d-conversion happens in the background. This of course doesn’t increase the analog reading frequency, but it prevents the main loop from being blocked.
+There is one notable exception for the analog input: the Arduino Uno offers just one single analog-digital converter that is shared across all analog input pins. In the procedural Arduino library, the call to `analogRead` must therefore block and wait for the conversion process to complete before it can return with a value. This takes around 0.1 ms per call. With Espresso, the conversion happens in the background and doesn’t block the loop. (The maximum conversion frequency itself doesn’t increase of course.)
 
 # Memory
 
-Memory is scarse on Arduino. This of course doesn’t go together overly well with a library concept that encourages the use of objects and handler functions. An important goal of Espresso was to keep the memory footprint low. The most expensive object currently is the `Timer`, which consumes 16 bytes per object.
+Memory is a scarce resource on microcontrollers. An object-oriented library of course introduces some overhead compared to a purely procedural approach. An important goal of Espresso was to minimise the memory footprint of the objects it provides – most of them are just a few bytes each. The biggest one currently is the `Timer`, which consumes a whopping 16 bytes per instance.
 
-One pivotal constraint is that only non-capturing lambdas can be used as handler functions (callbacks). Non-capturing lambdas in C++ are effectively treated as regular, global functions and can thus be stored in a plain function pointer. Capturing lambdas would have demanded using `std::function`, which 1) consumes a more static memory and might do further dynamic allocations at runtime, which is something I prefer to avoid doing on a microcontroller. One major downside of all this is that it limits the degree of high-level programming. An alternative option are functors, but that would make the API more verbose.
+One constraint is that only non-capturing lambdas can be used as handler functions (callbacks). Non-capturing lambdas in C++ are effectively treated as regular, global functions and can thus be referenced via a plain function pointer. Capturing lambdas would have necessitated the use of `std::function`, which 1) allocates more stack memory and 2) has opaque dynamic memory behaviour at runtime. I’m not sure yet whether that is a good tradeoff – on the one hand I prefer function pointers for their memory characteristics, on the other hand the degree of high-level programming can be severely limited. One possible alternative option would be the use of functors, even though that would make the API more verbose.
 
 # Next steps?
 
-As I mentioned in the introduction, I see Espresso mainly as experiment. I already used it in several smaller projects and found it very pleasant for my use cases. But then again, this is almost always true for creators of libraries.
+As I mentioned in the introduction, I see Espresso mainly as experiment. I already used it in several smaller projects and found it very pleasant to work with for my use cases. (Then again, this is almost always true for creators of libraries.)
