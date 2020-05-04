@@ -107,6 +107,11 @@ ul {
 pre {
   padding: 0.7em 0.5em;
   background-color: $color-lightgrey;
+
+  code, .code {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 table {
