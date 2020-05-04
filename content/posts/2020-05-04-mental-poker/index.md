@@ -65,11 +65,11 @@ When a player wants to draw or reveal a card, they need to send a request to the
 
 # Practical considerations
 
-You can now also easily see why `XOR` is anything but a good choice as cipher scheme for *Mental Poker*. The most obvious vulnerability is referred to as “known-plaintext attack”: since both Alice and Bob know the original card identifiers, they can easily derive the adversaries’ secret key from the ciphertexts and reveal the actual cards. Using strong enough cryptographic algorithms solves that problem but introduces major latencies at the same time, due to the overall number of necessary encryptions. To make matters worse, this process needs to happen one player at a time and cannot really be optimised for efficiency.
+You can now also easily see why something like `XOR` is anything but a good choice as cipher scheme for *Mental Poker*. The most obvious vulnerability is referred to as “known-plaintext attack”: since both Alice and Bob know the original card identifiers, they can easily derive the adversaries’ secret key from the ciphertexts and reveal the actual cards. Using strong and secure algorithms solves that (and other) problems but introduces noticeable latencies at the same time, due to the overall number of necessary cryptographic operations.
 
-Apart from that there are some tricky practical problems, like what to do when a player drops out. In real-world Poker that can happen at any time without disrupting the other players in the match. With *Mental Poker*, however, the game would come to a halt, because the other players are being left unable to decrypt cards in the deck without the aid of everyone who was involved in its shuffling.
+Apart from that there are some tricky practical problems, like what to do when a player drops out. In real-world Poker that can happen at any time without disrupting the other players in the match. With *Mental Poker*, however, the game would come to a halt, because the other players would be left unable to decrypt cards in the deck without the aid of everyone who was involved in the shuffling.
 
-I’m not aware that there are commercial applications of *Mental Poker* and I guess that this is mostly due to the practical issues outlined above. There is, however, a lot of research going on. So in case you are curious enough, you will find countless papers and other interesting resources online.
+I’m not aware that there are commercial applications of *Mental Poker* and I guess that this is mostly due to the practical issues outlined above. There is, however, a lot of research around these questions. So in case you are curious enough, you will find countless papers and other interesting resources online.
 
 
 [^1]: You can read [the original paper](http://people.csail.mit.edu/rivest/ShamirRivestAdleman-MentalPoker.pdf) as it was published in the Mathematical Gardener.
