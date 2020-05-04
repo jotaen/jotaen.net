@@ -17,5 +17,6 @@ tech-stack = [
   "operation",
   "testing",
   "tooling",
-  "hardware"
+  "hardware",
+  "crypto"
 ]
