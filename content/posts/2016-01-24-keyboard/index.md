@@ -2,7 +2,7 @@
 title = "Stop using ASCII Art"
 subtitle = "Explore the super powers of your Mac keyboard"
 date = "2016-01-24"
-tags = ["design"]
+tags = ["tooling", "graphics"]
 image = "/posts/2016-01-24-keyboard/typewriter.jpg"
 id = "4haPC"
 url = "4haPC/stop-using-ascii-art"

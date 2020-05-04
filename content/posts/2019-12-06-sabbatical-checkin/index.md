@@ -2,7 +2,7 @@
 title = "Sabbatical check-in"
 subtitle = "Reflecting on 8 months of full-time self-study"
 date = "2019-12-06"
-tags = ["thoughts"]
+tags = ["thoughts", "worklife"]
 image = "/posts/2019-12-06-sabbatical-checkin/garmisch-partenkirchen.jpg"
 image_colouring = 192
 image_info = "High above the town of Garmisch-Partenkirchen on the Jubiläumsgrat (Zugspitze, South Germany)"

@@ -2,7 +2,7 @@
 title = "Behind the scenes"
 subtitle = "The making-of of my blog"
 date = "2016-02-27"
-tags = ["blogging", "thoughts", "design"]
+tags = ["meta"]
 image = "/posts/2016-02-27-making-of/electrical-supplies.jpg"
 id = "cpQw4"
 url = "cpQw4/behind-the-scenes"

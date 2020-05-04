@@ -1,21 +1,15 @@
-blog-topic = [
+tags = [
   "coding",
   "project",
-  "conference",
   "thoughts",
   "worklife",
-  "blogging",
-  "off-topic"
-]
-
-tech-stack = [
-  "design",
+  "meta",
+  "off-topic",
+  "graphics",
   "frontend",
   "backend",
   "database",
   "devops",
-  "operation",
-  "testing",
   "tooling",
   "hardware",
   "crypto"
