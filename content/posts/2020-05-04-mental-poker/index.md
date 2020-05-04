@@ -65,7 +65,7 @@ When a player wants to draw or reveal a card, they need to send a request to the
 
 # Practical considerations
 
-Using something like `XOR` alone is anything but a good choice as cipher scheme for *Mental Poker*. The most obvious vulnerability is referred to as “known-plaintext attack”: since both Alice and Bob know the original card identifiers, they can derive the adversaries’ secret key from the ciphertexts with minimal overhead and reveal the actual cards. Using strong and secure algorithms solves that (and other) problems but can also introduce noticeable latencies at the same time, due to the overall number of necessary cryptographic operations.
+Using something like `XOR` alone is anything but a good choice as cipher scheme for *Mental Poker*. The most obvious vulnerability is referred to as “known-plaintext attack”: since both Alice and Bob know the original card identifiers, they can derive the adversaries’ secret key from the ciphertexts with minimal overhead and reveal the actual cards. Using strong and secure algorithms[^3] solves that (and other) problems but can also introduce noticeable latencies at the same time, due to the overall number of necessary cryptographic operations.
 
 Apart from that there are some tricky practical problems, like what to do when a player drops out. In real-world Poker that might happen at any time without disrupting the other players in the match. With *Mental Poker*, however, the game would come to a halt, because the other players would be left unable to decrypt cards in the deck without the aid of everyone who was involved in the shuffling.
 
@@ -74,3 +74,4 @@ I’m not aware of there being commercial applications of *Mental Poker* and I g
 
 [^1]: You can read [the original paper](http://people.csail.mit.edu/rivest/ShamirRivestAdleman-MentalPoker.pdf) as it was published in the Mathematical Gardener.
 [^2]: Friendly reminder: the inverse operation of `XOR` is again `XOR`.
+[^3]: For a detailed discussion of possible algorithms you find some more infos in [this paper](http://crypto.stanford.edu/~pgolle/papers/poker.pdf) for example
