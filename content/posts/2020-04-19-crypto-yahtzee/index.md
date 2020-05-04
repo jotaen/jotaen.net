@@ -2,7 +2,7 @@
 title = "Crypto Yahtzee"
 subtitle = "Rolling the dice, peer to peer"
 date = "2020-04-19"
-tags = ["project"]
+tags = ["project", "crypto"]
 image = "/posts/2020-04-19-crypto-yahtzee/dices.jpg"
 image_colouring = "150"
 id = "K001f"

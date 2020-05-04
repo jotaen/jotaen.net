@@ -2,7 +2,7 @@
 title = "Mental Poker"
 subtitle = "Dealing cards, peer to peer"
 date = "2020-05-04"
-tags = ["coding"]
+tags = ["crypto"]
 image = "/posts/2020-05-04-mental-poker/game-cards.jpg"
 image_colouring = "50"
 id = "2A4BQ"
