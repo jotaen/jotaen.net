@@ -42,8 +42,7 @@ Now, Bob encrypts the result that he had received from Alice with his secret key
 The eventual ciphertext is now effectively encrypted twice and both keys are needed to restore the original message. The order in which you apply the keys for decryption doesn’t matter:[^2] whether you decrypt with Alice’s key first and with Bob’s key second, or the other way around – the result is the same. Or in mathematical terms:
 
 ```txt
-     a ^ b = x
-<=>  b ^ a = x
+a ^ b = b ^ a = x    (commutative property)
 ```
 
 
@@ -72,6 +71,6 @@ Apart from that there are some tricky practical problems, like what to do when a
 I’m not aware of there being commercial applications of *Mental Poker* and I guess that this is mostly due to the practical issues outlined above. There is, however, a lot of research around these questions. So in case you are curious enough, you will find countless papers and other interesting resources online for further reading.
 
 
-[^1]: You can read [the original paper](http://people.csail.mit.edu/rivest/ShamirRivestAdleman-MentalPoker.pdf) as it was published in the Mathematical Gardener.
-[^2]: Friendly reminder: the inverse operation of `XOR` is again `XOR`.
+[^1]: You can read [the original paper](http://people.csail.mit.edu/rivest/ShamirRivestAdleman-MentalPoker.pdf) as it was published in the Mathematical Gardener
+[^2]: Friendly reminder: the inverse operation of `XOR` is again `XOR` (it’s therefore said to be “involutory”)
 [^3]: For a detailed discussion of possible algorithms you find some more infos in [this paper](http://crypto.stanford.edu/~pgolle/papers/poker.pdf) for example
