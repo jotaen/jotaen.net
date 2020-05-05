@@ -1,8 +1,9 @@
-.sociallinks {
+ul.sociallinks {
   display: flex;
-  text-align: center;
+  margin-top: 1rem;
   li {
     flex: auto;
+    text-align: center;
   }
   a {
     @include a-reset;
