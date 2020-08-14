@@ -1,9 +1,9 @@
 +++
 title = "The hyphen text postcard"
 subtitle = "How a British Lord accidentally invented the web"
-date = "2020-07-14"
+date = "2020-08-14"
 tags = ["thoughts"]
-image = "/posts/2020-07-14-ancient-http/shakespeare.jpg"
+image = "/posts/2020-08-14-ancient-http/shakespeare.jpg"
 image_info = "The only preserved portrait painting of Lord Timothy Learnersbee (who by mistake gets often confused with William Shakespeare)"
 image_colouring = "10"
 image_offset = "20%"
