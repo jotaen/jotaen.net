@@ -18,7 +18,7 @@
 {{ end }}
 
 {{ define "main" }}
-  <header class="belt-coverimage postimage" style="background-image:url({{ .Params.Image }})" alt="{{ .Title }}">
+  <header class="belt-coverimage postimage" style="background-image:url({{ .Params.Image }});{{ if .Params.Image_offset }}background-position:center {{ .Params.Image_offset}};{{ end }}" alt="{{ .Title }}">
     {{ if .Params.Image_info }}
       <div class="postimage-info">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -99,6 +99,7 @@
       [].forEach.call(footnoteRefs, (ref, id) => {
         const a = ref.getElementsByTagName("a")[0];
         a.title = "Show footnote";
+        a.innerHTML = "‡";
         a.onclick = (e) => {
           const fn = document.getElementById("footnote-" + id);
           fn.classList.add("overlay-shown");
