@@ -1,6 +1,6 @@
 +++
 title = "The hyphen text postcard"
-subtitle = "How a British Lord accidentally invented the web"
+subtitle = "How a British lord accidentally invented the web"
 date = "2020-08-14"
 tags = ["thoughts"]
 image = "/posts/2020-08-14-ancient-http/shakespeare.jpg"
@@ -47,7 +47,7 @@ The idea behind the hyphen text postcards was well ahead of its time and had the
 All in all, this brief chapter in the British history is not just interesting from a purely technical point of view. It is also an impressive example that shows how infrastructure and technology in its broadest sense can have a powerful impact on society for the good of all. At the same time, however, the course of the subsequent events exemplifies how the success of forward-looking political ideas is largely dependent on the whims of those who rule. (And that, for a change, not just in Britain.)
 
 
-[^1]: Just for the records: this entire story is made-up.
+[^1]: Just for the records: this entire story is made-up. Its purpose is to fictitiously explore what the web could have looked like a few centuries ago.
 [^2]: Most people were illiterate at that time, so it was the dispatcher’s job to put the text on paper.
 [^3]: Analogous to the writing, the dispatcher mostly had to read the messages aloud upon delivery.
 [^4]: Changes and additions to the directory were broadcast to the other kiosks regularly, also via postcards.
