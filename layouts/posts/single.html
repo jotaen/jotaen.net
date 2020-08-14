@@ -99,6 +99,7 @@
       [].forEach.call(footnoteRefs, (ref, id) => {
         const a = ref.getElementsByTagName("a")[0];
         a.title = "Show footnote";
+        a.innerHTML = "‡";
         a.onclick = (e) => {
           const fn = document.getElementById("footnote-" + id);
           fn.classList.add("overlay-shown");
