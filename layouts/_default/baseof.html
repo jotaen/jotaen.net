@@ -8,19 +8,23 @@
 
     <title>{{ block "title" . }}{{ end }} • jotaen.net</title>
 
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
-    <link href="//cloud.typenetwork.com/projects/3434/fontface.css/" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/style.css?{{ now.Unix }}">
-    
-    <script defer="true" src="/highlight.js" onload="hljs.initHighlightingOnLoad()"></script>
-
     <script type="text/javascript">
+      if (location.hostname !== "localhost" && location.protocol !== "https:") {
+        location.replace(`https:${location.href.substring(location.protocol.length)}`);
+      }
+
       function datadecrypt(xs) {
         const decryptor = document.getElementById("datadecrypt");
         const secret = getComputedStyle(decryptor).getPropertyValue('--secret');
         return xs.filter(j => j.key%secret===0).map(j => j.val).join("");
       };
     </script>
+
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link href="//cloud.typenetwork.com/projects/3434/fontface.css/" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/style.css?{{ now.Unix }}">
+    
+    <script defer="true" src="/highlight.js" onload="hljs.initHighlightingOnLoad()"></script>
 
     {{ block "head" . }}{{ end }}
   </head>
@@ -92,7 +96,10 @@
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-62283896-1', 'auto');
+      ga('create', 'UA-62283896-1', {
+        'storage': 'none',
+        'clientId': 'anonymous',
+      });
       ga('set', 'anonymizeIp', true);
       ga('send', 'pageview');
 
