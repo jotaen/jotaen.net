@@ -1,5 +1,5 @@
 <article class="teaser">
-  <a href="/{{ trim .RelPermalink "/" }}" class="teaser-image">
+  <a href="{{ .RelPermalink }}" class="teaser-image">
     {{ $img := (split .Params.Image ".") }}
     <div style="background-image:url({{ index $img 0 }}.small.{{ index $img 1 }})"></div>
     <time class="teaser-date" datetime="{{ .Date }}" style="background-color: hsl({{ .Params.Image_colouring }}, 14%, 25%)">
@@ -9,7 +9,7 @@
   </a>
 
   <div>
-    <a href="/{{ trim .RelPermalink "/" }}" class="teaser-headline">
+    <a href="{{ .RelPermalink }}" class="teaser-headline">
       <h1>
         <div class="teaser-title">{{ .Title }}</div>
         <div class="teaser-subtitle">{{ .Params.Subtitle }}</div>
