@@ -29,3 +29,17 @@ jobs:
           -d \
           -r \
           ./public gs://$GCLOUD_BUCKETNAME
+    - name: Send slack notification
+      env:
+        SLACK_WEBHOOKURL: ${{ secrets.SLACK_WEBHOOKURL }}
+      run: |
+        curl \
+          -X "POST" \
+          $SLACK_WEBHOOKURL \
+          -H 'Content-Type: application/json; charset=utf-8' \
+          -d $'{
+            "icon_emoji": ":rocket:",
+            "text": "Deployment okay [`'${GITHUB_SHA:0:7}'`]",
+            "username": "Deployment"
+          }'
+
