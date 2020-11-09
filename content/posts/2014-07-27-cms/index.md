@@ -1,11 +1,11 @@
 +++
-title = "The backside of CMS-ease"
-subtitle = "Providing a basis for clients to get along"
+title = "The CMS jungle"
+subtitle = "Setting up a CMS with low maintenance"
 date = "2014-07-27"
-tags = ["project", "thoughts"]
+tags = ["thoughts"]
 image = "/posts/2014-07-27-cms/book-stack.jpg"
 id = "xba0w"
-url = "xba0w/the-backside-of-cms-ease"
+url = "xba0w/cms-low-maintenance-setup"
 aliases = ["xba0w"]
 +++
 

@@ -2,7 +2,7 @@
 title = "Critical debug info"
 subtitle = "Sensible logging in web applications"
 date = "2017-12-27"
-tags = ["operation", "tooling"]
+tags = ["devops"]
 image = "/posts/2017-12-27-log-messages/yoyogi-park.jpg"
 id = "oGBQj"
 url = "oGBQj/critical-debug-info"

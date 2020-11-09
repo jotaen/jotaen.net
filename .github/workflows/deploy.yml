@@ -1,0 +1,45 @@
+name: Deploy
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout sources
+      uses: actions/checkout@v2
+    - name: Build website
+      run: make public
+    - name: Connect to GCloud
+      uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      with:
+        version: '290.0.1'
+        project_id: ${{ secrets.GCLOUD_PROJECT }}
+        service_account_key: ${{ secrets.GCLOUD_KEY }}
+        export_default_credentials: true
+    - name: Sync files
+      env:
+          GCLOUD_BUCKETNAME: ${{ secrets.GCLOUD_BUCKETNAME }}
+      run: |
+        gsutil \
+          -m \
+          -h "Cache-Control:private, max-age=60, no-transform" \
+          rsync \
+          -d \
+          -r \
+          ./public gs://$GCLOUD_BUCKETNAME
+    - name: Send slack notification
+      env:
+        SLACK_WEBHOOKURL: ${{ secrets.SLACK_WEBHOOKURL }}
+      run: |
+        curl \
+          -X "POST" \
+          $SLACK_WEBHOOKURL \
+          -H 'Content-Type: application/json; charset=utf-8' \
+          -d $'{
+            "icon_emoji": ":rocket:",
+            "text": "Deployment okay [`'${GITHUB_SHA:0:7}'`]",
+            "username": "Deployment"
+          }'
+

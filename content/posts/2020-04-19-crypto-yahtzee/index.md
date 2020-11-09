@@ -2,7 +2,7 @@
 title = "Crypto Yahtzee"
 subtitle = "Rolling the dice, peer to peer"
 date = "2020-04-19"
-tags = ["project"]
+tags = ["project", "crypto"]
 image = "/posts/2020-04-19-crypto-yahtzee/dices.jpg"
 image_colouring = "150"
 id = "K001f"
@@ -55,11 +55,13 @@ transaction: { action: "record-on-scorecard", category: "threeOfAKind" }
 
 Checking that someone doesn’t cheat when rolling dice is a no-brainer in real life: you just watch them doing it. That’s obviously not an option in a distributed peer-to-peer setup. Hence, generating a trustably random dice roll that cannot be manipulated requires a multi-step procedure:
 
-1. Every player generates a random bit sequence (value) on their own computer. In the first round, only the hashes of those values are shared between all players.
-2. Once all players have published their hash, the original values are revealed. Everyone can verify that all values match up with the previously published hashes and that nothing had been altered after the fact.
-3. The random values (one per player) now get fed into a function that transforms them into a dice value (i.e. a number between 1 and 6). The algorithm is a deterministic mapping from `list of values` to `dice value` and always yields the same result for a given set of input values.
+1. Every player generates a random bit sequence (called: seed) on their own computer. In the first round, only the hashes of those seeds are shared between all players.
+2. Once all players have published their hash, the original seeds are revealed. Everyone can verify that all seeds match up with the previously published hashes and that nothing had been altered after the fact.
+3. The seeds (one per player) now get fed into a function that transforms them into a die value (i.e. a number between 1 and 6). The algorithm is a deterministic mapping from `list of seeds` to `die value` and always yields the same result for a given set of input seeds.
 
-One important remark about the hashing: in my implementation the random bit sequences each are 32-bit long. That is problematic, because it makes it easy for players to generate rainbow tables that would allow a reverse lookup. That way a player could quickly tweak their own value in order to manipulate the final result as to their desire. There are multiple ways to prevent this – in my case I decided to make use of strong seeds, which makes rainbow table generation virtually impossible.
+This procedure must be carried out over and over again for all dice rolls in the match.
+
+One important remark about the hashing: in my implementation the random bit sequences each are 32-bit long. That is problematic, because it makes it easy for players to generate rainbow tables that would allow a reverse lookup. That way a player could quickly tweak their own seed value in order to manipulate the final result as to their desire. There are multiple ways to prevent this – in my case I decided to make use of strong salts, which makes rainbow table generation virtually impossible.
 
 # Networking
 

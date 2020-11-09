@@ -1,9 +1,9 @@
 +++
 title = "What are microservices anyway?"
-subtitle = "Sane ways to reason about application architecture"
-date = "2020-01-22"
-tags = ["thoughts"]
-image = "/posts/2020-01-22-microservices/server-rack.jpg"
+subtitle = "Reasoning about application architecture"
+date = "2020-02-18"
+tags = ["thoughts", "backend"]
+image = "/posts/2020-02-18-microservices/server-rack.jpg"
 image_info = "Photo by Taylor Vick on Unsplash"
 image_colouring = "40"
 id = "ncP01"

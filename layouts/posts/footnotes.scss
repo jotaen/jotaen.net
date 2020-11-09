@@ -80,9 +80,6 @@ sup[id^="fnref"] {
     border-radius: 1em;
     padding: 0 0.3em;
     margin: 0 0.3em;
-    &:before {
-      content: "^";
-    }
   }
 }
 

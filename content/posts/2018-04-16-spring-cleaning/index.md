@@ -2,7 +2,7 @@
 title = "Swing the brush"
 subtitle = "Spring cleaning of my blog"
 date = "2018-04-16"
-tags = ["blogging"]
+tags = ["meta"]
 image = "/posts/2018-04-16-spring-cleaning/painting.jpg"
 image_info = "Photo by Khara Woods (unsplash.com/@kharaoke)"
 id = "IgXy1"
