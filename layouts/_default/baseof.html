@@ -12,12 +12,6 @@
       if (location.hostname !== "localhost" && location.protocol !== "https:") {
         location.replace(`https:${location.href.substring(location.protocol.length)}`);
       }
-
-      function datadecrypt(xs) {
-        const decryptor = document.getElementById("datadecrypt");
-        const secret = getComputedStyle(decryptor).getPropertyValue('--secret');
-        return xs.filter(j => j.key%secret===0).map(j => j.val).join("");
-      };
     </script>
 
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
@@ -81,7 +75,7 @@
           <a href="/about/" class="footer-about-profilepic"><img src="/portrait-jan.small.jpg"></a>
           <span>
             My name is Jan, I am a freelance software developer and consultant based in Berlin, Germany.<br>
-            Learn more <a href="/about/">about me</a> or reach out via <a href="mailto: [CLICK TO REVEAL]" class="m41lm3" onClick="return false;">e-mail</a>.
+            Learn more <a href="/about/">about me</a> or reach out via <a href="/mail/">e-mail</a>.
           </span>
         </p>
         <div class="footer-about-legal">
@@ -122,24 +116,28 @@
       })(10, 120); // max runtime: 20 minutes (120 strokes á 10 seconds)
 
       (function decryptM41lM3() {
-        const m41lm3 = "m41lm3";
-        const links = document.getElementsByClassName(m41lm3);
-        [].forEach.call(links, (link) => {
-          link.onclick = (e) => {
-            e.preventDefault();
-            fetch("/" + m41lm3 + ".json")
-            .then((res) => {
-              if (res.ok) return res.json();
-              else throw "FAILED";
-            })
-            .then(datadecrypt)
-            .then((addr) => {
-              window.location = "mailto:" + addr;
+        const links = document.getElementsByTagName("a");
+        const decryptor = document.getElementById("datadecrypt");
+        const secret = getComputedStyle(decryptor).getPropertyValue("--secret");
+        fetch("/" + "m41lm3" + ".json")
+          .then(res => {
+            if (res.ok) return res.json();
+            else throw "FAILED";
+          })
+          .then(xs => xs.filter(j => j.key%secret===0).map(j => j.val).join(""))
+          .then(addr => {
+            [].forEach.call(links, link => {
+              if (!link.pathname.startsWith("/mail")) {
+                return
+              }
+              link.onclick = (e) => {
+                e.preventDefault();
+                window.location = "mailto:" + addr;
+              };
+              link.href = "mailto: [CLICK TO REVEAL]";
             });
-          };
-        });
+          });
       })();
-
     </script>
 
   </body>
