@@ -1,9 +1,9 @@
 +++
 title = "The Design of Everyday Code"
 subtitle = "Three golden principles for building great APIs"
-date = "2222-02-02"
+date = "2020-11-13"
 tags = ["thoughts", "coding"]
-image = "/posts/2222-02-02-api-design/design-of-everyday-things.jpg"
+image = "/posts/2020-11-13-api-design/design-of-everyday-things.jpg"
 image_colouring = "190"
 id = "eYPPs"
 url = "eYPPs/3-golden-principles-of-api-design"
@@ -12,7 +12,7 @@ aliases = ["eYPPs"]
 
 I had a “Don Norman”-moment just the other day: I went to visit a friend who lives in an apartment downtown. The building is fairly new and its main entrance is equipped with a digital intercom system. Unlike the old days, where doorbells used to be lined up individually, this building has one small panel that only consists of a display and three buttons (two arrow buttons and a ring button). When you want to visit someone, you have to activate the display (by clicking a random button), then scroll through the list of all residents’ names (sorted alphabetically, appearing one at a time), and finally hit the ring button. As far as my friend is concerned that’s a swift and delightful 12-step procedure.
 
-These and other kinds of usability nuisances are subject of Don Norman’s legendary book “The Design of Everyday Things”. It’s about the interactive objects that we deal with on a daily basis: door handles, tools, light switches, control panels, children’s toys, or an absurd (but fictional) coffeepot which you see on [the cover](/posts/2222-02-02-api-design/design-of-everyday-things.jpg). The book revolves around the usage patterns and design traits that make for comprehensible and pleasant user interfaces. Originally published in 1988, the current edition also contains some examples from the digital era.
+These and other kinds of usability nuisances are subject of Don Norman’s legendary book “The Design of Everyday Things”. It’s about the interactive objects that we deal with on a daily basis: door handles, tools, light switches, control panels, children’s toys, or an absurd (but fictional) coffeepot which you see on [the cover](/posts/2020-11-13-api-design/design-of-everyday-things.jpg). The book revolves around the usage patterns and design traits that make for comprehensible and pleasant user interfaces. Originally published in 1988, the current edition also contains some examples from the digital era.
 
 You might wonder how the topic of user interface design is relevant for software developers, especially when they are not engaged with building frontends. But in fact, software developers are routinely involved with user interfaces every day – and that both as their creators and as their consumers. (The “I” in API stands for *interface* after all.) When it comes to usability, how are classes and methods that are exposed by a programming library different from the physical tools in your toolbox? Isn’t using a CLI application conceptually the same as operating your washing machine at home? And I bet you know that kind of situation, where you setup some system, and you go by the book and configure it to the best of your knowledge, but it would just fail to run, over and over again, only presenting you a vague error message, that leaves you clueless, puzzled, and – most of all – raging in furious anger.
 
