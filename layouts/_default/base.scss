@@ -39,8 +39,8 @@ body {
 }
 
 #datadecrypt {
-  // see `datadecrypt()` JS-function
   --secret: 5;
+  display: none;
 }
 
 .belt {

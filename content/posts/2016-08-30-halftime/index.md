@@ -51,7 +51,7 @@ I put few effort in promoting my blog or the posts as yet. I shoot a tweet for e
 
 Since I maintain this blog for myself in the first place, audience and range have never influenced my motivation. But on the other hand, I certainly enjoy feedback of any kind and would like to know, whether people are interested in the stuff I produce.
 
-As a consequence I recently started to crosspost on [Medium](https://medium.com/@jotaen), since the biggest and best community for bloggers and readers is there. However, my personal website will still remain the “primary source” of my blog.
+As a consequence I recently started to crosspost on Medium, since there is a big community for bloggers. However, my personal website will still remain the “primary source” of my blog.
 
 ## It took some time to find my own style
 

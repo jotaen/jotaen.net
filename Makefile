@@ -18,7 +18,7 @@ serve: static/style.css
 		-w /app \
 		$(hugo_image) \
 		hugo server --bind=0.0.0.0 \
-			--buildDrafts --ignoreCache --verbose
+			--buildDrafts --buildFuture --ignoreCache --verbose
 
 static/style.css: node_modules
 	docker run --rm \

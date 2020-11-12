@@ -13,9 +13,10 @@ ul.sociallinks {
   }
 }
 
-.impr-ctc {
+.prtctdnf {
   @include font-mono;
   float: left;
+  user-select: none;
   &-ns {
     float:left;
     display: none;

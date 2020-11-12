@@ -12,12 +12,6 @@
       if (location.hostname !== "localhost" && location.protocol !== "https:") {
         location.replace(`https:${location.href.substring(location.protocol.length)}`);
       }
-
-      function datadecrypt(xs) {
-        const decryptor = document.getElementById("datadecrypt");
-        const secret = getComputedStyle(decryptor).getPropertyValue('--secret');
-        return xs.filter(j => j.key%secret===0).map(j => j.val).join("");
-      };
     </script>
 
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
@@ -29,8 +23,6 @@
     {{ block "head" . }}{{ end }}
   </head>
   <body>
-
-    <div id="datadecrypt"><!--see corresponding JS function--></div>
 
     <div class="belt-dark belt-topfix belt-topfix-thickness">
       <nav class="header">
@@ -52,7 +44,7 @@
         </a>
         <span style="flex:auto"><!--Spacer--></span>
         <a href="/archive/" class="header-navitem">Blog</a>
-        <a href="/about/" class="header-navitem">About</a>
+        <a href="/about/" class="header-navitem">About / Hire</a>
       </nav>
     </div>
 
@@ -81,7 +73,7 @@
           <a href="/about/" class="footer-about-profilepic"><img src="/portrait-jan.small.jpg"></a>
           <span>
             My name is Jan, I am a freelance software developer and consultant based in Berlin, Germany.<br>
-            Learn more <a href="/about/">about me</a> or reach out via <a href="mailto: [CLICK TO REVEAL]" class="m41lm3" onClick="return false;">e-mail</a>.
+            Learn more <a href="/about/">about me</a> or reach out via <a href="/mail/">e-mail</a>.
           </span>
         </p>
         <div class="footer-about-legal">
@@ -91,6 +83,8 @@
 
     </footer>
 
+    <div id="datadecrypt"><!-- see `decryptM41lM3` JS-function --></div>
+
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -98,7 +92,11 @@
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
       ga('create', 'UA-62283896-1', {
         'storage': 'none',
-        'clientId': 'anonymous',
+        'clientId': Array.from(new Array(5))
+          .map(Math.random)
+          .map(x => x.toString(36))
+          .map(x => x.substr(2, 10))
+          .join('').substr(16),
       });
       ga('set', 'anonymizeIp', true);
       ga('send', 'pageview');
@@ -118,24 +116,28 @@
       })(10, 120); // max runtime: 20 minutes (120 strokes á 10 seconds)
 
       (function decryptM41lM3() {
-        const m41lm3 = "m41lm3";
-        const links = document.getElementsByClassName(m41lm3);
-        [].forEach.call(links, (link) => {
+        const links = document.getElementsByTagName("a");
+        const decryptor = document.getElementById("datadecrypt");
+        const secret = getComputedStyle(decryptor).getPropertyValue("--secret");
+        [].forEach.call(links, link => {
+          if (!link.pathname.startsWith("/mail")) {
+            return
+          }
           link.onclick = (e) => {
             e.preventDefault();
-            fetch("/" + m41lm3 + ".json")
-            .then((res) => {
-              if (res.ok) return res.json();
-              else throw "FAILED";
-            })
-            .then(datadecrypt)
-            .then((addr) => {
-              window.location = "mailto:" + addr;
-            });
+            fetch("/" + "m41lm3" + ".json")
+              .then(res => {
+                if (res.ok) return res.json();
+                else throw "FAILED";
+              })
+              .then(xs => xs.filter(j => j.key%secret===0).map(j => j.val).join(""))
+              .then(addr => {
+                window.location = "mailto:" + addr;
+              });
           };
+          link.href = "mailto: [CLICK TO REVEAL]";
         });
       })();
-
     </script>
 
   </body>
