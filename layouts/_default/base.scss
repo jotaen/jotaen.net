@@ -103,7 +103,7 @@ body {
     max-width: $width-paragraph + $width-aside;
   }
   & > p, & > ul, & > ol, & > blockquote, & > figure, & > img,
-  & > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
+  & > h1, & > h2, & > h3, & > h4, & > h5, & > h6, div.text {
     position: relative;
     margin-left: 0;
     max-width: $width-paragraph;
@@ -156,6 +156,7 @@ body {
       fill: #fff;
     }
     a {
+      @include a-reset;
       text-decoration: none;
     }
   }
