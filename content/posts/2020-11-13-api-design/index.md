@@ -20,34 +20,38 @@ The answer to all this is downright simple: there is no difference between the i
 
 My take on that question is the following three principles. One upfront remark about terminology: an *API* can be any programmatic interface, for example that of a code library, CLI tool or web service. The *creator* is the developer who is in charge of designing and building the API, whereas the *consumer* is the developer who later uses it in their own applications.
 
-## 1. Put yourself at the service of consuming developers
+## 1. Put yourself at the service of the consumers
 
-The basic definition of an API is that it offers access to a certain bundle of functionalities and allows that to be (re-)used in different contexts. For an API to be *great* it’s not enough to only satisfy functional requirements though. An equal amount of care should be devoted to the human needs of the consuming developers who eventually have to understand and integrate against it. The means to achieve that are probably not much of a novel revelation, yet all the harder they sometimes are to put into practice.
+The basic definition of an API is that it offers access to a certain bundle of functionalities and allows that to be (re-)used in different contexts. For an API to be *great* it’s not enough to only satisfy functional requirements though. An equal amount of care should be devoted to the human needs of the consumers who eventually have to understand and integrate against it. The means to achieve that are probably not much of a novel revelation, yet all the harder they sometimes are to put into practice.
 
 - A sensible structure, especially on the high level, promotes discoverability. In the best case a consuming developers find their way around without even having to consult the documentation.
 - Thoughtful and consistent naming makes functionalities transparent and predictable. The practice of domain-driven design provides a good approach on that topic.
 - Failure states are sufficiently descriptive in order to ease the process of debugging. A prominent example is the compiler of the Elm programming language that came to attention for its extremely sophisticated error messages.
-- While there should be one canonical way of doing things the “right way”, standard use cases should nevertheless be taken into account for practical reasons. For instance, an API can offer a separate set of utilities that build on top of its core.
-- The documentation is structured in a way that takes the needs of different target groups into consideration. Someone unfamiliar might be interested in learning the fundamentals or how to get started, whereas a power user might want to read up on the specification of a certain parameter.
+- While there should be one canonical way of doing things “right”, standard use cases should nevertheless be taken into account for practical reasons. For instance, an API can offer a separate set of utilities that build on top of its core.
+- The structure of the documentation takes the needs of different target groups into consideration. Someone unfamiliar might be interested in learning the fundamentals or how to get started, whereas a power user might want to read up on the specification of a certain parameter.
 
-All in all, one could describe a great API to be convenient in the physical sense of feeling practical, ergonomic or handy. In the best case the consuming developers intuitively perceive that the API was build with the aim of being useful and providing service to them. And that is to the developers, not just to their application.
+All in all, one could describe a great API to be convenient in the physical sense of feeling practical, ergonomic or handy. The consuming developers intuitively perceive that the API was build with the aim of being useful and providing service to them. And that is to the developers, not just to their application.
 
 ## 2. Leverage the constraints of the language to represent the constraints of your models
 
-- Congruent constraints
-- Make illegal states unrepresentable (as good as the language constructs allows for)
-- Personal confidence is largely dependent on failure mechanisms
-- Allow for fine-granular / independent failure
+A generalised form of this principle would read: “Make use of the capabilities of the language in order to build up your models” – that, however, wouldn’t be worth talking about. Good design goes beyond merely making something happen. The most tricky challenge is to construct the individual pieces in a way that only those can be combined that are actually meant to fit together and that only valid states can be represented in the first place. In more abstract terms one could say that the goal is to maximise the congruence of constraints (that is those of the models with those of the language).
+
+- Make active use of known code patterns[^2] for modelling compulsory control flows or representing legal states.
+- Favour custom data structures for business objects over general-purpose types (i.e. Strings, Maps, etc.), because they are easier to constraint. Most likely, the former use the latter internally, but that can remain an implementation detail.
+- Consider immutable data structures to be the norm rather than the exception and try to enforce constraints as early as possible (i.e. on creation instead of on usage).
+
+Total congruence of constraints is not achievable in most cases, especially not through general-purpose programming languages. But with careful design it is still possible to come quite close. Not only does this contribute to making the program safer, it is also an important factor for the subjective level of confidence that consumers have when working with the building blocks of the API.
 
 ## 3. Create abstractions that make sense on their own
 
 - Meaningful but most of all self-contained mental models
 - Be general-purpose enough in order to allow reusage
+- Extracting things help sharpen the focus
 
 
 # Practical considerations
 
-Note that we haven’t talked about the actual libraries, services and tools themselves here, but only about their surface. For the scope of this topic I assume the APIs to work in the sense that the underlying functionality is correct, reliable and efficient.[^2] This is a reasonable baseline anyway: it would make just as little sense to muse about the aesthetics of a building when its fundamental structure is in danger of collapsing.
+Note that we haven’t talked about the actual libraries, services and tools themselves here, but only about their surface. For the scope of this topic I assume the APIs to work in the sense that the underlying functionality is correct, reliable and efficient.[^3] This is a reasonable baseline anyway: it would make just as little sense to muse about the aesthetics of a building when its fundamental structure is in danger of collapsing.
 
 One criterion commonly associated with user experience is *ease of use*. That is certainly appropriate in the way that things shouldn’t be more complicated than they need to be. Ease of use, however, is not an end in itself. In some cases complexity is inherent and cannot be simplified down to a seemingly tidy facade. Trying to do that nevertheless results in a so-called “leaky abstraction”, which means that the underlying complexity shines through and that the promises of the exposed models are subject to implicit conditions. Albeit undesired, leaky abstractions are hard (and sometimes impossible) to avoid and a careful balancing act is required to make a good tradeoff between convenience and correctness.
 
@@ -58,4 +62,6 @@ In any event, whether or not you agree with the above principles, I still hope t
 
 [^1]: In tech, this idea is sometimes referred to as “developer experience” (or short: “DX”)
 
-[^2]: There are separate design principles to promote functional aspects such as correctness or maintainability
+[^2]: A rich selection of code patterns can be found in the Gang-of-Four book
+
+[^3]: There are separate design principles to promote functional aspects such as correctness or maintainability
