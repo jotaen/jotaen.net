@@ -12,7 +12,7 @@ jobs:
     - name: Build website
       run: make public
     - name: Deploy to Firebase
-      uses: w9jds/firebase-action@master
+      uses: w9jds/firebase-action@0ebd6f1ab92511ceefba39e1a2fe677521f892ad
       env:
         PROJECT_ID: ${{ secrets.GCLOUD_PROJECT }}
         GCP_SA_KEY: ${{ secrets.GCLOUD_KEY }}
