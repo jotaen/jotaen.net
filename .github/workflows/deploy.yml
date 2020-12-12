@@ -11,24 +11,13 @@ jobs:
       uses: actions/checkout@v2
     - name: Build website
       run: make public
-    - name: Connect to GCloud
-      uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
-      with:
-        version: '290.0.1'
-        project_id: ${{ secrets.GCLOUD_PROJECT }}
-        service_account_key: ${{ secrets.GCLOUD_KEY }}
-        export_default_credentials: true
-    - name: Sync files
+    - name: Deploy to Firebase
+      uses: w9jds/firebase-action@master
       env:
-          GCLOUD_BUCKETNAME: ${{ secrets.GCLOUD_BUCKETNAME }}
-      run: |
-        gsutil \
-          -m \
-          -h "Cache-Control:private, max-age=60, no-transform" \
-          rsync \
-          -d \
-          -r \
-          ./public gs://$GCLOUD_BUCKETNAME
+        PROJECT_ID: ${{ secrets.GCLOUD_PROJECT }}
+        GCP_SA_KEY: ${{ secrets.GCLOUD_KEY }}
+      with:
+        args: deploy --only hosting
     - name: Send slack notification
       env:
         SLACK_WEBHOOKURL: ${{ secrets.SLACK_WEBHOOKURL }}
