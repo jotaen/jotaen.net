@@ -2,7 +2,7 @@
 title = "Storytime"
 subtitle = "How I failed to become a game developer at the age of 13"
 date = "2021-03-07"
-tags = ["project", "coding"]
+tags = ["thoughts"]
 image = "/posts/2021-03-07-oop/broken-sword.jpg"
 image_info = "The opening scene of the game “Broken Sword” by Revolution Software, which I was (and still am) a huge fan of"
 image_colouring = "10"
