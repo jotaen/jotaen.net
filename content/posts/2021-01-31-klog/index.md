@@ -10,6 +10,11 @@ url = "9zRPA/klog-time-tracking-plain-textfiles"
 aliases = ["9zRPA"]
 +++
 
+> **Quickstart:**
+> 
+> - Find the klog sources and binaries [on Github](https://www.github.com/jotaen/klog)
+> - Read the [tutorial and documentation](https://klog.jotaen.net)
+
 One topic that kept me thinking on and off for a couple of years now is time tracking. That is for very practical reasons, as I was (and still am) interested to keep track of my working hours. Back in the day, when I used to work full-time, I wanted to know how well on track I was with the 40 hours that I agreed to devote to my employer. Nowadays, as a freelancer, I need to log my working hours for bookkeeping reasons, as my invoices are based on an hourly rate.
 
 There exist countless web services for time tracking, some of which offering an impressive feature set that cater for all imaginable use-cases. However, I never felt too much appeal to use them. It’s not that I have any special requirements or practice an extravagant workflow. My reluctance is instead stemming from a conceptual thought: keeping track of times is a rather mundane and simple thing to do, so why rely on (semi-) commercial online services that build on complex technology stacks for something that you can basically do with a pencil and a piece of paper?
