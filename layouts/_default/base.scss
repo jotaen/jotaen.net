@@ -114,7 +114,6 @@ body {
   @extend .central-column;
   color: white;
   line-height: 100%;
-  font-size: 1.1rem;
   display:flex;
   height: 100%;
   align-items: center;
@@ -132,7 +131,7 @@ body {
     text-transform: uppercase;
     font-size: 0.95em;
     letter-spacing: 0.01em;
-    padding: 0 2.5%;
+    padding-left: 5%;
   }
 }
 
