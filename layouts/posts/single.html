@@ -95,8 +95,7 @@
     (function modifyFootnoteRefLinks() {
       const footnoteRefs = document.getElementsByClassName("footnote-ref");
       if (!footnoteRefs) return;
-      [].forEach.call(footnoteRefs, (ref, id) => {
-        const a = ref.getElementsByTagName("a")[0];
+      Array.from(footnoteRefs).forEach((a, id) => {
         a.title = "Show footnote";
         a.innerHTML = "‡";
         a.onclick = (e) => {

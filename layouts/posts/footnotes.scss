@@ -67,22 +67,20 @@ sup[id^="fnref"] {
   @include width-beyond-broad {
     display: none;
   }
-  a {
-    @include font-regular;
-    @include a-reset {
-      color: $color-lightblue;
-      &:hover, &:active {
-        background-color: $color-lightblue;
-        color: #fff;
-      }
+  @include font-regular;
+  @include a-reset {
+    color: $color-lightblue;
+    &:hover, &:active {
+      background-color: $color-lightblue;
+      color: #fff;
     }
-    border: 1px solid $color-lightblue;
-    border-radius: 1em;
-    padding: 0 0.3em;
-    margin: 0 0.3em;
   }
+  border: 1px solid $color-lightblue;
+  border-radius: 1em;
+  padding: 0 0.3em;
+  margin: 0 0.3em;
 }
 
-.footnote-return {
+.footnote-backref {
   display: none;
 }

@@ -5,9 +5,6 @@ ignoreFiles = [ "\\.scss$", "credits\\.pdf$" ]
 disableKinds = ["taxonomy","taxonomyTerm"]
 buildFuture = true
 enableRobotsTXT = true
-
-[blackfriday]
-  smartypants = false
-  smartDashes = false
-  latexDashes = false
   
+[markup.goldmark.renderer]
+unsafe = true

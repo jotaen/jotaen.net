@@ -109,6 +109,7 @@ pre {
   background-color: $color-lightgrey;
 
   code, .code {
+    background-color: transparent;
     padding-left: 0;
     padding-right: 0;
   }
@@ -164,6 +165,7 @@ button, input {
   /** Normalise form/input elements **/
   @include font-regular;
   @include text-regular;
+  font-size: inherit;
   font-style: normal;
   border: none;
   box-sizing: border-box;

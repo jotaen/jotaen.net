@@ -11,7 +11,8 @@
   }
 
   & pre {
-    overflow: scroll;
+    overflow: auto;
+    padding: 1rem;
   }
 
   & p > img {
