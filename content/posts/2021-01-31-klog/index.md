@@ -3,7 +3,7 @@ title = "klog"
 subtitle = "Time tracking with plain text files"
 date = "2021-01-31"
 tags = ["project", "coding"]
-image = "/posts/2021-01-31-klog/notebook.jpg"
+image = "notebook.jpg"
 image_colouring = "320"
 id = "9zRPA"
 url = "9zRPA/klog-time-tracking-plain-textfiles"
@@ -25,7 +25,7 @@ The longer I have been working with computers the more I appreciate the freedom 
 
 Born out of this conception I experimented with different formats to record time tracking data using plain text files. Over the past weeks I tried out various structures to model and layout the information. What I came up with is a lightweight format with minimal syntax that I called “klog”. The idea is to record the data in a similar style as you would using a physical notebook: it’s basically the date, then time-related entries such as a time range or duration of how long something took, and maybe a short note about what you did.
 
-![A terminal window demonstrating the file format and the command line tool usage](/posts/2021-01-31-klog/demo.gif)
+![A terminal window demonstrating the file format and the command line tool usage](demo.gif)
 
 I implemented a parser for the klog file format along with a small command line tool that allows to evaluate the data programatically. You find the project [on Github](https://github.com/jotaen/klog), where you can also download the binary in order to experiment with klog. I’ve also written up some [documentation](https://klog.jotaen.net) that helps you understand the basic concepts and get started. If you happen to be interested in this idea I’d appreciate some feedback and learn about your use-cases – drop me an [email](/mail) or open an issue on Github. klog obviously fits *my* needs, but I aimed for making it general-purpose enough so that other people may find it useful too.
 

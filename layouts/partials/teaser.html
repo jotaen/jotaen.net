@@ -1,7 +1,7 @@
 <article class="teaser">
   <a href="{{ .RelPermalink }}" class="teaser-image">
     {{ $img := (split .Params.Image ".") }}
-    <img src="{{ index $img 0 }}.small.{{ index $img 1 }}" alt="" loading="lazy">
+    <img src="{{ .RelPermalink }}{{ index $img 0 }}.small.{{ index $img 1 }}" alt="" loading="lazy">
     <time class="teaser-date" datetime="{{ .Date }}" style="background-color: hsl({{ .Params.Image_colouring }}, 14%, 25%)">
       {{ .Date.Format "2" }}<sup>{{ if in (slice 1 21 31) .Date.Day}}st{{ else if in (slice 2 22) .Date.Day}}nd{{ else if in (slice 3 23) .Date.Day}}rd{{ else }}th{{ end }}</sup>
       {{ .Date.Format "Jan. 2006" }}

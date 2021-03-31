@@ -1,7 +1,7 @@
 .PHONY: public serve static/style.css
 
 node_image = node:12.14.0-alpine
-hugo_image = jojomi/hugo:0.30.2
+hugo_image = jojomi/hugo:0.82.0
 
 public: static/style.css
 	rm -rf public/

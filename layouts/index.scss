@@ -5,8 +5,15 @@
   "posts/post",
   "posts/footnotes",
   "archive/archive",
-  "index/index",
   "_default/base",
   "partials/tagbrowser",
   "partials/teaser"
 ;
+
+.archiveportal {
+  padding-top: 1.5rem;
+
+  &-title {
+    text-align: center;
+  }
+}

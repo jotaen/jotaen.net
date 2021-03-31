@@ -3,7 +3,7 @@ title = "Crypto Yahtzee"
 subtitle = "Rolling the dice, peer to peer"
 date = "2020-04-19"
 tags = ["project", "crypto"]
-image = "/posts/2020-04-19-crypto-yahtzee/dices.jpg"
+image = "dices.jpg"
 image_colouring = "150"
 id = "K001f"
 url = "K001f/crypto-yahtzee"
@@ -16,7 +16,7 @@ The world of remote gaming has obviously changed, especially in the last two dec
 
 However, the idea of playing peer-to-peer like in the old days still lives on and can be applied to modern communication infrastructure. That is especially true for turn-based parlour games like chess or Yahtzee. My most recent toy project was the implementation of a transactionally robust and cryptographically secure mechanism to play the dice game Yahtzee without needing a server that controls everything. I describe the key ideas behind it in the following post and you also find a playable [reference implementation](https://github.com/jotaen/crypto-yahtzee) on Github. (Be warned about the latter though – it’s a bit geeky and you might find rough edges…)
 
-![Command line interface of my Crypto Yahtzee reference implementation](/posts/2020-04-19-crypto-yahtzee/game-screenshot.jpg)
+![Command line interface of my Crypto Yahtzee reference implementation](game-screenshot.jpg)
 [^1]
 
 # Game Protocol

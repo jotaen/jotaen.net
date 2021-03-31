@@ -3,7 +3,7 @@ title = "Run Monitor"
 subtitle = "How I keep track of my run training"
 date = "2016-09-07"
 tags = ["project", "frontend", "graphics"]
-image = "/posts/2016-09-07-run/run-monitor.jpg"
+image = "run-monitor.jpg"
 id = "oBPhB"
 url = "oBPhB/run-monitor"
 aliases = ["oBPhB"]
@@ -15,13 +15,13 @@ Since I never did regular run training before, I had to obtain a feeling for pac
 
 Not for nothing am I a software developer, so the answer to these questions is quite predictable: I built an app. It’s basically a dashboard that spits out the data and renders charts, which help us to understand and keep track of our training progress. The idea is to put the data into relation to an actual half marathon and get a good feel for where we currently are. The data itself (mainly distance and time, and also a few meta information) is held in [Contentful](https://www.contentful.com/) and has to be entered by hand after each run.
 
-Enough of the words: make mincemeat out of my run performance and [go visit the dashboard yourself](/posts/2016-09-07-run/app.html).[^1]
+Enough of the words: make mincemeat out of my run performance and [go visit the dashboard yourself](app.html).[^1]
 
 ## Information design
 
 Designing this tiny dashboard app was actually pretty fun, as I put a lot of thought in the information design. As I explained above, the key idea is to have a comprehensive and intuitive comparison of one particular training session to the goal of running 21.1 km in 2 hours. There are four measurements:
 
-![Dashboard showing a circle graph, a speedometer, a pie chart and a progress bar](/posts/2016-09-07-run/run-monitor-dashboard.jpg)
+![Dashboard showing a circle graph, a speedometer, a pie chart and a progress bar](run-monitor-dashboard.jpg)
 
 ### Distance
 

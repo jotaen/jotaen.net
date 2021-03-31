@@ -3,7 +3,7 @@ title = "connect4-ai"
 subtitle = "On building a game AI for “Connect Four”"
 date = "2020-01-20"
 tags = ["coding", "project"]
-image = "/posts/2020-01-20-connect4-ai/winter-tree.jpg"
+image = "winter-tree.jpg"
 image_colouring = 10
 image_info = "Photo by Fabrice Villard on Unsplash"
 id = "lAFT4"
@@ -43,7 +43,7 @@ The heart of the AI is an algorithm called Minimax. If that name sounds unfamili
 
 The way the AI evaluates future moves in Connect Four follows the same mechanism. It simulates dropping a disc into each of the free slots and then puts itself into the opponent’s shoes to see how they could possibly react. Based on these hypothetic outcomes, the AI tries out all further options again – and so on and so forth. Both players have precisely opponing goals, because a win for one player automatically means a loss for the other and vice versa[^2]. This decision making strategy can be modelled as a tree structure like so:
 
-![Decision tree for predicting future game evolvements](/posts/2020-01-20-connect4-ai/game-tree.png)
+![Decision tree for predicting future game evolvements](game-tree.png)
 
 Let’s settle on some terminology first: the top of the **tree** is called **root node** and represents the current game situation after the opponent has finished their turn. In the picture above there are three choices (think: three available slots to drop into) which are called **branches**. These lead to the next potential game states (**nodes**) and their subsequent **subtrees**. This way the hypothetic future of the game can be explored until a final state is reached – a **leaf node**. This either means that one player has won or that the game has ended in a draw. The **depth** of the above tree is 3&nbsp;levels. The numbers that are assigned to the leaf nodes are **scores** that are needed to make a quantified decision. Positive scores indicate that the AI would win the game, negative scores mean that it would lose, and a neutral score is a draw (here: `0`).
 
@@ -65,7 +65,7 @@ Center slots give better chances than the outer ones to win the game in the best
 #### Depth-based scores:
 There is one key difference in how humans and computers predict the future: the assessment of a computer either yields a well-defined score or no score at all, whereas the assessment of a human somehow gets more and more “fuzzy” with increasing prediction depth. As shown in the tree below it might happen that the AI detects negative scores (i.e. potential losses) for all root branches. No matter how the AI would decide, the opponent can potentially enforce a loss in any event. As a human player, however, you maybe don’t even recognise all your opportunities, because they are too far ahead. In order to account for that human characteristic, the AI will always choose the “smallest evil” and enter the branch where the loss is the farthest away. In the tree below the AI would go for the middle branch, because there is at least a slight chance to turn the tide if the opponent happens to make a mistake during their turn. Without factoring depth into the scores, it would appear as if the AI “gave up” the moment it detects a hopeless situation. Instead of making a seemingly random move (*all* slots are losses, after all) it should always respond to the most obvious threat, because the opponent might not even be aware that they had gained the upper hand altogether.
 
-![Relative scoring](/posts/2020-01-20-connect4-ai/relative-scoring.png)
+![Relative scoring](relative-scoring.png)
 
 #### Acting on opportunities:
 A similar mechanism comes into play when the AI concludes nothing better than indeterminate scores for the root branches. This effectively means the game won’t enter a definite state within the next two turns. (Well, at least as far as the AI can tell…) This doesn’t imply, however, that there wouldn’t be any good opportunities down the line. As we already discussed, humans tend to overlook or misjudge constellations the more turns they consist of or the farther away they are. Therefore, the AI will favour branches with the highest chance for the human opponent to make a mistake, which the AI could then take advantage of. In other words: when there is no better option, the AI tries to allure you into situations where it’s most likely for you to screw it up.
@@ -76,7 +76,7 @@ The end result of a Connect Four match comes down to all or nothing – you eith
 
 When it comes to pruning there is one caveat in regards to the human opponent, though. Cutting off subtrees presumes that the respective player will reliably spot the even most remote opportunity and follow that path thrustfully without making a mistake along the way. This is true for a computer, but not so much for a human being, as we already discussed in the previous section. Consequently, the AI cannot just cut off subtrees on behalf of the opponent the same way it does it for itself. It rather needs to continue evaluating that node in order to detect the closest of all possible losses. Again: the more concrete an opportunity is, the more likely it is for the opponent to recognise that! There is still room for optimisation, though: the prediction depth for the subtrees of such a node can be limited, because the AI only needs to check for loss candidates that are *closer* than the one already found.
 
-![Pruning / deep cut-off](/posts/2020-01-20-connect4-ai/pruning.png)
+![Pruning / deep cut-off](pruning.png)
 
 The above tree shows how both techniques come into effect. The right part shows how entire subtrees are cut off once an enforcable positive score has been found. All the adjacent branches for that node can be disregarded just as if they wouldn’t even exist. The left part shows how the prediction depth for a subtree is limited when an enforcable negative score has been found. If the AI didn’t do this, the corresponding root level branch would errorneously show a score of `-0.5` instead of `-1`, which could cause the AI to make a badly informed and thus unfavourable decision. (Not in this very example, of course, but much more in general.)
 

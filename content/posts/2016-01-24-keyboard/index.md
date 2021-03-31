@@ -3,7 +3,7 @@ title = "Stop using ASCII Art"
 subtitle = "Explore the super powers of your Mac keyboard"
 date = "2016-01-24"
 tags = ["tooling", "graphics"]
-image = "/posts/2016-01-24-keyboard/typewriter.jpg"
+image = "typewriter.jpg"
 id = "4haPC"
 url = "4haPC/stop-using-ascii-art"
 aliases = ["4haPC"]
@@ -71,7 +71,7 @@ In general, the easiest way is to import your currently used keyboard layout, cu
 
 [^3]
 
-![A keyboard that shows customized keybindings](/posts/2016-01-24-keyboard/keyboard-layout.gif)
+![A keyboard that shows customized keybindings](keyboard-layout.gif)
 
 Last but not least, I recommend you to activate the keyboard icon in the system tray via your system settings. That way, you can quickly display a virtual keyboard, which reveals all the “hidden” characters when you press `shift` or `option`. That can be good reminder sometimes.
 

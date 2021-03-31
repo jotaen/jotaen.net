@@ -3,7 +3,7 @@ title = "Arduino flightseeing"
 subtitle = "An explanation of the Arduino Uno hardware components"
 date = "2019-11-30"
 tags = ["hardware"]
-image = "/posts/2019-11-30-arduino-hardware/arduino.jpg"
+image = "arduino.jpg"
 image_colouring = 40
 image_info = ""
 id = "iJ6fF"
@@ -31,11 +31,11 @@ A few miscellaneous remarks, before we start:
 
 - For this post I used the Arduino Uno rev3 with an AVR ATmega328P chip. There exist variations of this model, other models (like the Arduino Mega or the Arduino Nano) will look vastly different. However, you still should be able to spot differences and similarities, since most of the boards follow the same basic ideas and patterns.
 - I roughly devided the board into 4 sections: the main microcontroller unit, the power supply, the controlling unit and eventually generic components and wiring. These categories, however, are not “official”, so you won’t find these terms consistently everywhere.
-- For what it’s worth, the back-side of the board isn’t all that interesting. In case you want to see it though, I provided you a [picture of it here](/posts/2019-11-30-arduino-hardware/arduino-backside.jpg).
+- For what it’s worth, the back-side of the board isn’t all that interesting. In case you want to see it though, I provided you a [picture of it here](arduino-backside.jpg).
 
 # Main microcontroller
 
-![Arduino board](/posts/2019-11-30-arduino-hardware/arduino-main-unit.jpg)
+![Arduino board](arduino-main-unit.jpg)
 
 The <span class="pillbox pillbox-red">1</span> ATmega328P microcontroller is the heart of the Arduino Uno. It is a fully self-contained mini computer that provides - among others – the following functionalities:
 
@@ -58,7 +58,7 @@ A <span class="pillbox pillbox-red">7</span> 6-pin male connector nearby the ATm
 
 # Power supply
 
-![Arduino board](/posts/2019-11-30-arduino-hardware/arduino-power-supply.jpg)
+![Arduino board](arduino-power-supply.jpg)
 
 The power supply section of the Arduino board is a sophisticated (read: well thought out) circuitry whose job is to ensure that a stable current is supplied to the board. You can think of it as an antechamber, where incoming current is regulated and stabilised before it is fed into the board’s 5V power supplies. The components of microcontroller-based circuits are quite sensitive in regards to electricity: ups and downs of the current could cause random malfunctions, undervoltage might bring the board to a halt, and overvoltage can cause severe damage that might be hard or impossible to repair. Hence, it is utterly important to have well-regulated 5V flowing within the power supplies.
 
@@ -74,7 +74,7 @@ Lastly, there is another smaller <span class="pillbox pillbox-cyan">9</span> vol
 
 # The controlling unit
 
-![Arduino board](/posts/2019-11-30-arduino-hardware/arduino-controlling.jpg)
+![Arduino board](arduino-controlling.jpg)
 
 Arduino offers a very convenient way to load sketches from your computer onto the board via USB. Apart from the Arduino IDE (or some equivalent software tool) there are several hardware components in place to make this happen. For one, there is yet another fully fledged <span class="pillbox pillbox-pink">1</span> microcontroller mounted, an ATmega16U2. It’s main responsibilities are to forward new sketches to the ATmega328P and to take care of the serial communication via USB to the host computer. Since USB has high demands in terms of clock precision, there is a dedicated <span class="pillbox pillbox-pink">2</span> 16 MHz quartz crystal connected. (Which is not wired to the ATmega328P, by the way, as one could easily suppose!) The ATmega16U2 is connected via the TX and RX ports to the ATmega328P. The latter has a special bootloading sequence preinstalled that takes care of receiving newly available sketches from the former. The <span class="pillbox pillbox-pink">3</span> TX and RX LEDs flash to indicate that there is serial communication going on.
 
@@ -84,7 +84,7 @@ An interesting option for expert users might be to connect something to the <spa
 
 # Wiring
 
-![Arduino board](/posts/2019-11-30-arduino-hardware/arduino-wiring.jpg)
+![Arduino board](arduino-wiring.jpg)
 
 Now that we have an understanding of the individual components, let’s have a look at how everything plays together. There aren’t any wires on the board, electricity rather flows through <span class="pillbox pillbox-green">1</span> conductive traces. The Arduino Uno is a so-called printed circuit board (PCB), which means that there is a conducting layer on the top and on the bottom of the board. During the manufacturing process a layout of traces and areas (think: roads and places) is printed onto the surfaces, which are then treated with acid. That way the non-printed surface sections vanish and distinct electrical pathways remain. On the top-side all the lighter colours are conductive, whereas the darker ones are non-conductive. On the bottom-side it’s the greyish colours that conduct, while white is isolating. The numerous <span class="pillbox pillbox-green">2</span> little holes are called “vias” and act as loopholes bridging over from one side to the other. This, by the way, is the only way to avoid unwanted intersections between traces. The <span class="pillbox pillbox-green">3</span> conductive areas on both sides conduct ground voltage (GND) for the greater part.
 
