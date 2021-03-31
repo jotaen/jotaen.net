@@ -6,8 +6,7 @@
         <ul>
           {{ range $name := $tags }}
             <li class="tagbrowser-tag">
-              <a href="/archive/#{{ $name | urlize }}" class="tag-light">{{ $name }}</a><!--
-              --><span class="tagbrowser-count">({{ $.Site.Taxonomies.tags.Count $name }})</span>
+              <a href="/archive/#{{ $name | urlize }}" class="tag-light">{{ $name }}</a>
             </li>
           {{ end }}
         </ul>
