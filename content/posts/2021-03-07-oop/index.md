@@ -1,6 +1,6 @@
 +++
 title = "Storytime"
-subtitle = "How I failed to become a game developer at the age of 13"
+subtitle = "How I failed to become a game developer at the age of 13"
 date = "2021-03-07"
 tags = ["thoughts"]
 image = "broken-sword.jpg"

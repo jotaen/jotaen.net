@@ -32,20 +32,24 @@
 .headline {
   text-align: center;
   margin-top: 0.5em;
+  line-height: 1.6;
 
   .headline-title {
     margin: 0 1rem;
-    font-size: 1.3em;
+    font-size: 1.9rem;
+    letter-spacing: -0.02em;
+    word-spacing: -0.1em;
   }
   .headline-subtitle {
-    margin: 0 2rem;
-    font-size: 0.8em;
+    margin: 0.2rem 2rem;
+    font-size: 1.1rem;
+    word-spacing: -0.05rem;
   }
   .headline-meta {
     display: flex;
     color: #999;
     font-size: 0.9rem;
-    margin-top: 0.5rem;
+    margin-top: 1.2rem;
 
     &-text {
       margin:0 1em;

@@ -13,7 +13,8 @@
   font-display: swap;
   font-style: normal;
   font-weight: normal;
-  letter-spacing: -0.032em;
+  letter-spacing: -0.039em;
+  word-spacing: -0.03em;
 }
 
 @mixin font-bold {
@@ -53,17 +54,17 @@
 }
 
 @mixin text-regular {
-  line-height: 1.57;
+  line-height: 1.8;
 }
 
 /*
  *  MEDIA QUERIES
  */
 
-$width-paragraph: 650px; // ~80 chars
-$width-aside: 160px;
+$width-paragraph: 700px; // ~80 chars
+$width-aside: 180px;
 
-$layout-width-superwide: 2000px;
+$layout-width-superwide: 1700px;
 
 @mixin width-beyond-narrow {
   @media (min-width: 400px) {
@@ -78,13 +79,13 @@ $layout-width-superwide: 2000px;
 }
 
 @mixin width-below-broad {
-  @media (max-width: #{$width-paragraph + 3*$width-aside - 1}) {
+  @media (max-width: #{$width-paragraph + 2*$width-aside - 1}) {
     @content;
   }
 }
 
 @mixin width-beyond-broad {
-  @media (min-width: #{$width-paragraph + 3*$width-aside}) {
+  @media (min-width: #{$width-paragraph + 2*$width-aside}) {
     @content;
   }
 }

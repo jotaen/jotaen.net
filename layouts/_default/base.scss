@@ -8,7 +8,7 @@ html {
   @media print {
     background-color: transparent;
   }
-  font-size: 16.5px;
+  font-size: 18px;
 }
 
 body {
@@ -85,7 +85,7 @@ body {
     &-thickness {
       min-height: 2.2rem;
       height: 7vh;
-      max-height: 2.8rem;
+      max-height: 2.6rem;
     }
     @include width-beyond-max {
       max-width: $layout-width-superwide;
@@ -95,19 +95,15 @@ body {
 
 .central-column {
   position: relative;
-  max-width: $width-paragraph + $width-aside;
+  max-width: $width-paragraph;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   box-sizing: border-box;
   margin: 0 auto;
-  @include width-below-broad {
-    max-width: $width-paragraph + $width-aside;
-  }
   & > p, & > ul, & > ol, & > blockquote, & > figure, & > img,
   & > h1, & > h2, & > h3, & > h4, & > h5, & > h6, div.text {
     position: relative;
     margin-left: 0;
-    max-width: $width-paragraph;
   }
   .full-width {
     max-width: inherit;
