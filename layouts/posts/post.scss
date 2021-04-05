@@ -70,6 +70,7 @@
 }
 
 .postimage {
+  @extend .print-hide;
   &-info {
     position: absolute;
     width: 20px;

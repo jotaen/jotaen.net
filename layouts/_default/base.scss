@@ -76,13 +76,13 @@ body {
   }
   &-topfix {
     @extend .print-hide;
-
     position: fixed;
     top: 0;
     z-index: $zindex-navigation;
     box-shadow: 0 0 0.8rem rgba(0,0,0,0.4);
 
     &-thickness {
+      @extend .print-hide;
       min-height: 2.2rem;
       height: 7vh;
       max-height: 2.6rem;
@@ -136,6 +136,7 @@ body {
 }
 
 .footer {
+  @extend .print-hide;
   @extend .central-column;
   padding-top: 0.6rem;
   padding-bottom: 0.6rem;
