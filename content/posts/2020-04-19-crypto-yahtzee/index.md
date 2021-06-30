@@ -21,7 +21,7 @@ However, the idea of playing peer-to-peer like in the old days still lives on an
 
 # Game Protocol
 
-A quick reminder of the rules: [Yahtzee](https://en.wikipedia.org/wiki/Yahtzee) is played with usually a handful of players who take turns one after the other. Every player has three attempts per turn to roll up to five dice, which they need to achieve certain combinations with. (E.g., four in a row, equivalent to a straight in Poker.) The scores are recorded on a scorecard and the game is finished once all 13 categories have been accomplished (or dismissed) by all players.
+A quick reminder of the rules: [Yahtzee](https://en.wikipedia.org/wiki/Yahtzee)[^2] is played with usually a handful of players who take turns one after the other. Every player has three attempts per turn to roll up to five dice, which they need to achieve certain combinations with. (E.g., four in a row, equivalent to a straight in Poker.) The scores are recorded on a scorecard and the game is finished once all 13 categories have been accomplished (or dismissed) by all players.
 
 In a peer-to-peer version there is no game server that could hold and manage the state. Therefore, every player maintains their own copy of the game state and updates it by exchanging transactions with their opponents. In prose, that would read like “I keep the two fours and roll the other dice again” or “I record the current cast with a score of 4 in the ‘aces’ category”. Every player of course has to check for themselves that a received transaction is inline with the game rules and applicable at the respective moment. That should usually be the case, unless there is a malfunctioning client, network problems or an attacker.
 
@@ -73,3 +73,5 @@ Therefore, it is important that seemingly invalid actions are not outrightly dis
 
 
 [^1]: A screenshot of the interactive command line interface of my p2p Yahtzee implementation
+
+[^2]: Tip: you find plenty of playable web-versions of Yahtzee on the internet for a practical refresher.
